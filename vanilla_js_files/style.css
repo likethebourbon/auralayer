@@ -111,15 +111,16 @@ button:hover
 
 .all_layer_containers
 {
-  background-color:gray;
+  /* background-color:gray; */
 	grid-row:1;
 }
 
-.editing_container_al
+.segment_editing_container
 {
   background-color:lightgray;
 	grid-row:3;
 	z-index: 1;
+	display: flex;
 }
 
 .layer_container
@@ -163,7 +164,7 @@ button:hover
 .layer_segment_holder
 {
   grid-column: 2;
-  background: linear-gradient(to right, #b9f, #ffdd40);
+  
 	position: relative;
 }
 
@@ -174,7 +175,7 @@ button:hover
 
 .layer_selected_segments_holder
 {
-	background: #ff9800;
+	/* background: #ff9800; */
 }
 
 .segment
@@ -183,11 +184,51 @@ button:hover
 	background-color: coral;
   position: absolute;
   height: 100%;
+	padding-right: 1px;
 }
 
 .segment_selected
 	{
 		outline: 5px solid coral;
+	}
+
+.segments_layer_is_selected
+	{
+		padding-right: 0px;
+	}
+
+.segments_layer_is_not_selected
+	{
+		padding-right: 1px;
+	}
+
+.presence_slider_container
+	{
+		display: grid;
+		grid-template-columns: 30px 48px 24px;
+		
+	}
+
+.presence_slider
+	{
+    transform: rotate(270deg) translateX(-39px) translateY(-25px);
+    width: 83px;
+		height: 20px;
+	}
+
+.presence_slider_start
+	{
+		grid-column: 1;
+	}
+
+.presence_slider_end
+	{
+		grid-column: 2;
+	}	
+
+.presence_slider_independent_toggle
+	{
+		grid-column: 3;
 	}
 
 .slider_container
@@ -265,10 +306,11 @@ button:hover
 .backdrop, .url_prompt_backdrop
 {
 	z-index: 2;
-	position: absolute;
-	
+	position: fixed;
 	width: 100%;
 	height: 100%;
+	top: 0px;
+	left: 0px;
 	background-color: #8080808a;
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
@@ -331,4 +373,61 @@ button:hover
 	font-size: 20px;
 	padding: 10px 20px;
 	margin-top: 31px;
+}
+
+.activity_selection_container
+{
+	position: fixed;
+	display: grid;
+	grid-template-columns: auto 500px auto;
+  grid-template-rows: 50px auto 50px;
+	top: 0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+	background-color: var(--primary-color-2);
+	z-index: 2;
+}
+
+.activity_selection_header
+{
+	grid-row: 1;
+	grid-column: 2;
+	background-color: var(--primary-color-2);
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: 26px;
+}
+.activity_selection_body
+{
+	grid-row: 2;
+	grid-column: 2;
+	background-color: var(--primary-color-2);
+}
+.activity_selection_footer
+{
+	grid-row: 3;
+	grid-column: 2;
+	background-color: var(--primary-color-2);
+}
+
+.activity_button_container
+{
+	display: flex;
+}
+
+.activity_button_container div
+{
+	line-height: 45px;
+}
+
+.activity_button_container button
+{
+	min-width: 100px;
+}
+
+.open_audio_button
+{
+	z-index: 3;
 }
