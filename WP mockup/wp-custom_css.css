@@ -1,0 +1,50 @@
+.timepoints, .layers {
+	font-family: sans-serif !important;
+		margin-top: .5em !important;
+}
+
+.page-id-4820 .wp-block-columns {
+	max-width: 100vw;
+	padding: 0 3em !important;
+}
+
+.page-id-4820 h2 {
+	margin-bottom: 0 !important;
+}
+
+.timepoints th, .layers th {
+	white-space: nowrap;
+}
+
+.timepoints input, .layers input, .timepoints select {
+	padding: 3px;
+}
+
+.timepoints input[type=number] {
+	width: 5rem;
+}
+
+.timepoints select {
+ width: 8rem;
+	padding-right: 1.5rem;
+	background: var(--global--color-light-gray);
+	border: 1px solid var(--global--color-gray);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.timepoints td:not(:first-child) {
+	padding: .25rem;
+}
+
+.timepoints td:nth-child(2) {
+	text-align: center;
+}
+
+.layers td:nth-child(1), .layers th:nth-child(1) {
+	border-right: 1px solid transparent;
+}
