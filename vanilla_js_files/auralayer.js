@@ -124,11 +124,7 @@ class Layer
 						// make the current segment shorter
 						// the -1 is just so the end position of the current segment and start position of the new segment aren't the same
 						this.layer_data.segments[this.current_segment_index].end_pos = this.current_position - 1 ;
-						// this.segment_array[this.current_segment_index].data.width = (new_width_of_current_segment - 1);
-						// this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) - 1) + "px";
-						
-						this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) -  (this.parent.scale-1)) + "px";
-						// this.segment_array[this.current_segment_index].segment.style.width = (((new_width_of_current_segment - 1) * this.parent.scale)) + "px";
+						this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) - 1) + "px";
 							
 						this.segment_array.push(new Segment(this, old_end_pos_of_current_segment, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
 					}
@@ -174,8 +170,8 @@ class Segment
 						width:  ((this.data.end_pos - this.data.start_pos) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
 						background: this.data.color
 					}			
-					
-				});					
+				});
+
 				if(this.parent.mode !== "load_existing_layer")
 					{ this.segment.classList.add("segments_layer_is_selected"); }
 				
@@ -305,6 +301,8 @@ class Auralayer
 				this.split_button.addEventListener('click', e=>this.split_selected_segment(e));
 				this.merge_left_button = createNewElement({type:"button", classes: ["merge_left_button"], parent: this.segment_editing_container, properties: {innerText: "← Merge with Left"}});
 				this.merge_left_button.addEventListener('click', e=>this.merge_segments(e,"left"));
+				this.delete_button = createNewElement({type:"button", classes: ["delete_button"], parent: this.segment_editing_container, properties: {innerText: "Delete"}});
+				this.delete_button.addEventListener('click', e=>this.delete_button_handler(e));	
 				this.merge_right_button = createNewElement({type:"button", classes: ["merge_right_button"], parent: this.segment_editing_container, properties: {innerText: "Merge with Right →"}});
 				this.merge_right_button.addEventListener('click', e=>this.merge_segments(e, "right"));						
 
@@ -355,7 +353,7 @@ class Auralayer
 										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
 										// set the sliders to the value of the first layer/segment selected
-
+										
 										if(this.presence_slider_end.disabled === true)
 											{
 												let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
@@ -744,7 +742,29 @@ class Auralayer
 							}					
 					}
 			}
-	
+		delete_button_handler(e)
+			{
+				for (let i = 0; i < this.layers.length ; i++)
+					{
+						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
+							{
+								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
+									{
+										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+										let formated_color_value;										
+										let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
+										let new_color_value = color_value + new_saturation_value + ")";
+										formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
+										this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
+										this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+
+										this.layers[i].segment_array[j].data.color = formated_color_value
+										this.layers[i].segment_array[j].segment.style.background =  formated_color_value;
+										this.layers[i].segment_array[j].data.styles.background = formated_color_value;
+									}
+							}			
+					}
+			}
 		add_marker()
 			{
 				alert("I don't do anything!");
