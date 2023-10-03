@@ -6,6 +6,7 @@
 	--translate_y: 0px;
 	--primary-color-1: #ffdd40;
 	--primary-color-2: #b9f;
+	--segment-height: 60px;
 }
 
 *
@@ -127,7 +128,8 @@ button:hover
 {
   display: grid;
   position: relative;
-  height: 60px;
+	height: var(--segment-height);
+  /* height: 60px; */
   gap: 10px;
   grid-template-columns: 80px auto;
   margin-top: 5px;
@@ -138,39 +140,81 @@ button:hover
 
 .layer_controls_holder
 {
+	display: grid;
+	grid-template-columns: 20px 25px 25px;
+	grid-template-rows: 25px 25px;
+	grid-gap: 2px;
   grid-column: 1;
-  background-color: #b9f;
+  cursor: pointer;
   position:sticky;
   left: 0px;
 	margin-left: 5px;
+	max-height: var(--segment-height);
+}
+
+.layer_controls_elements
+{
+	position: absolute;
+	text-align: center;
 }
 
 .layer_select
 {  
-  background-color: gray;
-  color: white;
+	display: none;
 }
 
 .layer_grip
 {  
-  background-color: lightgray;
+	grid-column: 1;
+	grid-row: 1;
+	font-size: 25px;
+	width:20%;
+}
+
+.layer_color_picker
+{
+	grid-column: 2;
+	grid-row: 1;
+	width: 25px;
+	height: 25px;
 }
 
 .layer_name
 {  
-  background-color: whitesmoke;
+	grid-column: 1/4;
+	grid-row: 2;
+	
+	text-align: center;
 }
+
+.delete_layer_button
+{
+	grid-column: 3;
+	grid-row: 1;
+	padding: 0px;
+	margin: 0px;
+	height: 20px;
+	border: none;
+	min-width: auto;
+}
+
+.select_box_selector_box
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
 
 .layer_segment_holder
 {
   grid-column: 2;
-  
 	position: relative;
 }
 
 .layer_selected_controls_holder
 {
-	background-color: #ff9800;
+	background-color: #b9f;
 }
 
 .layer_selected_segments_holder
@@ -185,6 +229,10 @@ button:hover
   position: absolute;
   height: 100%;
 	padding-right: 1px;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+	line-height: var(--segment-height);
 }
 
 .segment_selected

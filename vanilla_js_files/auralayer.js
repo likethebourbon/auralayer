@@ -19,8 +19,8 @@ class Layer
       {
         this.parent_container = sent_container;
         this.layer_data = sent_layer_data;
-				this.parent_file_length = sent_file_length;
 				this.parent = sent_parent;
+				this.parent_file_length = sent_file_length;
 				this.selected = false;
 				this.segment_array = [];
 				this.mode = sent_mode;
@@ -28,12 +28,27 @@ class Layer
       }
     initialize()
       {
+				let r = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[0]).toString(16);
+				let g = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[1]).toString(16);
+				let b = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[2]).toString(16);
+
         this.layer_container = createNewElement({type:"div", classes: ["layer_container"], parent: this.parent_container});
         this.layer_controls_holder = createNewElement({type:"div", classes: ["layer_controls_holder"], parent: this.layer_container});
         this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: (this.parent_file_length * this.parent.scale) + "px"}});
-				this.select_box = createNewElement({type:"input", classes: ["layer_select"], parent: this.layer_controls_holder, properties: {type: "checkbox"}});
-        this.grip = createNewElement({type:"div", classes: ["layer_grip"], parent: this.layer_controls_holder, properties: {innerHTML: "Grip"}});
-        this.name = createNewElement({type:"div", classes: ["layer_name"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name}});
+				this.select_box = createNewElement({type:"input", classes: ["layer_select", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "checkbox"}});
+				this.select_box_selector_box = createNewElement({type:'div', classes:["select_box_selector_box"], parent: this.layer_controls_holder, properties:{}});
+				this.select_box_selector_box.addEventListener("click",e=>this.select_box.click());
+				this.color_picker = createNewElement({type:"input", classes: ["layer_color_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "color", value: ("#" + r + g + b)}});
+				this.color_picker.addEventListener("change", e=>this.color_picker_handler(e));
+				this.color_picker.addEventListener("input", e=>this.color_picker_handler(e));
+        this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
+				this.grip.addEventListener("click",e=>this.select_box.click());
+        this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name}});
+				this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
+				this.name.addEventListener("input", e=>this.layer_name_input_handler(e));
+				this.name.addEventListener("blur", e=> this.name.contentEditable = false);
+				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "❌"}});
+				this.delete_layer_button.addEventListener("click", e => this.delete_layer_button_handler());
 
 				this.select_box.addEventListener("change", e => this.select_changed(e));
 				
@@ -48,6 +63,47 @@ class Layer
 
 				this.mode = "editing_layer_mode";
       }
+		delete_layer_button_handler()
+			{
+				this.parent.delete_layer(this.layer_data.layer_id);
+			}
+		layer_name_double_click_handler(e)
+			{
+				this.name.contentEditable = true;
+				this.name.focus();
+			}
+		layer_name_input_handler(e)
+			{
+				this.layer_data.name = e.target.innerText;
+			}
+		color_picker_handler(e)
+			{
+				if(this.select_box.checked === true)
+					{
+						let current_color = e.target.value;
+						
+						// convert hex to rgb
+						var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(current_color);
+						let result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
+						let formated_color_value_for_layer = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + ",1.0)";
+						let layer_color_formated = "linear-gradient(to right, " + formated_color_value_for_layer + ", " + formated_color_value_for_layer + ")";
+
+						this.layer_data.color = layer_color_formated;
+						
+						for (let i = 0; i < this.segment_array.length ; i++)
+							{
+								let starting_saturation_value = (this.segment_array[i].data.start_presence/GLOBAL_presence_scale).toFixed(1);
+								let ending_saturation_value = (this.segment_array[i].data.end_presence/GLOBAL_presence_scale).toFixed(1);
+								let formated_color_value_start = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + "," + starting_saturation_value + ")";
+								let formated_color_value_end = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + "," + ending_saturation_value + ")";
+								let segment_color_formated = "linear-gradient(to right, " + formated_color_value_start + ", " + formated_color_value_end + ")";
+								
+								this.segment_array[i].segment.style.background = segment_color_formated;
+								this.layer_data.segments[i].color = segment_color_formated;
+								this.segment_array[i].data.styles.background = segment_color_formated;
+							}
+						}
+			}
 		select_changed(e)
 			{
 				if(e.target.checked === true)
@@ -73,10 +129,8 @@ class Layer
 			}
 		create_segment(start, end = -1, start_presence = -1, end_presence = -1, sent_segment = {})
 			{
-
 				this.current_segment_index = 0;
 				this.current_position = start;
-				
 				
 				// treat loading from a file/undo differently than adding a new segment while doing normal editing
 				if(this.mode === "load_existing_layer")
@@ -85,7 +139,8 @@ class Layer
 					}
 				else if(this.mode === "new_layer")
 					{
-						this.segment_array.push(new Segment(this, this.parent.file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
+						// this.segment_array.push(new Segment(this, this.parent.file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
+						this.segment_array.push(new Segment(this, this.parent_file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
 					}
 				else if(this.mode === "editing_layer_mode")
 					{
@@ -153,7 +208,12 @@ class Segment
 								end_pos: sent_old_end_pos_of_current_segment,
 								start_presence: sent_start_presence,
 								end_presence: sent_end_presence,
-								styles: {}
+								styles: {},
+								text: [
+									{
+										inner_text:"",
+										styles:[]
+									}]
 							};						
 						sent_layer_data_segments.push(this.data);
 					}
@@ -164,18 +224,32 @@ class Segment
 			}
 		create_segment()
 			{
-				this.segment = createNewElement({type:"div", classes: this.data.classes, parent: this.layer_segment_holder, styles:
+				this.segment = createNewElement({type:"name", classes: this.data.classes, parent: this.layer_segment_holder, styles:
 					{
 						left: (this.data.start_pos * this.parent.parent.scale) + "px",
 						width:  ((this.data.end_pos - this.data.start_pos) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
-						background: this.data.color
-					}			
+						background: this.data.color, textAlign: 'center'
+					},
+					properties: {contentEditable: false, innerText: this.data.text[0].inner_text}
 				});
 
+				
 				if(this.parent.mode !== "load_existing_layer")
 					{ this.segment.classList.add("segments_layer_is_selected"); }
 				
-				this.segment.addEventListener("click",e=> { this.click_handler();	});					
+				this.segment.addEventListener("click",e=> { this.click_handler();	});
+				this.segment.addEventListener("dblclick",e=> { this.segment_double_click_handler();	});
+				this.segment.addEventListener("input", e=>this.segment_text_input_handler(e));
+				this.segment.addEventListener("blur", e=> this.segment.contentEditable = false);
+			}
+		segment_double_click_handler()
+			{
+				this.segment.contentEditable = true;
+				this.segment.focus();
+			}
+		segment_text_input_handler(e)
+			{
+				this.data.text[0].inner_text = e.target.innerText;
 			}
 		click_handler()
 			{
@@ -217,12 +291,15 @@ class Auralayer
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
-					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer" }, layers: [] }}
+					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1 }, layers: [] }}
+				// this.scale = this.example_data.piece_info.scale;
 				this.scale = 1;
+				this.audio_speed = 10;
 				this.length_padding = GLOBAL_length_padding;
 				this.create_activity_selection_interface()
 				this.check_for_url_data();				
         this.initialize_interface();
+				this.layer_id_pos = 0;
       }
 		create_activity_selection_interface()
 			{
@@ -332,6 +409,8 @@ class Auralayer
 						{ this.scale = this.scale - 1; }
 					}
 				
+				this.example_data.piece_info.scale = this.scale;
+
 				for (let i = 0; i < this.layers.length ; i++)
 					{
 						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
@@ -481,14 +560,15 @@ class Auralayer
 					}    
 						
 				this.uploaded_audio.addEventListener('loadedmetadata', () =>this.uploaded_audio_loadedmetadata_handler());						
-				this.timeupdater = setInterval((e) =>  this.move_seek_slider_with_audio_position('ticking_audio') , 100);
+				this.timeupdater = setInterval((e) =>  this.move_seek_slider_with_audio_position('ticking_audio') , 10);
 				// originally 1000
 				// if this is the initial file load - save the state to local storage
 				
 			}
 		uploaded_audio_loadedmetadata_handler()
 			{
-				this.file_length = parseInt(this.uploaded_audio.duration * this.scale);
+				// this.file_length = parseInt(this.uploaded_audio.duration * this.scale);
+				this.file_length = parseInt(this.uploaded_audio.duration);
 				this.open_file_trigger_button.style.display = 'none';
 
 				if(developing === true && location.hostname.includes("localhost"))
@@ -534,7 +614,7 @@ class Auralayer
 				let random_blue = Math.floor(Math.random() * (256 - 0) + 0);
 				let random_color = "rgba(" + random_red + "," + random_green + "," + random_blue + ",1.0)";
 
-				this.seek_slider.max = this.file_length;
+				this.seek_slider.max = this.file_length * this.audio_speed;
 				this.seek_slider.value = 0;
 				this.seek_slider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
 				this.seek_slider.style.display = 'block';
@@ -542,7 +622,7 @@ class Auralayer
 				if (this.example_data.layers.length === 0)
 					{
 						let initial_layer_data =
-							{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[] }	
+							{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id: 0 }	
 
 						this.example_data.layers.push( initial_layer_data );
 						this.layers.push(new Layer(this.all_layer_containers, initial_layer_data, this.file_length, this, "new_layer"));
@@ -554,7 +634,9 @@ class Auralayer
 			}
 		seek_slider_moved_handler(e)
 			{
-				this.slider_position = e.target.value;
+				// this.slider_position = e.target.value / 10;
+				this.slider_position = e.target.value / this.audio_speed;
+				
 				
 				switch (this.activity_type)
 					{
@@ -599,13 +681,19 @@ class Auralayer
 			}
 		move_seek_slider_with_audio_position(sender)
 			{
+				// console.log("move");
+				// console.log(parseInt(this.uploaded_audio.currentTime * 10));
 				switch (this.activity_type)
 					{
 						case 'audio_file':
 							this.slider_position = parseInt(this.uploaded_audio.currentTime);
+							this.seek_slider.value = parseInt(this.uploaded_audio.currentTime * this.audio_speed);		
 							break;
 						case 'youtube_link':
+							this.seek_slider.value = parseInt(playerx.getCurrentTime() * this.audio_speed);
 							this.slider_position = parseInt(playerx.getCurrentTime());
+							console.log("playerx.getCurrentTime(): " + playerx.getCurrentTime());
+							console.log("this.slider_position: " + this.slider_position);
 							let current_active_element = document.activeElement;
 							if(lastActiveElement !== current_active_element)
 								{
@@ -621,7 +709,7 @@ class Auralayer
 							console.log('the default option has been reached in the switch statement');
 					}
 				
-				this.seek_slider.value = this.slider_position;				
+				// this.seek_slider.value = this.slider_position;				
 				
 				// let current_time;
 				// current_time = parseFloat( (this.slider_position / this.length_padding).toFixed(2)) ;
@@ -631,19 +719,39 @@ class Auralayer
 				let random_red = Math.floor(Math.random() * (256 - 0) + 0);
 				let random_green = Math.floor(Math.random() * (256 - 0) + 0);
 				let random_blue = Math.floor(Math.random() * (256 - 0) + 0);
+				this.layer_id_pos++;
+				this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
 			
 				let random_color = "rgba(" + random_red + "," + random_green + "," + random_blue + ",1.0)";	
 
 				let new_initial_layer_data =
-					{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[] }
+					{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[], layer_id: this.layer_id_pos }
 
 				this.example_data.layers.push( new_initial_layer_data );
+				// this.layers.push(new Layer(this.all_layer_containers, new_initial_layer_data, this.file_length/this.scale, this, "new_layer"));
 				this.layers.push(new Layer(this.all_layer_containers, new_initial_layer_data, this.file_length, this, "new_layer"));
+			}
+		delete_layer(sent_layer_id)
+			{
+				let layer_id = sent_layer_id;
+				let layer_index = -1;
+				this.example_data.layers.forEach((each,index)=>
+					{
+						if(each.layer_id === layer_id)
+							{
+								layer_index = index;
+							}
+					});
+
+				this.example_data.layers.splice(layer_index,1);
+				this.layers[layer_index].layer_container.remove();
+				this.layers.splice(layer_index,1);
 			}
 		split_selected_segment()
 			{
 				// let start = this.slider_position * this.scale;
 				let start = this.slider_position;
+				
 				this.layers.forEach(each_layer=>
 					{
 						if(each_layer.selected === true)
@@ -814,6 +922,9 @@ class Auralayer
 		load_from_file(data)
 			{
 				this.example_data = JSON.parse(data);
+				this.scale = this.example_data.piece_info.scale;
+				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
+				
 				if(this.example_data.piece_info.media_type === "youtube")
 					{
 						this.start_youtube_activity_setup()
