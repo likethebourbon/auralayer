@@ -124,6 +124,16 @@ button:hover
 	display: flex;
 }
 
+.draggable
+{
+	cursor: move;
+}
+
+.draggable.dragging
+{
+	opacity: 0.1;
+}
+
 .layer_container
 {
   display: grid;
@@ -178,6 +188,25 @@ button:hover
 	width: 25px;
 	height: 25px;
 }
+
+.texture_selector
+{
+	position: absolute;
+	width: 300px;
+	background-color: lightgray;
+	z-index: 3;
+}
+
+.texture_selector_visible
+{
+	display: block;
+}
+
+.background_texture
+	{
+		width: 50px;
+		height: 50px;
+	}
 
 .layer_name
 {  

@@ -9,10 +9,6 @@ let lastActiveElement = document.activeElement;
 
 let example_data = {};
 
-// let example_data = JSON.parse(`
-// {"piece_info":{"media_type":"youtube","name":"new_auralayer"},"layers":[{"name":"Layer","color":"linear-gradient(to right, rgba(193,60,80,1.0), rgba(193,60,80,1.0))","segments":[{"classes":["segment"],"color":"linear-gradient(to right, rgba(193,60,80,1.0), rgba(193,60,80,1.0))","start_pos":0,"end_pos":109,"start_presence":10,"end_presence":10,"styles":{}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(193,60,80,1.0), rgba(193,60,80,1.0))","start_pos":110,"end_pos":376,"start_presence":10,"end_presence":10,"styles":{}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(193,60,80,1.0), rgba(193,60,80,1.0))","start_pos":377,"end_pos":545,"start_presence":10,"end_presence":10,"styles":{}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(193,60,80,1.0), rgba(193,60,80,0.0))","start_pos":546,"end_pos":668,"start_presence":10,"end_presence":0,"styles":{"background":"linear-gradient(to right, rgba(193,60,80,1.0), rgba(193,60,80,0.0))"}}],"markers":[]},{"name":"Layer","color":"linear-gradient(to right, rgba(93,146,166,1.0), rgba(93,146,166,1.0))","segments":[{"classes":["segment"],"color":"linear-gradient(to right, rgba(93,146,166,1.0), rgba(93,146,166,1.0))","start_pos":0,"end_pos":314,"start_presence":10,"end_presence":10,"styles":{}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(93,146,166,1.0), rgba(93,146,166,0.0))","start_pos":315,"end_pos":668,"start_presence":10,"end_presence":0,"styles":{"background":"linear-gradient(to right, rgba(93,146,166,1.0), rgba(93,146,166,0.0))"}}],"markers":[]},{"name":"Layer","color":"linear-gradient(to right, rgba(133,171,9,1.0), rgba(133,171,9,1.0))","segments":[{"classes":["segment"],"color":"linear-gradient(to right, rgba(133,171,9,0.0), rgba(133,171,9,1.0))","start_pos":0,"end_pos":109,"start_presence":0,"end_presence":10,"styles":{"background":"linear-gradient(to right, rgba(133,171,9,0.0), rgba(133,171,9,1.0))"}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(133,171,9,1.0), rgba(133,171,9,1.0))","start_pos":110,"end_pos":376,"start_presence":10,"end_presence":10,"styles":{}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(133,171,9,0.0), rgba(133,171,9,0.0))","start_pos":377,"end_pos":545,"start_presence":0,"end_presence":0,"styles":{"background":"linear-gradient(to right, rgba(133,171,9,0.0), rgba(133,171,9,0.0))"}},{"classes":["segment"],"color":"linear-gradient(to right, rgba(133,171,9,1.0), rgba(133,171,9,1.0))","start_pos":546,"end_pos":668,"start_presence":10,"end_presence":10,"styles":{}}],"markers":[]}]}
-// `);
-
 class Layer
   {
     constructor(sent_container, sent_layer_data, sent_file_length, sent_parent, sent_mode)
@@ -32,37 +28,87 @@ class Layer
 				let g = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[1]).toString(16);
 				let b = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[2]).toString(16);
 
-        this.layer_container = createNewElement({type:"div", classes: ["layer_container"], parent: this.parent_container});
+        this.layer_container = createNewElement({type:"div", classes: ["layer_container", "draggable"], parent: this.parent_container, properties:{draggable: true}});
+				this.layer_container.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging"); });
+				this.layer_container.addEventListener("dragend", e=> { this.layer_container.classList.remove("dragging"); });		
+					
         this.layer_controls_holder = createNewElement({type:"div", classes: ["layer_controls_holder"], parent: this.layer_container});
         this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: (this.parent_file_length * this.parent.scale) + "px"}});
 				this.select_box = createNewElement({type:"input", classes: ["layer_select", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "checkbox"}});
 				this.select_box_selector_box = createNewElement({type:'div', classes:["select_box_selector_box"], parent: this.layer_controls_holder, properties:{}});
 				this.select_box_selector_box.addEventListener("click",e=>this.select_box.click());
-				this.color_picker = createNewElement({type:"input", classes: ["layer_color_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "color", value: ("#" + r + g + b)}});
+				this.color_picker = createNewElement({type:"input", classes: ["layer_color_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "color", value: ("#" + r + g + b)}, styles: {display: "none"}});
 				this.color_picker.addEventListener("change", e=>this.color_picker_handler(e));
 				this.color_picker.addEventListener("input", e=>this.color_picker_handler(e));
-        this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
-				this.grip.addEventListener("click",e=>this.select_box.click());
+        // this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
+				// this.grip.addEventListener("click",e=>this.select_box.click());
         this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name}});
 				this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
 				this.name.addEventListener("input", e=>this.layer_name_input_handler(e));
 				this.name.addEventListener("blur", e=> this.name.contentEditable = false);
-				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "❌"}});
+				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "❌"}, styles: {display: "none"}});
 				this.delete_layer_button.addEventListener("click", e => this.delete_layer_button_handler());
 
 				this.select_box.addEventListener("change", e => this.select_changed(e));
 				
 				if(this.layer_data.segments.length === 0)
+					{ this.create_segment(0, -1, GLOBAL_presence_scale, GLOBAL_presence_scale); }
+				else
+					{ this.layer_data.segments.forEach(each=>this.create_segment(each.start_pos, each.end_pos, each.start_presence, each.end_presence, each)); }
+
+				this.mode = "editing_layer_mode";
+
+				this.layer_texture_picker = createNewElement({type:"button", classes: ["layer_texture_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerText: "texture"}, styles: {display: "none"}});
+				this.layer_texture_picker.addEventListener("click", e=>this.layer_texture_picker_handler(e));
+				this.texture_selector = createNewElement({type:'div', classes: ["texture_selector", "layer_controls_elements"], parent: this.parent_container, styles: {display: "none"}} );
+
+			// -----------------------------------
+			//      TEXTURES
+			// -----------------------------------  
+				this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture_1'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines.png)'}, properties: {title: "Horizontal_Lines"}});
+				this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture_2'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1.png)'}, properties: {title: "Dots_1"}});
+				this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture_3'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2.png)'}, properties: {title: "Dots_2"}});
+				this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture_4'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1.png)'}, properties: {title: "Vertical_Lines 1"}});
+				this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture_5'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2.png)'}, properties: {title: "Vertical_Lines 2"}});
+				this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture_6'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1.png)'}, properties: {title: "Diagonal_Line 1"}});
+				this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture_7'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2.png)'}, properties: {title: "Diagonal_Line 2"}});
+				this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture_8'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1.png)'}, properties: {title: "Circle_1"}});
+				this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
+
+
+				this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_3.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_4.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_5.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_6.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_7.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_8.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
+      }
+		layer_texture_picker_handler(e)
+			{
+				if(this.texture_selector.style.display === "block")
 					{
-						this.create_segment(0, -1, GLOBAL_presence_scale, GLOBAL_presence_scale);
+						this.texture_selector.style.display = "none";
 					}
 				else
 					{
-						this.layer_data.segments.forEach(each=>this.create_segment(each.start_pos, each.end_pos, each.start_presence, each.end_presence, each));
+						this.texture_selector.style.display = "block";
 					}
-
-				this.mode = "editing_layer_mode";
-      }
+				
+			}
+		create_layer_background_texture(e)
+			{
+				for (let i = 0; i < this.segment_array.length ; i++)
+					{
+						let initial_value = this.segment_array[i].segment.style.background;
+						this.segment_array[i].segment.style.background =  e.target.style.background + " center center, " + initial_value;
+						this.layer_data.segments[i].color = e.target.style.background + " center center, " + initial_value;
+						this.segment_array[i].data.styles.background =  e.target.style.background + " center center, " + initial_value;
+						this.layer_data.color = e.target.style.background + " center center, " + initial_value;
+					}
+			}   			
 		delete_layer_button_handler()
 			{
 				this.parent.delete_layer(this.layer_data.layer_id);
@@ -113,6 +159,10 @@ class Layer
 						this.selected = true;
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.add("segments_layer_is_selected"));
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.remove("segments_layer_is_not_selected"));
+						this.color_picker.style.display = "block";
+						this.delete_layer_button.style.display = "block";
+						// this.layer_texture_picker.style.display = "block";
+						
 					}
 				else if(e.target.checked === false)
 					{
@@ -121,6 +171,10 @@ class Layer
 						this.selected = false;
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.remove("segments_layer_is_selected"));
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.add("segments_layer_is_not_selected"));
+						this.color_picker.style.display = "none";
+						this.delete_layer_button.style.display = "none";
+						// this.layer_texture_picker.style.display = "none";
+						// this.texture_selector.style.display = "none";
 					}
 			}
 		split_segment()
@@ -292,9 +346,9 @@ class Auralayer
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
 					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1 }, layers: [] }}
-				// this.scale = this.example_data.piece_info.scale;
 				this.scale = 1;
 				this.audio_speed = 10;
+				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
 				this.create_activity_selection_interface()
 				this.check_for_url_data();				
@@ -348,6 +402,7 @@ class Auralayer
 			//      BODY COMPONENTS (not document.body but Auralayer's body)
 			// -----------------------------------
 				this.all_layer_containers = createNewElement({type:"div", classes: ["all_layer_containers"], parent: this.body});
+				this.all_layer_containers.addEventListener("dragover", e=> { this.dragging_handler(e) });
 				this.segment_editing_container = createNewElement({type:"div", classes: ["segment_editing_container"], parent: this.body});
 				this.slider_container = createNewElement({type: "div", classes: ["slider_container"], parent: this.body});
 
@@ -376,11 +431,11 @@ class Auralayer
 			// -----------------------------------        
 				this.split_button = createNewElement({type:"button", classes: ["split_button"], parent: this.segment_editing_container, properties: {innerText: "Split"}});
 				this.split_button.addEventListener('click', e=>this.split_selected_segment(e));
-				this.merge_left_button = createNewElement({type:"button", classes: ["merge_left_button"], parent: this.segment_editing_container, properties: {innerText: "← Merge with Left"}});
+				this.merge_left_button = createNewElement({type:"button", classes: ["merge_left_button"], parent: this.segment_editing_container, properties: {innerText: "← Merge"}});
 				this.merge_left_button.addEventListener('click', e=>this.merge_segments(e,"left"));
 				this.delete_button = createNewElement({type:"button", classes: ["delete_button"], parent: this.segment_editing_container, properties: {innerText: "Delete"}});
 				this.delete_button.addEventListener('click', e=>this.delete_button_handler(e));	
-				this.merge_right_button = createNewElement({type:"button", classes: ["merge_right_button"], parent: this.segment_editing_container, properties: {innerText: "Merge with Right →"}});
+				this.merge_right_button = createNewElement({type:"button", classes: ["merge_right_button"], parent: this.segment_editing_container, properties: {innerText: "Merge →"}});
 				this.merge_right_button.addEventListener('click', e=>this.merge_segments(e, "right"));						
 
 				this.add_marker_button = createNewElement({type:"button", classes: ["add_marker_button"], parent: this.segment_editing_container, properties: {innerText: "Add Marker"}});
@@ -400,6 +455,85 @@ class Auralayer
 							{ this.presence_slider_end.disabled = false; }
 					});
       }
+		dragging_handler(e)
+			{
+				e.preventDefault();
+
+				let draggable_id = -1;
+				let draggable_index = -1;
+				let layer_order = [];
+				let layers_not_dragging = [];
+
+				this.layers.forEach( (each_layer, layer_index)=>
+					{
+						if(each_layer.layer_container.classList.contains("dragging"))
+							{
+								draggable_id = each_layer.layer_data.layer_id;
+								draggable_index = layer_index;
+							}
+					});	
+
+				this.layers.forEach(each=>
+					{
+						layer_order.push(each.layer_data.layer_id);
+						if( each.layer_data.layer_id !== draggable_id )
+							{ layers_not_dragging.push(each); }
+					});
+
+				const afterElement = this.get_drag_after_element(layers_not_dragging, e.clientY);
+				const draggable = this.all_layer_containers.querySelector(".dragging");
+				
+				if(afterElement === -1)
+					{
+						this.all_layer_containers.insertBefore(draggable, this.all_layer_containers.firstChild);
+						const element = this.example_data.layers.splice(draggable_index, 1)[0];
+						this.example_data.layers.splice( 0, 0, element);
+
+						const element2 = this.layers.splice(draggable_index, 1)[0];
+						this.layers.splice( 0, 0, element2);						
+					}
+				else
+					{
+						const afterElement_id = layers_not_dragging[afterElement].layer_data.layer_id;
+						let afterElement_index = -1;
+						const element = this.example_data.layers.splice(draggable_index, 1)[0];
+						const element2 = this.layers.splice(draggable_index, 1)[0];
+						
+						this.example_data.layers.forEach( (each_layer, layer_index)=>
+							{
+								if(each_layer.layer_id === afterElement_id)
+									{ afterElement_index = layer_index; }
+							});					
+						
+						this.example_data.layers.splice( afterElement_index + 1, 0, element);
+						this.layers.splice( afterElement_index + 1, 0, element2);
+						
+						if(afterElement === layers_not_dragging.length - 1 )
+							{ this.all_layer_containers.appendChild(draggable); }
+						else
+							{ this.all_layer_containers.insertBefore(draggable, layers_not_dragging[afterElement + 1].layer_container); }
+						}
+			}
+		get_drag_after_element(container, y)
+			{
+				let layer_y_offset_positions = [];
+
+				container.forEach(each=>
+					{
+						const box = each.layer_container.getBoundingClientRect();
+						let y_offset = y - box.top - box.height / 2 ;
+						layer_y_offset_positions.push(y - box.top - box.height / 2 );
+					});
+
+					const smallestPositiveIndex = layer_y_offset_positions.reduce((acc, cur, index) =>
+						{
+							if (cur > 0 && (acc === -1 || cur < layer_y_offset_positions[acc]))
+								{ return index; }
+							return acc;
+						}, -1);
+
+					return(smallestPositiveIndex)
+			}
 		zoom_handler(zoom_type)
 			{
 				if(zoom_type === 'in')
