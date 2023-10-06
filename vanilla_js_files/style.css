@@ -5,7 +5,7 @@
 	font-family: 'Cabin', 'Segoe UI', "Open Sans",Tahoma, Geneva, Verdana, sans-serif;
 	--translate_y: 0px;
 	--primary-color-1: #ffdd40;
-	--primary-color-2: #b9f;
+	--primary-color-2: #fff;
 	--segment-height: 60px;
 }
 
@@ -23,7 +23,7 @@ body
   align-items: center;
 }
 
-button
+/* button
 {
 	margin: 5px;
 	display: inline-block;
@@ -47,13 +47,13 @@ button
 	text-align: center;
 	box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 	transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+} */
 
-button:hover
+/* button:hover
 {
 	background: rgb(98, 0, 238);
 	box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
-}
+} */
 
 
 .auralayer_program
@@ -63,9 +63,9 @@ button:hover
   
   outline: 1px solid black;
   display: grid;
-  grid-template-columns: 150px auto 5px;
+  /* grid-template-columns: 150px auto 5px;
   gap: 0px;
-  grid-template-rows: 50px auto 5px;
+  grid-template-rows: 50px auto 5px; */
 }
 
 .header_al
@@ -80,9 +80,9 @@ button:hover
   grid-column: 2;
   grid-row: 2;
   background-color: whitesmoke;
-  display: grid;
+  /* display: grid;
   grid-template-columns: auto;
-  grid-template-rows:  auto auto 100px;
+  grid-template-rows:  auto auto 100px; */
   overflow-x:auto;
 	overflow-y:hidden;
 }
@@ -94,19 +94,19 @@ button:hover
   background-color: #ffdd40;
 }
 
-.left_outer_column
+/* .left_outer_column
 {
   grid-column: 1;
   grid-row:1/4;
   background-color: #b9f;
   
-}
+} */
 
 .right_outer_column
 {
   grid-column: 3;
-  grid-row:1/4;
-  background-color: #b9f;
+  /* grid-row:1/4;*/
+  background-color: #b9f; 
   
 }
 
@@ -220,11 +220,11 @@ button:hover
 {
 	grid-column: 3;
 	grid-row: 1;
-	padding: 0px;
+	/* padding: 0px;
 	margin: 0px;
 	height: 20px;
 	border: none;
-	min-width: auto;
+	min-width: auto; */
 }
 
 .select_box_selector_box
