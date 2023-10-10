@@ -1,5 +1,18 @@
 :root {
     --bs-body-bg: #FDFDFD;
+
+    /* new primary color */
+    --bs-primary: #6610f2;
+    --bs-primary-rgb: 102, 16, 242;
+    --bs-primary-text-emphasis: #290661;
+    --bs-primary-bg-subtle: #e0cffc;
+    --bs-primary-border-subtle: #c29ffa;
+      --bs-link-color: #6610f2;
+  --bs-link-color-rgb: 102, 16, 242;
+    --bs-link-hover-color: #520dc2;
+  --bs-link-hover-color-rgb: 82, 13, 194;
+  --bs-focus-ring-color: rgba(102, 16, 242, 0.25);
+  
 }
 
 #auralayer-placeholder {
