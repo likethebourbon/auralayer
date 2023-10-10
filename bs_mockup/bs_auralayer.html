@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="light">
 
 <head>
-    <title>Title</title>
+    <title>Auralayer</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,49 +19,68 @@
 
 <body>
     <header>
-        <div class="container-xl m-2">
-            <button class="btn btn-outline-secondary border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="bi-gear-fill"></i>
-            </button>
+        <div class="container-xl">
+            <div class="d-flex flex-row my-1 justify-content-stretch">
+                <div class="col-1">
+                    <button class="btn btn-outline-secondary border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <i class="bi-gear-fill"></i>
+                    </button>
+                    <div id="offcanvasExample" aria-labelledby="Settings" class="offcanvas offcanvas-start" tabindex="-1">
+                        <div class="offcanvas-header">
 
-            <div id="offcanvasExample" aria-labelledby="Settings" class="offcanvas offcanvas-start" tabindex="-1">
-                <div class="offcanvas-header">
+                            <h5 id="Settings" class="offcanvas-title">Settings</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
 
-                    <h5 id="Settings" class="offcanvas-title">Settings</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            <p>
+                                <label for="decrescendo">Segment decrescendo</label>
+                                <select class="form-select" aria-label="Segment decrescendo">
+                                    <option value="1" selected>Gradient</option>
+                                    <option value="2">Slope</option>
+                                </select>
+                            </p>
+
+                            <p>
+                                <label for="palette">Segment color palette</label>
+                                <select class="form-select" aria-label="Color palette">
+                                    <option value="1" selected>Bright</option>
+                                    <option value="2">Dark</option>
+                                    <option value="3">Warm</option>
+                                    <option value="4">Cool</option>
+                                    <option value="5">Rainbow</option>
+                                    <option value="6">Rainbow (desaturated)</option>
+                                    <option value="7">Sunset</option>
+                                    <option value="8">Green–Black</option>
+                                    <option value="9">Pink–Blue</option>
+                                    <option value="10">Cornflower–White</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="offcanvas-body">
+                <div id="page-header" class="col-10 my-4 text-center">
 
-                    <p>
-                        <label for="decrescendo">Segment decrescendo</label>
-                        <select class="form-select" aria-label="Segment decrescendo">
-                            <option value="1" selected>Gradient</option>
-                            <option value="2">Slope</option>
-                        </select>
-                    </p>
-
-                    <p>
-                        <label for="palette">Segment color palette</label>
-                        <select class="form-select" aria-label="Color palette">
-                            <option value="1" selected>Bright</option>
-                            <option value="2">Dark</option>
-                            <option value="3">Warm</option>
-                            <option value="4">Cool</option>
-                            <option value="5">Rainbow</option>
-                            <option value="6">Rainbow (desaturated)</option>
-                            <option value="7">Sunset</option>
-                            <option value="8">Green–Black</option>
-                            <option value="9">Pink–Blue</option>
-                            <option value="10">Cornflower–White</option>
-                        </select>
-                    </p>
+                    <h1 class="text-primary fw-light">Auralayer</h1>
                 </div>
             </div>
         </div>
     </header>
     <main class="d-flex flex-nowrap">
         <div class="container-xl">
-            <div id="auralayer-container" class="row row-flex my-4">
+            <div id="undo-redo" class="row mt-4">
+                <div class="col offset-1 ps-0">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-secondary rounded-0 rounded-top border-0" title="Undo">
+                            <i class="bi-arrow-counterclockwise"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary rounded-0 rounded-top border-0" title="Redo">
+                            <i class="bi-arrow-clockwise"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="auralayer-container" class="row row-flex mb-4">
                 <div id="auralayer-window" class="col-10 offset-1">
                     <div id="auralayer-placeholder"></div>
                 </div>
@@ -81,7 +100,7 @@
                     <div class="row text-center align-items-center flex-nowrap">
                         <div class="col-4">
                             <button type="button" class="btn btn-primary" title="Add new layer">
-                                <i class="bi-plus"></i>
+                                <i class="bi-plus-lg"></i>
                             </button>
                         </div>
                         <div class="col-7">
@@ -105,7 +124,7 @@
                         <i class="bi-layout-split"></i>
                     </button>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary" title="merge-left">
+                        <button type="button" class="btn btn-primary" title="Merge left">
                             <i class="bi-box-arrow-in-left"></i>
                         </button>
                         <button type="button" class="btn btn-primary" title="Merge right">
