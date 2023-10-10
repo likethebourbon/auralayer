@@ -1,3 +1,7 @@
+:root {
+    --bs-body-bg: #FDFDFD;
+}
+
 #auralayer-placeholder {
     height: 200px;
     background-color: gray;
