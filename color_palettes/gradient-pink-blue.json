@@ -1,0 +1,16 @@
+{
+	"colors": [
+		{ "value": "rgba(245, 192, 184, 1)" },
+		{ "value": "rgba(217, 178, 150, 1)" },
+		{ "value": "rgba(182, 165, 124, 1)" },
+		{ "value": "rgba(143, 153, 107, 1)" },
+		{ "value": "rgba(102, 140, 100, 1)" },
+		{ "value": "rgba(59, 125, 102, 1)" },
+		{ "value": "rgba(0, 108, 107, 1)" },
+		{ "value": "rgba(0, 90, 110, 1)" },
+		{ "value": "rgba(0, 70, 107, 1)" },
+		{ "value": "rgba(16, 48, 95, 1)" }
+	],
+	"name": "Pink–Blue",
+	"key": null
+}
