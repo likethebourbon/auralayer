@@ -6,7 +6,7 @@
 	--translate_y: 0px;
 	--primary-color-1: #ffdd40;
 	--primary-color-2: #b9f;
-	--segment-height: 60px;
+	--segment-height: 40px;
 }
 
 *
@@ -56,7 +56,7 @@ button:hover
 }
 
 
-.auralayer_program
+.AuralayerProgram
 {
   position: relative;
   width: 100%;
@@ -68,14 +68,14 @@ button:hover
   grid-template-rows: 50px auto 5px;
 }
 
-.header_al
+.Header_al
 {
   grid-column: 2;
   grid-row: 1;
-  background-color: #ffdd40;
+  background-color: lightgray;
 }
 
-.body_al
+.Body_al
 {
   grid-column: 2;
   grid-row: 2;
@@ -87,22 +87,22 @@ button:hover
 	overflow-y:hidden;
 }
 
-.footer_al
+.Footer_al
 {
   grid-column: 2;
   grid-row: 3;
   background-color: #ffdd40;
 }
 
-.left_outer_column
+.LeftOuterColumn
 {
   grid-column: 1;
   grid-row:1/4;
-  background-color: #b9f;
+  background-color: lightgray;
   
 }
 
-.right_outer_column
+.RightOuterColumn
 {
   grid-column: 3;
   grid-row:1/4;
@@ -110,13 +110,13 @@ button:hover
   
 }
 
-.all_layer_containers
+.AllLayerContainers
 {
   /* background-color:gray; */
 	grid-row:1;
 }
 
-.segment_editing_container
+.SegmentEditingContainer
 {
   background-color:lightgray;
 	grid-row:3;
@@ -141,7 +141,7 @@ button:hover
 	height: var(--segment-height);
   /* height: 60px; */
   gap: 10px;
-  grid-template-columns: 80px auto;
+  grid-template-columns: 120px auto;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -151,8 +151,7 @@ button:hover
 .layer_controls_holder
 {
 	display: grid;
-	grid-template-columns: 20px 25px 25px;
-	grid-template-rows: 25px 25px;
+	grid-template-columns: 25px 25px 50px;
 	grid-gap: 2px;
   grid-column: 1;
   cursor: pointer;
@@ -160,6 +159,7 @@ button:hover
   left: 0px;
 	margin-left: 5px;
 	max-height: var(--segment-height);
+	line-height: 40px;
 }
 
 .layer_controls_elements
@@ -173,18 +173,17 @@ button:hover
 	display: none;
 }
 
-.layer_grip
+/* .layer_grip
 {  
 	grid-column: 1;
 	grid-row: 1;
 	font-size: 25px;
 	width:20%;
-}
+} */
 
 .layer_color_picker
 {
-	grid-column: 2;
-	grid-row: 1;
+	grid-column: 1;
 	width: 25px;
 	height: 25px;
 }
@@ -210,16 +209,15 @@ button:hover
 
 .layer_name
 {  
-	grid-column: 1/4;
-	grid-row: 2;
-	
-	text-align: center;
+	grid-column: 3;
+	text-align: right;
+	width: 100%;
+	white-space: nowrap;
 }
 
 .delete_layer_button
 {
-	grid-column: 3;
-	grid-row: 1;
+	grid-column: 2;
 	padding: 0px;
 	margin: 0px;
 	height: 20px;
@@ -258,7 +256,7 @@ button:hover
   position: absolute;
   height: 100%;
 	padding-right: 1px;
-	color: white;
+	/* color: white; */
 	font-size: 20px;
 	cursor: pointer;
 	line-height: var(--segment-height);
@@ -279,7 +277,7 @@ button:hover
 		padding-right: 1px;
 	}
 
-.presence_slider_container
+.PresenceSliderContainer
 	{
 		display: grid;
 		grid-template-columns: 30px 48px 24px;
@@ -293,34 +291,34 @@ button:hover
 		height: 20px;
 	}
 
-.presence_slider_start
+.PresenceSliderStart
 	{
 		grid-column: 1;
 	}
 
-.presence_slider_end
+.PresenceSliderEnd
 	{
 		grid-column: 2;
 	}	
 
-.presence_slider_independent_toggle
+.PresenceSliderIndependentToggle
 	{
 		grid-column: 3;
 	}
 
-.slider_container
+.SliderContainer
 {
 	display: grid;
 	grid-row:2;
 	position: relative;
 	height: 50px;
 	gap: 10px;
-	grid-template-columns: 80px auto;
+	grid-template-columns: 120px auto;
 	margin-top: 5px;
 	margin-bottom: 5px;	
 }
 
-.seek_slider
+.SeekSlider
 {
 	grid-column: 2;
 }
@@ -452,7 +450,7 @@ button:hover
 	margin-top: 31px;
 }
 
-.activity_selection_container
+.ActivitySelectionContainer
 {
 	position: fixed;
 	display: grid;
@@ -466,7 +464,7 @@ button:hover
 	z-index: 2;
 }
 
-.activity_selection_header
+.ActivitySelectionHeader
 {
 	grid-row: 1;
 	grid-column: 2;
@@ -476,30 +474,30 @@ button:hover
 	font-weight: bold;
 	font-size: 26px;
 }
-.activity_selection_body
+.ActivitySelectionBody
 {
 	grid-row: 2;
 	grid-column: 2;
 	background-color: var(--primary-color-2);
 }
-.activity_selection_footer
+.ActivitySelectionFooter
 {
 	grid-row: 3;
 	grid-column: 2;
 	background-color: var(--primary-color-2);
 }
 
-.activity_button_container
+.ActivityButtonContainer
 {
 	display: flex;
 }
 
-.activity_button_container div
+.ActivityButtonContainer div
 {
 	line-height: 45px;
 }
 
-.activity_button_container button
+.ActivityButtonContainer button
 {
 	min-width: 100px;
 }

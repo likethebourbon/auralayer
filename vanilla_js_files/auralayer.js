@@ -58,33 +58,36 @@ class Layer
 
 				this.mode = "editing_layer_mode";
 
-				this.layer_texture_picker = createNewElement({type:"button", classes: ["layer_texture_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerText: "texture"}, styles: {display: "none"}});
-				this.layer_texture_picker.addEventListener("click", e=>this.layer_texture_picker_handler(e));
-				this.texture_selector = createNewElement({type:'div', classes: ["texture_selector", "layer_controls_elements"], parent: this.parent_container, styles: {display: "none"}} );
+
 
 			// -----------------------------------
 			//      TEXTURES
 			// -----------------------------------  
-				this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture_1'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines.png)'}, properties: {title: "Horizontal_Lines"}});
-				this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture_2'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1.png)'}, properties: {title: "Dots_1"}});
-				this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture_3'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2.png)'}, properties: {title: "Dots_2"}});
-				this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture_4'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1.png)'}, properties: {title: "Vertical_Lines 1"}});
-				this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture_5'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2.png)'}, properties: {title: "Vertical_Lines 2"}});
-				this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture_6'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1.png)'}, properties: {title: "Diagonal_Line 1"}});
-				this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture_7'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2.png)'}, properties: {title: "Diagonal_Line 2"}});
-				this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture_8'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1.png)'}, properties: {title: "Circle_1"}});
-				this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
+
+				// this.layer_texture_picker = createNewElement({type:"button", classes: ["layer_texture_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerText: "texture"}, styles: {display: "none"}});
+				// this.layer_texture_picker.addEventListener("click", e=>this.layer_texture_picker_handler(e));
+				// this.texture_selector = createNewElement({type:'div', classes: ["texture_selector", "layer_controls_elements"], parent: this.parent_container, styles: {display: "none"}} );
+
+				// this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture_1'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines.png)'}, properties: {title: "Horizontal_Lines"}});
+				// this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture_2'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1.png)'}, properties: {title: "Dots_1"}});
+				// this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture_3'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2.png)'}, properties: {title: "Dots_2"}});
+				// this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture_4'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1.png)'}, properties: {title: "Vertical_Lines 1"}});
+				// this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture_5'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2.png)'}, properties: {title: "Vertical_Lines 2"}});
+				// this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture_6'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1.png)'}, properties: {title: "Diagonal_Line 1"}});
+				// this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture_7'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2.png)'}, properties: {title: "Diagonal_Line 2"}});
+				// this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture_8'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1.png)'}, properties: {title: "Circle_1"}});
+				// this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
 
 
-				this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_3.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_4.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_5.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_6.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_7.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_8.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_3.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_4.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_5.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_6.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_7.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_8.addEventListener('click', e=>this.create_layer_background_texture(e));
+				// this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
       }
 		layer_texture_picker_handler(e)
 			{
@@ -121,6 +124,7 @@ class Layer
 		layer_name_input_handler(e)
 			{
 				this.layer_data.name = e.target.innerText;
+				this.parent.save_state();
 			}
 		color_picker_handler(e)
 			{
@@ -148,7 +152,8 @@ class Layer
 								this.layer_data.segments[i].color = segment_color_formated;
 								this.segment_array[i].data.styles.background = segment_color_formated;
 							}
-						}
+					}
+				this.parent.save_state();
 			}
 		select_changed(e)
 			{
@@ -189,12 +194,12 @@ class Layer
 				// treat loading from a file/undo differently than adding a new segment while doing normal editing
 				if(this.mode === "load_existing_layer")
 					{
-						this.segment_array.push(new Segment(this, end, this.layer_data.segments, sent_segment.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence, sent_segment));
+						this.segment_array.push(new Segment(this, end, this.layer_data.segments, sent_segment.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence, sent_segment));
 					}
 				else if(this.mode === "new_layer")
 					{
-						// this.segment_array.push(new Segment(this, this.parent.file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
-						this.segment_array.push(new Segment(this, this.parent_file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
+						// this.segment_array.push(new Segment(this, this.parent.file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence));
+						this.segment_array.push(new Segment(this, this.parent_file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence));
 					}
 				else if(this.mode === "editing_layer_mode")
 					{
@@ -235,8 +240,9 @@ class Layer
 						this.layer_data.segments[this.current_segment_index].end_pos = this.current_position - 1 ;
 						this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) - 1) + "px";
 							
-						this.segment_array.push(new Segment(this, old_end_pos_of_current_segment, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.presence_slider_start, this.parent.presence_slider_end, start_presence, end_presence));
+						this.segment_array.push(new Segment(this, old_end_pos_of_current_segment, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence));
 					}
+				this.parent.save_state();				
 			}
 		delete_segment()
 			{
@@ -249,8 +255,8 @@ class Segment
 			{
 				this.parent = sent_parent;
 				this.layer_segment_holder = sent_layer_segment_holder;
-				this.presence_slider_start = sent_presence_slider_start;
-				this.presence_slider_end = sent_presence_slider_end;
+				this.PresenceSliderStart = sent_presence_slider_start;
+				this.PresenceSliderEnd = sent_presence_slider_end;
 
 				if(this.parent.mode !== "load_existing_layer")
 					{
@@ -304,6 +310,7 @@ class Segment
 		segment_text_input_handler(e)
 			{
 				this.data.text[0].inner_text = e.target.innerText;
+				this.parent.parent.save_state();
 			}
 		click_handler()
 			{
@@ -312,7 +319,7 @@ class Segment
 				deselect = this.segment.classList.contains("segment_selected");
 				if(shift_down === false)
 					{
-						this.parent.parent.body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
+						this.parent.parent.Body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
 					}
 
 				if(deselect === true)
@@ -322,18 +329,18 @@ class Segment
 							{
 								this.data.classes.splice(this.data.classes.indexOf("segment_selected"));
 							}
-						this.presence_slider_start.value = GLOBAL_presence_scale;
-						this.presence_slider_end.value = GLOBAL_presence_scale;
+						this.PresenceSliderStart.value = GLOBAL_presence_scale;
+						this.PresenceSliderEnd.value = GLOBAL_presence_scale;
 					}
 				else
 					{
 						this.segment.classList.add("segment_selected");						
 						let first_color_saturation_value = this.data.color.split(", ")[1].slice(-4).slice(0,3);
 						let second_color_saturation_value = this.data.color.split(", ")[2].slice(-5).slice(0,3)
-						this.presence_slider_start.value = parseInt(first_color_saturation_value * GLOBAL_presence_scale); 
-						this.presence_slider_end.value = parseInt(second_color_saturation_value * GLOBAL_presence_scale);
-						this.data.start_presence = parseInt(this.presence_slider_start.value);
-						this.data.end_presence = parseInt(this.presence_slider_end.value);
+						this.PresenceSliderStart.value = parseInt(first_color_saturation_value * GLOBAL_presence_scale); 
+						this.PresenceSliderEnd.value = parseInt(second_color_saturation_value * GLOBAL_presence_scale);
+						this.data.start_presence = parseInt(this.PresenceSliderStart.value);
+						this.data.end_presence = parseInt(this.PresenceSliderEnd.value);
 					}
 			}
 	}
@@ -342,119 +349,200 @@ class Auralayer
     constructor()
       {
 				this.url_activity_text;
+				this.color_count = 0;
+				this.layer_id_pos = 0;
+				this.undo_now = false;
+				this.save_array = [];
+				this.save_position = 0;
+				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
 					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1 }, layers: [] }}
+				// this.save_state();
 				this.scale = 1;
 				this.audio_speed = 10;
 				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
-				this.create_activity_selection_interface()
+				this.create_activity_selection_interface();
 				this.check_for_url_data();				
-        this.initialize_interface();
-				this.layer_id_pos = 0;
+        this.initialize_interface();				
       }
 		create_activity_selection_interface()
 			{
-				this.activity_selection_container = createNewElement({type: "div", classes:["activity_selection_container"], parent: document.body});
-				this.activity_selection_header = createNewElement({type:"div", classes:["activity_selection_header"], parent: this.activity_selection_container, properties:{innerText : "Auralayer"}});
-				this.activity_selection_body = createNewElement({type:"div", classes:["activity_selection_body"], parent: this.activity_selection_container });
-				this.activity_selection_footer = createNewElement({type:"div", classes:["activity_selection_footer"], parent: this.activity_selection_container });
+				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
+				this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerText : "Auralayer"}});
+				this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
+				this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
 
-				this.new_auralayer_from_youtube_container = createNewElement({type: "div", classes:["new_auralayer_from_youtube_container", "activity_button_container"], parent: this.activity_selection_body});
-				this.new_auralayer_from_youtube_button = createNewElement({type: "button", classes:["new_auralayer_from_youtube_button"], parent: this.new_auralayer_from_youtube_container, properties:{innerText : "Create"}});				
-				this.new_auralayer_from_youtube_description = createNewElement({type: "div", classes:["new_auralayer_from_youtube_description"], parent: this.new_auralayer_from_youtube_container, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
-				this.new_auralayer_from_youtube_button.addEventListener("click", e=>{this.start_youtube_activity_setup()});
+				this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+				this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}});				
+				this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
+				this.NewAuralayerFromYoutubeButton.addEventListener("click", e=>{this.StartYoutubeActivitySetup()});
 				
-				this.new_auralayer_from_audio_file_container = createNewElement({type: "div", classes:["new_auralayer_from_audio_file_container", "activity_button_container"], parent: this.activity_selection_body});
-				this.new_auralayer_from_audio_file_button = createNewElement({type: "button", classes:["new_auralayer_from_audio_file_button"], parent: this.new_auralayer_from_audio_file_container, properties:{innerText : "Create"}});
-				this.new_auralayer_from_audio_file_description = createNewElement({type: "div", classes:["new_auralayer_from_audio_file_description"], parent: this.new_auralayer_from_audio_file_container, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
-				this.new_auralayer_from_audio_file_button.addEventListener("click", e=>this.start_audio_file_activity_setup());
+				this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+				this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}});
+				this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
+				this.NewAuralayerFromAudioFileButton.addEventListener("click", e=>this.StartAudioFileActivitySetup());
 
-				this.open_existing_auralayer_from_file_container = createNewElement({type: "div", classes:["open_existing_auralayer_from_file_container", "activity_button_container"], parent: this.activity_selection_body});
-				this.open_existing_auralayer_from_file_button = createNewElement({type: "button", classes:["open_existing_auralayer_from_file_button"], parent: this.open_existing_auralayer_from_file_container, properties:{innerText : "Open"}});
-				this.open_existing_auralayer_from_file_description = createNewElement({type: "div", classes:["open_existing_auralayer_from_file_description"], parent: this.open_existing_auralayer_from_file_container, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});
-				this.open_existing_auralayer_from_file_button.addEventListener("click", e => this.import_from_file.click());
+				this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+				this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}});
+				this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});
+				this.OpenExistingAuralayerFromFileButton.addEventListener("click", e => this.ImportFromFile.click());
 
-				this.import_from_file = createNewElement({type:'input', classes:["interface_button"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}});
-				this.import_from_file.addEventListener('change', e=>this.request_file_from_user(e));
+				this.ImportFromFile = createNewElement({type:'input', classes:["InterfaceButton"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}});
+				this.ImportFromFile.addEventListener('change', e=>this.RequestFileFromUser(e));
 			
-				this.new_auralayer_from_audio_file_with_absolute_URL_container = createNewElement({type: "div", classes:["new_auralayer_from_audio_file_with_absolute_URL_container", "activity_button_container"], parent: this.activity_selection_body, styles: {display: "none"}});
-				this.new_auralayer_from_audio_file_with_absolute_URL_button = createNewElement({type: "button", classes:["new_auralayer_from_audio_file_with_absolute_URL_button"], parent: this.new_auralayer_from_audio_file_with_absolute_URL_container, properties:{innerText : "Create"}});
-				this.new_auralayer_from_audio_file_with_absolute_URL_description = createNewElement({type: "div", classes:["new_auralayer_from_audio_file_with_absolute_URL_description"], parent: this.new_auralayer_from_audio_file_with_absolute_URL_container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});
-				if(location.hostname.includes("localhost")) { this.new_auralayer_from_audio_file_with_absolute_URL_container.style.display = "flex";}
+				this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
+				this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
+				this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});
+				if(location.hostname.includes("localhost")) { this.NewAuralayerFromAudioFileWithAbsoluteURL_Container.style.display = "flex";}
 			}
     initialize_interface()
       {
-        this.auralayer_program = createNewElement({type:"div", classes: ["auralayer_program"], parent: document.body});
+        this.AuralayerProgram = createNewElement({type:"div", classes: ["AuralayerProgram"], parent: document.body});
 
 			// -----------------------------------
 			//      MAIN INTERFACE COMPONENTS
 			// -----------------------------------        
-        this.header = createNewElement({type:"div", classes: ["header_al"], parent: this.auralayer_program});
-        this.body = createNewElement({type:"div", classes: ["body_al"], parent: this.auralayer_program});
-        this.footer = createNewElement({type:"div", classes: ["footer_al"], parent: this.auralayer_program});
-        this.left_outer_column = createNewElement({type:"div", classes: ["left_outer_column"], parent: this.auralayer_program});
-				this.right_outer_column = createNewElement({type:"div", classes: ["right_outer_column"], parent: this.auralayer_program});
+        this.Header = createNewElement({type:"div", classes: ["Header_al"], parent: this.AuralayerProgram});
+        this.Body = createNewElement({type:"div", classes: ["Body_al"], parent: this.AuralayerProgram});
+        this.Footer = createNewElement({type:"div", classes: ["Footer_al"], parent: this.AuralayerProgram});
+        this.LeftOuterColumn = createNewElement({type:"div", classes: ["LeftOuterColumn"], parent: this.AuralayerProgram});
+				this.RightOuterColumn = createNewElement({type:"div", classes: ["RightOuterColumn"], parent: this.AuralayerProgram});
 
 			// -----------------------------------
 			//      BODY COMPONENTS (not document.body but Auralayer's body)
 			// -----------------------------------
-				this.all_layer_containers = createNewElement({type:"div", classes: ["all_layer_containers"], parent: this.body});
-				this.all_layer_containers.addEventListener("dragover", e=> { this.dragging_handler(e) });
-				this.segment_editing_container = createNewElement({type:"div", classes: ["segment_editing_container"], parent: this.body});
-				this.slider_container = createNewElement({type: "div", classes: ["slider_container"], parent: this.body});
+				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.Body});
+				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
+				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer"], parent: this.Body});
+				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.Body});
 
 			// -----------------------------------
 			//       SLIDER CONTAINER COMPONENTS
 			// -----------------------------------    
-				this.seek_slider = createNewElement({type: "input", classes: ["slider", "seek_slider" ], parent: this.slider_container, properties:{type: "range" }});
-				this.seek_slider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));					
+				this.SeekSlider = createNewElement({type: "input", classes: ["slider", "SeekSlider" ], parent: this.SliderContainer, properties:{type: "range" }});
+				this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));					
 
 			// -----------------------------------
 			//      LEFT OUTER COLUMN COMPONENTS
 			// -----------------------------------       
-				this.add_layer_button = createNewElement({type:"button", classes: ["add_layer_button"], parent: this.left_outer_column, properties: {innerText: "+ Add Layer"}});
-				this.add_layer_button.addEventListener("click", e=>this.add_layer_handler());
+				this.AddLayerButton = createNewElement({type:"button", classes: ["AddLayerButton"], parent: this.LeftOuterColumn, properties: {innerText: "+ Add Layer"}});
+				this.AddLayerButton.addEventListener("click", e=>this.add_layer_handler());
 
-				this.save_to_file_button = createNewElement({type: "button", classes: ["save_to_file_button"], parent: this.left_outer_column, properties: {innerText: "Save"}});
-				this.save_to_file_button.addEventListener("click", e => { this.save_to_file(); });
+				this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton"], parent: this.LeftOuterColumn, properties: {innerText: "Save"}});
+				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
 
-				this.zoom_in_button = createNewElement({type:"button", classes:["zoom_in_button"], parent: this.left_outer_column, properties: {innerText: "Zoom In"}});
-				this.zoom_in_button.addEventListener("click", e=>{this.zoom_handler("in")});
-				this.zoom_out_button = createNewElement({type:"button", classes:["zoom_out_button"], parent: this.left_outer_column, properties: {innerText: "Zoom Out"}});
-				this.zoom_out_button.addEventListener("click", e=>{this.zoom_handler("out")});				
+				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton"], parent: this.LeftOuterColumn, properties: {innerText: "Zoom In"}});
+				this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
+				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton"], parent: this.LeftOuterColumn, properties: {innerText: "Zoom Out"}});
+				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});
+
+				this.UndoButton = createNewElement({type: "button", classes:["UndoButton"], parent: this.LeftOuterColumn, properties: {innerText: "Undo"}});
+				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
+				this.RedoButton = createNewElement({type: "button", classes:["RedoButton"], parent: this.LeftOuterColumn, properties: {innerText: "Redo"}});
+				this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
 
 			// -----------------------------------
 			//    SEGMENT EDITING CONTAINER COMPONENTS
 			// -----------------------------------        
-				this.split_button = createNewElement({type:"button", classes: ["split_button"], parent: this.segment_editing_container, properties: {innerText: "Split"}});
-				this.split_button.addEventListener('click', e=>this.split_selected_segment(e));
-				this.merge_left_button = createNewElement({type:"button", classes: ["merge_left_button"], parent: this.segment_editing_container, properties: {innerText: "← Merge"}});
-				this.merge_left_button.addEventListener('click', e=>this.merge_segments(e,"left"));
-				this.delete_button = createNewElement({type:"button", classes: ["delete_button"], parent: this.segment_editing_container, properties: {innerText: "Delete"}});
-				this.delete_button.addEventListener('click', e=>this.delete_button_handler(e));	
-				this.merge_right_button = createNewElement({type:"button", classes: ["merge_right_button"], parent: this.segment_editing_container, properties: {innerText: "Merge →"}});
-				this.merge_right_button.addEventListener('click', e=>this.merge_segments(e, "right"));						
+				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Split"}});
+				this.SplitButton.addEventListener('click', e=>this.split_selected_segment(e));
+				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton"], parent: this.SegmentEditingContainer, properties: {innerText: "← Merge"}});
+				this.SplitButton.addEventListener('click', e=>this.merge_segments(e,"left"));
+				this.DeleteButton = createNewElement({type:"button", classes: ["DeleteButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Delete"}});
+				this.DeleteButton.addEventListener('click', e=>this.delete_button_handler(e));	
+				this.MergeRightButton = createNewElement({type:"button", classes: ["MergeRightButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Merge →"}});
+				this.MergeRightButton.addEventListener('click', e=>this.merge_segments(e, "right"));						
 
-				this.add_marker_button = createNewElement({type:"button", classes: ["add_marker_button"], parent: this.segment_editing_container, properties: {innerText: "Add Marker"}});
-				this.add_marker_button.addEventListener('click', e=>this.add_marker(e));
+				this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Add Marker"}});
+				this.AddMarkerButton.addEventListener('click', e=>this.add_marker(e));
 
-				this.presence_slider_container = createNewElement({type: "div", classes: ["presence_slider_container"], parent: this.segment_editing_container, properties: {}});
-				this.presence_slider_start = createNewElement({type: "input", classes:["presence_slider", "presence_slider_start"], parent: this.presence_slider_container, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale} });
-				this.presence_slider_start.addEventListener("input",e=>this.change_opacity(e,"start"));
-				this.presence_slider_end = createNewElement({type: "input", classes:["presence_slider", "presence_slider_end"], parent: this.presence_slider_container, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, disabled: true} });
-				this.presence_slider_end.addEventListener("input",e=>this.change_opacity(e,"end"));
-				this.presence_slider_independent_toggle = createNewElement({type:"input", classes: ["presence_slider_independent_toggle"], parent: this.presence_slider_container, properties: {type: "checkbox"}});
-				this.presence_slider_independent_toggle.addEventListener("change",e=>
+				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer"], parent: this.SegmentEditingContainer, properties: {}});
+				this.PresenceSliderStart = createNewElement({type: "input", classes:["presence_slider", "PresenceSliderStart"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale} });
+				this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
+				this.PresenceSliderEnd = createNewElement({type: "input", classes:["presence_slider", "PresenceSliderEnd"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, disabled: true} });
+				this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
+				this.PresenceSliderIndependentToggle = createNewElement({type:"input", classes: ["PresenceSliderIndependentToggle"], parent: this.PresenceSliderContainer, properties: {type: "checkbox"}});
+				this.PresenceSliderIndependentToggle.addEventListener("change",e=>
 					{
-						if(this.presence_slider_end.disabled === false)
-							{ this.presence_slider_end.disabled = true; }
+						if(this.PresenceSliderEnd.disabled === false)
+							{ this.PresenceSliderEnd.disabled = true; }
 						else
-							{ this.presence_slider_end.disabled = false; }
+							{ this.PresenceSliderEnd.disabled = false; }
 					});
       }
+		undo_handler()
+			{
+				if(this.save_position > 0)
+					{
+						this.undo_now = true;
+						this.layers = [];						
+						this.save_position--;
+						console.log("save_position DECREASED to: " + this.save_position);
+						this.AllLayerContainers.innerHTML = "";
+						this.example_data.layers = this.save_array[this.save_position];
+						console.log( this.save_array);
+						this.start_program_after_media_loaded();
+						this.undo_now = false;							
+					}
+			}
+		redo_handler()
+			{
+				if(this.save_position < (this.save_array.length -1) )
+					{
+						this.undo_now = true;
+						this.layers = [];
+						this.save_position++;
+						console.log("save_position increased to: " + this.save_position);
+						this.AllLayerContainers.innerHTML = "";
+						this.example_data.layers = this.save_array[this.save_position];
+						this.start_program_after_media_loaded();
+						this.undo_now = false;
+					}				
+			}
+		save_state()
+			{
+				if(this.undo_now === false || this.save_array.length === 0)
+					{
+						if(this.example_data.layers.length > 0)
+							{
+								// let copy = this.example_data.layers.slice(0);
+								let copy = JSON.parse(JSON.stringify(this.example_data.layers));
+								console.log(this.example_data.layers);
+								if(this.save_array.length > 0)
+									{
+										this.save_position++;
+										console.log("save_position increased to: " + this.save_position);
+									}
+
+								if(this.save_position < (this.save_array.length - 1))
+									{
+
+									}
+
+								if (this.save_position === this.save_array.length)
+									{
+										
+										console.log(this.save_array);
+										this.save_array.push(copy);	
+										console.log(this.save_array);	
+									}
+								else if (this.save_position < this.save_array.length)
+									{
+										console.log(this.save_array);
+										
+										this.save_array[this.save_position] = copy;
+										console.log(this.save_array);
+										this.save_array.splice(this.save_position + 1);
+										console.log(this.save_array);
+									}
+							}
+						
+						console.log(this.save_array);
+					}
+			}
 		dragging_handler(e)
 			{
 				e.preventDefault();
@@ -481,11 +569,11 @@ class Auralayer
 					});
 
 				const afterElement = this.get_drag_after_element(layers_not_dragging, e.clientY);
-				const draggable = this.all_layer_containers.querySelector(".dragging");
+				const draggable = this.AllLayerContainers.querySelector(".dragging");
 				
 				if(afterElement === -1)
 					{
-						this.all_layer_containers.insertBefore(draggable, this.all_layer_containers.firstChild);
+						this.AllLayerContainers.insertBefore(draggable, this.AllLayerContainers.firstChild);
 						const element = this.example_data.layers.splice(draggable_index, 1)[0];
 						this.example_data.layers.splice( 0, 0, element);
 
@@ -509,10 +597,12 @@ class Auralayer
 						this.layers.splice( afterElement_index + 1, 0, element2);
 						
 						if(afterElement === layers_not_dragging.length - 1 )
-							{ this.all_layer_containers.appendChild(draggable); }
+							{ this.AllLayerContainers.appendChild(draggable); }
 						else
-							{ this.all_layer_containers.insertBefore(draggable, layers_not_dragging[afterElement + 1].layer_container); }
-						}
+							{ this.AllLayerContainers.insertBefore(draggable, layers_not_dragging[afterElement + 1].layer_container); }
+					}
+
+				this.save_state();
 			}
 		get_drag_after_element(container, y)
 			{
@@ -553,7 +643,8 @@ class Auralayer
 								this.layers[i].segment_array[j].segment.style.left = (this.layers[i].segment_array[j].data.start_pos * this.scale) +  "px";
 							}			
 					}
-				this.seek_slider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
+				this.SeekSlider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
+				this.save_state();
 			}	
 		change_opacity(e, direction)
 			{
@@ -567,7 +658,7 @@ class Auralayer
 										let formated_color_value;
 										// set the sliders to the value of the first layer/segment selected
 										
-										if(this.presence_slider_end.disabled === true)
+										if(this.PresenceSliderEnd.disabled === true)
 											{
 												let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
 												let new_color_value = color_value + new_saturation_value + ")";
@@ -601,8 +692,10 @@ class Auralayer
 									}
 							}			
 					}
+
+				this.save_state();
 			}
-		start_youtube_activity_setup()
+		StartYoutubeActivitySetup()
 			{
 				this.example_data.piece_info.media_type = "youtube";
 				this.activity_type = 'youtube_link';
@@ -653,9 +746,9 @@ class Auralayer
 					});
 
 				url_prompt_input_box.focus();
-				this.activity_selection_container.style.display = "none";
+				this.ActivitySelectionContainer.style.display = "none";
 			}
-		start_audio_file_activity_setup(sent_url)
+		StartAudioFileActivitySetup(sent_url)
 			{
 				this.example_data.piece_info.media_type = "audio_file";
 				this.activity_type = 'audio_file';
@@ -663,9 +756,9 @@ class Auralayer
 				this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: document.body, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"} });
 				this.open_audio_button.addEventListener('change', () => this.get_user_audio_file('nothing') );
 
-				this.open_file_trigger_button = createNewElement({type: "button", classes: ["interface_button"], parent: document.body, properties: {innerText: "Choose Audio File 2"}});
+				this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}});
 				this.open_file_trigger_button.addEventListener('click', () => this.open_audio_button.click() );
-				this.loaded_file_name_label = createNewElement({type: "div", classes: ["interface_button"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
+				this.loaded_file_name_label = createNewElement({type: "div", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
 
 				if ( developing === true && location.hostname.includes("localhost"))
 					{
@@ -676,7 +769,7 @@ class Auralayer
 			}
 		get_user_audio_file(sent_url)
 			{
-				this.activity_selection_container.style.display = "none";
+				this.ActivitySelectionContainer.style.display = "none";
 				this.uploaded_audio = createNewElement({type:"audio", classes:["user_audio"], parent: document.body, properties:{controls: true}});
 				
 				if ( developing === true && location.hostname.includes("localhost"))
@@ -743,28 +836,30 @@ class Auralayer
 			}
 		start_program_after_media_loaded()
 			{
-				let random_red = Math.floor(Math.random() * (256 - 0) + 0);
-				let random_green = Math.floor(Math.random() * (256 - 0) + 0);
-				let random_blue = Math.floor(Math.random() * (256 - 0) + 0);
-				let random_color = "rgba(" + random_red + "," + random_green + "," + random_blue + ",1.0)";
+				this.undo_now = true;
+				let random_color = "rgba(" + this.colors[this.color_count % 8] + ",1.0)";
+				this.color_count++;
 
-				this.seek_slider.max = this.file_length * this.audio_speed;
-				this.seek_slider.value = 0;
-				this.seek_slider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
-				this.seek_slider.style.display = 'block';
+				this.SeekSlider.max = this.file_length * this.audio_speed;
+				this.SeekSlider.value = 0;
+				this.SeekSlider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
+				this.SeekSlider.style.display = 'block';
 
 				if (this.example_data.layers.length === 0)
 					{
 						let initial_layer_data =
-							{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id: 0 }	
+						{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id: 0 }
 
 						this.example_data.layers.push( initial_layer_data );
-						this.layers.push(new Layer(this.all_layer_containers, initial_layer_data, this.file_length, this, "new_layer"));
+						this.layers.push(new Layer(this.AllLayerContainers, initial_layer_data, this.file_length, this, "new_layer"));
 					}
 				else
 					{
-						this.example_data.layers.forEach((each,index)=> this.layers.push(new Layer(this.all_layer_containers, each, this.file_length, this, "load_existing_layer")) );
+						this.example_data.layers.forEach((each,index)=> this.layers.push(new Layer(this.AllLayerContainers, each, this.file_length, this, "load_existing_layer")) );
+						console.log(this.example_data.layers);
 					}
+
+				this.undo_now = false;
 			}
 		seek_slider_moved_handler(e)
 			{
@@ -821,10 +916,10 @@ class Auralayer
 					{
 						case 'audio_file':
 							this.slider_position = parseInt(this.uploaded_audio.currentTime);
-							this.seek_slider.value = parseInt(this.uploaded_audio.currentTime * this.audio_speed);		
+							this.SeekSlider.value = parseInt(this.uploaded_audio.currentTime * this.audio_speed);		
 							break;
 						case 'youtube_link':
-							this.seek_slider.value = parseInt(playerx.getCurrentTime() * this.audio_speed);
+							this.SeekSlider.value = parseInt(playerx.getCurrentTime() * this.audio_speed);
 							this.slider_position = parseInt(playerx.getCurrentTime());
 							console.log("playerx.getCurrentTime(): " + playerx.getCurrentTime());
 							console.log("this.slider_position: " + this.slider_position);
@@ -843,27 +938,24 @@ class Auralayer
 							console.log('the default option has been reached in the switch statement');
 					}
 				
-				// this.seek_slider.value = this.slider_position;				
+				// this.SeekSlider.value = this.slider_position;				
 				
 				// let current_time;
 				// current_time = parseFloat( (this.slider_position / this.length_padding).toFixed(2)) ;
 			}
 		add_layer_handler()
 			{
-				let random_red = Math.floor(Math.random() * (256 - 0) + 0);
-				let random_green = Math.floor(Math.random() * (256 - 0) + 0);
-				let random_blue = Math.floor(Math.random() * (256 - 0) + 0);
 				this.layer_id_pos++;
 				this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
 			
-				let random_color = "rgba(" + random_red + "," + random_green + "," + random_blue + ",1.0)";	
+				let random_color = "rgba(" + this.colors[this.color_count % 8] + ",1.0)";
+				this.color_count++;
 
 				let new_initial_layer_data =
 					{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[], layer_id: this.layer_id_pos }
 
 				this.example_data.layers.push( new_initial_layer_data );
-				// this.layers.push(new Layer(this.all_layer_containers, new_initial_layer_data, this.file_length/this.scale, this, "new_layer"));
-				this.layers.push(new Layer(this.all_layer_containers, new_initial_layer_data, this.file_length, this, "new_layer"));
+				this.layers.push(new Layer(this.AllLayerContainers, new_initial_layer_data, this.file_length, this, "new_layer"));
 			}
 		delete_layer(sent_layer_id)
 			{
@@ -880,6 +972,7 @@ class Auralayer
 				this.example_data.layers.splice(layer_index,1);
 				this.layers[layer_index].layer_container.remove();
 				this.layers.splice(layer_index,1);
+				this.save_state();
 			}
 		split_selected_segment()
 			{
@@ -894,6 +987,7 @@ class Auralayer
 								each_layer.create_segment(start, -1, GLOBAL_presence_scale, GLOBAL_presence_scale);
 							}
 					});
+				// this.save_state();
 			}
 		merge_segments(e, direction)
 			{
@@ -983,6 +1077,7 @@ class Auralayer
 									}
 							}					
 					}
+				this.save_state();
 			}
 		delete_button_handler(e)
 			{
@@ -1006,10 +1101,12 @@ class Auralayer
 									}
 							}			
 					}
+				this.save_state();
 			}
 		add_marker()
 			{
 				alert("I don't do anything!");
+				// this.save_state();
 			}
 		save_to_file()
 			{
@@ -1030,7 +1127,7 @@ class Auralayer
 				element.click();
 				document.body.removeChild(element);
 			}			
-		request_file_from_user(event)
+		RequestFileFromUser(event)
 			{
 				// IMPORT - Read from File
 				const input = event.target;
@@ -1054,18 +1151,18 @@ class Auralayer
 					}    
 			}
 		load_from_file(data)
-			{
+			{			
 				this.example_data = JSON.parse(data);
 				this.scale = this.example_data.piece_info.scale;
 				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
 				
 				if(this.example_data.piece_info.media_type === "youtube")
 					{
-						this.start_youtube_activity_setup()
+						this.StartYoutubeActivitySetup()
 					}
 				else if (this.example_data.piece_info.media_type === "audio_file")
 					{
-						this.start_audio_file_activity_setup()
+						this.StartAudioFileActivitySetup()
 					}
 			}
   }
@@ -1082,13 +1179,13 @@ function createNewElement(data)
       {
 				if(key === "width" && data.classes.includes("segment"))
 					{
-						new_element.style.width = "0px";
-						new_element.animate(
-							[  // keyframes
-									{ width: new_element.style.width  },
-									{ width: data.styles[key]}
-							], 
-							{ duration: 500, iterations: 1 } );  
+						// new_element.style.width = "0px";
+						// new_element.animate(
+						// 	[  // keyframes
+						// 			{ width: new_element.style.width  },
+						// 			{ width: data.styles[key]}
+						// 	], 
+						// 	{ duration: 500, iterations: 1 } );  
 					}
 
 				new_element.style[key] = data.styles[key];		
