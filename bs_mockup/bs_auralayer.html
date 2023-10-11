@@ -68,8 +68,8 @@
     </header>
     <main class="d-flex flex-nowrap">
         <div class="container-xl">
-            <div id="undo-redo" class="row mt-4">
-                <div class="col offset-1 ps-0">
+            <div id="utilites" class="row mt-4 mx-md-5 justify-content-between">
+                <div id="undo-redo" class="col">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-outline-secondary rounded-0 rounded-top border-0" title="Undo">
                             <i class="bi-arrow-counterclockwise"></i>
@@ -79,19 +79,19 @@
                         </button>
                     </div>
                 </div>
-            </div>
-            <div id="auralayer-container" class="row row-flex mb-4">
-                <div id="auralayer-window" class="col-10 offset-1">
-                    <div id="auralayer-placeholder"></div>
-                </div>
-                <div id="zoom" class="col-1 px-0">
-                    <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-outline-secondary rounded-0 rounded-end border-0" title="Zoom in">
+                <div id="zoom" class="col text-end">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-secondary rounded-0 rounded-top border-0" title="Zoom in">
                             <i class="bi-zoom-in"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-secondary rounded-0 rounded-end border-0" title="Zoom out">
+                        <button type="button" class="btn btn-outline-secondary rounded-0 rounded-top border-0" title="Zoom out">
                             <i class="bi-zoom-out"></i> </button>
                     </div>
+                </div>
+            </div>
+            <div id="auralayer-container" class="row row-flex mb-4">
+                <div id="auralayer-window" class="col mx-md-5">
+                    <div id="auralayer-placeholder"></div>
                 </div>
             </div>
 
@@ -135,7 +135,7 @@
                         <i class="bi-x-lg"></i>
                     </button>
                 </div>
-                <div id="utilities" class="col-md-2 text-md-end text-center flex-nowrap">
+                <div id="export" class="col-md-2 text-md-end text-center flex-nowrap">
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#download">
                         <i class="bi-download"></i>
                     </button>
