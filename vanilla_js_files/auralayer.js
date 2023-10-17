@@ -319,7 +319,8 @@ class Segment
 				deselect = this.segment.classList.contains("segment_selected");
 				if(shift_down === false)
 					{
-						this.parent.parent.Body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
+						// this.parent.parent.Body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
+						this.parent.parent.BodyContainer.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
 					}
 
 				if(deselect === true)
@@ -360,7 +361,7 @@ class Auralayer
 				if(Object.keys(this.example_data).length === 0)
 					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1 }, layers: [] }}
 				// this.save_state();
-				this.scale = 1;
+				this.scale = 3;
 				this.audio_speed = 10;
 				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
@@ -376,17 +377,17 @@ class Auralayer
 				this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
 
 				this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-				this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}});				
+				this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}});				
 				this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
 				this.NewAuralayerFromYoutubeButton.addEventListener("click", e=>{this.StartYoutubeActivitySetup()});
 				
 				this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-				this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}});
+				this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}});
 				this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
 				this.NewAuralayerFromAudioFileButton.addEventListener("click", e=>this.StartAudioFileActivitySetup());
 
 				this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-				this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}});
+				this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-outline-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}});
 				this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});
 				this.OpenExistingAuralayerFromFileButton.addEventListener("click", e => this.ImportFromFile.click());
 
@@ -394,7 +395,7 @@ class Auralayer
 				this.ImportFromFile.addEventListener('change', e=>this.RequestFileFromUser(e));
 			
 				this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
-				this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
+				this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
 				this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});
 				if(location.hostname.includes("localhost")) { this.NewAuralayerFromAudioFileWithAbsoluteURL_Container.style.display = "flex";}
 			}
@@ -405,19 +406,71 @@ class Auralayer
 			// -----------------------------------
 			//      MAIN INTERFACE COMPONENTS
 			// -----------------------------------        
-        this.Header = createNewElement({type:"div", classes: ["Header_al"], parent: this.AuralayerProgram});
-        this.Body = createNewElement({type:"div", classes: ["Body_al"], parent: this.AuralayerProgram});
-        this.Footer = createNewElement({type:"div", classes: ["Footer_al"], parent: this.AuralayerProgram});
-        this.LeftOuterColumn = createNewElement({type:"div", classes: ["LeftOuterColumn"], parent: this.AuralayerProgram});
-				this.RightOuterColumn = createNewElement({type:"div", classes: ["RightOuterColumn"], parent: this.AuralayerProgram});
+        this.Header = createNewElement({type:"header", classes: ["Header_al"], parent: this.AuralayerProgram});
+        // this.Body = createNewElement({type:"main", classes: ["Body_al", "d-flex", "flex-nowrap"], parent: this.AuralayerProgram});
+				this.Body = createNewElement({type:"main", classes: ["Body_al"], parent: this.AuralayerProgram});
+        this.Footer = createNewElement({type:"footer", classes: ["Footer_al"], parent: this.AuralayerProgram});
+        // this.LeftOuterColumn = createNewElement({type:"div", classes: ["LeftOuterColumn"], parent: this.AuralayerProgram});
+				// this.RightOuterColumn = createNewElement({type:"div", classes: ["RightOuterColumn"], parent: this.AuralayerProgram});
+
+			// -----------------------------------
+			//      HEADER COMPONENTS
+			// -----------------------------------
+				this.HeaderContainer = createNewElement({type: "div", classes:["container-xl"], parent: this.Header});
+				this.HeaderRow = createNewElement({type: "div", classes:["d-flex", "flex-row", "my-1", "justify-content-stretch"], parent: this.HeaderContainer});
+				this.HeaderRowLeft = createNewElement({type: "div", classes:["col-1"], parent: this.HeaderRow});
+				this.HeaderRowRight = createNewElement({type: "div", classes:["col-10", "text-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
+
+				this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowRight, properties:{innerText: "Auralayer"}});
+
+				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
+
+				this.HeaderSettingsMenu = createNewElement({type:"div", classes:["offcanvas", "offcanvas-start"], parent: this.HeaderRowLeft, properties:{id:"offcanvasExample", tabIndex: "-1"}, attributes:{"aria-labelledby": "Settings"}});
+
+				this.HeaderSettingsMenuHeader = createNewElement({type:"div", classes:["offcanvas-header"], parent: this.HeaderSettingsMenu});
+				this.HeaderSettingsMenuHeaderTitle = createNewElement({type: "h5", classes: ["offcanvas-title"], parent: this.HeaderSettingsMenuHeader, properties:{innerText: "Settings", id: "Settings"}});
+
+				this.HeaderSettingsMenuHeaderCloseButton = createNewElement({type: "button", classes:["btn-close"], parent: this.HeaderSettingsMenuHeader, properties:{type:"button"}, attributes:{"aria-label": "Close"}, dataset:{ bsDismiss: "offcanvas"}});
+
+				this.HeaderSettingsMenuBody = createNewElement({type:"div", classes:["offcanvas-body"], parent: this.HeaderSettingsMenu});
+
+
+				this.SegmentDecresendoSelectContainer = createNewElement({type: "p", classes:["SegmentDecresendoSelectContainer"], parent: this.HeaderSettingsMenuBody});
+
+				this.SegmentDecresendoSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentDecresendoSelectContainer, properties:{innerText: "Segment decrescendo", htmlFor: "decrescendo"}});
+				this.SegmentDecresendoSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentDecresendoSelectContainer, attributes:{"aria-label": "Segment decrescendo"}});
+				this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"1", innerText:"Gradient"}, attributes:{selected: true}});
+				this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"2", innerText:"Slope"}});
+
+
+				this.SegmentColorPaletteSelectContainer = createNewElement({type: "p", classes:["SegmentColorPaletteSelectContainer"], parent: this.HeaderSettingsMenuBody});
+				
+				this.SegmentColorPaletteSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentColorPaletteSelectContainer, properties:{innerText: "Segment color palette", htmlFor: "palette"}});
+				this.SegmentColorPaletteSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentColorPaletteSelectContainer, attributes:{"aria-label": "Color palette"}});
+				this.SegmentColorPaletteSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"1", innerText:"Bright", selected: true}});
+				this.SegmentColorPaletteSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"2", innerText:"Dark"}});
+				this.SegmentColorPaletteSelectBoxOption3 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"3", innerText:"Warm"}});
+				this.SegmentColorPaletteSelectBoxOption4 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"4", innerText:"Cool"}});
+				this.SegmentColorPaletteSelectBoxOption5 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"5", innerText:"Rainbow"}});
+				this.SegmentColorPaletteSelectBoxOption6 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"6", innerText:"Rainbow (desaturated)"}});
+				this.SegmentColorPaletteSelectBoxOption7 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"7", innerText:"Sunset"}});
+				this.SegmentColorPaletteSelectBoxOption8 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"8", innerText:"Green–Black"}});
+				this.SegmentColorPaletteSelectBoxOption9 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"9", innerText:"Pink–Blue"}});
+				this.SegmentColorPaletteSelectBoxOption10 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"10", innerText:"Cornflower–White"}});
+			
+
 
 			// -----------------------------------
 			//      BODY COMPONENTS (not document.body but Auralayer's body)
 			// -----------------------------------
-				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.Body});
+				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-xl"], parent: this.Body});
+				this.UtilitiesContainer = createNewElement({type:"div", classes:["UtilitiesContainer", "row", "mx-md-5", "justify-content-between"],parent: this.BodyContainer, properties:{id:"utilites"}});
+				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
 				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
-				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer"], parent: this.Body});
-				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.Body});
+				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
+				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2"], parent: this.Body, properties:{id:"interface-container"}});
+
+				
 
 			// -----------------------------------
 			//       SLIDER CONTAINER COMPONENTS
@@ -428,50 +481,331 @@ class Auralayer
 			// -----------------------------------
 			//      LEFT OUTER COLUMN COMPONENTS
 			// -----------------------------------       
-				this.AddLayerButton = createNewElement({type:"button", classes: ["AddLayerButton"], parent: this.LeftOuterColumn, properties: {innerText: "+ Add Layer"}});
-				this.AddLayerButton.addEventListener("click", e=>this.add_layer_handler());
+				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
+				this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
+				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 
-				this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton"], parent: this.LeftOuterColumn, properties: {innerText: "Save"}});
-				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
-
-				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton"], parent: this.LeftOuterColumn, properties: {innerText: "Zoom In"}});
+				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
 				this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
-				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton"], parent: this.LeftOuterColumn, properties: {innerText: "Zoom Out"}});
+				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
 				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});
 
-				this.UndoButton = createNewElement({type: "button", classes:["UndoButton"], parent: this.LeftOuterColumn, properties: {innerText: "Undo"}});
+				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
 				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
-				this.RedoButton = createNewElement({type: "button", classes:["RedoButton"], parent: this.LeftOuterColumn, properties: {innerText: "Redo"}});
+				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
 				this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
+
+			// -----------------------------------
+			//    LAYER EDITING CONTAINER COMPONENTS
+			// -----------------------------------    
+
+				this.LayerEditingContainer = createNewElement({type:"div", classes:["col-md-3", "text-md-start", "text-center"], parent: this.SegmentEditingContainer, properties: {id:"new-layer"}});
+				
+				this.LayerEditingRow = createNewElement({type:"div", classes:["LayerEditingRow", "row", "align-items-center", "flex-nowrap"], parent: this.LayerEditingContainer, properties:{}});
+
+				this.AddLayerRowContainer = createNewElement({type:"div", classes:["AddLayerRowContainer", "col-4"], parent: this.LayerEditingRow, properties:{}});
+				this.AddLayerButton = createNewElement({type:"button", classes: ["AddLayerButton", "btn", "btn-primary"], parent: this.AddLayerRowContainer, properties: {innerHTML: `<i class="bi-plus-lg"></i>`, title: "Add new layer", type: "button"}});
+				this.AddLayerButton.addEventListener("click", e=>this.add_layer_handler());			
 
 			// -----------------------------------
 			//    SEGMENT EDITING CONTAINER COMPONENTS
 			// -----------------------------------        
-				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Split"}});
-				this.SplitButton.addEventListener('click', e=>this.split_selected_segment(e));
-				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton"], parent: this.SegmentEditingContainer, properties: {innerText: "← Merge"}});
-				this.SplitButton.addEventListener('click', e=>this.merge_segments(e,"left"));
-				this.DeleteButton = createNewElement({type:"button", classes: ["DeleteButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Delete"}});
-				this.DeleteButton.addEventListener('click', e=>this.delete_button_handler(e));	
-				this.MergeRightButton = createNewElement({type:"button", classes: ["MergeRightButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Merge →"}});
-				this.MergeRightButton.addEventListener('click', e=>this.merge_segments(e, "right"));						
+				
+				this.SegmentEditingContainer2 = createNewElement({type:"div", classes:["col-md-4", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "edit-layers"}});
 
-				this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton"], parent: this.SegmentEditingContainer, properties: {innerText: "Add Marker"}});
+				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton", "btn", "btn-primary"], parent: this.SegmentEditingContainer2, properties: {innerHTML: `<i class="bi-layout-split"></i>`, type: "button", title: "Split"}});
+				this.SplitButton.addEventListener('click', e=>this.split_selected_segment(e));
+
+				this.MergeButtonGroup = createNewElement({type:"div", classes:["btn-group"], parent: this.SegmentEditingContainer2, properties:{role: "group"}});
+
+				this.MergeLeftButton = createNewElement({type:"button", classes: ["MergeLeftButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-left"></i>`, role: "group", type: "button", title: "Merge left"}});
+				this.MergeLeftButton.addEventListener('click', e=>this.merge_segments(e,"left"));
+
+				this.MergeRightButton = createNewElement({type:"button", classes: ["MergeRightButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-right"></i>`, role: "group", type: "button", title: "Merge right"}});
+				this.MergeRightButton.addEventListener('click', e=>this.merge_segments(e, "right"));				
+				
+				this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-bookmark-plus-fill"></i>`, role: "group", type: "button", title: "Add Marker"}});
 				this.AddMarkerButton.addEventListener('click', e=>this.add_marker(e));
 
-				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer"], parent: this.SegmentEditingContainer, properties: {}});
-				this.PresenceSliderStart = createNewElement({type: "input", classes:["presence_slider", "PresenceSliderStart"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale} });
+				this.DeleteButton = createNewElement({type:"button", classes: ["DeleteButton", "btn", "btn-danger"], parent: this.SegmentEditingContainer2, properties: {innerText: "Delete", type: "button", title: "Delete layer", innerHTML: `<i class="bi-x-lg"></i>`}});
+				this.DeleteButton.addEventListener('click', e=>this.delete_button_handler(e));					
+
+				this.ExportButtonContainer = createNewElement({type:"div", classes:["ExportButtonContainer", "col-md-2", "text-md-end", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "export"}});
+
+				this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: {innerHTML: `<i class="bi-download"></i>`, type: "button", title:"Save Analysis to File"}, dataset:{bsToggle: "modal", bsTarget: "#download"}});
+				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
+
+				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}});
+
+				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
+				this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
+				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start"} });
 				this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
-				this.PresenceSliderEnd = createNewElement({type: "input", classes:["presence_slider", "PresenceSliderEnd"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, disabled: true} });
+
+				this.PresenceSliderEndLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_end", innerText: "Presence (end)"}});
+				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} });
 				this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
-				this.PresenceSliderIndependentToggle = createNewElement({type:"input", classes: ["PresenceSliderIndependentToggle"], parent: this.PresenceSliderContainer, properties: {type: "checkbox"}});
+
+				this.PresenceLockContainer = createNewElement({type: "div", classes: ["PresenceLockContainer", "col-1", "align-items-center"], parent: this.LayerEditingRow, properties: {}});
+				this.PresenceLockDiv = createNewElement({type:"div", classes:["link-presence", "text-center"], parent: this.PresenceLockContainer});
+
+				this.PresenceSliderIndependentToggle = createNewElement({type:"input", classes: ["PresenceSliderIndependentToggle"], parent: this.PresenceLockDiv, properties: {type: "checkbox"}, styles:{display: "none"}});
+				this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-link-45deg"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo"}});
+				this.PresenceSliderIndependentButton.addEventListener("click", ()=>this.PresenceSliderIndependentToggle.click());
+								
 				this.PresenceSliderIndependentToggle.addEventListener("change",e=>
 					{
 						if(this.PresenceSliderEnd.disabled === false)
-							{ this.PresenceSliderEnd.disabled = true; }
+							{
+								this.PresenceSliderEnd.disabled = true;
+								// this.PresenceSliderIndependentButton.classList.remove("PresenceSliderIndependentButtonSelected");
+								
+								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link");
+								this.PresenceSliderIndependentButton.children[0].classList.add("bi-link-45deg");
+							}
 						else
-							{ this.PresenceSliderEnd.disabled = false; }
+							{
+								this.PresenceSliderEnd.disabled = false;
+								// this.PresenceSliderIndependentButton.classList.add("PresenceSliderIndependentButtonSelected");
+								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link-45deg");
+								this.PresenceSliderIndependentButton.children[0].classList.add("bi-link");
+							}
 					});
+
+			
+				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties:{id: "collapsing"}});
+					this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "p-1", "m-auto", "my-3"], parent: this.AccordionContainer1, properties:{}});
+						this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
+							this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
+							this.VideoContainer1 = createNewElement({type:"div", classes:["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
+								this.VideoAccordionHeader = createNewElement({type:"h2", classes:["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties:{}});
+									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
+								this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
+									this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
+									
+
+				// <div class="accordion-item">
+				// 		<h2 class="accordion-header">
+				// 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+				// 						<i class="bi-table"></i>&emsp; Data table
+				// 				</button>
+				// 		</h2>
+				// 		<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#table-video">
+				// 				<div class="accordion-body">
+				// 						<div class="col-lg-8 offset-lg-2 table-responsive">
+				// 								<table class="table">
+				// 										<thead>
+				// 												<tr>
+				// 														<th class="col-1">ID <span style="color:#848586;">▼</span></th>
+				// 														<th class="col-2">Timestamp ▼</th>
+				// 														<th class="col-5">Layer <span style="color:#848586;">▼</span></th>
+				// 														<th class="col-4">Presence<span style="color:#848586;">▼</span></th>
+				// 												</tr>
+				// 										</thead>
+				// 										<tbody>
+				// 												<tr>
+				// 														<td>1</td>
+				// 														<td><input type="number" class="form-control" value="0.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Rimshot</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>2</td>
+				// 														<td><input type="number" class="form-control" value="2.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Bass Drum</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>3</td>
+				// 														<td><input type="number" class="form-control" value="9.3" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Handclaps</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>4</td>
+				// 														<td><input type="number" class="form-control" value="17.6" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Toms</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>5</td>
+				// 														<td><input type="number" class="form-control" value="25.5" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Hi-hat closed</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>6</td>
+				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Rimshot</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>102</td>
+				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Bass Drum</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>103</td>
+				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Handclaps</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>104</td>
+				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Toms</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>105</td>
+				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Hi-hat closed</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>7</td>
+				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Hi-hat closed</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>106</td>
+				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Toms</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>107</td>
+				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Handclaps</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>108</td>
+				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Bass Drum</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>109</td>
+				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Rimshot</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="1"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>8</td>
+				// 														<td><input type="number" class="form-control" value="43.2" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Snare</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>9</td>
+				// 														<td><input type="number" class="form-control" value="43.6" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Snare</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>110</td>
+				// 														<td><input type="number" class="form-control" value="43.6" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Hi-hat closed</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>10</td>
+				// 														<td><input type="number" class="form-control" value="44.4" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Bass Drum</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>11</td>
+				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Toms</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>111</td>
+				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Bass Drum</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="3"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>112</td>
+				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Rimshot</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
+				// 												</tr>
+				// 												<tr>
+				// 														<td>113</td>
+				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
+				// 														<td><select class="form-select">
+				// 																		<option value="">Handclaps</option>
+				// 																</select></td>
+				// 														<td><input type="range" class="form-range"  min="0" max="4" value="3"></td>
+				// 												</tr>
+				// 										</tbody>
+				// 								</table>
+				// 						</div>
+				// 				</div>
+				// 		</div>
+				// </div>
+				// <div class="accordion-item">
+				// 		<h2 class="accordion-header">
+				// 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				// 						<i class="bi-youtube"></i>&emsp; Video
+				// 				</button>
+				// 		</h2>
+				// 		<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#table-video">
+				// 				<div class="accordion-body text-center">
+				// 						<iframe id="player" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Yeah Yeah Yeahs - Maps (Official Music Video)" src="https://www.youtube.com/embed/oIIxlgcuQRU?enablejsapi=1&amp;origin=http%3A%2F%2Flocalhost%3A5500&amp;widgetid=1"></iframe>
+				// 				</div>
+				// 		</div>
+				// </div>
+
       }
 		undo_handler()
 			{
@@ -758,7 +1092,7 @@ class Auralayer
 
 				this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}});
 				this.open_file_trigger_button.addEventListener('click', () => this.open_audio_button.click() );
-				this.loaded_file_name_label = createNewElement({type: "div", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
+				this.loaded_file_name_label = createNewElement({type: "div", classes: ["loaded_file_name_label", "InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
 
 				if ( developing === true && location.hostname.includes("localhost"))
 					{
@@ -770,12 +1104,13 @@ class Auralayer
 		get_user_audio_file(sent_url)
 			{
 				this.ActivitySelectionContainer.style.display = "none";
-				this.uploaded_audio = createNewElement({type:"audio", classes:["user_audio"], parent: document.body, properties:{controls: true}});
-				
+				this.uploaded_audio = createNewElement({type:"audio", classes:["user_audio"], parent: this.VideoAccordionBodyInterior, properties:{controls: true}});
+				this.VideoAccordionBody.appendChild(this.loaded_file_name_label);
+
 				if ( developing === true && location.hostname.includes("localhost"))
 					{          											
-						// this.uploaded_audio.src = 'sheep_may_safely_graze.mp3';
-						this.uploaded_audio.src = 'http://192.168.1.111/bri_former_server_sample/sheep_may_safely_graze.mp3';
+						this.uploaded_audio.src = 'Puccini-Vissi_d_arte_vissi_d_amore_Tosca.mp3';
+						// this.uploaded_audio.src = 'http://192.168.1.111/bri_former_server_sample/sheep_may_safely_graze.mp3';
 					}                      
 				else if(!this.open_audio_button.files.length)
 					{ alert('no file selected'); }
@@ -946,6 +1281,7 @@ class Auralayer
 		add_layer_handler()
 			{
 				this.layer_id_pos++;
+				
 				this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
 			
 				let random_color = "rgba(" + this.colors[this.color_count % 8] + ",1.0)";
@@ -956,6 +1292,13 @@ class Auralayer
 
 				this.example_data.layers.push( new_initial_layer_data );
 				this.layers.push(new Layer(this.AllLayerContainers, new_initial_layer_data, this.file_length, this, "new_layer"));
+				
+				let segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
+				let segment_margin_top = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-top'));
+				let segment_margin_bottom = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-bottom'));
+				
+				document.documentElement.style.setProperty('--slider_thumb_height', ((segment_height + (segment_margin_top + segment_margin_bottom) ) * this.layers.length) + 50 + "px");
+				
 			}
 		delete_layer(sent_layer_id)
 			{
@@ -1192,7 +1535,17 @@ function createNewElement(data)
       }
 
 		for (const key in data.properties)
-      { new_element[key] = data.properties[key]; }		
+      { 
+				if(key === "ariaControls")
+					{ new_element.setAttribute('aria-controls', data.properties[key]); }
+				else
+					{ new_element[key] = data.properties[key]; } }
+		
+		for (const key in data.dataset)
+      { new_element.dataset[key] = data.dataset[key]; }
+			
+		for (const key in data.attributes)
+      { new_element.setAttribute( key, data.attributes[key]); }					
 
 		data.parent.appendChild(new_element);
 
@@ -1226,8 +1579,8 @@ window.onYouTubeIframeAPIReady = function()
 
 		playerx = new YT.Player('player', 
 		{
-			height: '390',
-			width: '640',
+			height: '195',
+			width: '320',
 			videoId: project.example_data.piece_info.video_id,
 			events: 
 				{
