@@ -9,6 +9,430 @@ let lastActiveElement = document.activeElement;
 
 let example_data = {};
 
+// -----------------------------------
+//      Keyboard Controls
+// -----------------------------------
+document.addEventListener('keydown', e => 
+	{
+		//if NOT in a textbox
+				
+		if(project.in_text_editor === false || ( e.ctrlKey && e.key === 'b') || ( e.ctrlKey && e.key === 'i'))
+				{            
+						if (e.ctrlKey && e.key === 's')
+								{
+										e.preventDefault();
+										console.log("Saved: Ctrl + S - Key press");
+										project.SaveToFileButton.click();
+								}                    
+						else if (  e.ctrlKey && e.key === 'z') 
+								{
+										
+										project.UndoButton.click();
+								}
+						else if (  e.ctrlKey && e.key === 'y' )
+								{
+										console.log("redo");
+										project.RedoButton.click();
+								}                 
+						else if ( e.ctrlKey && e.key === 'b')
+								{
+										// e.preventDefault();
+										// console.log("bold");
+										
+										// document.getElementById(project.which_text_box).blur();
+										// project.top_text_style_bold.click();
+										// document.getElementById(project.which_text_box).focus();
+								}
+						else if ( e.ctrlKey && e.key === 'i')
+								{
+										// e.preventDefault();
+										// console.log("italics");
+										
+										// document.getElementById(project.which_text_box).blur();
+										// project.top_text_style_italics.click();
+										// document.getElementById(project.which_text_box).focus();
+								}                     
+						else if( e.key === 's')
+								{       
+										//e.preventDefault();
+										if(project.view_mode_slider_top_button === false)
+												{
+														project.SplitButton.click();		
+												}                         
+								}
+						else if( e.key === 'g')//g
+								{       
+										// if(project.view_mode_slider_top_button.checked === false)
+										// 		{
+										// 				project.group_combiner(e);        
+										// 		}   
+								}
+						else if (  e.key === 'm' )
+								{
+										// if(project.view_mode_slider_top_button.checked === false)
+										// 		{
+										// 				if (project.program_version !== "0_0")
+										// 						{
+										// 								project.add_marker_location("");
+										// 								console.log("add marker");
+										// 						}
+										// 		}   
+								}                       
+						else if( e.key === 'Escape')//escape
+								{       
+										project.remove_all_from_currently_selected_elements();    
+								}
+						else if( e.ctrlKey && e.code === 'Space')
+								{
+										e.preventDefault();
+										console.log("Control and Space pressed");
+										// move playhead to start of selected group
+										// if only one group is selected
+
+										project.play_audio_from_beginning_of_current_selection();
+								}                    
+						else if( e.key === 'p' || e.code === 'Space')
+								{  
+
+										e.preventDefault();
+										switch (project.activity_type)
+														{
+																case 'audio_file':
+																		if ( !project.uploaded_audio.paused   ) 
+																				{
+																						//Its playing...do your job
+																						console.log("playing!");
+																						project.pause_audio();
+																				} 
+																		else 
+																				{
+																						console.log('not playing');
+																						//Not playing...maybe paused, stopped or never played.
+																						project.play_audio();
+																				}    
+																		break;
+																case 'youtube_link':
+																		if (youtube_player_state != YT.PlayerState.PAUSED)
+																				{
+																					playerx.g.classList.remove("small_youtube_video_for_iframes");
+																					playerx.pauseVideo();
+																				}
+																		else
+																				{
+																					playerx.g.classList.remove("small_youtube_video_for_iframes");
+																					playerx.playVideo();
+																				}
+																		
+																		break;
+																default:
+																		//default option here
+																		console.log('the default option has been reached in the switch statement');
+														}    
+								}
+						else if ( (e.ctrlKey && e.key === 'ArrowRight') ||
+											(e.ctrlKey && e.key === 'ArrowLeft') || 
+											(e.ctrlKey && e.key === 'ArrowUp') || 
+											(e.ctrlKey && e.key === 'ArrowDown') ||
+											(e.ctrlKey && e.metaKey && e.key === 'ArrowRight') ||
+											(e.ctrlKey && e.metaKey && e.key === 'ArrowLeft') || 
+											(e.ctrlKey && e.metaKey && e.key === 'ArrowUp') || 
+											(e.ctrlKey && e.metaKey && e.key === 'ArrowDown'))
+								{
+										// move to next group on same level
+										e.preventDefault();
+
+										let direction = e.key;
+										let level_change = 0;
+										let group_change = 0;
+										let current_left_pos = -1;
+										let level_current = 0;
+										let group_current = 0;
+										let level_new = 0;
+										let group_new = 0;
+										let current_number_levels = 0;
+
+										switch(direction)
+												{
+														case 'ArrowLeft':
+																group_change = -1;
+																break;
+														case 'ArrowRight':
+																group_change = 1;
+																break;
+														case 'ArrowUp':
+																level_change = 1;
+																break;
+														case 'ArrowDown':
+																level_change = -1;
+																break;                                                                                                    
+												}
+										
+
+												
+										if(project.currently_selected.length !== 0)
+												{
+														// level_current = JSON.parse(project.currently_selected[0])[0] ;
+														level_current = project.most_recent_selection["level"] ;
+														// group_current =  JSON.parse(project.currently_selected[0])[1] ;
+														group_current =  project.most_recent_selection["group"] ;
+														// level_new = JSON.parse(project.currently_selected[0])[0] + level_change ;
+														level_new = project.most_recent_selection["level"] + level_change;
+														// group_new =  JSON.parse(project.currently_selected[0])[1] + group_change;
+														group_new = project.most_recent_selection["group"] + group_change;
+														current_number_levels = 0;
+												}
+
+
+
+										if(level_new < 0 || level_new > (project.level_count - 1) )
+												{
+														console.log("This level doesn't exist");
+														return false;
+												}
+
+												
+										if(project.currently_selected.length === 0)
+												{
+														// start from level_new 0 group_new 0
+														level_change = 0;
+														level_new = 0;
+														group_new = 0;
+												}
+										
+										if(level_change !== 0)
+												{
+														let match_found = false;
+														// find current left position
+														
+														current_left_pos = project.groups['level_' + level_current]["editor"][group_current].start;
+
+														// find all left positions in level_new above
+														let new_level_start_positions = [];
+														let new_level_end_positions = [];
+														
+														project.groups['level_' + level_new]["editor"].forEach(each=>
+																{
+																		new_level_start_positions.push(each.start);
+																		new_level_end_positions.push(each.end);
+																});
+
+														for (let i = 0; i < new_level_start_positions.length ; i++)
+																{
+																		console.log(project.groups['level_' + level_new]["editor"][i].start);
+																		if(current_left_pos === project.groups['level_' + level_new]["editor"][i].start)
+																				{
+																						group_new = i;
+																						match_found = true;
+																						break;
+																				}
+																}
+
+														if(match_found === false)
+																{
+																		for (let i = 0; i < new_level_start_positions.length ; i++)
+																				{
+																						if( (new_level_start_positions[i] <= current_left_pos) && (new_level_end_positions[i] >= current_left_pos ))
+																								{
+																										group_new = i;
+																										match_found = true;
+																										break;
+																								}
+																				}
+																}
+
+														if(match_found === false)
+																{
+																		const output = new_level_start_positions.reduce((prev, curr) =>
+																				{
+																						if(Math.abs(curr - current_left_pos) < Math.abs(prev - current_left_pos))
+																								{ return curr;}
+																						else
+																								{ return prev;}
+																				});
+																		// console.log(output);
+
+																		group_new = new_level_start_positions.indexOf(output);    
+																}
+												}
+										
+										// does new group or level exist?
+										try
+												{
+														if(e.shiftKey === true)
+																{
+																		if(direction === "ArrowRight")
+																				{                                                
+																						// find out how many groups are on this level
+																						let new_array = [];
+																						let new_array_2 = [];
+
+																						
+																						project.currently_selected.forEach(each=>new_array_2.push(JSON.parse(each)));
+																						new_array_2.sort(function(a,b){return a[1]-b[1]});
+																						
+																						new_array_2 = new_array_2.filter(each=>each[0] == level_current);
+
+																						group_new = new_array_2[new_array_2.length - 1][1] + 1;
+																				}
+																		else if(direction === "ArrowLeft")
+																				{                                                
+																						// find out how many groups are on this level
+																						
+																						// let new_array = [];
+																						// new_array = project.currently_selected.filter(each=>JSON.parse(each)[0] == level_current);
+
+																						// group_new = JSON.parse(new_array[0])[1] - 1;
+
+																						let new_array = [];
+																						let new_array_2 = [];
+
+																						
+																						project.currently_selected.forEach(each=>new_array_2.push(JSON.parse(each)));
+																						new_array_2.sort(function(a,b){return a[1]-b[1]});
+																						
+																						new_array_2 = new_array_2.filter(each=>each[0] == level_current);
+
+																						// group_new = new_array_2[new_array_2.length - 1][1] - 1;
+																						group_new = new_array_2[0][1] - 1;
+																				}                                            
+																		else if(direction === "ArrowUp")
+																				{                               
+																						// find out how many groups are on this level
+																						level_new = project.most_recent_selection["level"] + 1;
+																				}
+																		else if(direction === "ArrowDown")
+																				{                               
+																						// find out how many groups are on this level
+																						level_new = project.most_recent_selection["level"] - 1;
+																				}                                                                                
+																}
+														else
+																{
+																		// project.remove_all_from_currently_selected_elements();
+																}
+
+																if(group_new <= (project.groups['level_' + level_new]["editor"].length -1) && (group_new < 0 === false))
+																		{
+																				if(e.shiftKey === false)
+																						{
+																								project.remove_all_from_currently_selected_elements();
+																						}
+																				let newly_selected_group = project.groups['level_' + level_new]["editor"][group_new].group_element_for_editor;
+																				project.add_or_remove_group_from_currently_selected_elements(newly_selected_group);
+																		}    
+
+												}
+										catch (error) 
+												{
+														console.log("There is no group in that direction to select. Selection will not be changed");
+												}
+								}
+						else if (e.shiftKey && e.key === 'ArrowRight')
+								{
+										//fast forward 1 seconds
+										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+										switch (project.activity_type)
+														{
+																case 'audio_file':
+																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + 1;
+																		break;
+																case 'youtube_link':
+																		player.seekTo(player.getCurrentTime() + 1);
+																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																		break;
+																default:
+																		//default option here
+																		console.log('the default option has been reached in the switch statement');
+														}  
+
+								}
+						else if (e.shiftKey && e.key === 'ArrowLeft')
+								{
+										//fast forward 1 seconds
+										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+										switch (project.activity_type)
+														{
+																case 'audio_file':
+																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - 1;
+																		break;
+																case 'youtube_link':
+																		player.seekTo(player.getCurrentTime() - 1);
+																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																		break;
+																default:
+																		//default option here
+																		console.log('the default option has been reached in the switch statement');
+														}  
+
+								}                                                          
+						else if (e.key === 'ArrowRight')
+								{
+										//fast forward 10 seconds
+										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+										switch (project.activity_type)
+														{
+																case 'audio_file':
+																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																		break;
+																case 'youtube_link':
+																		playerx.seekTo(playerx.getCurrentTime() + project.skip_amount);
+																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																		break;
+																default:
+																		//default option here
+																		console.log('the default option has been reached in the switch statement');
+														}  
+
+								}
+						else if (e.key === 'ArrowLeft')
+								{
+										//go back 10 seconds
+										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - project.skip_amount;
+										switch (project.activity_type)
+														{
+																case 'audio_file':
+																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - project.skip_amount;
+																		break;
+																case 'youtube_link':
+																		playerx.seekTo(playerx.getCurrentTime() - project.skip_amount);
+																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																		break;
+																default:
+																		//default option here
+																		console.log('the default option has been reached in the switch statement');
+														}                  
+								}            
+						else if( (e.key === 'Delete' && project.analysis_master_embed === false) || (( e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'd') && project.analysis_master_embed === false) )
+								{
+										
+										if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
+												{
+														e.preventDefault();
+														project.delete_selected_group(e, 'right');
+												}
+								}
+						else if( e.key === 'Backspace' && project.analysis_master_embed === false )
+								{
+										
+										if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
+												{
+														e.preventDefault();
+														project.delete_selected_group(e, 'left');
+												}
+								}                    
+						else if (e.key === '=' && project.analysis_master_embed === false)
+								{
+										project.ZoomInButton.click();
+								}
+						else if (e.key === '-' && project.analysis_master_embed === false)
+								{
+									project.ZoomOutButton.click();
+								}
+																										
+
+				}
+	});
+
 class Layer
   {
     constructor(sent_container, sent_layer_data, sent_file_length, sent_parent, sent_mode)
@@ -27,6 +451,7 @@ class Layer
 				let r = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[0]).toString(16);
 				let g = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[1]).toString(16);
 				let b = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[2]).toString(16);
+				let presence_sync = true;
 
         this.layer_container = createNewElement({type:"div", classes: ["layer_container", "draggable"], parent: this.parent_container, properties:{draggable: true}});
 				this.layer_container.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging"); });
@@ -52,13 +477,11 @@ class Layer
 				this.select_box.addEventListener("change", e => this.select_changed(e));
 				
 				if(this.layer_data.segments.length === 0)
-					{ this.create_segment(0, -1, GLOBAL_presence_scale, GLOBAL_presence_scale); }
+					{ this.create_segment(0, -1, GLOBAL_presence_scale, GLOBAL_presence_scale, presence_sync); }
 				else
-					{ this.layer_data.segments.forEach(each=>this.create_segment(each.start_pos, each.end_pos, each.start_presence, each.end_presence, each)); }
+					{ this.layer_data.segments.forEach(each=>this.create_segment(each.start_pos, each.end_pos, each.start_presence, each.end_presence, each.presence_sync, each)); }
 
 				this.mode = "editing_layer_mode";
-
-
 
 			// -----------------------------------
 			//      TEXTURES
@@ -114,7 +537,7 @@ class Layer
 			}   			
 		delete_layer_button_handler()
 			{
-				this.parent.delete_layer(this.layer_data.layer_id);
+				this.parent.delete_layer(this.layer_data.layer_id_pos);
 			}
 		layer_name_double_click_handler(e)
 			{
@@ -124,6 +547,11 @@ class Layer
 		layer_name_input_handler(e)
 			{
 				this.layer_data.name = e.target.innerText;
+				for (let i = 0; i < this.segment_array.length ; i++)
+					{
+						this.segment_array[i].segment_table_row.querySelector(".SegmentTableName").innerText = this.layer_data.name;
+					}
+
 				this.parent.save_state();
 			}
 		color_picker_handler(e)
@@ -167,7 +595,6 @@ class Layer
 						this.color_picker.style.display = "block";
 						this.delete_layer_button.style.display = "block";
 						// this.layer_texture_picker.style.display = "block";
-						
 					}
 				else if(e.target.checked === false)
 					{
@@ -186,20 +613,21 @@ class Layer
 			{
 
 			}
-		create_segment(start, end = -1, start_presence = -1, end_presence = -1, sent_segment = {})
+		create_segment(start, end = -1, start_presence = -1, end_presence = -1, presence_sync, sent_segment = {})
 			{
 				this.current_segment_index = 0;
 				this.current_position = start;
+				let premature_exit = false;
 				
 				// treat loading from a file/undo differently than adding a new segment while doing normal editing
 				if(this.mode === "load_existing_layer")
 					{
-						this.segment_array.push(new Segment(this, end, this.layer_data.segments, sent_segment.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence, sent_segment));
+						this.segment_array.push(new Segment(this, end, this.layer_data.segments, sent_segment.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence, presence_sync, sent_segment));
 					}
 				else if(this.mode === "new_layer")
 					{
 						// this.segment_array.push(new Segment(this, this.parent.file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence));
-						this.segment_array.push(new Segment(this, this.parent_file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence));
+						this.segment_array.push(new Segment(this, this.parent_file_length, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence, presence_sync));
 					}
 				else if(this.mode === "editing_layer_mode")
 					{
@@ -208,41 +636,52 @@ class Layer
 								if(this.current_position === 0)
 									{
 										alert("There is already a segment that starts here (0)");
+										premature_exit = true;
 										return false;
 									}
 								else if(this.current_position === this.parent_file_length)
 									{
-										alert("There is already a segment that ends here");
+										alert("There is already a segment that ends here (0)");
+										premature_exit = true;
 										return false;
 									}
 								else if(this.current_position === each.start_pos)
 									{
 										alert("There is already a segment that starts here (1)");
+										premature_exit = true;
 										return false;
 									}
 								else if(this.current_position === each.end_pos)
 									{
-										alert("There is already a segment that ends here");
+										alert("There is already a segment that ends here (1)");
+										premature_exit = true;
 										return false;
 									}					
-		
-								if(this.current_position > each.start_pos && this.current_position < each.end_pos) this.current_segment_index = index;
+
+								if(premature_exit === false && this.current_position > each.start_pos && this.current_position < each.end_pos) this.current_segment_index = index;
 							});
 				
-						let current_position_relative_to_current_start_pos = this.current_position - this.layer_data.segments[this.current_segment_index].start_pos;
-						let old_width_of_current_segment = this.layer_data.segments[this.current_segment_index].end_pos - this.layer_data.segments[this.current_segment_index].start_pos;
-						let old_end_pos_of_current_segment = this.layer_data.segments[this.current_segment_index].end_pos;
-						let width_of_new_segment = old_width_of_current_segment - current_position_relative_to_current_start_pos;
-						let new_width_of_current_segment = old_width_of_current_segment - width_of_new_segment;						
-						
-						// make the current segment shorter
-						// the -1 is just so the end position of the current segment and start position of the new segment aren't the same
-						this.layer_data.segments[this.current_segment_index].end_pos = this.current_position - 1 ;
-						this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) - 1) + "px";
+						if(premature_exit === false)
+							{
+								let current_position_relative_to_current_start_pos = this.current_position - this.layer_data.segments[this.current_segment_index].start_pos;
+								let old_width_of_current_segment = this.layer_data.segments[this.current_segment_index].end_pos - this.layer_data.segments[this.current_segment_index].start_pos;
+								let old_end_pos_of_current_segment = this.layer_data.segments[this.current_segment_index].end_pos;
+								let width_of_new_segment = old_width_of_current_segment - current_position_relative_to_current_start_pos;
+								let new_width_of_current_segment = old_width_of_current_segment - width_of_new_segment;						
+								
+								// make the current segment shorter
+								// the -1 is just so the end position of the current segment and start position of the new segment aren't the same
+								this.layer_data.segments[this.current_segment_index].end_pos = this.current_position - 1 ;
+								this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) - 1) + "px";
 							
-						this.segment_array.push(new Segment(this, old_end_pos_of_current_segment, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence));
+								this.segment_array.push(new Segment(this, old_end_pos_of_current_segment, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence, presence_sync,));
+							}
 					}
-				this.parent.save_state();				
+				
+				if(premature_exit === false)
+					{
+						this.parent.save_state();	
+					}
 			}
 		delete_segment()
 			{
@@ -251,7 +690,7 @@ class Layer
   }
 class Segment
 	{
-		constructor(sent_parent, sent_old_end_pos_of_current_segment, sent_layer_data_segments, sent_color, sent_layer_segment_holder, sent_presence_slider_start, sent_presence_slider_end, sent_start_presence = -1, sent_end_presence = -1, sent_segment)
+		constructor(sent_parent, sent_old_end_pos_of_current_segment, sent_layer_data_segments, sent_color, sent_layer_segment_holder, sent_presence_slider_start, sent_presence_slider_end, sent_start_presence = -1, sent_end_presence = -1, sent_presence_sync, sent_segment)
 			{
 				this.parent = sent_parent;
 				this.layer_segment_holder = sent_layer_segment_holder;
@@ -268,6 +707,7 @@ class Segment
 								end_pos: sent_old_end_pos_of_current_segment,
 								start_presence: sent_start_presence,
 								end_presence: sent_end_presence,
+								presence_sync: sent_presence_sync,
 								styles: {},
 								text: [
 									{
@@ -284,7 +724,7 @@ class Segment
 			}
 		create_segment()
 			{
-				this.segment = createNewElement({type:"name", classes: this.data.classes, parent: this.layer_segment_holder, styles:
+				this.segment = createNewElement({type:"div", classes: this.data.classes, parent: this.layer_segment_holder, styles:
 					{
 						left: (this.data.start_pos * this.parent.parent.scale) + "px",
 						width:  ((this.data.end_pos - this.data.start_pos) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
@@ -292,8 +732,21 @@ class Segment
 					},
 					properties: {contentEditable: false, innerText: this.data.text[0].inner_text}
 				});
-
 				
+				let time_stamp = Math.floor(this.data.start_pos/60) + ":" + String(Math.floor(this.data.start_pos%60)).padStart(2,'0');
+
+				let table_row_data = `
+					<tr>
+						<td>1</td>
+						<td class="SegmentTimestampInputBox">${time_stamp}</td>
+						<td class="SegmentTableName">${this.parent.name.innerText}</td>
+						<td><input type="range" class="SegmentPresenceStartRange"  min="0" max="${GLOBAL_presence_scale}" value="${this.data.start_presence}">${this.data.start_presence}</td>
+						<td><input type="range" class="SegmentPresenceEndRange"  min="0" max="${GLOBAL_presence_scale}" value="${this.data.end_presence}">${this.data.end_presence}</td>
+					</tr>
+						`;
+
+				this.segment_table_row = createNewElement({type:"tr", classes:[], parent: this.parent.parent.TableBodyTBody, properties:{innerHTML: table_row_data}});
+
 				if(this.parent.mode !== "load_existing_layer")
 					{ this.segment.classList.add("segments_layer_is_selected"); }
 				
@@ -325,6 +778,7 @@ class Segment
 
 				if(deselect === true)
 					{
+						// deselect this segment
 						this.segment.classList.remove("segment_selected");
 						if(this.data.classes.includes("segment_selected"))
 							{
@@ -332,9 +786,13 @@ class Segment
 							}
 						this.PresenceSliderStart.value = GLOBAL_presence_scale;
 						this.PresenceSliderEnd.value = GLOBAL_presence_scale;
+						this.parent.parent.PresenceSliderStart.disabled = true;
+						this.parent.parent.PresenceSliderEnd.disabled = true;
+
 					}
 				else
 					{
+						// select this segment
 						this.segment.classList.add("segment_selected");						
 						let first_color_saturation_value = this.data.color.split(", ")[1].slice(-4).slice(0,3);
 						let second_color_saturation_value = this.data.color.split(", ")[2].slice(-5).slice(0,3)
@@ -342,6 +800,16 @@ class Segment
 						this.PresenceSliderEnd.value = parseInt(second_color_saturation_value * GLOBAL_presence_scale);
 						this.data.start_presence = parseInt(this.PresenceSliderStart.value);
 						this.data.end_presence = parseInt(this.PresenceSliderEnd.value);
+						this.parent.parent.PresenceSliderStart.disabled = false;
+
+						if(this.data.presence_sync === true)
+							{
+								this.parent.parent.PresenceSliderEnd.disabled = true;
+							}
+						else
+							{
+								this.parent.parent.PresenceSliderEnd.disabled = false;
+							}									
 					}
 			}
 	}
@@ -349,19 +817,27 @@ class Auralayer
   {
     constructor()
       {
-				this.url_activity_text;
-				this.color_count = 0;
-				this.layer_id_pos = 0;
+				this.url_activity_text;				
 				this.undo_now = false;
 				this.save_array = [];
 				this.save_position = 0;
+				this.in_text_editor = false;
+				this.analysis_master_embed = false;
+				this.view_mode_slider_top_button = false;
+				this.skip_amount = 10;
 				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
-					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1 }, layers: [] }}
-				// this.save_state();
-				this.scale = 3;
+					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0 }, layers: [] }}
+				this.scale = this.example_data.piece_info.scale;
+				
+				this.color_count = this.example_data.piece_info.color_count;
+				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
+				this.slider_thumb_offset = this.example_data.piece_info.slider_thumb_offset;
+				this.slider_thumb_height = this.example_data.piece_info.slider_thumb_height;
+				// this.segment_height = this.example_data.piece_info.segment_height;
+				this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
 				this.audio_speed = 10;
 				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
@@ -372,31 +848,28 @@ class Auralayer
 		create_activity_selection_interface()
 			{
 				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
-				this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerText : "Auralayer"}});
-				this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
-				this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
-
-				this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-				this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}});				
-				this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
-				this.NewAuralayerFromYoutubeButton.addEventListener("click", e=>{this.StartYoutubeActivitySetup()});
+					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerText : "Auralayer"}});
+					this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
+						this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+							this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
+							this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
+						this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+							this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
+							this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
+						this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+							this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-outline-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
+							this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});						
+						this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
+							this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
+							this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});						
+					this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
+				this.ImportFromFile = createNewElement({type:'input', classes:["InterfaceButton"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}, events:{change: e=>this.RequestFileFromUser(e)}});
 				
-				this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-				this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}});
-				this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
-				this.NewAuralayerFromAudioFileButton.addEventListener("click", e=>this.StartAudioFileActivitySetup());
-
-				this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-				this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-outline-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}});
-				this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});
-				this.OpenExistingAuralayerFromFileButton.addEventListener("click", e => this.ImportFromFile.click());
-
-				this.ImportFromFile = createNewElement({type:'input', classes:["InterfaceButton"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}});
-				this.ImportFromFile.addEventListener('change', e=>this.RequestFileFromUser(e));
+				// this.NewAuralayerFromYoutubeButton.addEventListener("click", e=>this.StartYoutubeActivitySetup());
+				// this.NewAuralayerFromAudioFileButton.addEventListener("click", e=>this.StartAudioFileActivitySetup());
+				// this.OpenExistingAuralayerFromFileButton.addEventListener("click", e => this.ImportFromFile.click());	
+				// this.ImportFromFile.addEventListener('change', e=>this.RequestFileFromUser(e));
 			
-				this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
-				this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
-				this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});
 				if(location.hostname.includes("localhost")) { this.NewAuralayerFromAudioFileWithAbsoluteURL_Container.style.display = "flex";}
 			}
     initialize_interface()
@@ -485,10 +958,11 @@ class Auralayer
 				this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 
+				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
+				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});				
 				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
 				this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
-				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
-				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});
+
 
 				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
 				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
@@ -524,8 +998,8 @@ class Auralayer
 				this.MergeRightButton = createNewElement({type:"button", classes: ["MergeRightButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-right"></i>`, role: "group", type: "button", title: "Merge right"}});
 				this.MergeRightButton.addEventListener('click', e=>this.merge_segments(e, "right"));				
 				
-				this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-bookmark-plus-fill"></i>`, role: "group", type: "button", title: "Add Marker"}});
-				this.AddMarkerButton.addEventListener('click', e=>this.add_marker(e));
+				// this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-bookmark-plus-fill"></i>`, role: "group", type: "button", title: "Add Marker"}});
+				// this.AddMarkerButton.addEventListener('click', e=>this.add_marker(e));
 
 				this.DeleteButton = createNewElement({type:"button", classes: ["DeleteButton", "btn", "btn-danger"], parent: this.SegmentEditingContainer2, properties: {innerText: "Delete", type: "button", title: "Delete layer", innerHTML: `<i class="bi-x-lg"></i>`}});
 				this.DeleteButton.addEventListener('click', e=>this.delete_button_handler(e));					
@@ -539,11 +1013,11 @@ class Auralayer
 
 				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
 				this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
-				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start"} });
+				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start", disabled: true} });
 				this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
 
 				this.PresenceSliderEndLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_end", innerText: "Presence (end)"}});
-				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} });
+				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} });
 				this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
 
 				this.PresenceLockContainer = createNewElement({type: "div", classes: ["PresenceLockContainer", "col-1", "align-items-center"], parent: this.LayerEditingRow, properties: {}});
@@ -557,255 +1031,55 @@ class Auralayer
 					{
 						if(this.PresenceSliderEnd.disabled === false)
 							{
+								this.PresenceSliderStart.disabled = true;
 								this.PresenceSliderEnd.disabled = true;
-								// this.PresenceSliderIndependentButton.classList.remove("PresenceSliderIndependentButtonSelected");
 								
+								// this.PresenceSliderIndependentButton.classList.remove("PresenceSliderIndependentButtonSelected");
+								this.presence_slider_toggle_handler();
 								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link");
 								this.PresenceSliderIndependentButton.children[0].classList.add("bi-link-45deg");
 							}
 						else
 							{
+								this.PresenceSliderStart.disabled = false;
 								this.PresenceSliderEnd.disabled = false;
+								
+								this.presence_slider_toggle_handler();
 								// this.PresenceSliderIndependentButton.classList.add("PresenceSliderIndependentButtonSelected");
 								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link-45deg");
 								this.PresenceSliderIndependentButton.children[0].classList.add("bi-link");
 							}
 					});
 
-			
+				let data_html = `
+						<tr>
+								<th role="columnheader" class="col-1">ID</th>
+								<th role="columnheader" class="col-4" data-sort-method="number">Time</th>
+								<th role="columnheader" class="col-5">Layer</th>
+								<th role="columnheader" class="col-4">Starting Presence</th>
+								<th role="columnheader" class="col-4">Ending Presence</th>
+						</tr>
+			`;
+
+				//data-sort-method="number"
+
 				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties:{id: "collapsing"}});
 					this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "p-1", "m-auto", "my-3"], parent: this.AccordionContainer1, properties:{}});
 						this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
 							this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
+								this.DataAccordionHeader = createNewElement({type:"h2", classes:["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties:{}});
+									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
+							this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
+								this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
+									this.DataTable = createNewElement({type: "table", classes:[], parent: this.DataAccordionBodyInterior});
+										this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
+										this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
+									this.DataTableTable = new Tablesort(this.DataTable);
 							this.VideoContainer1 = createNewElement({type:"div", classes:["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
 								this.VideoAccordionHeader = createNewElement({type:"h2", classes:["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties:{}});
 									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
 								this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
 									this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
-									
-
-				// <div class="accordion-item">
-				// 		<h2 class="accordion-header">
-				// 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-				// 						<i class="bi-table"></i>&emsp; Data table
-				// 				</button>
-				// 		</h2>
-				// 		<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#table-video">
-				// 				<div class="accordion-body">
-				// 						<div class="col-lg-8 offset-lg-2 table-responsive">
-				// 								<table class="table">
-				// 										<thead>
-				// 												<tr>
-				// 														<th class="col-1">ID <span style="color:#848586;">▼</span></th>
-				// 														<th class="col-2">Timestamp ▼</th>
-				// 														<th class="col-5">Layer <span style="color:#848586;">▼</span></th>
-				// 														<th class="col-4">Presence<span style="color:#848586;">▼</span></th>
-				// 												</tr>
-				// 										</thead>
-				// 										<tbody>
-				// 												<tr>
-				// 														<td>1</td>
-				// 														<td><input type="number" class="form-control" value="0.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Rimshot</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>2</td>
-				// 														<td><input type="number" class="form-control" value="2.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Bass Drum</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>3</td>
-				// 														<td><input type="number" class="form-control" value="9.3" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Handclaps</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>4</td>
-				// 														<td><input type="number" class="form-control" value="17.6" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Toms</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>5</td>
-				// 														<td><input type="number" class="form-control" value="25.5" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Hi-hat closed</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>6</td>
-				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Rimshot</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>102</td>
-				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Bass Drum</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>103</td>
-				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Handclaps</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>104</td>
-				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Toms</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>105</td>
-				// 														<td><input type="number" class="form-control" value="30.7" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Hi-hat closed</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>7</td>
-				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Hi-hat closed</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>106</td>
-				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Toms</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>107</td>
-				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Handclaps</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>108</td>
-				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Bass Drum</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>109</td>
-				// 														<td><input type="number" class="form-control" value="32.0" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Rimshot</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="1"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>8</td>
-				// 														<td><input type="number" class="form-control" value="43.2" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Snare</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>9</td>
-				// 														<td><input type="number" class="form-control" value="43.6" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Snare</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>110</td>
-				// 														<td><input type="number" class="form-control" value="43.6" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Hi-hat closed</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="0"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>10</td>
-				// 														<td><input type="number" class="form-control" value="44.4" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Bass Drum</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>11</td>
-				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Toms</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="4"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>111</td>
-				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Bass Drum</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="3"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>112</td>
-				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Rimshot</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="2"></td>
-				// 												</tr>
-				// 												<tr>
-				// 														<td>113</td>
-				// 														<td><input type="number" class="form-control" value="46.5" step=".1"></td>
-				// 														<td><select class="form-select">
-				// 																		<option value="">Handclaps</option>
-				// 																</select></td>
-				// 														<td><input type="range" class="form-range"  min="0" max="4" value="3"></td>
-				// 												</tr>
-				// 										</tbody>
-				// 								</table>
-				// 						</div>
-				// 				</div>
-				// 		</div>
-				// </div>
-				// <div class="accordion-item">
-				// 		<h2 class="accordion-header">
-				// 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				// 						<i class="bi-youtube"></i>&emsp; Video
-				// 				</button>
-				// 		</h2>
-				// 		<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#table-video">
-				// 				<div class="accordion-body text-center">
-				// 						<iframe id="player" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="Yeah Yeah Yeahs - Maps (Official Music Video)" src="https://www.youtube.com/embed/oIIxlgcuQRU?enablejsapi=1&amp;origin=http%3A%2F%2Flocalhost%3A5500&amp;widgetid=1"></iframe>
-				// 				</div>
-				// 		</div>
-				// </div>
-
       }
 		undo_handler()
 			{
@@ -816,7 +1090,23 @@ class Auralayer
 						this.save_position--;
 						console.log("save_position DECREASED to: " + this.save_position);
 						this.AllLayerContainers.innerHTML = "";
-						this.example_data.layers = this.save_array[this.save_position];
+						this.example_data.layers = this.save_array[this.save_position].layer_data;
+						
+						this.color_count = this.save_array[this.save_position].program_data.color_count;
+						this.example_data.piece_info.color_count = this.color_count;
+
+						this.layer_id_pos = this.save_array[this.save_position].program_data.layer_id_pos;
+						this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
+
+
+						this.slider_thumb_height = this.save_array[this.save_position].program_data.slider_thumb_height;						
+						this.slider_thumb_offset = this.save_array[this.save_position].program_data.slider_thumb_offset;
+
+						document.documentElement.style.setProperty('--slider_thumb_height', this.slider_thumb_height + "px");
+						document.documentElement.style.setProperty('--slider_thumb_offset', this.slider_thumb_offset + "px");
+						this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
+						this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;
+
 						console.log( this.save_array);
 						this.start_program_after_media_loaded();
 						this.undo_now = false;							
@@ -831,7 +1121,23 @@ class Auralayer
 						this.save_position++;
 						console.log("save_position increased to: " + this.save_position);
 						this.AllLayerContainers.innerHTML = "";
-						this.example_data.layers = this.save_array[this.save_position];
+						this.example_data.layers = this.save_array[this.save_position].layer_data;
+
+						this.color_count = this.save_array[this.save_position].program_data.color_count;
+						this.example_data.piece_info.color_count = this.color_count;
+
+						this.layer_id_pos = this.save_array[this.save_position].program_data.layer_id_pos;
+						this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
+
+						this.slider_thumb_height = this.save_array[this.save_position].program_data.slider_thumb_height;						
+						this.slider_thumb_offset = this.save_array[this.save_position].program_data.slider_thumb_offset;
+
+						document.documentElement.style.setProperty('--slider_thumb_height', this.slider_thumb_height + "px");
+						document.documentElement.style.setProperty('--slider_thumb_offset', this.slider_thumb_offset + "px");
+						this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
+						this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;	
+
+						console.log( this.save_array);
 						this.start_program_after_media_loaded();
 						this.undo_now = false;
 					}				
@@ -856,18 +1162,23 @@ class Auralayer
 
 									}
 
+								// this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
+								this.slider_thumb_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_height'));
+								this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
+								this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
+								this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;									
+
 								if (this.save_position === this.save_array.length)
 									{
-										
 										console.log(this.save_array);
-										this.save_array.push(copy);	
+										this.save_array.push( {program_data: {color_count: this.color_count, layer_id_pos: this.layer_id_pos, slider_thumb_offset: this.slider_thumb_offset, slider_thumb_height: this.slider_thumb_height }, layer_data: copy});	
 										console.log(this.save_array);	
 									}
 								else if (this.save_position < this.save_array.length)
 									{
 										console.log(this.save_array);
 										
-										this.save_array[this.save_position] = copy;
+										this.save_array[this.save_position] = {program_data: {color_count: this.color_count, layer_id_pos: this.layer_id_pos, slider_thumb_offset: this.slider_thumb_offset, slider_thumb_height: this.slider_thumb_height}, layer_data: copy};
 										console.log(this.save_array);
 										this.save_array.splice(this.save_position + 1);
 										console.log(this.save_array);
@@ -890,15 +1201,15 @@ class Auralayer
 					{
 						if(each_layer.layer_container.classList.contains("dragging"))
 							{
-								draggable_id = each_layer.layer_data.layer_id;
+								draggable_id = each_layer.layer_data.layer_id_pos;
 								draggable_index = layer_index;
 							}
 					});	
 
 				this.layers.forEach(each=>
 					{
-						layer_order.push(each.layer_data.layer_id);
-						if( each.layer_data.layer_id !== draggable_id )
+						layer_order.push(each.layer_data.layer_id_pos);
+						if( each.layer_data.layer_id_pos !== draggable_id )
 							{ layers_not_dragging.push(each); }
 					});
 
@@ -916,14 +1227,14 @@ class Auralayer
 					}
 				else
 					{
-						const afterElement_id = layers_not_dragging[afterElement].layer_data.layer_id;
+						const afterElement_id = layers_not_dragging[afterElement].layer_data.layer_id_pos;
 						let afterElement_index = -1;
 						const element = this.example_data.layers.splice(draggable_index, 1)[0];
 						const element2 = this.layers.splice(draggable_index, 1)[0];
 						
 						this.example_data.layers.forEach( (each_layer, layer_index)=>
 							{
-								if(each_layer.layer_id === afterElement_id)
+								if(each_layer.layer_id_pos === afterElement_id)
 									{ afterElement_index = layer_index; }
 							});					
 						
@@ -957,6 +1268,30 @@ class Auralayer
 						}, -1);
 
 					return(smallestPositiveIndex)
+			}
+		presence_slider_toggle_handler()
+			{
+				if(this.AllLayerContainers.querySelectorAll(".segment_selected").length > 0)
+					{
+						for (let i = 0; i < this.layers.length ; i++)
+							{
+								for (let j = 0; j < this.layers[i].segment_array.length ; j++)
+									{
+										if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
+											{
+												if(this.layers[i].segment_array[j].data.presence_sync === true)
+													{
+														this.layers[i].segment_array[j].data.presence_sync = false;	
+														// this.segment_table_row
+													}
+												else
+													{
+														this.layers[i].segment_array[j].data.presence_sync = true;
+													}
+											}
+									}
+							}
+					}
 			}
 		zoom_handler(zoom_type)
 			{
@@ -999,6 +1334,8 @@ class Auralayer
 												formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
 												this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
 												this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+												this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+												this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
 											}
 										else
 											{
@@ -1009,6 +1346,7 @@ class Auralayer
 														let new_color_value = color_value + new_saturation_value + ")";
 														formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
 														this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
+														this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
 													}
 												else if(direction === "end")
 													{	
@@ -1017,6 +1355,7 @@ class Auralayer
 														let new_color_value = color_value + new_saturation_value + "))";
 														formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
 														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+														this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
 													}		
 											}
 
@@ -1140,6 +1479,45 @@ class Auralayer
 
 				this.start_program_after_media_loaded();
 			}
+		play_audio()
+			{
+					switch (this.activity_type)
+							{
+									case 'audio_file':
+											this.uploaded_audio.play();
+											break;
+									case 'youtube_link':
+										
+											// player.play();
+											playerx.g.classList.remove("small_youtube_video_for_iframes");
+
+											playerx.playVideo();
+											
+											break;
+									default:
+											//default option here
+											console.log('the default option has been reached in the switch statement');
+							}                    
+					// this.uploaded_audio.play();
+			}
+		pause_audio()
+				{
+						switch (this.activity_type)
+								{
+										case 'audio_file':
+												this.uploaded_audio.pause();
+												break;
+										case 'youtube_link':
+											
+												playerx.g.classList.remove("small_youtube_video_for_iframes");
+												playerx.pauseVideo();
+												break;
+										default:
+												//default option here
+												console.log('the default option has been reached in the switch statement');
+								}                        
+						// this.uploaded_audio.pause();
+				}   			
 		youtube_parser(url)
 			{
 					var i, r, rx = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
@@ -1172,9 +1550,9 @@ class Auralayer
 		start_program_after_media_loaded()
 			{
 				this.undo_now = true;
-				let random_color = "rgba(" + this.colors[this.color_count % 8] + ",1.0)";
-				this.color_count++;
-
+				
+				let random_color = "rgba(" + this.colors[this.color_count] + ",1.0)";
+				
 				this.SeekSlider.max = this.file_length * this.audio_speed;
 				this.SeekSlider.value = 0;
 				this.SeekSlider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
@@ -1182,8 +1560,11 @@ class Auralayer
 
 				if (this.example_data.layers.length === 0)
 					{
+						this.color_count = (this.color_count + 1) % this.colors.length;
+						this.example_data.piece_info.color_count = this.color_count;
+
 						let initial_layer_data =
-						{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id: 0 }
+						{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id_pos: 0 }
 
 						this.example_data.layers.push( initial_layer_data );
 						this.layers.push(new Layer(this.AllLayerContainers, initial_layer_data, this.file_length, this, "new_layer"));
@@ -1256,8 +1637,8 @@ class Auralayer
 						case 'youtube_link':
 							this.SeekSlider.value = parseInt(playerx.getCurrentTime() * this.audio_speed);
 							this.slider_position = parseInt(playerx.getCurrentTime());
-							console.log("playerx.getCurrentTime(): " + playerx.getCurrentTime());
-							console.log("this.slider_position: " + this.slider_position);
+							// console.log("playerx.getCurrentTime(): " + playerx.getCurrentTime());
+							// console.log("this.slider_position: " + this.slider_position);
 							let current_active_element = document.activeElement;
 							if(lastActiveElement !== current_active_element)
 								{
@@ -1283,30 +1664,35 @@ class Auralayer
 				this.layer_id_pos++;
 				
 				this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
-			
-				let random_color = "rgba(" + this.colors[this.color_count % 8] + ",1.0)";
-				this.color_count++;
+
+				let random_color = "rgba(" + this.colors[this.color_count] + ",1.0)";
+				
+				this.color_count =  (this.color_count + 1) % this.colors.length;
+				console.log("COLOR COUNT: " + this.color_count);
+				this.example_data.piece_info.color_count = this.color_count;
 
 				let new_initial_layer_data =
-					{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[], layer_id: this.layer_id_pos }
+					{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[], layer_id_pos: this.layer_id_pos }
 
 				this.example_data.layers.push( new_initial_layer_data );
 				this.layers.push(new Layer(this.AllLayerContainers, new_initial_layer_data, this.file_length, this, "new_layer"));
 				
-				let segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
-				let segment_margin_top = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-top'));
+				// this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
+				// let segment_margin_top = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-top'));
 				let segment_margin_bottom = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-bottom'));
+				this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
 				
-				document.documentElement.style.setProperty('--slider_thumb_height', ((segment_height + (segment_margin_top + segment_margin_bottom) ) * this.layers.length) + 50 + "px");
+				document.documentElement.style.setProperty('--slider_thumb_height', ((this.segment_height + segment_margin_bottom ) * this.layers.length) + 70 + "px");
+				document.documentElement.style.setProperty('--slider_thumb_offset', ( ((((this.segment_height + segment_margin_bottom)/2) * this.layers.length) + 25) * -1) + "px");
 				
 			}
 		delete_layer(sent_layer_id)
 			{
-				let layer_id = sent_layer_id;
+				let layer_id_pos = sent_layer_id;
 				let layer_index = -1;
 				this.example_data.layers.forEach((each,index)=>
 					{
-						if(each.layer_id === layer_id)
+						if(each.layer_id_pos === layer_id_pos)
 							{
 								layer_index = index;
 							}
@@ -1321,13 +1707,14 @@ class Auralayer
 			{
 				// let start = this.slider_position * this.scale;
 				let start = this.slider_position;
+				let presence_sync = true;
 				
 				this.layers.forEach(each_layer=>
 					{
 						if(each_layer.selected === true)
 							{
 								// this.slider_position / this.scale
-								each_layer.create_segment(start, -1, GLOBAL_presence_scale, GLOBAL_presence_scale);
+								each_layer.create_segment(start, -1, GLOBAL_presence_scale, GLOBAL_presence_scale, presence_sync);
 							}
 					});
 				// this.save_state();
@@ -1545,7 +1932,10 @@ function createNewElement(data)
       { new_element.dataset[key] = data.dataset[key]; }
 			
 		for (const key in data.attributes)
-      { new_element.setAttribute( key, data.attributes[key]); }					
+      { new_element.setAttribute( key, data.attributes[key]); }
+
+		for (const key in data.events)
+      { new_element.addEventListener(key, data.events[key]); }			
 
 		data.parent.appendChild(new_element);
 
@@ -1575,7 +1965,8 @@ window.onYouTubeIframeAPIReady = function()
 		let youtube_player = document.createElement('div');
 		youtube_player.id = 'player';
 
-		document.body.appendChild(youtube_player);
+		// document.body.appendChild(youtube_player);
+		project.VideoAccordionBodyInterior.appendChild(youtube_player);
 
 		playerx = new YT.Player('player', 
 		{

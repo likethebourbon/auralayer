@@ -38,10 +38,12 @@ padding: 1em;
 	--translate_y: 0px;
 	--primary-color-1: #ffdd40;
 	--primary-color-2: #fff;
+	--primary-color-3: #0d6efd;
 	--segment-height: 40px;
 	--segment-margin-top: 5px;
 	--segment-margin-bottom: 5px;
-	--slider_thumb_height: 110px;
+	--slider_thumb_height: 115px;
+	--slider_thumb_offset: -45px
 }
 
 *
@@ -110,6 +112,12 @@ button:hover
   background-color: lightgray; */
 }
 
+.UtilitiesContainer
+{
+	position: fixed;
+	right: 10px;
+	top: 10px;
+}
 
 .BodyContainer
 {
@@ -349,6 +357,12 @@ button:hover
 		height: 20px;  */
 	}
 
+.presence_slider::-webkit-slider-runnable-track
+	{
+		accent-color: var(--primary-color-3);
+	}
+	
+
 .PresenceSliderStart
 	{
 		/* grid-column: 1; */
@@ -425,7 +439,7 @@ button:hover
 	width: 3px;
 	/* height: 1000px; */
 	height: var(--slider_thumb_height);
-	transform: translateY(calc(var(--slider_thumb_height)/2px));	
+	transform: translateY(var(--slider_thumb_offset));
 	background: var(--primary-color-1);
 	cursor: pointer;
 }
@@ -434,6 +448,8 @@ button:hover
 {
 	pointer-events: none;
 }
+
+
 
 .slider::-moz-range-thumb 
 {
@@ -588,4 +604,40 @@ button:hover
 .open_audio_button
 {
 	z-index: 3;
+}
+
+/* tablesort.css from https://github.com/tristen/tablesort/blob/master/tablesort.css */
+
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
 }
