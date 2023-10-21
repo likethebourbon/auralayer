@@ -17,420 +17,224 @@ document.addEventListener('keydown', e =>
 		//if NOT in a textbox
 				
 		if(project.in_text_editor === false || ( e.ctrlKey && e.key === 'b') || ( e.ctrlKey && e.key === 'i'))
-				{            
-						if (e.ctrlKey && e.key === 's')
-								{
-										e.preventDefault();
-										console.log("Saved: Ctrl + S - Key press");
-										project.SaveToFileButton.click();
-								}                    
-						else if (  e.ctrlKey && e.key === 'z') 
-								{
-										
-										project.UndoButton.click();
-								}
-						else if (  e.ctrlKey && e.key === 'y' )
-								{
-										console.log("redo");
-										project.RedoButton.click();
-								}                 
-						else if ( e.ctrlKey && e.key === 'b')
-								{
-										// e.preventDefault();
-										// console.log("bold");
-										
-										// document.getElementById(project.which_text_box).blur();
-										// project.top_text_style_bold.click();
-										// document.getElementById(project.which_text_box).focus();
-								}
-						else if ( e.ctrlKey && e.key === 'i')
-								{
-										// e.preventDefault();
-										// console.log("italics");
-										
-										// document.getElementById(project.which_text_box).blur();
-										// project.top_text_style_italics.click();
-										// document.getElementById(project.which_text_box).focus();
-								}                     
-						else if( e.key === 's')
-								{       
-										//e.preventDefault();
-										if(project.view_mode_slider_top_button === false)
+			{
+				if (e.ctrlKey && e.key === 's')
+					{
+						e.preventDefault();
+						console.log("Saved: Ctrl + S - Key press");
+						project.SaveToFileButton.click();
+					}                    
+				else if (  e.ctrlKey && e.key === 'z') 
+					{
+							
+						project.UndoButton.click();
+					}
+				else if (  e.ctrlKey && e.key === 'y' )
+					{
+						console.log("redo");
+						project.RedoButton.click();
+					}     
+				else if ( e.key === 'n')
+					{
+						e.preventDefault();
+						project.AddLayerButton.click();
+					}
+				else if ( e.ctrlKey && e.key === 'b')
+					{
+							// e.preventDefault();
+							// console.log("bold");
+							
+							// document.getElementById(project.which_text_box).blur();
+							// project.top_text_style_bold.click();
+							// document.getElementById(project.which_text_box).focus();
+					}
+				else if ( e.ctrlKey && e.key === 'i')
+					{
+							// e.preventDefault();
+							// console.log("italics");
+							
+							// document.getElementById(project.which_text_box).blur();
+							// project.top_text_style_italics.click();
+							// document.getElementById(project.which_text_box).focus();
+					}                     
+				else if( e.key === 's')
+					{       
+						//e.preventDefault();
+						if(project.view_mode_slider_top_button === false)
+							{
+								project.SplitButton.click();		
+							}                         
+					}
+				else if( e.key === 'g')//g
+					{       
+							// if(project.view_mode_slider_top_button.checked === false)
+							// 		{
+							// 				project.group_combiner(e);        
+							// 		}   
+					}
+				else if (  e.key === 'm' )
+					{
+							// if(project.view_mode_slider_top_button.checked === false)
+							// 		{
+							// 				if (project.program_version !== "0_0")
+							// 						{
+							// 								project.add_marker_location("");
+							// 								console.log("add marker");
+							// 						}
+							// 		}   
+					}                       
+				else if( e.key === 'Escape')//escape
+					{       
+						project.remove_all_from_currently_selected_elements();    
+					}
+				else if( e.ctrlKey && e.code === 'Space')
+					{
+						e.preventDefault();
+						console.log("Control and Space pressed");
+						// move playhead to start of selected group
+						// if only one group is selected
+
+						project.play_audio_from_beginning_of_current_selection();
+					}                    
+				else if( e.key === 'p' || e.code === 'Space')
+					{  
+						e.preventDefault();
+						switch (project.activity_type)
+							{
+								case 'audio_file':
+									if ( !project.uploaded_audio.paused   ) 
+										{
+											//Its playing...do your job
+											console.log("playing!");
+											project.pause_audio();
+										} 
+									else 
+										{
+											console.log('not playing');
+											//Not playing...maybe paused, stopped or never played.
+											project.play_audio();
+										}    
+									break;
+								case 'youtube_link':
+									if (youtube_player_state != YT.PlayerState.PAUSED)
+										{
+											playerx.g.classList.remove("small_youtube_video_for_iframes");
+											playerx.pauseVideo();
+										}
+									else
+										{
+											playerx.g.classList.remove("small_youtube_video_for_iframes");
+											playerx.playVideo();
+										}
+									
+									break;
+								default:
+									//default option here
+									console.log('the default option has been reached in the switch statement');
+							}    
+					}
+				else if (e.shiftKey && e.key === 'ArrowRight')
+						{
+								//fast forward 1 seconds
+								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+								switch (project.activity_type)
 												{
-														project.SplitButton.click();		
-												}                         
-								}
-						else if( e.key === 'g')//g
-								{       
-										// if(project.view_mode_slider_top_button.checked === false)
-										// 		{
-										// 				project.group_combiner(e);        
-										// 		}   
-								}
-						else if (  e.key === 'm' )
-								{
-										// if(project.view_mode_slider_top_button.checked === false)
-										// 		{
-										// 				if (project.program_version !== "0_0")
-										// 						{
-										// 								project.add_marker_location("");
-										// 								console.log("add marker");
-										// 						}
-										// 		}   
-								}                       
-						else if( e.key === 'Escape')//escape
-								{       
-										project.remove_all_from_currently_selected_elements();    
-								}
-						else if( e.ctrlKey && e.code === 'Space')
-								{
-										e.preventDefault();
-										console.log("Control and Space pressed");
-										// move playhead to start of selected group
-										// if only one group is selected
-
-										project.play_audio_from_beginning_of_current_selection();
-								}                    
-						else if( e.key === 'p' || e.code === 'Space')
-								{  
-
-										e.preventDefault();
-										switch (project.activity_type)
-														{
-																case 'audio_file':
-																		if ( !project.uploaded_audio.paused   ) 
-																				{
-																						//Its playing...do your job
-																						console.log("playing!");
-																						project.pause_audio();
-																				} 
-																		else 
-																				{
-																						console.log('not playing');
-																						//Not playing...maybe paused, stopped or never played.
-																						project.play_audio();
-																				}    
-																		break;
-																case 'youtube_link':
-																		if (youtube_player_state != YT.PlayerState.PAUSED)
-																				{
-																					playerx.g.classList.remove("small_youtube_video_for_iframes");
-																					playerx.pauseVideo();
-																				}
-																		else
-																				{
-																					playerx.g.classList.remove("small_youtube_video_for_iframes");
-																					playerx.playVideo();
-																				}
-																		
-																		break;
-																default:
-																		//default option here
-																		console.log('the default option has been reached in the switch statement');
-														}    
-								}
-						else if ( (e.ctrlKey && e.key === 'ArrowRight') ||
-											(e.ctrlKey && e.key === 'ArrowLeft') || 
-											(e.ctrlKey && e.key === 'ArrowUp') || 
-											(e.ctrlKey && e.key === 'ArrowDown') ||
-											(e.ctrlKey && e.metaKey && e.key === 'ArrowRight') ||
-											(e.ctrlKey && e.metaKey && e.key === 'ArrowLeft') || 
-											(e.ctrlKey && e.metaKey && e.key === 'ArrowUp') || 
-											(e.ctrlKey && e.metaKey && e.key === 'ArrowDown'))
-								{
-										// move to next group on same level
-										e.preventDefault();
-
-										let direction = e.key;
-										let level_change = 0;
-										let group_change = 0;
-										let current_left_pos = -1;
-										let level_current = 0;
-										let group_current = 0;
-										let level_new = 0;
-										let group_new = 0;
-										let current_number_levels = 0;
-
-										switch(direction)
-												{
-														case 'ArrowLeft':
-																group_change = -1;
+														case 'audio_file':
+																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + 1;
 																break;
-														case 'ArrowRight':
-																group_change = 1;
+														case 'youtube_link':
+																player.seekTo(player.getCurrentTime() + 1);
+																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
 																break;
-														case 'ArrowUp':
-																level_change = 1;
+														default:
+																//default option here
+																console.log('the default option has been reached in the switch statement');
+												}  
+
+						}
+				else if (e.shiftKey && e.key === 'ArrowLeft')
+						{
+								//fast forward 1 seconds
+								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+								switch (project.activity_type)
+												{
+														case 'audio_file':
+																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - 1;
 																break;
-														case 'ArrowDown':
-																level_change = -1;
-																break;                                                                                                    
-												}
-										
+														case 'youtube_link':
+																player.seekTo(player.getCurrentTime() - 1);
+																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																break;
+														default:
+																//default option here
+																console.log('the default option has been reached in the switch statement');
+												}  
 
-												
-										if(project.currently_selected.length !== 0)
+						}                                                          
+				else if (e.key === 'ArrowRight')
+						{
+								//fast forward 10 seconds
+								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+								switch (project.activity_type)
 												{
-														// level_current = JSON.parse(project.currently_selected[0])[0] ;
-														level_current = project.most_recent_selection["level"] ;
-														// group_current =  JSON.parse(project.currently_selected[0])[1] ;
-														group_current =  project.most_recent_selection["group"] ;
-														// level_new = JSON.parse(project.currently_selected[0])[0] + level_change ;
-														level_new = project.most_recent_selection["level"] + level_change;
-														// group_new =  JSON.parse(project.currently_selected[0])[1] + group_change;
-														group_new = project.most_recent_selection["group"] + group_change;
-														current_number_levels = 0;
-												}
+														case 'audio_file':
+																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																break;
+														case 'youtube_link':
+																playerx.seekTo(playerx.getCurrentTime() + project.skip_amount);
+																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																break;
+														default:
+																//default option here
+																console.log('the default option has been reached in the switch statement');
+												}  
 
-
-
-										if(level_new < 0 || level_new > (project.level_count - 1) )
+						}
+				else if (e.key === 'ArrowLeft')
+						{
+								//go back 10 seconds
+								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - project.skip_amount;
+								switch (project.activity_type)
 												{
-														console.log("This level doesn't exist");
-														return false;
-												}
-
-												
-										if(project.currently_selected.length === 0)
-												{
-														// start from level_new 0 group_new 0
-														level_change = 0;
-														level_new = 0;
-														group_new = 0;
-												}
-										
-										if(level_change !== 0)
-												{
-														let match_found = false;
-														// find current left position
-														
-														current_left_pos = project.groups['level_' + level_current]["editor"][group_current].start;
-
-														// find all left positions in level_new above
-														let new_level_start_positions = [];
-														let new_level_end_positions = [];
-														
-														project.groups['level_' + level_new]["editor"].forEach(each=>
-																{
-																		new_level_start_positions.push(each.start);
-																		new_level_end_positions.push(each.end);
-																});
-
-														for (let i = 0; i < new_level_start_positions.length ; i++)
-																{
-																		console.log(project.groups['level_' + level_new]["editor"][i].start);
-																		if(current_left_pos === project.groups['level_' + level_new]["editor"][i].start)
-																				{
-																						group_new = i;
-																						match_found = true;
-																						break;
-																				}
-																}
-
-														if(match_found === false)
-																{
-																		for (let i = 0; i < new_level_start_positions.length ; i++)
-																				{
-																						if( (new_level_start_positions[i] <= current_left_pos) && (new_level_end_positions[i] >= current_left_pos ))
-																								{
-																										group_new = i;
-																										match_found = true;
-																										break;
-																								}
-																				}
-																}
-
-														if(match_found === false)
-																{
-																		const output = new_level_start_positions.reduce((prev, curr) =>
-																				{
-																						if(Math.abs(curr - current_left_pos) < Math.abs(prev - current_left_pos))
-																								{ return curr;}
-																						else
-																								{ return prev;}
-																				});
-																		// console.log(output);
-
-																		group_new = new_level_start_positions.indexOf(output);    
-																}
-												}
-										
-										// does new group or level exist?
-										try
-												{
-														if(e.shiftKey === true)
-																{
-																		if(direction === "ArrowRight")
-																				{                                                
-																						// find out how many groups are on this level
-																						let new_array = [];
-																						let new_array_2 = [];
-
-																						
-																						project.currently_selected.forEach(each=>new_array_2.push(JSON.parse(each)));
-																						new_array_2.sort(function(a,b){return a[1]-b[1]});
-																						
-																						new_array_2 = new_array_2.filter(each=>each[0] == level_current);
-
-																						group_new = new_array_2[new_array_2.length - 1][1] + 1;
-																				}
-																		else if(direction === "ArrowLeft")
-																				{                                                
-																						// find out how many groups are on this level
-																						
-																						// let new_array = [];
-																						// new_array = project.currently_selected.filter(each=>JSON.parse(each)[0] == level_current);
-
-																						// group_new = JSON.parse(new_array[0])[1] - 1;
-
-																						let new_array = [];
-																						let new_array_2 = [];
-
-																						
-																						project.currently_selected.forEach(each=>new_array_2.push(JSON.parse(each)));
-																						new_array_2.sort(function(a,b){return a[1]-b[1]});
-																						
-																						new_array_2 = new_array_2.filter(each=>each[0] == level_current);
-
-																						// group_new = new_array_2[new_array_2.length - 1][1] - 1;
-																						group_new = new_array_2[0][1] - 1;
-																				}                                            
-																		else if(direction === "ArrowUp")
-																				{                               
-																						// find out how many groups are on this level
-																						level_new = project.most_recent_selection["level"] + 1;
-																				}
-																		else if(direction === "ArrowDown")
-																				{                               
-																						// find out how many groups are on this level
-																						level_new = project.most_recent_selection["level"] - 1;
-																				}                                                                                
-																}
-														else
-																{
-																		// project.remove_all_from_currently_selected_elements();
-																}
-
-																if(group_new <= (project.groups['level_' + level_new]["editor"].length -1) && (group_new < 0 === false))
-																		{
-																				if(e.shiftKey === false)
-																						{
-																								project.remove_all_from_currently_selected_elements();
-																						}
-																				let newly_selected_group = project.groups['level_' + level_new]["editor"][group_new].group_element_for_editor;
-																				project.add_or_remove_group_from_currently_selected_elements(newly_selected_group);
-																		}    
-
-												}
-										catch (error) 
-												{
-														console.log("There is no group in that direction to select. Selection will not be changed");
-												}
-								}
-						else if (e.shiftKey && e.key === 'ArrowRight')
-								{
-										//fast forward 1 seconds
-										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-										switch (project.activity_type)
-														{
-																case 'audio_file':
-																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + 1;
-																		break;
-																case 'youtube_link':
-																		player.seekTo(player.getCurrentTime() + 1);
-																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-																		break;
-																default:
-																		//default option here
-																		console.log('the default option has been reached in the switch statement');
-														}  
-
-								}
-						else if (e.shiftKey && e.key === 'ArrowLeft')
-								{
-										//fast forward 1 seconds
-										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-										switch (project.activity_type)
-														{
-																case 'audio_file':
-																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - 1;
-																		break;
-																case 'youtube_link':
-																		player.seekTo(player.getCurrentTime() - 1);
-																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-																		break;
-																default:
-																		//default option here
-																		console.log('the default option has been reached in the switch statement');
-														}  
-
-								}                                                          
-						else if (e.key === 'ArrowRight')
-								{
-										//fast forward 10 seconds
-										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-										switch (project.activity_type)
-														{
-																case 'audio_file':
-																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-																		break;
-																case 'youtube_link':
-																		playerx.seekTo(playerx.getCurrentTime() + project.skip_amount);
-																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-																		break;
-																default:
-																		//default option here
-																		console.log('the default option has been reached in the switch statement');
-														}  
-
-								}
-						else if (e.key === 'ArrowLeft')
-								{
-										//go back 10 seconds
-										// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - project.skip_amount;
-										switch (project.activity_type)
-														{
-																case 'audio_file':
-																		project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - project.skip_amount;
-																		break;
-																case 'youtube_link':
-																		playerx.seekTo(playerx.getCurrentTime() - project.skip_amount);
-																		// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
-																		break;
-																default:
-																		//default option here
-																		console.log('the default option has been reached in the switch statement');
-														}                  
-								}            
-						else if( (e.key === 'Delete' && project.analysis_master_embed === false) || (( e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'd') && project.analysis_master_embed === false) )
-								{
-										
-										if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
-												{
-														e.preventDefault();
-														project.delete_selected_group(e, 'right');
-												}
-								}
-						else if( e.key === 'Backspace' && project.analysis_master_embed === false )
-								{
-										
-										if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
-												{
-														e.preventDefault();
-														project.delete_selected_group(e, 'left');
-												}
-								}                    
-						else if (e.key === '=' && project.analysis_master_embed === false)
-								{
-										project.ZoomInButton.click();
-								}
-						else if (e.key === '-' && project.analysis_master_embed === false)
-								{
-									project.ZoomOutButton.click();
-								}
-																										
-
-				}
+														case 'audio_file':
+																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - project.skip_amount;
+																break;
+														case 'youtube_link':
+																playerx.seekTo(playerx.getCurrentTime() - project.skip_amount);
+																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
+																break;
+														default:
+																//default option here
+																console.log('the default option has been reached in the switch statement');
+												}                  
+						}            
+				else if( (e.key === 'Delete' && project.analysis_master_embed === false) || (( e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'd') && project.analysis_master_embed === false) )
+						{
+								
+								// if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
+								// 		{
+								// 				e.preventDefault();
+								// 				project.delete_selected_group(e, 'right');
+								// 		}
+						}
+				else if( e.key === 'Backspace' && project.analysis_master_embed === false )
+						{
+								
+								// if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
+								// 		{
+								// 				e.preventDefault();
+								// 				project.delete_selected_group(e, 'left');
+								// 		}
+						}                    
+				else if (e.key === '=' && project.analysis_master_embed === false)
+					{
+						project.ZoomInButton.click();
+					}
+				else if (e.key === '-' && project.analysis_master_embed === false)
+					{
+						project.ZoomOutButton.click();
+					}
+			}
 	});
 
 class Layer
@@ -455,24 +259,47 @@ class Layer
 
         this.layer_container = createNewElement({type:"div", classes: ["layer_container", "draggable"], parent: this.parent_container, properties:{draggable: true}});
 				this.layer_container.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging"); });
-				this.layer_container.addEventListener("dragend", e=> { this.layer_container.classList.remove("dragging"); });		
+				this.layer_container.addEventListener("dragend", e=> 
+					{
+						this.layer_container.classList.remove("dragging");
+						this.parent.save_state();
+					});
 					
         this.layer_controls_holder = createNewElement({type:"div", classes: ["layer_controls_holder"], parent: this.layer_container});
+				// this.layer_controls_holder.addEventListener("click", e=> this.select_box.click());
         this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: (this.parent_file_length * this.parent.scale) + "px"}});
 				this.select_box = createNewElement({type:"input", classes: ["layer_select", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "checkbox"}});
-				this.select_box_selector_box = createNewElement({type:'div', classes:["select_box_selector_box"], parent: this.layer_controls_holder, properties:{}});
-				this.select_box_selector_box.addEventListener("click",e=>this.select_box.click());
-				this.color_picker = createNewElement({type:"input", classes: ["layer_color_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "color", value: ("#" + r + g + b)}, styles: {display: "none"}});
+				// this.select_box_selector_box = createNewElement({type:'div', classes:["select_box_selector_box"], parent: this.layer_controls_holder, properties:{}});
+				// this.select_box_selector_box.addEventListener("click",e=>this.select_box.click());
+				// this.color_picker = createNewElement({type:"input", classes: ["layer_color_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "color", value: ("#" + r + g + b)}, styles: {display: "none"}});
+				
+				// Here we can adjust defaults for all color pickers on page:
+				
+				// this.color_picker = createNewElement({type:"button", classes: ["layer_color_picker", "layer_controls_elements", "jscolor"], parent: this.layer_controls_holder, properties: { value: ("#" + r + g + b)}, styles: {display: "none"}, dataset:{jscolor:"{preset:'dark', width:250, paletteCols:15)'}" }});
+				this.color_picker = createNewElement({type:"input", classes: [], parent: this.layer_controls_holder, properties: { value: ("#" + r + g + b)}, styles: {display: "none"} });
+				var myPicker = new JSColor(this.color_picker, {format:'hex'});
+				
+				this.color_picker.addEventListener("click", e=> { myPicker.show(); });
+
+		 
 				this.color_picker.addEventListener("change", e=>this.color_picker_handler(e));
+				// this.color_picker.addEventListener("click", e=>this.color_picker_handler(e));
 				this.color_picker.addEventListener("input", e=>this.color_picker_handler(e));
+				this.color_picker.addEventListener("blur", e=> this.parent.save_state());
+				
+
+				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements", "btn", "btn-danger"], parent: this.layer_controls_holder, properties: {innerHTML: `<i class="bi bi-trash"></i>`}, styles: {display: "none"}});
+				this.delete_layer_button.addEventListener("click", e => this.delete_layer_button_handler());				
         // this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
 				// this.grip.addEventListener("click",e=>this.select_box.click());
         this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name}});
-				this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
-				this.name.addEventListener("input", e=>this.layer_name_input_handler(e));
-				this.name.addEventListener("blur", e=> this.name.contentEditable = false);
-				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "❌"}, styles: {display: "none"}});
-				this.delete_layer_button.addEventListener("click", e => this.delete_layer_button_handler());
+				// this.name.addEventListener("click", e=> this.select_box.click());
+				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
+				this.name.addEventListener("input", e=> this.layer_name_input_handler(e));
+				this.name.addEventListener("blur", e=>{ this.name.contentEditable = false });
+				this.name_edit_button = createNewElement({type:"button", classes:["name_edit_button", "layer_controls_elements", "btn", "btn-primary"], parent: this.layer_controls_holder, properties:{innerHTML: `<i class="bi bi-pen"></i>`}, styles: {display: "none"}, events:{click: e=>this.layer_name_double_click_handler(e)}});
+
+
 
 				this.select_box.addEventListener("change", e => this.select_changed(e));
 				
@@ -543,6 +370,7 @@ class Layer
 			{
 				this.name.contentEditable = true;
 				this.name.focus();
+				window.getSelection().selectAllChildren(this.name);
 			}
 		layer_name_input_handler(e)
 			{
@@ -556,6 +384,7 @@ class Layer
 			}
 		color_picker_handler(e)
 			{
+				console.log(e.type);
 				if(this.select_box.checked === true)
 					{
 						let current_color = e.target.value;
@@ -581,7 +410,12 @@ class Layer
 								this.segment_array[i].data.styles.background = segment_color_formated;
 							}
 					}
-				this.parent.save_state();
+
+				if(e.type === 'change')
+					{
+						// this.parent.save_state();
+					}
+				
 			}
 		select_changed(e)
 			{
@@ -594,6 +428,7 @@ class Layer
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.remove("segments_layer_is_not_selected"));
 						this.color_picker.style.display = "block";
 						this.delete_layer_button.style.display = "block";
+						this.name_edit_button.style.display = "block";
 						// this.layer_texture_picker.style.display = "block";
 					}
 				else if(e.target.checked === false)
@@ -605,6 +440,7 @@ class Layer
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.add("segments_layer_is_not_selected"));
 						this.color_picker.style.display = "none";
 						this.delete_layer_button.style.display = "none";
+						this.name_edit_button.style.display = "none";
 						// this.layer_texture_picker.style.display = "none";
 						// this.texture_selector.style.display = "none";
 					}
@@ -1090,7 +926,9 @@ class Auralayer
 						this.save_position--;
 						console.log("save_position DECREASED to: " + this.save_position);
 						this.AllLayerContainers.innerHTML = "";
-						this.example_data.layers = this.save_array[this.save_position].layer_data;
+						// this.example_data.layers = this.save_array[this.save_position].layer_data;
+						let copy = JSON.parse(JSON.stringify(this.save_array[this.save_position].layer_data));
+						this.example_data.layers = copy;
 						
 						this.color_count = this.save_array[this.save_position].program_data.color_count;
 						this.example_data.piece_info.color_count = this.color_count;
@@ -1099,15 +937,25 @@ class Auralayer
 						this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
 
 
+						
+						console.log("OLD: this.slider_thumb_height: " + this.slider_thumb_height);
+						console.log("OLD: this.slider_thumb_offset: " + this.slider_thumb_offset);
 						this.slider_thumb_height = this.save_array[this.save_position].program_data.slider_thumb_height;						
 						this.slider_thumb_offset = this.save_array[this.save_position].program_data.slider_thumb_offset;
+						console.log("NEW: this.slider_thumb_height: " + this.slider_thumb_height);
+						console.log("NEW: this.slider_thumb_offset: " + this.slider_thumb_offset);
 
 						document.documentElement.style.setProperty('--slider_thumb_height', this.slider_thumb_height + "px");
 						document.documentElement.style.setProperty('--slider_thumb_offset', this.slider_thumb_offset + "px");
 						this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
 						this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;
 
-						console.log( this.save_array);
+
+						console.log("UNDO");
+						// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));
+						
+
+						// console.log( this.save_array);
 						this.start_program_after_media_loaded();
 						this.undo_now = false;							
 					}
@@ -1121,7 +969,9 @@ class Auralayer
 						this.save_position++;
 						console.log("save_position increased to: " + this.save_position);
 						this.AllLayerContainers.innerHTML = "";
-						this.example_data.layers = this.save_array[this.save_position].layer_data;
+						// this.example_data.layers = this.save_array[this.save_position].layer_data;
+						let copy = JSON.parse(JSON.stringify(this.save_array[this.save_position].layer_data));
+						this.example_data.layers = copy;
 
 						this.color_count = this.save_array[this.save_position].program_data.color_count;
 						this.example_data.piece_info.color_count = this.color_count;
@@ -1137,7 +987,9 @@ class Auralayer
 						this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
 						this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;	
 
-						console.log( this.save_array);
+						console.log("REDO");
+						// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));
+						// console.log( this.save_array);
 						this.start_program_after_media_loaded();
 						this.undo_now = false;
 					}				
@@ -1150,42 +1002,50 @@ class Auralayer
 							{
 								// let copy = this.example_data.layers.slice(0);
 								let copy = JSON.parse(JSON.stringify(this.example_data.layers));
-								console.log(this.example_data.layers);
+								// console.log(this.example_data.layers);
 								if(this.save_array.length > 0)
 									{
 										this.save_position++;
 										console.log("save_position increased to: " + this.save_position);
 									}
 
-								if(this.save_position < (this.save_array.length - 1))
-									{
-
-									}
+								// if(this.save_position < (this.save_array.length - 1))
+								// 	{
+										
+								// 	}
 
 								// this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
+								
 								this.slider_thumb_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_height'));
 								this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
 								this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
-								this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;									
+								this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;		
+								
+								// console.log("SAVE");
+								// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));
+								
 
 								if (this.save_position === this.save_array.length)
 									{
-										console.log(this.save_array);
+										// console.log(this.save_array);
 										this.save_array.push( {program_data: {color_count: this.color_count, layer_id_pos: this.layer_id_pos, slider_thumb_offset: this.slider_thumb_offset, slider_thumb_height: this.slider_thumb_height }, layer_data: copy});	
-										console.log(this.save_array);	
+										// console.log(this.save_array);	
 									}
 								else if (this.save_position < this.save_array.length)
 									{
 										console.log(this.save_array);
 										
 										this.save_array[this.save_position] = {program_data: {color_count: this.color_count, layer_id_pos: this.layer_id_pos, slider_thumb_offset: this.slider_thumb_offset, slider_thumb_height: this.slider_thumb_height}, layer_data: copy};
-										console.log(this.save_array);
+										// console.log(this.save_array);
 										this.save_array.splice(this.save_position + 1);
-										console.log(this.save_array);
+										// console.log(this.save_array);
 									}
 							}
 						
-						console.log(this.save_array);
+						console.log("SAVE");
+						// this.save_array.forEach(each=>console.log(each.program_data));
+						// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));							
+						// console.log(this.save_array);
 					}
 			}
 		dragging_handler(e)
@@ -1223,7 +1083,8 @@ class Auralayer
 						this.example_data.layers.splice( 0, 0, element);
 
 						const element2 = this.layers.splice(draggable_index, 1)[0];
-						this.layers.splice( 0, 0, element2);						
+						this.layers.splice( 0, 0, element2);			
+						console.log("SPLICE 1");
 					}
 				else
 					{
@@ -1246,8 +1107,6 @@ class Auralayer
 						else
 							{ this.AllLayerContainers.insertBefore(draggable, layers_not_dragging[afterElement + 1].layer_container); }
 					}
-
-				this.save_state();
 			}
 		get_drag_after_element(container, y)
 			{
@@ -1267,7 +1126,7 @@ class Auralayer
 							return acc;
 						}, -1);
 
-					return(smallestPositiveIndex)
+					return(smallestPositiveIndex);
 			}
 		presence_slider_toggle_handler()
 			{
@@ -1572,8 +1431,13 @@ class Auralayer
 				else
 					{
 						this.example_data.layers.forEach((each,index)=> this.layers.push(new Layer(this.AllLayerContainers, each, this.file_length, this, "load_existing_layer")) );
-						console.log(this.example_data.layers);
+						// console.log(this.example_data.layers);
 					}
+
+			
+				this.save_array[this.save_position].program_data.slider_thumb_height = this.slider_thumb_height;
+				this.save_array[this.save_position].program_data.slider_thumb_offset = this.slider_thumb_offset;
+				this.save_array.forEach(each=>console.log(each.program_data));					
 
 				this.undo_now = false;
 			}
@@ -1668,7 +1532,7 @@ class Auralayer
 				let random_color = "rgba(" + this.colors[this.color_count] + ",1.0)";
 				
 				this.color_count =  (this.color_count + 1) % this.colors.length;
-				console.log("COLOR COUNT: " + this.color_count);
+				// console.log("COLOR COUNT: " + this.color_count);
 				this.example_data.piece_info.color_count = this.color_count;
 
 				let new_initial_layer_data =
@@ -1677,13 +1541,24 @@ class Auralayer
 				this.example_data.layers.push( new_initial_layer_data );
 				this.layers.push(new Layer(this.AllLayerContainers, new_initial_layer_data, this.file_length, this, "new_layer"));
 				
+				
 				// this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
 				// let segment_margin_top = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-top'));
 				let segment_margin_bottom = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-bottom'));
-				this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
+				// this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
 				
 				document.documentElement.style.setProperty('--slider_thumb_height', ((this.segment_height + segment_margin_bottom ) * this.layers.length) + 70 + "px");
 				document.documentElement.style.setProperty('--slider_thumb_offset', ( ((((this.segment_height + segment_margin_bottom)/2) * this.layers.length) + 25) * -1) + "px");
+
+				this.slider_thumb_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_height'));
+				this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
+				this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
+				this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;		
+
+				this.save_array[this.save_position].program_data.slider_thumb_height = this.slider_thumb_height;
+				this.save_array[this.save_position].program_data.slider_thumb_offset = this.slider_thumb_offset;
+							
+				// this.save_array.forEach(each=>console.log(each.program_data));
 				
 			}
 		delete_layer(sent_layer_id)
@@ -1811,19 +1686,24 @@ class Auralayer
 			}
 		delete_button_handler(e)
 			{
+				
 				for (let i = 0; i < this.layers.length ; i++)
 					{
 						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
 							{
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
-										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+										// let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+										let new_saturation_value = "0.0";
 										let formated_color_value;										
 										let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
 										let new_color_value = color_value + new_saturation_value + ")";
 										formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
-										this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-										this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+										// this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
+										// this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+
+										this.layers[i].segment_array[j].data.start_presence = 0;
+										this.layers[i].segment_array[j].data.end_presence = 0;										
 
 										this.layers[i].segment_array[j].data.color = formated_color_value
 										this.layers[i].segment_array[j].segment.style.background =  formated_color_value;
