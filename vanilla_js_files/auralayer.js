@@ -6,12 +6,22 @@ let project;
 let playerx;
 let shift_down = false;
 let lastActiveElement = document.activeElement;
-
 let example_data = {};
 
 // -----------------------------------
 //      Keyboard Controls
 // -----------------------------------
+document.addEventListener('keyup', e =>
+	{
+		if(project.in_text_editor === false || ( e.ctrlKey && e.key === 'b') || ( e.ctrlKey && e.key === 'i'))
+			{
+				
+				if (e.code === "ShiftLeft" )
+				{
+					shift_down = false;
+				}
+			}
+	});
 document.addEventListener('keydown', e => 
 	{
 		//if NOT in a textbox
@@ -133,6 +143,11 @@ document.addEventListener('keydown', e =>
 									console.log('the default option has been reached in the switch statement');
 							}    
 					}
+				else if (e.shiftKey)
+					{
+						// debugger
+						shift_down = true;
+					}
 				else if (e.shiftKey && e.key === 'ArrowRight')
 						{
 								//fast forward 1 seconds
@@ -252,22 +267,32 @@ class Layer
       }
     initialize()
       {
-				let r = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[0]).toString(16);
-				let g = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[1]).toString(16);
-				let b = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[2]).toString(16);
+				let [color_value_1, color_value_2, initial_saturation_1, initial_saturation_2, urlText] = ["","","","",""];
+				let initial_value = this.layer_data.color;
+				
+				[color_value_1, initial_saturation_1, urlText] = this.parent.GetRGBA_Values({value: initial_value, num:0});
+				[color_value_2, initial_saturation_2, urlText] = this.parent.GetRGBA_Values({value: initial_value, num:1});			
+
+				// let r = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[0]).toString(16);
+				// let g = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[1]).toString(16);
+				// let b = parseInt(this.layer_data.color.split("rgba(")[1].split(",")[2]).toString(16);
+
+				let r = parseInt(color_value_1.replace("rgba(","").replace("rgb(","").split(",")[0]).toString(16);
+				let g = parseInt(color_value_1.replace("rgba(","").replace("rgb(","").split(",")[1]).toString(16);
+				let b = parseInt(color_value_1.replace("rgba(","").replace("rgb(","").split(",")[2]).toString(16);
 				let presence_sync = true;
 
-        this.layer_container = createNewElement({type:"div", classes: ["layer_container", "draggable"], parent: this.parent_container, properties:{draggable: true}});
-				this.layer_container.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging"); });
-				this.layer_container.addEventListener("dragend", e=> 
-					{
-						this.layer_container.classList.remove("dragging");
-						this.parent.save_state();
-					});
+        // this.layer_container = createNewElement({type:"div", classes: ["layer_container", "draggable"], parent: this.parent_container, properties:{draggable: true}});
+				this.layer_container = createNewElement({type:"div", classes: ["layer_container", "draggable"], parent: this.parent_container, properties:{draggable: false}});
+						
 					
         this.layer_controls_holder = createNewElement({type:"div", classes: ["layer_controls_holder"], parent: this.layer_container});
 				// this.layer_controls_holder.addEventListener("click", e=> this.select_box.click());
         this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: (this.parent_file_length * this.parent.scale) + "px"}});
+
+				this.layer_settings_button = createNewElement({type:"button", classes:["layer_settings_button", "btn", "btn-secondary"], parent: this.layer_controls_holder, properties:{ innerHTML: `<i class="bi bi-gear"></i>`}, styles:{display: "none"}, events:{click: e=>{this.layer_settings_button_handler(e)}}});
+				this.layer_settings_container = createNewElement({type:"div", classes:["layer_settings_container"], parent: this.layer_container, properties:{}, styles:{display: "none"}});
+
 				this.select_box = createNewElement({type:"input", classes: ["layer_select", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {type: "checkbox"}});
 				// this.select_box_selector_box = createNewElement({type:'div', classes:["select_box_selector_box"], parent: this.layer_controls_holder, properties:{}});
 				// this.select_box_selector_box.addEventListener("click",e=>this.select_box.click());
@@ -275,11 +300,23 @@ class Layer
 				
 				// Here we can adjust defaults for all color pickers on page:
 				
-				// this.color_picker = createNewElement({type:"button", classes: ["layer_color_picker", "layer_controls_elements", "jscolor"], parent: this.layer_controls_holder, properties: { value: ("#" + r + g + b)}, styles: {display: "none"}, dataset:{jscolor:"{preset:'dark', width:250, paletteCols:15)'}" }});
+				this.color_picker_button = createNewElement({type:"button", classes: ["layer_color_picker_button", "layer_controls_elements", "btn", "btn-secondary"], parent: this.layer_settings_container, properties: { innerHTML: `<i class="bi bi-brush"></i>`}, styles: {backgroundColor: ("#" + r + g + b)}});
+				this.color_picker_button.addEventListener("click",e=>{myPicker.show();})
+				// this.color_picker = createNewElement({type:"input", classes: [], parent: this.layer_controls_holder, properties: { value: ("#" + r + g + b)}, styles: {display: "none"} });
 				this.color_picker = createNewElement({type:"input", classes: [], parent: this.layer_controls_holder, properties: { value: ("#" + r + g + b)}, styles: {display: "none"} });
-				var myPicker = new JSColor(this.color_picker, {format:'hex'});
+
+				const rgbToHex = (rgb) => '#' + rgb.map(x =>
+					{
+						const hex = x.toString(16)
+						return hex.length === 1 ? '0' + hex : hex
+					}).join('')
+
+				let colors_hex = this.parent.colors.map(each=>rgbToHex(each.split(",").map(each=>parseInt(each))));
+				var myPicker = new JSColor(this.color_picker, {format:'hex',	palette: colors_hex});
 				
 				this.color_picker.addEventListener("click", e=> { myPicker.show(); });
+
+				myPicker.trigger("show", e=>{debugger});
 
 		 
 				this.color_picker.addEventListener("change", e=>this.color_picker_handler(e));
@@ -288,16 +325,42 @@ class Layer
 				this.color_picker.addEventListener("blur", e=> this.parent.save_state());
 				
 
-				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements", "btn", "btn-danger"], parent: this.layer_controls_holder, properties: {innerHTML: `<i class="bi bi-trash"></i>`}, styles: {display: "none"}});
+				this.delete_layer_button = createNewElement({type:"button", classes: ["delete_layer_button", "layer_controls_elements", "btn", "btn-secondary"], parent: this.layer_settings_container, properties: {innerHTML: `<i class="bi bi-trash"></i>`}});
 				this.delete_layer_button.addEventListener("click", e => this.delete_layer_button_handler());				
         // this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
 				// this.grip.addEventListener("click",e=>this.select_box.click());
-        this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name}});
-				// this.name.addEventListener("click", e=> this.select_box.click());
+        this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name, draggable: true}});
+				this.name.addEventListener("click", e=>
+					{
+						this.select_box.click()
+					});
 				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
 				this.name.addEventListener("input", e=> this.layer_name_input_handler(e));
-				this.name.addEventListener("blur", e=>{ this.name.contentEditable = false });
-				this.name_edit_button = createNewElement({type:"button", classes:["name_edit_button", "layer_controls_elements", "btn", "btn-primary"], parent: this.layer_controls_holder, properties:{innerHTML: `<i class="bi bi-pen"></i>`}, styles: {display: "none"}, events:{click: e=>this.layer_name_double_click_handler(e)}});
+				this.name.addEventListener("focus", e=> { this.parent.in_text_editor = true; });				
+				this.name.addEventListener("blur", e=>
+					{
+						this.name.contentEditable = false;
+						this.parent.in_text_editor = false;
+					});
+				this.name.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging");});
+				this.name.addEventListener("touchstart", e=> { this.layer_container.classList.add("dragging"); });				
+				this.name.addEventListener("dragend", e=> 
+					{
+						this.layer_container.classList.remove("dragging");
+						this.parent.save_state();
+					});
+				this.name.addEventListener("touchend", e=> 
+					{
+						this.layer_container.classList.remove("dragging");
+						this.parent.save_state();
+					});	
+				this.name.addEventListener("touchcancel", e=> 
+					{
+						this.layer_container.classList.remove("dragging");
+						this.parent.save_state();
+					});		
+
+				this.name_edit_button = createNewElement({type:"button", classes:["name_edit_button", "layer_controls_elements", "btn", "btn-secondary"], parent: this.layer_settings_container, properties:{innerHTML: `<i class="bi bi-pen"></i>`}, events:{click: e=>this.layer_name_double_click_handler(e)}});
 
 
 
@@ -314,53 +377,89 @@ class Layer
 			//      TEXTURES
 			// -----------------------------------  
 
-				// this.layer_texture_picker = createNewElement({type:"button", classes: ["layer_texture_picker", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerText: "texture"}, styles: {display: "none"}});
-				// this.layer_texture_picker.addEventListener("click", e=>this.layer_texture_picker_handler(e));
-				// this.texture_selector = createNewElement({type:'div', classes: ["texture_selector", "layer_controls_elements"], parent: this.parent_container, styles: {display: "none"}} );
+				this.layer_texture_picker = createNewElement({type:"button", classes: ["layer_texture_picker", "layer_controls_elements", "btn", "btn-secondary"], parent: this.layer_settings_container, properties: {innerHTML: `<i class="bi bi-bricks"></i>`}});
+				this.layer_texture_picker.addEventListener("click", e=>this.layer_texture_picker_handler(e));
+				this.texture_selector = createNewElement({type:'div', classes: ["texture_selector", "layer_controls_elements"], parent: this.layer_container, styles: {display: "none"}} );
 
-				// this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture_1'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines.png)'}, properties: {title: "Horizontal_Lines"}});
-				// this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture_2'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1.png)'}, properties: {title: "Dots_1"}});
-				// this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture_3'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2.png)'}, properties: {title: "Dots_2"}});
-				// this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture_4'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1.png)'}, properties: {title: "Vertical_Lines 1"}});
-				// this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture_5'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2.png)'}, properties: {title: "Vertical_Lines 2"}});
-				// this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture_6'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1.png)'}, properties: {title: "Diagonal_Line 1"}});
-				// this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture_7'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2.png)'}, properties: {title: "Diagonal_Line 2"}});
-				// this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture_8'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1.png)'}, properties: {title: "Circle_1"}});
-				// this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
+				this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_1'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines.png)'}, properties: {title: "Horizontal_Lines"}});
+				this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_2'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1.png)'}, properties: {title: "Dots_1"}});
+				this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_3'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2.png)'}, properties: {title: "Dots_2"}});
+				this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_4'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1.png)'}, properties: {title: "Vertical_Lines 1"}});
+				this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_5'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2.png)'}, properties: {title: "Vertical_Lines 2"}});
+				this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_6'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1.png)'}, properties: {title: "Diagonal_Line 1"}});
+				this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2.png)'}, properties: {title: "Diagonal_Line 2"}});
+				this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1.png)'}, properties: {title: "Circle_1"}});
+				this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
+				this.shape_background_texture_10 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10'], parent: this.texture_selector, styles:{background:'url(images/pattern_blank.png)'}, properties: {title: "Blank"}});
+				this.shape_background_texture_11 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_and_horizontal_1.png)'}, properties: {title: "Vertical and Horizontal Lines"}});
+				this.shape_background_texture_12 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_12'], parent: this.texture_selector, styles:{background:'url(images/2-square-pattern-tiled-graphicsfairy-32.png)'}, properties: {title: "Square pattern 1"}});
 
 
-				// this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_3.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_4.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_5.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_6.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_7.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_8.addEventListener('click', e=>this.create_layer_background_texture(e));
-				// this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_3.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_4.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_5.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_6.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_7.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_8.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_10.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_11.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_12.addEventListener('click', e=>this.create_layer_background_texture(e));
+
+	
+			
       }
+		layer_settings_button_handler(e)
+			{
+				if(this.layer_settings_container.style.display === "flex")
+					{
+						this.layer_settings_container.style.display = "none";
+						this.texture_selector.style.display = "none";
+					}
+				else
+					{
+						this.layer_settings_container.style.display = "flex";
+						this.texture_selector.style.display = "none";
+					}				
+			}
 		layer_texture_picker_handler(e)
 			{
 				if(this.texture_selector.style.display === "block")
 					{
 						this.texture_selector.style.display = "none";
+						// this.layer_settings_container.style.display = "none";
 					}
 				else
 					{
 						this.texture_selector.style.display = "block";
+						this.layer_settings_container.style.display = "none";
 					}
-				
 			}
 		create_layer_background_texture(e)
 			{
 				for (let i = 0; i < this.segment_array.length ; i++)
 					{
 						let initial_value = this.segment_array[i].segment.style.background;
-						this.segment_array[i].segment.style.background =  e.target.style.background + " center center, " + initial_value;
-						this.layer_data.segments[i].color = e.target.style.background + " center center, " + initial_value;
-						this.segment_array[i].data.styles.background =  e.target.style.background + " center center, " + initial_value;
-						this.layer_data.color = e.target.style.background + " center center, " + initial_value;
+						
+						// Extract the portion between "linear-gradient(" and "))"
+						const gradientText = initial_value.match(/linear-gradient\((.*?)\)\)/)[0];
+
+						this.segment_array[i].segment.style.background =  e.target.style.background + " center center, " + gradientText;
+						this.layer_data.segments[i].color = e.target.style.background + " center center, " + gradientText;
+						this.segment_array[i].data.styles.background =  e.target.style.background + " center center, " + gradientText;
+						this.layer_data.color = e.target.style.background + " center center, " + gradientText;						
+
+
+						// this.segment_array[i].segment.style.background =  e.target.style.background + " center center, " + initial_value;
+						// this.layer_data.segments[i].color = e.target.style.background + " center center, " + initial_value;
+						// this.segment_array[i].data.styles.background =  e.target.style.background + " center center, " + initial_value;
+						// this.layer_data.color = e.target.style.background + " center center, " + initial_value;
 					}
+
+				this.texture_selector.style.display = "none";
+				this.parent.save_state();
 			}   			
 		delete_layer_button_handler()
 			{
@@ -387,6 +486,12 @@ class Layer
 				console.log(e.type);
 				if(this.select_box.checked === true)
 					{
+						let [color_value_1, color_value_2, initial_saturation_1, initial_saturation_2, urlText] = ["","","","",""];
+						let initial_value = this.layer_data.color;
+
+						[color_value_1, initial_saturation_1, urlText] = this.parent.GetRGBA_Values({value: initial_value, num:0});
+						[color_value_2, initial_saturation_2, urlText] = this.parent.GetRGBA_Values({value: initial_value, num:1});		
+
 						let current_color = e.target.value;
 						
 						// convert hex to rgb
@@ -394,8 +499,10 @@ class Layer
 						let result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
 						let formated_color_value_for_layer = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + ",1.0)";
 						let layer_color_formated = "linear-gradient(to right, " + formated_color_value_for_layer + ", " + formated_color_value_for_layer + ")";
+						
+						this.color_picker_button.style.background = urlText + layer_color_formated;
 
-						this.layer_data.color = layer_color_formated;
+						this.layer_data.color = urlText + layer_color_formated;
 						
 						for (let i = 0; i < this.segment_array.length ; i++)
 							{
@@ -405,15 +512,15 @@ class Layer
 								let formated_color_value_end = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + "," + ending_saturation_value + ")";
 								let segment_color_formated = "linear-gradient(to right, " + formated_color_value_start + ", " + formated_color_value_end + ")";
 								
-								this.segment_array[i].segment.style.background = segment_color_formated;
-								this.layer_data.segments[i].color = segment_color_formated;
-								this.segment_array[i].data.styles.background = segment_color_formated;
+								this.segment_array[i].segment.style.background = urlText + segment_color_formated;
+								this.layer_data.segments[i].color = urlText + segment_color_formated;
+								this.segment_array[i].data.styles.background = urlText + segment_color_formated;
 							}
 					}
 
 				if(e.type === 'change')
 					{
-						// this.parent.save_state();
+						this.parent.save_state();
 					}
 				
 			}
@@ -426,10 +533,7 @@ class Layer
 						this.selected = true;
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.add("segments_layer_is_selected"));
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.remove("segments_layer_is_not_selected"));
-						this.color_picker.style.display = "block";
-						this.delete_layer_button.style.display = "block";
-						this.name_edit_button.style.display = "block";
-						// this.layer_texture_picker.style.display = "block";
+						this.layer_settings_button.style.display = "block";
 					}
 				else if(e.target.checked === false)
 					{
@@ -438,11 +542,9 @@ class Layer
 						this.selected = false;
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.remove("segments_layer_is_selected"));
 						this.segment_array.forEach(each_segment=>each_segment.segment.classList.add("segments_layer_is_not_selected"));
-						this.color_picker.style.display = "none";
-						this.delete_layer_button.style.display = "none";
-						this.name_edit_button.style.display = "none";
-						// this.layer_texture_picker.style.display = "none";
-						// this.texture_selector.style.display = "none";
+						this.layer_settings_button.style.display = "none";
+						this.layer_settings_container.style.display = "none";
+						this.texture_selector.style.display = "none";
 					}
 			}
 		split_segment()
@@ -548,7 +650,10 @@ class Segment
 								text: [
 									{
 										inner_text:"",
-										styles:[]
+										styles:{
+											textAlign: 'center',
+											fontSize: "14px"
+										}
 									}]
 							};						
 						sent_layer_data_segments.push(this.data);
@@ -560,45 +665,151 @@ class Segment
 			}
 		create_segment()
 			{
+				
 				this.segment = createNewElement({type:"div", classes: this.data.classes, parent: this.layer_segment_holder, styles:
 					{
 						left: (this.data.start_pos * this.parent.parent.scale) + "px",
 						width:  ((this.data.end_pos - this.data.start_pos) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
-						background: this.data.color, textAlign: 'center'
+						background: this.data.color,
+						filter: this.data.styles.filter
 					},
-					properties: {contentEditable: false, innerText: this.data.text[0].inner_text}
+					properties: {contentEditable: false}
 				});
+
+				// properties: {contentEditable: false, innerText: this.data.text[0].inner_text}
+
+				this.segment_text_1 = createNewElement({type:"div", classes:["segment_text_1", "segment_text"], parent: this.segment, properties:{innerText: this.data.text[0].inner_text, contentEditable: false}, styles: this.data.text[0].styles});
 				
 				let time_stamp = Math.floor(this.data.start_pos/60) + ":" + String(Math.floor(this.data.start_pos%60)).padStart(2,'0');
 
-				let table_row_data = `
-					<tr>
-						<td>1</td>
-						<td class="SegmentTimestampInputBox">${time_stamp}</td>
-						<td class="SegmentTableName">${this.parent.name.innerText}</td>
-						<td><input type="range" class="SegmentPresenceStartRange"  min="0" max="${GLOBAL_presence_scale}" value="${this.data.start_presence}">${this.data.start_presence}</td>
-						<td><input type="range" class="SegmentPresenceEndRange"  min="0" max="${GLOBAL_presence_scale}" value="${this.data.end_presence}">${this.data.end_presence}</td>
-					</tr>
-						`;
+				this.segment_table_row = createNewElement({type:"tr", classes:["where"], parent: this.parent.parent.TableBodyTBody, properties:{}});
+					// this.SegmentTableId = createNewElement({type:"td", classes:["SegmentTableId"], parent: this.segment_table_row, properties:{innerText: this.parent.parent.example_data.piece_info.layer_id_pos}});
+					this.SegmentTimestampInputBox = createNewElement({type:"td", classes:["SegmentTimestampInputBox"], parent: this.segment_table_row, properties:{innerText: time_stamp}});
+					this.SegmentTableName = createNewElement({type:"td", classes:["SegmentTableName"], parent: this.segment_table_row, properties:{innerText: this.parent.name.innerText}});
+					this.SegmentTableText = createNewElement({type:"td", classes:["SegmentTableText"], parent: this.segment_table_row, properties:{} });
+						this.SegmentTextInput = createNewElement({type:"input", classes:["SegmentTextInput", "form-control"], parent: this.SegmentTableText, properties:{type: "text", value: this.data.text[0].inner_text}, events:{input:e=>this.SegmentTextInput_input_handler(e)}});
+					this.SegmentPresenceStartTR = createNewElement({type:"td", classes:["SegmentPresenceStartTR"], parent: this.segment_table_row, properties:{}});
+						this.SegmentPresenceStartRange = createNewElement({type:"input", classes:["SegmentPresenceStartRange"], parent: this.SegmentPresenceStartTR, properties:{type: "range", innerText: this.data.start_presence, min: "0", max: GLOBAL_presence_scale, value: this.data.start_presence}, events:{input: e=>this.SegmentPresenceStartRangeHandler(e,"start")}});
+					this.SegmentPresenceEndTR = createNewElement({type:"td", classes:["SegmentPresenceEndTR"], parent: this.segment_table_row, properties:{}});
+						this.SegmentPresenceEndRange = createNewElement({type:"input", classes:["SegmentPresenceEndRange"], parent: this.SegmentPresenceEndTR, properties:{type: "range", innerText: this.data.end_presence, min: "0", max: GLOBAL_presence_scale, value: this.data.end_presence, disabled: this.data.presence_sync}, events:{input: e=>this.SegmentPresenceStartRangeHandler(e,"end")}});					
+					
 
-				this.segment_table_row = createNewElement({type:"tr", classes:[], parent: this.parent.parent.TableBodyTBody, properties:{innerHTML: table_row_data}});
+				this.SegmentTextInput.addEventListener("focus", e=>this.parent.parent.in_text_editor = true);
+				this.SegmentTextInput.addEventListener("blur", e=>this.parent.parent.in_text_editor = false);
+
+				// Text Formatting Flyout Menu
+				this.TextEditingMenuContainer_SingleSegment = createNewElement({type:"div", classes:["TextEditingMenuContainer_SingleSegment"], parent: this.segment , properties:{}, styles:{display: "none"}});
+				this.TextEditingLeftAlignButton = createNewElement({type:"button", classes:["TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-justify-left"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "left"})}}});
+				this.TextEditingCenterAlignButton = createNewElement({type:"button", classes:["TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-justify"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "center"})}}});
+				this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
+				this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
+				this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
+				this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
+				this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
+				this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});
+			
 
 				if(this.parent.mode !== "load_existing_layer")
 					{ this.segment.classList.add("segments_layer_is_selected"); }
 				
-				this.segment.addEventListener("click",e=> { this.click_handler();	});
-				this.segment.addEventListener("dblclick",e=> { this.segment_double_click_handler();	});
-				this.segment.addEventListener("input", e=>this.segment_text_input_handler(e));
-				this.segment.addEventListener("blur", e=> this.segment.contentEditable = false);
+				this.segment_text_1.addEventListener("click",e=> { this.click_handler();	});
+				this.segment_text_1.addEventListener("dblclick",e=> { this.segment_double_click_handler();	});
+				this.segment_text_1.addEventListener("input", e=>this.segment_text_input_handler(e));
+				this.segment_text_1.addEventListener("focus", e=>
+					{
+						this.parent.parent.in_text_editor = true;
+					});				
+				this.segment_text_1.addEventListener("blur", e=>
+					{
+						// this.segment.contentEditable = false;
+						this.segment_text_1.contentEditable = false;
+						this.parent.parent.in_text_editor = false;						
+					});
+			}		
+		ChangeTextFormat(sent_style)
+			{
+				
+				if(sent_style.style === "fontSize")
+					{
+						if (sent_style.type === "increase")
+							{
+								this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
+								this.data.text[0].styles[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
+							}
+						else if(sent_style.type === "decrease")
+							{
+								this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) - 1) + "px";
+								this.data.text[0].styles[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) - 1) + "px";								
+							}
+					}
+				else if(this.segment_text_1.style[sent_style.style] === sent_style.value)
+					{
+						this.segment_text_1.style[sent_style.style] = "unset";
+						this.data.text[0].styles[sent_style.style] = "unset";	
+					}
+				else
+					{
+						this.segment_text_1.style[sent_style.style] = sent_style.value;
+						this.data.text[0].styles[sent_style.style] = sent_style.value;	
+					}
+			}					
+		SegmentPresenceStartRangeHandler(e, direction)
+			{
+				let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+				let formated_color_value;
+				// set the sliders to the value of the first layer/segment selected
+				
+				if(this.parent.parent.PresenceSliderEnd.disabled === true)
+					{
+						let color_value = this.data.color.split(", ")[1].slice(0,-4);
+						let new_color_value = color_value + new_saturation_value + ")";
+						formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
+						this.data.start_presence = parseInt(e.target.value);
+						this.data.end_presence = parseInt(e.target.value);
+					}
+				else
+					{
+						if(direction === "start")
+							{
+								let color_value = this.data.color.split(", ")[1].slice(0,-4);
+								let ending_color = this.data.color.split(", ")[2];
+								let new_color_value = color_value + new_saturation_value + ")";
+								formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
+								this.data.start_presence = parseInt(e.target.value);
+							}
+						else if(direction === "end")
+							{	
+								let color_value = this.data.color.split(", ")[2].slice(0,-5);
+								let starting_color = this.data.color.split(", ")[1];
+								let new_color_value = color_value + new_saturation_value + "))";
+								formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
+								this.data.end_presence = parseInt(e.target.value);
+							}		
+					}
+
+				this.data.color = formated_color_value;
+				this.segment.style.background =  formated_color_value;
+				this.data.styles.background = formated_color_value;
+			}
+		SegmentTextInput_input_handler(e)
+			{
+				this.parent.parent.in_text_editor = true;
+				 this.data.text[0].inner_text = e.target.value;
+				//  this.segment.innerText = e.target.value;
+				this.segment_text_1.innerText = e.target.value;
 			}
 		segment_double_click_handler()
 			{
-				this.segment.contentEditable = true;
-				this.segment.focus();
+				// this.segment.contentEditable = true;
+				this.segment_text_1.contentEditable = true;
+				this.segment_text_1.focus();
+				this.TextEditingMenuContainer_SingleSegment.style.display = "flex";
+				// this.segment.focus();
 			}
 		segment_text_input_handler(e)
 			{
 				this.data.text[0].inner_text = e.target.innerText;
+				this.SegmentTextInput.value = e.target.innerText;
 				this.parent.parent.save_state();
 			}
 		click_handler()
@@ -609,8 +820,11 @@ class Segment
 				if(shift_down === false)
 					{
 						// this.parent.parent.Body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
-						this.parent.parent.BodyContainer.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
+						// this.parent.parent.BodyContainer.querySelectorAll(".segment_selected").forEach(each=>{ each.classList.remove("segment_selected");});
 					}
+
+				this.parent.parent.hide_all_TextEditingMenuContainer_SingleSegments();
+				this.parent.parent.TextEditingMenuContainer.style.display = "none";
 
 				if(deselect === true)
 					{
@@ -624,7 +838,6 @@ class Segment
 						this.PresenceSliderEnd.value = GLOBAL_presence_scale;
 						this.parent.parent.PresenceSliderStart.disabled = true;
 						this.parent.parent.PresenceSliderEnd.disabled = true;
-
 					}
 				else
 					{
@@ -645,7 +858,9 @@ class Segment
 						else
 							{
 								this.parent.parent.PresenceSliderEnd.disabled = false;
-							}									
+							}
+
+						this.parent.parent.TextEditingMenuContainer.style.display = "block";
 					}
 			}
 	}
@@ -653,7 +868,7 @@ class Auralayer
   {
     constructor()
       {
-				this.url_activity_text;				
+				this.url_activity_text = "";				
 				this.undo_now = false;
 				this.save_array = [];
 				this.save_position = 0;
@@ -665,7 +880,7 @@ class Auralayer
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
-					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 1, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0 }, layers: [] }}
+					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 4, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0 }, layers: [] }}
 				this.scale = this.example_data.piece_info.scale;
 				
 				this.color_count = this.example_data.piece_info.color_count;
@@ -677,14 +892,36 @@ class Auralayer
 				this.audio_speed = 10;
 				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
+				this.check_for_url_data();
 				this.create_activity_selection_interface();
-				this.check_for_url_data();				
         this.initialize_interface();				
       }
+		load_from_server(link_id)
+			{
+					// Read file from server given file name      
+
+					fetch("saves/" + link_id + ".auralayer")
+					.then(response => response.text())
+					.then(data_from_file => this.load_mechanism(data_from_file))
+					.catch(error => console.log(error));
+		
+			}
+		load_mechanism(loaded_data)
+			{
+				this.loaded_file = JSON.parse( loaded_data );
+				// this.loaded_file = loaded_data;
+			}
 		create_activity_selection_interface()
 			{
+				if(this.url_activity_text !== "")
+					{
+						
+						this.load_from_server(this.url_activity_text);
+						this.load_from_file(this.loaded_file);
+						return false;
+					}
 				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
-					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerText : "Auralayer"}});
+					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
 					this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
 						this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
 							this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
@@ -776,6 +1013,7 @@ class Auralayer
 				this.UtilitiesContainer = createNewElement({type:"div", classes:["UtilitiesContainer", "row", "mx-md-5", "justify-content-between"],parent: this.BodyContainer, properties:{id:"utilites"}});
 				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
 				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
+				this.AllLayerContainers.addEventListener("touchmove", e=> { this.dragging_handler(e) });
 				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
 				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2"], parent: this.Body, properties:{id:"interface-container"}});
 
@@ -790,7 +1028,8 @@ class Auralayer
 			// -----------------------------------
 			//      LEFT OUTER COLUMN COMPONENTS
 			// -----------------------------------       
-				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
+				// this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
+				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.HeaderContainer, properties:{id: "undo-redo"} } );
 				this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 
@@ -804,6 +1043,15 @@ class Auralayer
 				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
 				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
 				this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
+
+
+
+			// -----------------------------------
+			//      AUDIO CONTROLs
+			// -----------------------------------  				
+
+				this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`}, events: {click: e=>this.play_button_handler(e)}});
+				// this.audio_pause_button = createNewElement({type:"button", classes:["audio_pause_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-pause-circle"></i>`}});
 
 			// -----------------------------------
 			//    LAYER EDITING CONTAINER COMPONENTS
@@ -821,6 +1069,19 @@ class Auralayer
 			//    SEGMENT EDITING CONTAINER COMPONENTS
 			// -----------------------------------        
 				
+				// Text Formatting Flyout Menu
+				this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
+				this.TextEditingLeftAlignButton = createNewElement({type:"button", classes:["TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-left"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "left"})}}});
+				this.TextEditingCenterAlignButton = createNewElement({type:"button", classes:["TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "center"})}}});
+				this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
+				this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
+				this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
+				this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
+				this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
+				this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});				
+				
+
+
 				this.SegmentEditingContainer2 = createNewElement({type:"div", classes:["col-md-4", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "edit-layers"}});
 
 				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton", "btn", "btn-primary"], parent: this.SegmentEditingContainer2, properties: {innerHTML: `<i class="bi-layout-split"></i>`, type: "button", title: "Split"}});
@@ -849,11 +1110,11 @@ class Auralayer
 
 				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
 				this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
-				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start", disabled: true} });
+				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start", disabled: true} });
 				this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
 
 				this.PresenceSliderEndLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_end", innerText: "Presence (end)"}});
-				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} });
+				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} });
 				this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
 
 				this.PresenceLockContainer = createNewElement({type: "div", classes: ["PresenceLockContainer", "col-1", "align-items-center"], parent: this.LayerEditingRow, properties: {}});
@@ -887,15 +1148,18 @@ class Auralayer
 							}
 					});
 
+					{/* <th role="columnheader" class="col-1">ID</th> */}
+
 				let data_html = `
 						<tr>
-								<th role="columnheader" class="col-1">ID</th>
-								<th role="columnheader" class="col-4" data-sort-method="number">Time</th>
+								<th role="columnheader" class="col-3" data-sort-method="number">Time</th>
 								<th role="columnheader" class="col-5">Layer</th>
+								<th role="columnheader" class="col-5">Text</th>
 								<th role="columnheader" class="col-4">Starting Presence</th>
 								<th role="columnheader" class="col-4">Ending Presence</th>
 						</tr>
 			`;
+
 
 				//data-sort-method="number"
 
@@ -916,17 +1180,20 @@ class Auralayer
 									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
 								this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
 									this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
+
+
+				
       }
 		undo_handler()
 			{
 				if(this.save_position > 0)
 					{
 						this.undo_now = true;
+						this.DataTable.querySelector(".TableBodyTBody").innerHTML = "";
 						this.layers = [];						
 						this.save_position--;
-						console.log("save_position DECREASED to: " + this.save_position);
 						this.AllLayerContainers.innerHTML = "";
-						// this.example_data.layers = this.save_array[this.save_position].layer_data;
+						
 						let copy = JSON.parse(JSON.stringify(this.save_array[this.save_position].layer_data));
 						this.example_data.layers = copy;
 						
@@ -935,27 +1202,17 @@ class Auralayer
 
 						this.layer_id_pos = this.save_array[this.save_position].program_data.layer_id_pos;
 						this.example_data.piece_info.layer_id_pos = this.layer_id_pos;
-
-
 						
-						console.log("OLD: this.slider_thumb_height: " + this.slider_thumb_height);
-						console.log("OLD: this.slider_thumb_offset: " + this.slider_thumb_offset);
 						this.slider_thumb_height = this.save_array[this.save_position].program_data.slider_thumb_height;						
 						this.slider_thumb_offset = this.save_array[this.save_position].program_data.slider_thumb_offset;
-						console.log("NEW: this.slider_thumb_height: " + this.slider_thumb_height);
-						console.log("NEW: this.slider_thumb_offset: " + this.slider_thumb_offset);
 
 						document.documentElement.style.setProperty('--slider_thumb_height', this.slider_thumb_height + "px");
 						document.documentElement.style.setProperty('--slider_thumb_offset', this.slider_thumb_offset + "px");
 						this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
 						this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;
 
-
 						console.log("UNDO");
-						// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));
 						
-
-						// console.log( this.save_array);
 						this.start_program_after_media_loaded();
 						this.undo_now = false;							
 					}
@@ -965,11 +1222,11 @@ class Auralayer
 				if(this.save_position < (this.save_array.length -1) )
 					{
 						this.undo_now = true;
+						this.DataTable.querySelector(".TableBodyTBody").innerHTML = "";
 						this.layers = [];
 						this.save_position++;
-						console.log("save_position increased to: " + this.save_position);
 						this.AllLayerContainers.innerHTML = "";
-						// this.example_data.layers = this.save_array[this.save_position].layer_data;
+						
 						let copy = JSON.parse(JSON.stringify(this.save_array[this.save_position].layer_data));
 						this.example_data.layers = copy;
 
@@ -988,8 +1245,7 @@ class Auralayer
 						this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;	
 
 						console.log("REDO");
-						// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));
-						// console.log( this.save_array);
+
 						this.start_program_after_media_loaded();
 						this.undo_now = false;
 					}				
@@ -1050,7 +1306,22 @@ class Auralayer
 			}
 		dragging_handler(e)
 			{
-				e.preventDefault();
+				console.log(e.type);
+				// e.preventDefault();
+				let touch_event = e.type === "touchmove";
+				let mouse_event = e.type === "dragover";
+				let dragged_element;
+
+				if(touch_event === true)
+					{ dragged_element = e.targetTouches[0]; }
+				else if(mouse_event === true)
+					{ dragged_element = e; }
+
+
+				if(dragged_element.target.classList.contains("layer_name") === false && dragged_element.target.classList.contains("layer_controls_holder") === false)
+					{
+						return false;
+					}					
 
 				let draggable_id = -1;
 				let draggable_index = -1;
@@ -1073,8 +1344,16 @@ class Auralayer
 							{ layers_not_dragging.push(each); }
 					});
 
-				const afterElement = this.get_drag_after_element(layers_not_dragging, e.clientY);
+				
+				// const afterElement = this.get_drag_after_element(layers_not_dragging, e.clientY);
+				
+				const afterElement = this.get_drag_after_element(layers_not_dragging, dragged_element.clientY);
 				const draggable = this.AllLayerContainers.querySelector(".dragging");
+				if(dragged_element.target.classList.contains("layer_name") === false && dragged_element.target.classList.contains("layer_controls_holder") === false)
+					{
+						return false;
+					}
+
 				
 				if(afterElement === -1)
 					{
@@ -1128,6 +1407,57 @@ class Auralayer
 
 					return(smallestPositiveIndex);
 			}
+		hide_all_TextEditingMenuContainer_SingleSegments()
+			{
+				for (let i = 0; i < this.layers.length ; i++)
+					{
+						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
+							{
+								this.layers[i].segment_array[j].TextEditingMenuContainer_SingleSegment.style.display = "none";
+								
+								if(shift_down === false)
+									{this.layers[i].segment_array[j].segment.classList.remove("segment_selected")}
+							}
+					}				
+			}
+		ChangeTextFormat(sent_style)
+			{
+				if(this.AllLayerContainers.querySelectorAll(".segment_selected").length > 0)
+					{
+						for (let i = 0; i < this.layers.length ; i++)
+							{
+								for (let j = 0; j < this.layers[i].segment_array.length ; j++)
+									{
+										if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
+											{
+												if(sent_style.style === "fontSize")
+													{
+														if (sent_style.type === "increase")
+															{
+																this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = (parseInt(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style]) + 1) + "px";
+																this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = (parseInt(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style]) + 1) + "px";
+															}
+														else if(sent_style.type === "decrease")
+															{
+																this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = (parseInt(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style]) - 1) + "px";
+																this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = (parseInt(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style]) - 1) + "px";								
+															}
+													}
+												else if(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] === sent_style.value)
+													{
+														this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = "unset";
+														this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = "unset";	
+													}
+												else
+													{
+														this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = sent_style.value;
+														this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = sent_style.value;	
+													}
+											}
+									}
+							}
+					}				
+			}			
 		presence_slider_toggle_handler()
 			{
 				if(this.AllLayerContainers.querySelectorAll(".segment_selected").length > 0)
@@ -1141,11 +1471,13 @@ class Auralayer
 												if(this.layers[i].segment_array[j].data.presence_sync === true)
 													{
 														this.layers[i].segment_array[j].data.presence_sync = false;	
+														this.layers[i].segment_array[j].SegmentPresenceEndRange.disabled = false;
 														// this.segment_table_row
 													}
 												else
 													{
 														this.layers[i].segment_array[j].data.presence_sync = true;
+														this.layers[i].segment_array[j].SegmentPresenceEndRange.disabled = true;
 													}
 											}
 									}
@@ -1182,50 +1514,127 @@ class Auralayer
 							{
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
+										this.layers[i].segment_array[j].segment.style.filter = "opacity()";
+										this.layers[i].segment_array[j].data.styles.filter = "opacity()";
+
 										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
-										// set the sliders to the value of the first layer/segment selected
+										let urlText = "";
+										let initial_value = this.layers[i].segment_array[j].data.color;
+										let r = "";
+										let g = "";
+										let b = "";
+										let color_value_1 = "";
+										let color_value_2 = "";
+										let initial_saturation_1 = "1.0";
+										let initial_saturation_2 = "1.0";
+																				
+										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
+										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});														
 										
 										if(this.PresenceSliderEnd.disabled === true)
 											{
-												let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
-												let new_color_value = color_value + new_saturation_value + ")";
+												let new_color_value = color_value_1 + new_saturation_value + ")";
 												formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
 												this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
 												this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
-												this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
-												this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+												// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+												// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+												this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
+												this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;												
 											}
 										else
 											{
+												let starting_color = "";
+												let ending_color = "";
+												let new_color_value = "";
+
 												if(direction === "start")
-													{
-														let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
-														let ending_color = this.layers[i].segment_array[j].data.color.split(", ")[2];
-														let new_color_value = color_value + new_saturation_value + ")";
+													{	
+														if(color_value_1.includes("rgba"))
+															{
+																ending_color = color_value_2 + initial_saturation_2 + "))";
+																new_color_value = color_value_1 + new_saturation_value + ")";
+															}
+														else if(color_value_1.includes("rgb("))
+															{
+																ending_color = color_value_2 + initial_saturation_2 + "))";
+																new_color_value = color_value_1 + new_saturation_value + ")";
+															}
+
 														formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
 														this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-														this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+														this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 													}
 												else if(direction === "end")
 													{	
-														let color_value = this.layers[i].segment_array[j].data.color.split(", ")[2].slice(0,-5);
-														let starting_color = this.layers[i].segment_array[j].data.color.split(", ")[1];
-														let new_color_value = color_value + new_saturation_value + "))";
+
+														if(color_value_1.includes("rgba"))
+															{
+																starting_color = color_value_1 + initial_saturation_1 + ")";
+																new_color_value = color_value_2 + new_saturation_value + "))";
+															}
+														else if(color_value_1.includes("rgb("))
+															{
+																starting_color = color_value_1 + initial_saturation_1 + ")";
+																new_color_value = color_value_2 + new_saturation_value + "))";
+															}
+
 														formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
 														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
-														this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+														this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;
 													}		
 											}
 
-										this.layers[i].segment_array[j].data.color = formated_color_value;
-										this.layers[i].segment_array[j].segment.style.background =  formated_color_value;
-										this.layers[i].segment_array[j].data.styles.background = formated_color_value;
+										this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
+										this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
+										this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
 									}
 							}			
 					}
 
 				this.save_state();
+			}
+		GetRGBA_Values(sent_data)
+			{
+				let urlText = "";
+				let initial_saturation = "1.0";
+				let color_value = sent_data.value.match(/linear-gradient\((.*?)\)\)/)[0];
+				let r = "";
+				let g = "";
+				let b = "";
+
+				if(sent_data.num === 0)
+					{
+						color_value = color_value.split("t, ")[1].split("), ")[sent_data.num] + ")"
+					}
+				else if(sent_data.num === 1)
+					{
+						color_value = color_value.split("t, ")[1].split("), ")[sent_data.num];
+					}
+
+				if(color_value.includes("rgba"))
+					{
+						r = parseInt(color_value.replaceAll(" ", "").split("rgba(")[1].replace("(","").replace(")","").split(",")[0]);
+						g = parseInt(color_value.replaceAll(" ", "").split("rgba(")[1].replace("(","").replace(")","").split(",")[1]);
+						b = parseInt(color_value.replaceAll(" ", "").split("rgba(")[1].replace("(","").replace(")","").split(",")[2]);
+						initial_saturation = parseFloat(color_value.replaceAll(" ", "").split("rgba(")[1].replace("(","").replace(")","").split(",")[3]);
+						color_value = "rgba(" + r + "," + g + "," + b + ",";
+					}
+				else if(color_value.includes("rgb("))
+					{
+						r = parseInt(color_value.replaceAll(" ", "").split("rgb")[1].replaceAll("(", "").replaceAll(")", "").split(",")[0]);
+						g = parseInt(color_value.replaceAll(" ", "").split("rgb")[1].replaceAll("(", "").replaceAll(")", "").split(",")[1]);
+						b = parseInt(color_value.replaceAll(" ", "").split("rgb")[1].replaceAll("(", "").replaceAll(")", "").split(",")[2]);
+						color_value = "rgba(" + r + "," + g + "," + b + ",";																
+					}
+
+				if(sent_data.value.includes("url"))
+					{ urlText = sent_data.value.match(/url\((.*?)( center,)/)[0]; }									
+
+				return [color_value, initial_saturation, urlText];
 			}
 		StartYoutubeActivitySetup()
 			{
@@ -1285,7 +1694,8 @@ class Auralayer
 				this.example_data.piece_info.media_type = "audio_file";
 				this.activity_type = 'audio_file';
 			
-				this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: document.body, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"} });
+				
+				this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: document.body, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "none"} });
 				this.open_audio_button.addEventListener('change', () => this.get_user_audio_file('nothing') );
 
 				this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}});
@@ -1297,6 +1707,10 @@ class Auralayer
 						this.get_user_audio_file('nothing');
 						this.open_audio_button.style.display = "none";
 						this.open_file_trigger_button.display = "none";
+					}
+				else
+					{
+						this.open_audio_button.click();
 					}
 			}
 		get_user_audio_file(sent_url)
@@ -1328,7 +1742,9 @@ class Auralayer
 		uploaded_audio_loadedmetadata_handler()
 			{
 				// this.file_length = parseInt(this.uploaded_audio.duration * this.scale);
+				
 				this.file_length = parseInt(this.uploaded_audio.duration);
+				
 				this.open_file_trigger_button.style.display = 'none';
 
 				if(developing === true && location.hostname.includes("localhost"))
@@ -1337,6 +1753,46 @@ class Auralayer
 					{ this.loaded_file_name_label.innerText = this.open_audio_button.files[0].name; }
 
 				this.start_program_after_media_loaded();
+			}
+		play_button_handler()
+			{
+				switch (this.activity_type)
+				{
+					case 'audio_file':
+						if ( !this.uploaded_audio.paused   ) 
+							{
+								//Its playing...do your job
+								console.log("playing!");
+								this.pause_audio();
+								this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
+							} 
+						else 
+							{
+								console.log('not playing');
+								//Not playing...maybe paused, stopped or never played.
+								this.play_audio();
+								this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
+							}    
+						break;
+					case 'youtube_link':
+						if (youtube_player_state != YT.PlayerState.PAUSED)
+							{
+								playerx.g.classList.remove("small_youtube_video_for_iframes");
+								playerx.pauseVideo();
+								this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
+							}
+						else
+							{
+								playerx.g.classList.remove("small_youtube_video_for_iframes");
+								playerx.playVideo();
+								this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
+							}
+						
+						break;
+					default:
+						//default option here
+						console.log('the default option has been reached in the switch statement');
+				}  
 			}
 		play_audio()
 			{
@@ -1395,14 +1851,15 @@ class Auralayer
 				let sURLVariables = sPageURL.split('&');
 						
 				let sParameterName = sURLVariables[0].split('=');
-				if (sParameterName[0] == 'activity_type') 
+				if (sParameterName[0] == 'load') 
 					{
 						this.url_activity_text = sParameterName[1];
 					}
 			}
 		setup_youtube_file_info()
 			{
-				this.file_length = parseInt(playerx.getDuration() * this.scale);
+				// this.file_length = parseInt(playerx.getDuration() * this.scale);
+				this.file_length = parseInt(playerx.getDuration());
 				this.start_program_after_media_loaded();
 				this.timeupdater = setInterval((e) => this.move_seek_slider_with_audio_position('ticking_youtube') , 10);
 			}
@@ -1423,7 +1880,7 @@ class Auralayer
 						this.example_data.piece_info.color_count = this.color_count;
 
 						let initial_layer_data =
-						{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id_pos: 0 }
+						{ name: "Layer " + (this.example_data.piece_info.layer_id_pos + 1), color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id_pos: 0 }
 
 						this.example_data.layers.push( initial_layer_data );
 						this.layers.push(new Layer(this.AllLayerContainers, initial_layer_data, this.file_length, this, "new_layer"));
@@ -1536,7 +1993,7 @@ class Auralayer
 				this.example_data.piece_info.color_count = this.color_count;
 
 				let new_initial_layer_data =
-					{ name: "Layer", color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[], layer_id_pos: this.layer_id_pos }
+					{ name: "Layer " + (this.example_data.piece_info.layer_id_pos + 1), color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [], markers:[], layer_id_pos: this.layer_id_pos }
 
 				this.example_data.layers.push( new_initial_layer_data );
 				this.layers.push(new Layer(this.AllLayerContainers, new_initial_layer_data, this.file_length, this, "new_layer"));
@@ -1693,21 +2150,32 @@ class Auralayer
 							{
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
-										// let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
-										let new_saturation_value = "0.0";
-										let formated_color_value;										
-										let color_value = this.layers[i].segment_array[j].data.color.split(", ")[1].slice(0,-4);
-										let new_color_value = color_value + new_saturation_value + ")";
-										formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
-										// this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-										// this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+										let formated_color_value;
+										let urlText = "";
+										let initial_value = this.layers[i].segment_array[j].data.color;
+										let color_value_1 = "";
+										let color_value_2 = "";
+										let initial_saturation_1 = "1.0";
+										let initial_saturation_2 = "1.0";
+																				
+										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
+										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});														
+										
+										formated_color_value = "linear-gradient(to right, " + (color_value_1 + "0.0), ") + (color_value_2 + "0.0))");
 
 										this.layers[i].segment_array[j].data.start_presence = 0;
-										this.layers[i].segment_array[j].data.end_presence = 0;										
+										this.layers[i].segment_array[j].data.end_presence = 0;						
+										
+										this.layers[i].segment_array[j].SegmentPresenceStartRange.value = 0;
+										this.layers[i].segment_array[j].SegmentPresenceEndRange.value = 0;																			
 
-										this.layers[i].segment_array[j].data.color = formated_color_value
-										this.layers[i].segment_array[j].segment.style.background =  formated_color_value;
-										this.layers[i].segment_array[j].data.styles.background = formated_color_value;
+										this.layers[i].segment_array[j].data.color =  urlText + formated_color_value
+										this.layers[i].segment_array[j].segment.style.background =   urlText + formated_color_value;
+										this.layers[i].segment_array[j].data.styles.background =  urlText + formated_color_value;
+
+										this.layers[i].segment_array[j].segment.style.filter = "opacity(0)";
+										this.layers[i].segment_array[j].data.styles.filter = "opacity(0)";
 									}
 							}			
 					}
@@ -1729,6 +2197,7 @@ class Auralayer
 
 				let element = document.createElement('a');
 				let export_data = JSON.stringify(save_all, null, 2); // put data in me first
+				debugger
 				
 				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(export_data));
 				element.setAttribute('download', file_name);
