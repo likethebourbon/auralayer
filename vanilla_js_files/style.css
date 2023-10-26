@@ -51,6 +51,8 @@ padding: 1em;
 {
 	margin: 0;
 	padding: 0;
+	-webkit-touch-callout: none !important;
+	-webkit-user-select: none !important;	
 }
 
 body
@@ -443,12 +445,21 @@ button:hover
 	cursor: pointer;
 	line-height: var(--segment-height);
 	box-sizing: content-box;
+	/* -webkit-touch-callout: none;
+	-webkit-user-select: none; */
+	/* user-select: none; */
+	/* user-select: text !important; */
 }
 
 .segment_selected
 	{
 		box-shadow: 0px 0px 8px 3px;
 		z-index: 1;
+	}
+
+.segment_deleted
+	{
+		background-size: 0 0 !important;
 	}
 
 .segments_layer_is_selected
@@ -486,7 +497,29 @@ button:hover
 .TextEditingMenuContainer
 	{
     width: auto;
-    border: 5px solid #9d9d9d;
+    /* border: 5px solid #9d9d9d; */
+    /* position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%); */
+    /* background-color: white;		 */
+		/* box-shadow: 0px 0px 2px; */
+    display: flex;
+		flex-direction: row;
+    justify-content: center;	
+		position: relative;
+    left: 50%;
+    transform: translateX(-50%);	
+		border-radius: 0.375rem;
+    color: #212529;
+    background-color: white;
+    border: 1px solid #dee2e6;	
+		margin-top: 10px;
+	}
+
+.TextEditingButton
+	{
+		cursor: not-allowed;
 	}
 
 .PresenceSliderContainer
@@ -578,6 +611,7 @@ button:hover
 	opacity: 0.7;
 	margin-top:30px;
 	cursor: pointer;
+	z-index: 1;
 }
 .slider::-webkit-slider-thumb
 {
@@ -613,6 +647,17 @@ button:hover
 {
 	pointer-events: none;
 }
+
+
+.SplitButton, .SaveToFileButton
+	{
+		margin-right: 5px;
+	}
+
+.DeleteButton
+	{
+		margin-left: 5px;
+	}	
 
 #button_for_loading_youtube_url
 {
@@ -788,3 +833,32 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	visibility: visible;
 	opacity: 1;
 }
+
+
+
+@media screen and (max-width: 600px)
+{
+	.small_youtube_video_for_iframes
+		{
+			position: absolute;
+			width: 50px !important;
+			height: 50px !important;
+			top: 52px;
+			left: 16px;
+		}
+}    
+
+@media screen and (max-width: 825px)
+{
+	.btn:first-child:hover, :not(.btn-check)+.btn:hover
+	{
+		color: unset;
+		background-color: unset;
+		border-color: unset;
+	}     
+}              
+
+@media screen and (min-width: 1024px) 
+{
+		 
+} 

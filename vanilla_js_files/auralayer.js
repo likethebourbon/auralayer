@@ -1,10 +1,10 @@
-let developing = true;
+let developing = false;
 let youtube_player_state = -2;
 let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
 let project;
 let playerx;
-let shift_down = false;
+let ctrl_down = false;
 let lastActiveElement = document.activeElement;
 let example_data = {};
 
@@ -16,10 +16,12 @@ document.addEventListener('keyup', e =>
 		if(project.in_text_editor === false || ( e.ctrlKey && e.key === 'b') || ( e.ctrlKey && e.key === 'i'))
 			{
 				
-				if (e.code === "ShiftLeft" )
-				{
-					shift_down = false;
-				}
+				// if (e.code === "ControlLeft" )
+				if (e.code === "ShiftLeft")
+					{
+						e.preventDefault();
+						ctrl_down = false;
+					}
 			}
 	});
 document.addEventListener('keydown', e => 
@@ -95,7 +97,8 @@ document.addEventListener('keydown', e =>
 					}                       
 				else if( e.key === 'Escape')//escape
 					{       
-						project.remove_all_from_currently_selected_elements();    
+						project.deselect_all_layers();
+						project.deselect_all_segments();
 					}
 				else if( e.ctrlKey && e.code === 'Space')
 					{
@@ -146,7 +149,8 @@ document.addEventListener('keydown', e =>
 				else if (e.shiftKey)
 					{
 						// debugger
-						shift_down = true;
+						e.preventDefault();
+						ctrl_down = true;
 					}
 				else if (e.shiftKey && e.key === 'ArrowRight')
 						{
@@ -225,7 +229,7 @@ document.addEventListener('keydown', e =>
 						}            
 				else if( (e.key === 'Delete' && project.analysis_master_embed === false) || (( e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'd') && project.analysis_master_embed === false) )
 						{
-								
+								// project.DeleteButton.click();	
 								// if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
 								// 		{
 								// 				e.preventDefault();
@@ -234,7 +238,7 @@ document.addEventListener('keydown', e =>
 						}
 				else if( e.key === 'Backspace' && project.analysis_master_embed === false )
 						{
-								
+							project.DeleteButton.click();	
 								// if( document.querySelector(".url_prompt_backdrop") === null || document.querySelector(".url_prompt_backdrop").style.display === "none")
 								// 		{
 								// 				e.preventDefault();
@@ -331,7 +335,7 @@ class Layer
 				// this.grip.addEventListener("click",e=>this.select_box.click());
         this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name, draggable: true}});
 				this.name.addEventListener("click", e=>
-					{
+					{	
 						this.select_box.click()
 					});
 				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
@@ -483,6 +487,7 @@ class Layer
 			}
 		color_picker_handler(e)
 			{
+				
 				console.log(e.type);
 				if(this.select_box.checked === true)
 					{
@@ -526,8 +531,14 @@ class Layer
 			}
 		select_changed(e)
 			{
+				
 				if(e.target.checked === true)
 					{
+						if(ctrl_down === false)
+							{
+								this.parent.deselect_all_layers();
+							}
+							
 						this.layer_controls_holder.classList.add("layer_selected_controls_holder");
 						this.layer_segment_holder.classList.add("layer_selected_segments_holder");
 						this.selected = true;
@@ -634,6 +645,7 @@ class Segment
 				this.layer_segment_holder = sent_layer_segment_holder;
 				this.PresenceSliderStart = sent_presence_slider_start;
 				this.PresenceSliderEnd = sent_presence_slider_end;
+				this.tapedTwice = false;
 
 				if(this.parent.mode !== "load_existing_layer")
 					{
@@ -712,7 +724,7 @@ class Segment
 				if(this.parent.mode !== "load_existing_layer")
 					{ this.segment.classList.add("segments_layer_is_selected"); }
 				
-				this.segment_text_1.addEventListener("click",e=> { this.click_handler();	});
+				this.segment_text_1.addEventListener("click",e=> { this.click_handler(e);	});
 				this.segment_text_1.addEventListener("dblclick",e=> { this.segment_double_click_handler();	});
 				this.segment_text_1.addEventListener("input", e=>this.segment_text_input_handler(e));
 				this.segment_text_1.addEventListener("focus", e=>
@@ -803,8 +815,28 @@ class Segment
 				// this.segment.contentEditable = true;
 				this.segment_text_1.contentEditable = true;
 				this.segment_text_1.focus();
-				this.TextEditingMenuContainer_SingleSegment.style.display = "flex";
+				// this.TextEditingMenuContainer_SingleSegment.style.display = "flex";
 				// this.segment.focus();
+			}
+		tapHandler(event)
+			{
+				// iOS doesn't acknowledge double tapping so this is the workaround
+				if(!this.tapedTwice)
+					{
+						this.tapedTwice = true;
+						console.log("tapedTwice = " + this.tapedTwice);
+						setTimeout( () =>
+							{
+								this.tapedTwice = false;
+								console.log("tapedTwice = " + this.tapedTwice);
+							}, 300 );
+						return false;
+					}
+					event.preventDefault();
+					//action on double tap goes below
+					// alert('You tapped me Twice !!!');
+					this.segment_text_1.contentEditable = true;
+					this.segment_text_1.focus();
 			}
 		segment_text_input_handler(e)
 			{
@@ -812,19 +844,22 @@ class Segment
 				this.SegmentTextInput.value = e.target.innerText;
 				this.parent.parent.save_state();
 			}
-		click_handler()
+		click_handler(e)
 			{
-				// shift is not being held, then only allow one segment to be selected at a time
+				// left control key is not being held, then only allow one segment to be selected at a time
 				let deselect = false;
 				deselect = this.segment.classList.contains("segment_selected");
-				if(shift_down === false)
+				if(ctrl_down === false)
 					{
 						// this.parent.parent.Body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
 						// this.parent.parent.BodyContainer.querySelectorAll(".segment_selected").forEach(each=>{ each.classList.remove("segment_selected");});
 					}
 
 				this.parent.parent.hide_all_TextEditingMenuContainer_SingleSegments();
-				this.parent.parent.TextEditingMenuContainer.style.display = "none";
+				// this.parent.parent.TextEditingMenuContainer.style.display = "none";
+				// this.parent.parent.TextEditingMenuContainer.style.cursor = "not-allowed";
+				[...this.parent.parent.TextEditingMenuContainer.children].forEach(each=>each.style.cursor = "not-allowed");
+				
 
 				if(deselect === true)
 					{
@@ -850,6 +885,12 @@ class Segment
 						this.data.start_presence = parseInt(this.PresenceSliderStart.value);
 						this.data.end_presence = parseInt(this.PresenceSliderEnd.value);
 						this.parent.parent.PresenceSliderStart.disabled = false;
+						
+						if(this.parent.select_box.checked === false)
+							{
+								this.parent.select_box.click();
+								// this.parent.select_box.selected = true;
+							}
 
 						if(this.data.presence_sync === true)
 							{
@@ -860,8 +901,13 @@ class Segment
 								this.parent.parent.PresenceSliderEnd.disabled = false;
 							}
 
-						this.parent.parent.TextEditingMenuContainer.style.display = "block";
+						// this.parent.parent.TextEditingMenuContainer.style.display = "flex";
+						[...this.parent.parent.TextEditingMenuContainer.children].forEach(each=>each.style.cursor = "auto");
+
+
 					}
+					
+				this.tapHandler(e);					
 			}
 	}
 class Auralayer
@@ -875,12 +921,13 @@ class Auralayer
 				this.in_text_editor = false;
 				this.analysis_master_embed = false;
 				this.view_mode_slider_top_button = false;
+				this.load_from_file_mode = false;
 				this.skip_amount = 10;
 				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
-					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 4, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0 }, layers: [] }}
+					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 3, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0 }, layers: [] }}
 				this.scale = this.example_data.piece_info.scale;
 				
 				this.color_count = this.example_data.piece_info.color_count;
@@ -893,33 +940,37 @@ class Auralayer
 				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
 				this.check_for_url_data();
-				this.create_activity_selection_interface();
-        this.initialize_interface();				
+				if(this.url_activity_text !== "")
+				{
+					this.load_from_server(this.url_activity_text);	
+					return false;
+				}
+				setTimeout(()=>
+					{
+						console.log("TimeOUT");
+						this.create_activity_selection_interface();
+						this.initialize_interface();	
+					}, "200");
+				// this.create_activity_selection_interface();
+        // this.initialize_interface();				
       }
 		load_from_server(link_id)
 			{
-					// Read file from server given file name      
-
-					fetch("saves/" + link_id + ".auralayer")
-					.then(response => response.text())
+					// Read file from server given file name
+					fetch("./saves/" + link_id + ".auralayer")
+					.then(response => response.json())
 					.then(data_from_file => this.load_mechanism(data_from_file))
-					.catch(error => console.log(error));
-		
+					.catch(error => console.log(error) );
 			}
 		load_mechanism(loaded_data)
 			{
-				this.loaded_file = JSON.parse( loaded_data );
-				// this.loaded_file = loaded_data;
+				// this.loaded_file = JSON.parse( loaded_data );
+				this.loaded_file = loaded_data;
+				console.log(this.loaded_file);
+				this.load_from_file(this.loaded_file);
 			}
 		create_activity_selection_interface()
 			{
-				if(this.url_activity_text !== "")
-					{
-						
-						this.load_from_server(this.url_activity_text);
-						this.load_from_file(this.loaded_file);
-						return false;
-					}
 				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
 					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
 					this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
@@ -1069,16 +1120,7 @@ class Auralayer
 			//    SEGMENT EDITING CONTAINER COMPONENTS
 			// -----------------------------------        
 				
-				// Text Formatting Flyout Menu
-				this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
-				this.TextEditingLeftAlignButton = createNewElement({type:"button", classes:["TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-left"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "left"})}}});
-				this.TextEditingCenterAlignButton = createNewElement({type:"button", classes:["TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "center"})}}});
-				this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
-				this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
-				this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
-				this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
-				this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
-				this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});				
+		
 				
 
 
@@ -1164,6 +1206,15 @@ class Auralayer
 				//data-sort-method="number"
 
 				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties:{id: "collapsing"}});
+					this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.AccordionContainer1  , properties:{}});
+						this.TextEditingLeftAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-left"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "left"})}}});
+						this.TextEditingCenterAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "center"})}}});
+						this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
+						this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
+						this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
+						this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
+						this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
+						this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});
 					this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "p-1", "m-auto", "my-3"], parent: this.AccordionContainer1, properties:{}});
 						this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
 							this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
@@ -1183,6 +1234,11 @@ class Auralayer
 
 
 				
+
+				// Text Formatting Flyout Menu
+				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
+				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.HeaderContainer , properties:{}, styles:{display: "none"}});
+								
       }
 		undo_handler()
 			{
@@ -1407,6 +1463,40 @@ class Auralayer
 
 					return(smallestPositiveIndex);
 			}
+		deselect_all_segments()
+			{
+				for (let i = 0; i < this.layers.length ; i++)
+					{
+						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
+							{				
+								this.layers[i].segment_array[j].segment.classList.remove("segment_selected");
+								this.layers[i].segment_array[j].TextEditingMenuContainer_SingleSegment.style.display = "none";
+							}
+					}
+
+				// this.TextEditingMenuContainer.style.display = "none";
+				// this.TextEditingMenuContainer.style.cursor = "not-allowed";
+				[...this.TextEditingMenuContainer.children].forEach(each=>each.style.cursor = "not-allowed");
+			}
+		deselect_all_layers()
+			{
+				
+				for (let i = 0; i < this.layers.length ; i++)
+					{
+						if(this.layers[i].layer_controls_holder.classList.contains("layer_selected_controls_holder"))
+							{
+								this.layers[i].layer_controls_holder.classList.remove("layer_selected_controls_holder");
+								this.layers[i].layer_segment_holder.classList.remove("layer_selected_segments_holder");
+								this.layers[i].selected = false;
+								this.layers[i].select_box.checked = false;
+								this.layers[i].segment_array.forEach(each_segment=>each_segment.segment.classList.remove("segments_layer_is_selected"));
+								this.layers[i].segment_array.forEach(each_segment=>each_segment.segment.classList.add("segments_layer_is_not_selected"));
+								this.layers[i].layer_settings_button.style.display = "none";
+								this.layers[i].layer_settings_container.style.display = "none";
+								this.layers[i].texture_selector.style.display = "none";
+							}
+					}		
+			}
 		hide_all_TextEditingMenuContainer_SingleSegments()
 			{
 				for (let i = 0; i < this.layers.length ; i++)
@@ -1415,7 +1505,7 @@ class Auralayer
 							{
 								this.layers[i].segment_array[j].TextEditingMenuContainer_SingleSegment.style.display = "none";
 								
-								if(shift_down === false)
+								if(ctrl_down === false)
 									{this.layers[i].segment_array[j].segment.classList.remove("segment_selected")}
 							}
 					}				
@@ -1516,6 +1606,11 @@ class Auralayer
 									{
 										this.layers[i].segment_array[j].segment.style.filter = "opacity()";
 										this.layers[i].segment_array[j].data.styles.filter = "opacity()";
+										// if(this.layers[i].segment_array[j].data.classes.includes("segment_deleted"))
+										// 	{
+										// 		this.layers[i].segment_array[j].data.classes.splice(this.layers[i].segment_array[j].data.classes.indexOf("segment_deleted"), 1);
+										// 		this.layers[i].segment_array[j].segment.classList.remove("segment_deleted");
+										// 	}
 
 										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
@@ -1530,7 +1625,14 @@ class Auralayer
 										let initial_saturation_2 = "1.0";
 																				
 										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
-										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});														
+										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});
+
+										// if(urlText !== "")
+										// 	{
+												
+										// 		this.layers[i].segment_array[j].segment.style.filter = "opacity(" + new_saturation_value + ")";
+										// 		this.layers[i].segment_array[j].data.styles.filter = "opacity(" + new_saturation_value + ")";
+										// 	}
 										
 										if(this.PresenceSliderEnd.disabled === true)
 											{
@@ -1638,17 +1740,27 @@ class Auralayer
 			}
 		StartYoutubeActivitySetup()
 			{
+
 				this.example_data.piece_info.media_type = "youtube";
 				this.activity_type = 'youtube_link';
 				let youtube_url = 'Paste URL here';
 
 				const url_prompt_backdrop = createNewElement({type: "div", classes: ["url_prompt_backdrop"], parent: document.body});
 				const url_prompt_box_container = createNewElement({type: "div", classes: ["url_prompt_box_container"], parent: document.body});
-				const url_prompt_box_top = createNewElement({type: "div", classes: ["url_prompt_box_top"], parent: url_prompt_box_container, properties:{innerText : "Paste a YouTube URL below"}});
-				const url_prompt_box_middle = createNewElement({type: "div", classes: ["url_prompt_box_middle"], parent: url_prompt_box_container});
-				const url_prompt_input_box = createNewElement({type: "input", classes: [], parent: url_prompt_box_middle,  properties: { id: "url_prompt_input_box", innerText : "Paste a YouTube URL below", type : "text", placeholder: "Paste URL here" }});
-				const url_prompt_submit_button = createNewElement({type: "button", classes: [], parent: url_prompt_box_middle,  properties: { id: "url_prompt_submit_button", innerText : "Start" }});
-				const url_prompt_box_bottom = createNewElement({type: "div", classes: ["url_prompt_box_bottom"], parent: url_prompt_box_container});
+					const url_prompt_box_top = createNewElement({type: "div", classes: ["url_prompt_box_top"], parent: url_prompt_box_container, properties:{innerText : "Paste a YouTube URL below"}});
+					const url_prompt_box_middle = createNewElement({type: "div", classes: ["url_prompt_box_middle"], parent: url_prompt_box_container});
+						const url_prompt_input_box = createNewElement({type: "input", classes: [], parent: url_prompt_box_middle,  properties: { id: "url_prompt_input_box", innerText : "Paste a YouTube URL below", type : "text", placeholder: "Paste URL here" }});
+						const url_prompt_submit_button = createNewElement({type: "button", classes: [], parent: url_prompt_box_middle,  properties: { id: "url_prompt_submit_button", innerText : "Start" }});
+					const url_prompt_box_bottom = createNewElement({type: "div", classes: ["url_prompt_box_bottom"], parent: url_prompt_box_container});
+
+				if(this.load_from_file_mode === true)
+					{
+						youtube_url = this.example_data.piece_info.video_id;
+						this.loaded_file_name_label = this.example_data.piece_info.video_id;
+						setup_youtube_player();					
+						url_prompt_backdrop.style.display = "none";
+						url_prompt_box_container.style.display = "none";
+					}
 
 				if (developing === true) 
 					{
@@ -1694,13 +1806,16 @@ class Auralayer
 				this.example_data.piece_info.media_type = "audio_file";
 				this.activity_type = 'audio_file';
 			
+				this.ActivitySelectionBody.style.display = "none";
 				
-				this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: document.body, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "none"} });
+				this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: document.body, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"} });
 				this.open_audio_button.addEventListener('change', () => this.get_user_audio_file('nothing') );
 
-				this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}});
-				this.open_file_trigger_button.addEventListener('click', () => this.open_audio_button.click() );
-				this.loaded_file_name_label = createNewElement({type: "div", classes: ["loaded_file_name_label", "InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
+
+
+				// this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}, styles:{zIndex: 2}});
+				// this.open_file_trigger_button.addEventListener('click', () => this.open_audio_button.click() );
+				// this.loaded_file_name_label = createNewElement({type: "div", classes: ["loaded_file_name_label", "InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
 
 				if ( developing === true && location.hostname.includes("localhost"))
 					{
@@ -1710,14 +1825,16 @@ class Auralayer
 					}
 				else
 					{
-						this.open_audio_button.click();
+						// this.open_audio_button.click();
 					}
 			}
 		get_user_audio_file(sent_url)
 			{
 				this.ActivitySelectionContainer.style.display = "none";
 				this.uploaded_audio = createNewElement({type:"audio", classes:["user_audio"], parent: this.VideoAccordionBodyInterior, properties:{controls: true}});
-				this.VideoAccordionBody.appendChild(this.loaded_file_name_label);
+				this.uploaded_audio.addEventListener("play", e=> { this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`; });
+				this.uploaded_audio.addEventListener("pause", e=> { this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`; });					
+				// this.VideoAccordionBody.appendChild(this.loaded_file_name_label);
 
 				if ( developing === true && location.hostname.includes("localhost"))
 					{          											
@@ -1730,7 +1847,8 @@ class Auralayer
 					{
 						this.uploaded_audio.src = URL.createObjectURL(this.open_audio_button.files[0]);
 						// don't forget to revoke the blobURI when you don't need it
-						this.uploaded_audio.onend = function(e) { URL.revokeObjectURL(this.open_audio_button.src); }                                                                        
+						this.uploaded_audio.onend = function(e) { URL.revokeObjectURL(this.open_audio_button.src); }
+						this.open_audio_button.style.display = 'none';
 					}    
 						
 				this.uploaded_audio.addEventListener('loadedmetadata', () =>this.uploaded_audio_loadedmetadata_handler());						
@@ -1745,12 +1863,12 @@ class Auralayer
 				
 				this.file_length = parseInt(this.uploaded_audio.duration);
 				
-				this.open_file_trigger_button.style.display = 'none';
+				// this.open_file_trigger_button.style.display = 'none';
 
-				if(developing === true && location.hostname.includes("localhost"))
-					{ this.loaded_file_name_label.innerText = this.uploaded_audio.src; }
-				else
-					{ this.loaded_file_name_label.innerText = this.open_audio_button.files[0].name; }
+				// if(developing === true && location.hostname.includes("localhost"))
+				// 	{ this.loaded_file_name_label.innerText = this.uploaded_audio.src; }
+				// else
+				// 	{ this.loaded_file_name_label.innerText = this.open_audio_button.files[0].name; }
 
 				this.start_program_after_media_loaded();
 			}
@@ -1897,6 +2015,11 @@ class Auralayer
 				this.save_array.forEach(each=>console.log(each.program_data));					
 
 				this.undo_now = false;
+
+				
+				let segment_margin_bottom = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-bottom'));
+				document.documentElement.style.setProperty('--slider_thumb_height', ((this.segment_height + segment_margin_bottom ) * this.layers.length) + 70 + "px");
+				document.documentElement.style.setProperty('--slider_thumb_offset', ( ((((this.segment_height + segment_margin_bottom)/2) * this.layers.length) + 25) * -1) + "px");	
 			}
 		seek_slider_moved_handler(e)
 			{
@@ -1945,7 +2068,7 @@ class Auralayer
 					}                    
 				// this.uploaded_audio.currentTime = this.slider_position / this.scale;
 			}
-		move_seek_slider_with_audio_position(sender)
+		move_seek_slider_with_audio_position(sender, youtube_player_state)
 			{
 				// console.log("move");
 				// console.log(parseInt(this.uploaded_audio.currentTime * 10));
@@ -1968,6 +2091,21 @@ class Auralayer
 									else
 										{ document.getElementById("player").style.boxShadow = "0 0 10px black"; }
 									lastActiveElement = document.activeElement;
+								}
+
+							// console.log(youtube_player_state);
+							if(typeof youtube_player_state !== "undefined")
+								{
+									if(youtube_player_state === 2)
+										{
+											console.log("PAUSED");
+											this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
+										}
+									else if(youtube_player_state === 1)
+										{
+											console.log("PLAYING");
+											this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
+										}
 								}
 							break;
 						default:
@@ -2040,16 +2178,22 @@ class Auralayer
 				// let start = this.slider_position * this.scale;
 				let start = this.slider_position;
 				let presence_sync = true;
+				let num_of_selected_layers = 0;
 				
 				this.layers.forEach(each_layer=>
 					{
 						if(each_layer.selected === true)
 							{
+								num_of_selected_layers++
 								// this.slider_position / this.scale
 								each_layer.create_segment(start, -1, GLOBAL_presence_scale, GLOBAL_presence_scale, presence_sync);
 							}
 					});
 				// this.save_state();
+				if(num_of_selected_layers === 0)
+					{
+						alert("Select a layer or segment first before splitting")
+					}
 			}
 		merge_segments(e, direction)
 			{
@@ -2170,12 +2314,16 @@ class Auralayer
 										this.layers[i].segment_array[j].SegmentPresenceStartRange.value = 0;
 										this.layers[i].segment_array[j].SegmentPresenceEndRange.value = 0;																			
 
-										this.layers[i].segment_array[j].data.color =  urlText + formated_color_value
-										this.layers[i].segment_array[j].segment.style.background =   urlText + formated_color_value;
-										this.layers[i].segment_array[j].data.styles.background =  urlText + formated_color_value;
+										this.layers[i].segment_array[j].data.color = urlText + formated_color_value
+										this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
+										this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
 
+
+										// this.layers[i].segment_array[j].segment.classList.add("segment_deleted");
+										// this.layers[i].segment_array[j].data.classes.push("segment_deleted");
 										this.layers[i].segment_array[j].segment.style.filter = "opacity(0)";
 										this.layers[i].segment_array[j].data.styles.filter = "opacity(0)";
+										
 									}
 							}			
 					}
@@ -2197,7 +2345,7 @@ class Auralayer
 
 				let element = document.createElement('a');
 				let export_data = JSON.stringify(save_all, null, 2); // put data in me first
-				debugger
+				
 				
 				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(export_data));
 				element.setAttribute('download', file_name);
@@ -2214,7 +2362,7 @@ class Auralayer
 				if('files' in input && input.files.length > 0)
 					{ 
 						return readFileContent(input.files[0])
-						.then( data_from_file => this.load_from_file(data_from_file) ) 
+						.then( data_from_file => this.load_from_file(JSON.parse(data_from_file)) ) 
 						.catch(error => console.log(error)
 						);
 					}
@@ -2231,9 +2379,11 @@ class Auralayer
 			}
 		load_from_file(data)
 			{			
-				this.example_data = JSON.parse(data);
+				// this.example_data = JSON.parse(data);
+				this.example_data = data;
 				this.scale = this.example_data.piece_info.scale;
 				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
+				this.load_from_file_mode = true;
 				
 				if(this.example_data.piece_info.media_type === "youtube")
 					{
@@ -2242,7 +2392,7 @@ class Auralayer
 				else if (this.example_data.piece_info.media_type === "audio_file")
 					{
 						this.StartAudioFileActivitySetup()
-					}
+					}				
 			}
   }
 
@@ -2345,7 +2495,8 @@ function onPlayerReady(event)
 function onPlayerStateChange(event)
 	{
 		youtube_player_state = event.data;
-		project.move_seek_slider_with_audio_position('youtube_statechange');
+		console.log(event.data);
+		project.move_seek_slider_with_audio_position('youtube_statechange', youtube_player_state);
 		
 		if(project.iframe_embed === true)
 			{
