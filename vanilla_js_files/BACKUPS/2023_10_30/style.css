@@ -65,7 +65,6 @@ body
 	touch-action: pan-y;
 	overflow: hidden;
 	user-select: none;
-	padding-right: 20px;
 }
 
 
@@ -141,13 +140,6 @@ button:hover
   background-color: lightgray; */
 }
 
-
-.text-primary.text-primary.fw-light
-{
-	color: gray !important;
-	/* font-size: small; */
-}
-
 .UtilitiesContainer
 {
 	position: fixed;
@@ -158,7 +150,7 @@ button:hover
 .BodyContainer
 {
 	max-width:unset;
-	/* width: auto; */
+	width: auto;
 	width: 100%;
 	grid-row:1;
 	/* overflow-x: auto;*/
@@ -275,7 +267,7 @@ button:hover
 	grid-gap: 2px;
 	grid-column: 1;
 	cursor: pointer;
-	position: sticky;
+	/* position: sticky; */
 	left: 0px;
 	margin-left: 5px;
 	max-height: var(--segment-height);
@@ -439,8 +431,6 @@ button:hover
 .layer_selected_segments_holder
 {
 	/* background: #ff9800; */
-	/* outline: 3px solid #48484859; */
-	outline: 2px dashed #6e6e6e;
 }
 
 .segment
@@ -463,10 +453,8 @@ button:hover
 
 .segment_selected
 	{
-		/* box-shadow: 0px 0px 8px 3px; */
-		/* box-shadow: inset #e5e5e5 0px 0px 8px 3px; */
-		box-shadow: inset #e5e5e5 0px 0px 0px 4px;
-    z-index: 1;
+		box-shadow: 0px 0px 8px 3px;
+		z-index: 1;
 	}
 
 .segment_deleted

@@ -292,9 +292,7 @@ class Layer
 					
         this.layer_controls_holder = createNewElement({type:"div", classes: ["layer_controls_holder"], parent: this.layer_container});
 				// this.layer_controls_holder.addEventListener("click", e=> this.select_box.click());
-				let width = ((((this.parent.file_length/this.parent.resolution) * this.parent.scale) - 1 ) + (this.parent.scale/this.parent.resolution) ) + "px";
-        // this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: ((this.parent_file_length/this.parent.resolution) * this.parent.scale) + "px"}});
-				this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: width}});
+        this.layer_segment_holder = createNewElement({type:"div", classes: ["layer_segment_holder"], parent: this.layer_container, styles:{width: (this.parent_file_length * this.parent.scale) + "px"}});
 
 				this.layer_settings_button = createNewElement({type:"button", classes:["layer_settings_button", "btn", "btn-secondary"], parent: this.layer_controls_holder, properties:{ innerHTML: `<i class="bi bi-gear"></i>`}, styles:{display: "none"}, events:{click: e=>{this.layer_settings_button_handler(e)}}});
 				this.layer_settings_container = createNewElement({type:"div", classes:["layer_settings_container"], parent: this.layer_container, properties:{}, styles:{display: "none"}});
@@ -336,7 +334,10 @@ class Layer
         // this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
 				// this.grip.addEventListener("click",e=>this.select_box.click());
         this.name = createNewElement({type:"div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: this.layer_data.name, draggable: true}});
-				this.name.addEventListener("click", e=> {	 this.select_box.click() });
+				this.name.addEventListener("click", e=>
+					{	
+						this.select_box.click()
+					});
 				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
 				this.name.addEventListener("input", e=> this.layer_name_input_handler(e));
 				this.name.addEventListener("focus", e=> { this.parent.in_text_editor = true; });				
@@ -372,7 +373,7 @@ class Layer
 				if(this.layer_data.segments.length === 0)
 					{ this.create_segment(0, -1, GLOBAL_presence_scale, GLOBAL_presence_scale, presence_sync); }
 				else
-					{this.layer_data.segments.forEach(each=>this.create_segment(each.start_pos, each.end_pos, each.start_presence, each.end_presence, each.presence_sync, each)); }
+					{ this.layer_data.segments.forEach(each=>this.create_segment(each.start_pos, each.end_pos, each.start_presence, each.end_presence, each.presence_sync, each)); }
 
 				this.mode = "editing_layer_mode";
 
@@ -564,10 +565,8 @@ class Layer
 		create_segment(start, end = -1, start_presence = -1, end_presence = -1, presence_sync, sent_segment = {})
 			{
 				this.current_segment_index = 0;
-				this.current_position = start * this.parent.resolution;
+				this.current_position = start;
 				let premature_exit = false;
-				
-				
 				
 				// treat loading from a file/undo differently than adding a new segment while doing normal editing
 				if(this.mode === "load_existing_layer")
@@ -622,9 +621,7 @@ class Layer
 								// make the current segment shorter
 								// the -1 is just so the end position of the current segment and start position of the new segment aren't the same
 								this.layer_data.segments[this.current_segment_index].end_pos = this.current_position - 1 ;
-								// this.segment_array[this.current_segment_index].segment.style.width = (((new_width_of_current_segment/this.parent.resolution) * this.parent.scale) - 1) + "px";
-								// this.segment_array[this.current_segment_index].segment.style.width = ((((this.layer_data.segments[this.current_segment_index].end_pos-this.layer_data.segments[this.current_segment_index].start_pos)/this.parent.resolution) * this.parent.scale) - 1) + "px";
-								this.segment_array[this.current_segment_index].segment.style.width = ((((this.layer_data.segments[this.current_segment_index].end_pos/this.parent.resolution) - (this.layer_data.segments[this.current_segment_index].start_pos/this.parent.resolution)) * this.parent.scale) + (this.parent.scale/this.parent.resolution) -1) +  "px";
+								this.segment_array[this.current_segment_index].segment.style.width = ((new_width_of_current_segment * this.parent.scale) - 1) + "px";
 							
 								this.segment_array.push(new Segment(this, old_end_pos_of_current_segment, this.layer_data.segments, this.layer_data.color, this.layer_segment_holder, this.parent.PresenceSliderStart, this.parent.PresenceSliderEnd, start_presence, end_presence, presence_sync,));
 							}
@@ -680,17 +677,13 @@ class Segment
 			}
 		create_segment()
 			{
-				// width:  (((this.data.end_pos/this.parent.parent.resolution) - (this.data.start_pos/this.parent.parent.resolution)) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
-				// width:  ((((this.data.end_pos/this.parent.parent.resolution) - (this.data.start_pos/this.parent.parent.resolution)) * this.parent.parent.scale) - 1) + "px",
-				let width = ((((this.data.end_pos/this.parent.parent.resolution) - (this.data.start_pos/this.parent.parent.resolution)) * this.parent.parent.scale) + (this.parent.parent.scale/this.parent.parent.resolution) -1) +  "px";
-
+				
 				this.segment = createNewElement({type:"div", classes: this.data.classes, parent: this.layer_segment_holder, styles:
 					{
-						left: ((this.data.start_pos/this.parent.parent.resolution) * this.parent.parent.scale) + "px",
-						width:  width,
+						left: (this.data.start_pos * this.parent.parent.scale) + "px",
+						width:  ((this.data.end_pos - this.data.start_pos) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
 						background: this.data.color,
-						filter: this.data.styles.filter,
-						clipPath: this.data.styles.clipPath
+						filter: this.data.styles.filter
 					},
 					properties: {contentEditable: false}
 				});
@@ -930,18 +923,17 @@ class Auralayer
 				this.view_mode_slider_top_button = false;
 				this.load_from_file_mode = false;
 				this.skip_amount = 10;
-				this.resolution = 10;
 				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
-					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 3, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0, segment_decrescendo: "gradient" }, layers: [] }}
+					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 3, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0 }, layers: [] }}
 				this.scale = this.example_data.piece_info.scale;
+				
 				this.color_count = this.example_data.piece_info.color_count;
 				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
 				this.slider_thumb_offset = this.example_data.piece_info.slider_thumb_offset;
 				this.slider_thumb_height = this.example_data.piece_info.slider_thumb_height;
-				this.segment_decrescendo = this.example_data.piece_info.segment_decrescendo;
 				// this.segment_height = this.example_data.piece_info.segment_height;
 				this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
 				this.audio_speed = 10;
@@ -1043,9 +1035,9 @@ class Auralayer
 				this.SegmentDecresendoSelectContainer = createNewElement({type: "p", classes:["SegmentDecresendoSelectContainer"], parent: this.HeaderSettingsMenuBody});
 
 				this.SegmentDecresendoSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentDecresendoSelectContainer, properties:{innerText: "Segment decrescendo", htmlFor: "decrescendo"}});
-				this.SegmentDecresendoSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentDecresendoSelectContainer, attributes:{"aria-label": "Segment decrescendo"}, events:{change:e=>this.SegmentDecresendoSelectBoxHandler(e)}});
-				this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"gradient", innerText:"Gradient"}, attributes:{selected: true}});
-				this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}});
+				this.SegmentDecresendoSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentDecresendoSelectContainer, attributes:{"aria-label": "Segment decrescendo"}});
+				this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"1", innerText:"Gradient"}, attributes:{selected: true}});
+				this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"2", innerText:"Slope"}});
 
 
 				this.SegmentColorPaletteSelectContainer = createNewElement({type: "p", classes:["SegmentColorPaletteSelectContainer"], parent: this.HeaderSettingsMenuBody});
@@ -1248,10 +1240,6 @@ class Auralayer
 				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.HeaderContainer , properties:{}, styles:{display: "none"}});
 								
       }
-		SegmentDecresendoSelectBoxHandler(e)
-			{
-				this.segment_decrescendo = e.target.value;
-			}
 		undo_handler()
 			{
 				if(this.save_position > 0)
@@ -1601,19 +1589,11 @@ class Auralayer
 					{
 						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
 							{
-								// this.layers[i].segment_array[j].segment.style.width = ((this.layers[i].segment_array[j].data.end_pos - this.layers[i].segment_array[j].data.start_pos ) * this.scale) + (this.scale-1) +  "px";
-								// this.layers[i].segment_array[j].segment.style.width = (((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution) - 1 ) * this.scale) + (this.scale-1) +  "px";
-								// this.layers[i].segment_array[j].segment.style.width = (((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution) - 1 ) * this.scale) + (this.scale-1) +  "px";
-								this.layers[i].segment_array[j].segment.style.width = ((((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution)) * this.scale) + (this.scale/this.resolution) -1) +  "px";
-								this.layers[i].segment_array[j].segment.style.left = ((this.layers[i].segment_array[j].data.start_pos/this.resolution) * this.scale) +  "px";
-							}
-							
-						// this.layers[i].layer_segment_holder.style.width = ((((this.file_length/this.resolution) / this.length_padding) * this.scale) - 1)  + "px";
-						// this.layers[i].layer_segment_holder.style.width = (((this.file_length/this.resolution) * this.scale) - 1 )  + "px";
-						this.layers[i].layer_segment_holder.style.width = ((((this.file_length/this.resolution) * this.scale) - 1 ) + (this.scale/this.resolution) ) + "px";
+								this.layers[i].segment_array[j].segment.style.width = ((this.layers[i].segment_array[j].data.end_pos - this.layers[i].segment_array[j].data.start_pos ) * this.scale) + (this.scale-1) +  "px";
+								this.layers[i].segment_array[j].segment.style.left = (this.layers[i].segment_array[j].data.start_pos * this.scale) +  "px";
+							}			
 					}
-				// this.SeekSlider.style.width = ((this.file_length/this.resolution) / this.length_padding) * this.scale + "px";
-				this.SeekSlider.style.width = ((((this.file_length/this.resolution) * this.scale) - 1 ) + (this.scale/this.resolution) ) + "px";
+				this.SeekSlider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
 				this.save_state();
 			}	
 		change_opacity(e, direction)
@@ -1657,23 +1637,13 @@ class Auralayer
 										if(this.PresenceSliderEnd.disabled === true)
 											{
 												let new_color_value = color_value_1 + new_saturation_value + ")";
-												formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";
-												
-												if (this.segment_decrescendo === "gradient")
-													{
-														this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
-														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
-														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
-														this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
-														this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;	
-													}
-												else if (this.segment_decrescendo === "slope" && new_saturation_value > 0)
-													{
-														console.log(new_saturation_value);
-														this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
-														this.layers[i].segment_array[j].data.styles.clipPath =  "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
-													}
+												formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
+												this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
+												this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+												// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+												// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+												this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
+												this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;												
 											}
 										else
 											{
@@ -1695,19 +1665,9 @@ class Auralayer
 															}
 
 														formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
-
-														if (this.segment_decrescendo === "gradient")
-															{
-																this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-																// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
-																this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
-															}
-														else if (this.segment_decrescendo === "slope")
-															{
-																
-																this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% 0, 100% 100%, 0 100%)";
-																this.layers[i].segment_array[j].data.styles.clipPath = "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% 0, 100% 100%, 0 100%)";
-															}
+														this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
+														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+														this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 													}
 												else if(direction === "end")
 													{	
@@ -1724,31 +1684,15 @@ class Auralayer
 															}
 
 														formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
-
-														if (this.segment_decrescendo === "gradient")
-															{
-																this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
-																// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
-																this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;
-															}
-														else if (this.segment_decrescendo === "slope")
-															{
-																this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 0, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
-																this.layers[i].segment_array[j].data.styles.clipPath =  "polygon(0 0, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
-															}
+														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+														this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;
 													}		
 											}
 
-
-											
-										if (this.segment_decrescendo === "gradient")
-											{
-												this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
-												this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
-												this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
-											}
-
-										// this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
+										this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
+										this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
+										this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
 									}
 							}			
 					}
@@ -1877,7 +1821,7 @@ class Auralayer
 					{
 						this.get_user_audio_file('nothing');
 						this.open_audio_button.style.display = "none";
-						// this.open_file_trigger_button.display = "none";
+						this.open_file_trigger_button.display = "none";
 					}
 				else
 					{
@@ -1917,8 +1861,7 @@ class Auralayer
 			{
 				// this.file_length = parseInt(this.uploaded_audio.duration * this.scale);
 				
-				// this.file_length = parseInt(this.uploaded_audio.duration);
-				this.file_length = parseInt(this.uploaded_audio.duration) * this.resolution;
+				this.file_length = parseInt(this.uploaded_audio.duration);
 				
 				// this.open_file_trigger_button.style.display = 'none';
 
@@ -2034,7 +1977,7 @@ class Auralayer
 		setup_youtube_file_info()
 			{
 				// this.file_length = parseInt(playerx.getDuration() * this.scale);
-				this.file_length = parseInt(playerx.getDuration()) * this.resolution;
+				this.file_length = parseInt(playerx.getDuration());
 				this.start_program_after_media_loaded();
 				this.timeupdater = setInterval((e) => this.move_seek_slider_with_audio_position('ticking_youtube') , 10);
 			}
@@ -2046,9 +1989,7 @@ class Auralayer
 				
 				this.SeekSlider.max = this.file_length * this.audio_speed;
 				this.SeekSlider.value = 0;
-				let width = ((((this.file_length/this.resolution) * this.scale) - 1 ) + (this.scale/this.resolution) ) + "px";
-				this.SeekSlider.style.width = width;
-				// this.SeekSlider.style.width = ((this.file_length/this.resolution) / this.length_padding) * this.scale + "px";
+				this.SeekSlider.style.width = (this.file_length / this.length_padding) * this.scale + "px";
 				this.SeekSlider.style.display = 'block';
 
 				if (this.example_data.layers.length === 0)
@@ -2060,8 +2001,7 @@ class Auralayer
 						{ name: "Layer " + (this.example_data.piece_info.layer_id_pos + 1), color: "linear-gradient(to right, " + random_color + ", " + random_color + ")", segments: [],markers:[], layer_id_pos: 0 }
 
 						this.example_data.layers.push( initial_layer_data );
-						this.layers.push(new Layer(this.AllLayerContainers, initial_layer_data, this.file_length, this, "new_layer"));						
-						this.layers[0].name.click()
+						this.layers.push(new Layer(this.AllLayerContainers, initial_layer_data, this.file_length, this, "new_layer"));
 					}
 				else
 					{
@@ -2084,7 +2024,8 @@ class Auralayer
 		seek_slider_moved_handler(e)
 			{
 				// this.slider_position = e.target.value / 10;
-				this.slider_position = parseInt((e.target.value/this.resolution) / this.audio_speed);
+				this.slider_position = e.target.value / this.audio_speed;
+				
 				
 				switch (this.activity_type)
 					{
@@ -2131,16 +2072,15 @@ class Auralayer
 			{
 				// console.log("move");
 				// console.log(parseInt(this.uploaded_audio.currentTime * 10));
-				
 				switch (this.activity_type)
 					{
 						case 'audio_file':
-							this.slider_position = parseInt((this.uploaded_audio.currentTime * this.resolution));
-							this.SeekSlider.value = parseInt((this.uploaded_audio.currentTime * this.resolution) * this.audio_speed);		
+							this.slider_position = parseInt(this.uploaded_audio.currentTime);
+							this.SeekSlider.value = parseInt(this.uploaded_audio.currentTime * this.audio_speed);		
 							break;
 						case 'youtube_link':
-							this.slider_position = parseInt((playerx.getCurrentTime() * this.resolution));
-							this.SeekSlider.value = parseInt((playerx.getCurrentTime() * this.resolution) * this.audio_speed);
+							this.SeekSlider.value = parseInt(playerx.getCurrentTime() * this.audio_speed);
+							this.slider_position = parseInt(playerx.getCurrentTime());
 							// console.log("playerx.getCurrentTime(): " + playerx.getCurrentTime());
 							// console.log("this.slider_position: " + this.slider_position);
 							let current_active_element = document.activeElement;
@@ -2236,11 +2176,9 @@ class Auralayer
 		split_selected_segment()
 			{
 				// let start = this.slider_position * this.scale;
-				let start = (this.slider_position/this.resolution);
+				let start = this.slider_position;
 				let presence_sync = true;
 				let num_of_selected_layers = 0;
-
-				console.log("START: " + start);
 				
 				this.layers.forEach(each_layer=>
 					{
@@ -2308,8 +2246,7 @@ class Auralayer
 														if(this.layers[i].layer_data.segments[k].end_pos === (left_position_to_search_for -1))
 															{
 																proceed_with_deletion = true;
-																// width_new = ((this.layers[i].layer_data.segments[k].end_pos - this.layers[i].layer_data.segments[k].start_pos) + width_to_add_to_merging_segment)/this.resolution + 1;
-																width_new = ((this.layers[i].layer_data.segments[k].end_pos - this.layers[i].layer_data.segments[k].start_pos) + width_to_add_to_merging_segment)/this.resolution;
+																width_new = (this.layers[i].layer_data.segments[k].end_pos - this.layers[i].layer_data.segments[k].start_pos) + width_to_add_to_merging_segment + 1;
 															}
 													}
 												else if(direction === "right")
@@ -2317,8 +2254,7 @@ class Auralayer
 														if(this.layers[i].layer_data.segments[k].start_pos === (left_position_to_search_for + 1))
 															{
 																proceed_with_deletion = true;
-																// width_new = ((this.layers[i].layer_data.segments[k].end_pos - this.layers[i].layer_data.segments[k].start_pos) + width_to_add_to_merging_segment)/this.resolution + 1;
-																width_new = ((this.layers[i].layer_data.segments[k].end_pos - this.layers[i].layer_data.segments[k].start_pos) + width_to_add_to_merging_segment)/this.resolution;
+																width_new = (this.layers[i].layer_data.segments[k].end_pos - this.layers[i].layer_data.segments[k].start_pos) + width_to_add_to_merging_segment + 1;
 															}
 													}
 
@@ -2339,9 +2275,8 @@ class Auralayer
 															}
 														else if(direction === "right")
 															{
-																
 																this.layers[i].layer_data.segments[k].start_pos = this.layers[i].layer_data.segments[k].start_pos - width_to_add_to_merging_segment - 1;
-																this.layers[i].segment_array[k].segment.style.left = ((this.layers[i].layer_data.segments[k].start_pos)/this.resolution) * this.scale + "px";
+																this.layers[i].segment_array[k].segment.style.left = this.layers[i].layer_data.segments[k].start_pos + "px";
 															}
 													}
 											}												
@@ -2448,8 +2383,6 @@ class Auralayer
 				this.example_data = data;
 				this.scale = this.example_data.piece_info.scale;
 				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
-				this.color_count = this.example_data.piece_info.color_count;
-				this.segment_decrescendo = this.example_data.piece_info.segment_decrescendo;
 				this.load_from_file_mode = true;
 				
 				if(this.example_data.piece_info.media_type === "youtube")
