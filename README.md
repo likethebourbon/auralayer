@@ -1,27 +1,26 @@
-# React + Vite
+# Auralayer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In development!
 
-Currently, two official plugins are available:
+## Feature requests
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [ ] draggable cursor
+- [ ] timestamps listed (every 30 secs? every minute? configurable?)
+- [ ] double-click to edit layer name
+- [ ] select segment + Y to jump cursor to beginning of segment
+- [ ] confirm before navigating away
+- [ ] move (user) cursor when hovering/moving (playback) cursor
+- [ ] snap to other timetamps
+- [ ] highlight row background instead of dotted border
+- [ ] Spacer layer (for showing groups of layers)
+- [ ] editable data table
+- [ ] more space for layer names
+- [ ] 
 
-## Expanding the ESLint configuration
+## Bugs 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [ ] dotted line around first layer
+- [ ] selecting a small segment turns it white so hard to see what's selected vs deleted—need external border instead of internal
+- [ ] confirm before navigating away
+- [ ] overflow-y is hidden?
+- [ ] 
