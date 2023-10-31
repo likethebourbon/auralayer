@@ -1230,7 +1230,9 @@ class Auralayer
 									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
 							this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
 								this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
-									this.DataTable = createNewElement({type: "table", classes:[], parent: this.DataAccordionBodyInterior});
+									
+								this.DataTableWrapper = createNewElement({type: "div", classes:["col-lg-8", "offset-lg-2", "table-responsive"], parent: this.DataAccordionBodyInterior});
+								this.DataTable = createNewElement({type: "table", classes:["table"], parent: this.DataTableWrapper});
 										this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
 										this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
 									this.DataTableTable = new Tablesort(this.DataTable);
