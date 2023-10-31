@@ -71,3 +71,7 @@ Auralayer: a web app designed for ease of use
   * Graph instrumentation
   * Graph channel usage 
   * Compare the two graphs; observe how instrumentation is split across sound chip channels
+
+---
+
+## Feature Requests?
