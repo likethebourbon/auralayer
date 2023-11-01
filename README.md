@@ -29,3 +29,4 @@ In development!
 - [ ] overflow-y is hidden?
 - [ ] full width or centered graph on opening
 - [ ] Sometimes when switching windows the analysis disappears and I go back to the start screen
+- [ ] 
