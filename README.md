@@ -24,8 +24,7 @@ In development!
 ## Bugs 
 
 - [ ] selecting a small segment turns it white so hard to see what's selected vs deleted—need external border instead of internal
-- [ ] confirm before navigating away
 - [ ] overflow-y is hidden?
 - [ ] full width or centered graph on opening
 - [ ] Sometimes when switching windows the analysis disappears and I go back to the start screen
-- [ ] 
+- [ ] data table collapsible expands when the table is open

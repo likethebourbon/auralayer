@@ -29,7 +29,7 @@ We have standard methods of visually representing
 
 ---
 
-* Many authors represent instrumentation and timbre with layer graphs (Butler 2006; Dolan 2013)
+* Many authors represent instrumentation and timbre with layer graphs (Butler 2006; Dolan 2013) [add image]
 * Such graphs can be made with Excel or Powerpoint, but it's laborious
 
 ---
@@ -59,10 +59,6 @@ Auralayer: a web app designed for ease of use
 
 ---
 
-## Demo Analyses
-
----
-
 ## Example assignments
 
 * Graph functional layers after Moore (2012) of "get him back!" by Olivia Rodrigo
@@ -71,7 +67,19 @@ Auralayer: a web app designed for ease of use
   * Graph instrumentation
   * Graph channel usage 
   * Compare the two graphs; observe how instrumentation is split across sound chip channels
+* Processual (non-hierarchical) form analyses
+
+---
+
+## Try it?
+
+* There will be bugs! Sorry! 
+* QR code for finished analysis
+* QR code for new analysis
+* QR code for suggestions/bugs
 
 ---
 
 ## Feature Requests?
+
+* QR code for suggestions/bugs
