@@ -62,11 +62,38 @@
                 <div id="page-header" class="col-10 my-4 text-center">
 
                     <h1 class="text-primary fw-light">Auralayer</h1>
+                    <!-- Button trigger modal -- would prefer to activate on load -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#startModal">
+                        Start
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="startModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                    
+                                    <h1 class="modal-title fs-5" id="startModalLabel">Start Auralayer</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-grid gap-2 col-sm-6 mx-auto">
+                                        <button type="button" class="btn btn-primary">Create with Youtube audio</button>
+                                        <button type="button" class="btn btn-primary">Create with local audio</button>
+                                        <button type="button" class="btn btn-primary">Load file</button>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
     <main class="d-flex flex-nowrap">
+
         <div class="container-xl">
             <div id="utilites" class="row mt-4 mx-md-5 justify-content-between">
                 <div id="undo-redo" class="col">
