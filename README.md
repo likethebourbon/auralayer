@@ -19,6 +19,7 @@ In development!
 - [ ] I think 10 steps is too many and would go back to 5 (0–4)
 - [ ] need a back button after submitting what kind of starting point (e.g., after pressing YT, need to be able to go back and select load from file)
 - [ ] ability to select a blank/missing segment—currently no good way to fill in a gap
+- [ ] download button asks whether you want to save data file or image
 
 ## Bugs 
 
