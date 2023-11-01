@@ -4,13 +4,13 @@ In development!
 
 ## Feature requests
 
+- [ ] **confirm before navigating away**
 - [ ] draggable cursor
 - [ ] timestamps listed (every 30 secs? every minute? configurable?)
 - [ ] double-click to edit layer name
 - [ ] select segment + Y to jump cursor to beginning of segment
-- [ ] confirm before navigating away
 - [ ] [move visual for (user) cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) when hovering/moving (playback) cursor
-- [ ] snap to other timetamps
+- [ ] snap cursor to beginnings/ends of segments
 - [ ] highlight row background instead of dotted border
 - [ ] Spacer layer (for showing groups of layers)
 - [ ] editable data table
@@ -23,7 +23,6 @@ In development!
 
 ## Bugs 
 
-- [ ] dotted line around first layer
 - [ ] selecting a small segment turns it white so hard to see what's selected vs deleted—need external border instead of internal
 - [ ] confirm before navigating away
 - [ ] overflow-y is hidden?
