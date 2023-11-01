@@ -1,4 +1,4 @@
-let developing = false;
+let developing = true;
 let youtube_player_state = -2;
 let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
