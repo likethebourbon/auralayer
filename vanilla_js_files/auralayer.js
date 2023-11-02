@@ -1644,11 +1644,6 @@ class Auralayer
 										
 										this.layers[i].segment_array[j].segment.style.filter = "opacity()";
 										this.layers[i].segment_array[j].data.styles.filter = "opacity()";
-										// if(this.layers[i].segment_array[j].data.classes.includes("segment_deleted"))
-										// 	{
-										// 		this.layers[i].segment_array[j].data.classes.splice(this.layers[i].segment_array[j].data.classes.indexOf("segment_deleted"), 1);
-										// 		this.layers[i].segment_array[j].segment.classList.remove("segment_deleted");
-										// 	}
 
 										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
@@ -1665,12 +1660,6 @@ class Auralayer
 										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
 										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});
 
-										// if(urlText !== "")
-										// 	{
-												
-										// 		this.layers[i].segment_array[j].segment.style.filter = "opacity(" + new_saturation_value + ")";
-										// 		this.layers[i].segment_array[j].data.styles.filter = "opacity(" + new_saturation_value + ")";
-										// 	}
 										
 										if(this.PresenceSliderEnd.disabled === true)
 											{
@@ -1680,9 +1669,7 @@ class Auralayer
 												if (this.segment_decrescendo === "gradient")
 													{
 														this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
-														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
-														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
+														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);														
 														this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 														this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;	
 													}
@@ -1717,7 +1704,6 @@ class Auralayer
 														if (this.segment_decrescendo === "gradient")
 															{
 																this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-																// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
 																this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 															}
 														else if (this.segment_decrescendo === "slope")
@@ -1746,7 +1732,6 @@ class Auralayer
 														if (this.segment_decrescendo === "gradient")
 															{
 																this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
-																// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
 																this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;
 															}
 														else if (this.segment_decrescendo === "slope")
@@ -1758,15 +1743,24 @@ class Auralayer
 											}
 
 
-											
 										if (this.segment_decrescendo === "gradient")
 											{
 												this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
 												this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
 												this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
 											}
-
-										// this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
+										else if( this.segment_decrescendo === "slope")
+											{
+												
+												let starting_color = color_value_1 + initial_saturation_1 + ")";
+												let ending_color = color_value_2 + initial_saturation_2 + "))";
+												
+												formated_color_value = "linear-gradient(to right, " + starting_color + ", " + ending_color;
+												
+												this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
+												this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
+												this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
+											}
 									}
 							}			
 					}
@@ -2377,7 +2371,8 @@ class Auralayer
 							{
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
-										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+										
+										// let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
 										let urlText = "";
 										let initial_value = this.layers[i].segment_array[j].data.color;
