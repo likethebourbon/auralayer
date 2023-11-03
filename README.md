@@ -4,7 +4,7 @@ In development!
 
 ## Feature requests
 
-- [ ] **confirm before navigating away**
+- [x] **confirm before navigating away**
 - [ ] draggable cursor
 - [ ] timestamps listed (every 30 secs? every minute? configurable?)
 - [ ] double-click to edit layer name
@@ -18,13 +18,13 @@ In development!
 - [ ] pattern overlays white instead of black
 - [ ] I think 10 steps is too many and would go back to 5 (0–4)
 - [ ] need a back button after submitting what kind of starting point (e.g., after pressing YT, need to be able to go back and select load from file)
-- [ ] ability to select a blank/missing segment—currently no good way to fill in a gap
+- [x] ability to select a blank/missing segment—currently no good way to fill in a gap
 - [ ] download button asks whether you want to save data file or image
 
 ## Bugs 
 
-- [ ] selecting a small segment turns it white so hard to see what's selected vs deleted—need external border instead of internal
-- [ ] overflow-y is hidden?
+- [x] selecting a small segment turns it white so hard to see what's selected vs deleted—need external border instead of internal
+- [x] overflow-y is hidden?
 - [ ] full width or centered graph on opening
 - [ ] Sometimes when switching windows the analysis disappears and I go back to the start screen
 - [ ] data table collapsible expands when the table is open
