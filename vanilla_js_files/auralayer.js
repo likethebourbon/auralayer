@@ -1905,7 +1905,7 @@ class Auralayer {
 		});
 		this.ZoomButtonGroup = createNewElement({
 			type: "div",
-			classes: ["ZoomButtonGroup", "btn-group"],
+			classes: ["ZoomButtonGroup", "btn-group", "mx-2"],
 			parent: this.UndoZoomContainer,
 			properties: { role: "group" },
 		});
@@ -2221,8 +2221,6 @@ class Auralayer {
 				"audio_play_button",
 				"btn",
 				"btn-outline-secondary",
-				"rounded-0",
-				"rounded-top",
 				"border-0",
 			],
 			parent: this.UndoZoomContainer,
