@@ -26,9 +26,9 @@ In development!
 - [ ] "merge right/left" when selecting multiple segs should merge all selected segs into the leftmost/rightmost seg
 - [x] after merging segments, the merged segment should be selected
 - [x] underline option for text
-- [ ] keyboard shortcuts for text formatting
+- [x] keyboard shortcuts for text formatting (ctrl + b, ctrl + i, ctrl&shift + u - not sure what the others should be)
 - [ ] background image of just a lower/upper border or a box
-- [ ] text formatting does some weird stuff when multiple boxes are selected
+- [x] text formatting does some weird stuff when multiple boxes are selected
 - [x] confirm dialog before deleting layer
 - [ ] shift+click selects all contiguous segments; cmd+click selects multiple segments
 - [ ] spinner when loading a file
