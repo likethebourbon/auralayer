@@ -372,6 +372,7 @@ class Layer {
 
 
 
+
 		this.shape_background_texture_1.addEventListener('click', e => this.create_layer_background_texture(e));
 		this.shape_background_texture_2.addEventListener('click', e => this.create_layer_background_texture(e));
 		this.shape_background_texture_3.addEventListener('click', e => this.create_layer_background_texture(e));
@@ -1319,8 +1320,8 @@ class Auralayer {
 		this.ExportButtonContainer = createNewElement({ type: "div", classes: ["ExportButtonContainer", "col-md-2", "text-md-end", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties: { id: "export" } });
 
 		this.SaveToFileButton = createNewElement({ type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: { innerHTML: `<i class="bi-download"></i>`, type: "button", title: "Save Analysis to File" }, dataset: { bsToggle: "modal", bsTarget: "#download" } });
-		this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
-		// this.SaveToFileButton.addEventListener("click", e => { download_image(); });
+		// this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
+		this.SaveToFileButton.addEventListener("click", e => { download_image(); });
 
 		this.ShareAnalysisButton = createNewElement({ type: "button", classes: ["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: { innerHTML: `<i class="bi-share-fill"></i>` }, dataset: { bsToggle: "modal", bsTarget: "#share" } });
 
@@ -3151,5 +3152,4 @@ function onPlayerStateChange(event) {
 	if (project.iframe_embed === true) {
 		playerx.g.classList.remove("small_youtube_video_for_iframes");
 	}
-}
-}  
+} 
