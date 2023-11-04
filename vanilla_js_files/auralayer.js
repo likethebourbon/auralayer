@@ -496,7 +496,11 @@ class Layer
 			}   			
 		delete_layer_button_handler()
 			{
-				this.parent.delete_layer(this.layer_data.layer_id_pos);
+				if(window.confirm("Are you sure you want to delete the entire layer?"))
+					{
+						this.parent.delete_layer(this.layer_data.layer_id_pos);
+					}
+				
 			}
 		layer_name_double_click_handler(e)
 			{
@@ -757,6 +761,7 @@ class Segment
 				this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
 				this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
 				this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
+				this.TextEditingUnderlineButton = createNewElement({type:"button", classes:["TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-underline"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "underline"})}}});
 				this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
 				this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
 				this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});
@@ -1216,8 +1221,8 @@ class Auralayer
 				this.ExportButtonContainer = createNewElement({type:"div", classes:["ExportButtonContainer", "col-md-2", "text-md-end", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "export"}});
 
 				this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: {innerHTML: `<i class="bi-download"></i>`, type: "button", title:"Save Analysis to File"}, dataset:{bsToggle: "modal", bsTarget: "#download"}});
-				// this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
-				this.SaveToFileButton.addEventListener("click", e => { download_image(); });
+				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
+				// this.SaveToFileButton.addEventListener("click", e => { download_image(); });
 
 				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}});
 
@@ -1283,6 +1288,7 @@ class Auralayer
 						this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
 						this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
 						this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
+						this.TextEditingUnderlineButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-underline"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "underline"})}}});
 						this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
 						this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
 						this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});
