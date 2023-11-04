@@ -28,7 +28,7 @@ In development!
 - [ ] keyboard shortcuts for text formatting
 - [ ] background image of just a lower/upper border or a box
 - [ ] text formatting does some weird stuff when multiple boxes are selected
-- [ ] confirm dialog before deleting layer
+- [x] confirm dialog before deleting layer
 - [ ] shift+click selects all contiguous segments; cmd+click selects multiple segments
 
 
