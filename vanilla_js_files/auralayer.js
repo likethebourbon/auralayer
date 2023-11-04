@@ -596,7 +596,10 @@ class Layer {
 		this.parent.save_state();
 	}
 	delete_layer_button_handler() {
-		this.parent.delete_layer(this.layer_data.layer_id_pos);
+		if (window.confirm("Are you sure you want to delete the entire layer?")) {
+			this.parent.delete_layer(this.layer_data.layer_id_pos);
+		}
+
 	}
 	layer_name_double_click_handler(e) {
 		this.name.contentEditable = true;
@@ -1060,257 +1063,78 @@ class Segment {
 		);
 
 		// Text Formatting Flyout Menu
-		this.TextFormattingMenuContainer_SingleSegment = createNewElement({
-			type: "div",
-			classes: ["TextFormattingMenuContainer_SingleSegment"],
-			parent: this.segment,
-			properties: {},
-			styles: { display: "none" },
-		});
-		this.TextEditingLeftAlignButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingLeftAlignButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `<i class="bi-justify-left"></i>` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "textAlign",
-						value: "left",
-					});
-				},
-			},
-		});
-		this.TextEditingCenterAlignButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingCenterAlignButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `<i class="bi-justify"></i>` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "textAlign",
-						value: "center",
-					});
-				},
-			},
-		});
-		this.TextEditingRightAlignButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingRightAlignButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `<i class="bi-justify-right"></i>` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "textAlign",
-						value: "right",
-					});
-				},
-			},
-		});
-		this.TextEditingBoldButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingBoldButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `<i class="bi-type-bold"></i>` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "fontWeight",
-						value: "bold",
-					});
-				},
-			},
-		});
-		this.TextEditingItalicButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingItalicButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `<i class="bi-type-italic"></i>` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "fontStyle",
-						value: "italic",
-					});
-				},
-			},
-		});
-		this.TextEditingStrikeThroughButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingStrikeThroughButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `<i class="bi-type-strikethrough"></i>` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "textDecoration",
-						value: "line-through",
-					});
-				},
-			},
-		});
-		this.TextEditingFontSizeIncreaseButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingFontSizeIncreaseButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `A+` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "fontSize",
-						type: "increase",
-					});
-				},
-			},
-		});
-		this.TextEditingFontSizeDecreaseButton = createNewElement({
-			type: "button",
-			classes: [
-				"TextEditingFontSizeDecreaseButton",
-				"btn",
-				"btn-outline-secondary",
-				"border-0",
-			],
-			parent: this.TextFormattingMenuContainer_SingleSegment,
-			properties: { innerHTML: `A-` },
-			events: {
-				click: (e) => {
-					this.ChangeTextFormat({
-						style: "fontSize",
-						type: "decrease",
-					});
-				},
-			},
-		});
+		this.TextEditingMenuContainer_SingleSegment = createNewElement({ type: "div", classes: ["TextEditingMenuContainer_SingleSegment"], parent: this.segment, properties: {}, styles: { display: "none" } });
+		this.TextEditingLeftAlignButton = createNewElement({ type: "button", classes: ["TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-justify-left"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "left" }) } } });
+		this.TextEditingCenterAlignButton = createNewElement({ type: "button", classes: ["TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-justify"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "center" }) } } });
+		this.TextEditingRightAlignButton = createNewElement({ type: "button", classes: ["TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-justify-right"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "right" }) } } });
+		this.TextEditingBoldButton = createNewElement({ type: "button", classes: ["TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-bold"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontWeight", value: "bold" }) } } });
+		this.TextEditingItalicButton = createNewElement({ type: "button", classes: ["TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-italic"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontStyle", value: "italic" }) } } });
+		this.TextEditingUnderlineButton = createNewElement({ type: "button", classes: ["TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-underline"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "underline" }) } } });
+		this.TextEditingStrikeThroughButton = createNewElement({ type: "button", classes: ["TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-strikethrough"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "line-through" }) } } });
+		this.TextEditingFontSizeIncreaseButton = createNewElement({ type: "button", classes: ["TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `A+` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "increase" }) } } });
+		this.TextEditingFontSizeDecreaseButton = createNewElement({ type: "button", classes: ["TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `A-` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "decrease" }) } } });
 
-		if (this.parent.mode !== "load_existing_layer") {
-			this.segment.classList.add("segments_layer_is_selected");
-		}
 
-		this.segment_text_1.addEventListener("click", (e) => {
-			this.click_handler(e);
-		});
-		this.segment_text_1.addEventListener("dblclick", (e) => {
-			this.segment_double_click_handler();
-		});
-		this.segment_text_1.addEventListener("input", (e) =>
-			this.segment_text_input_handler(e)
-		);
-		this.segment_text_1.addEventListener("focus", (e) => {
+		if (this.parent.mode !== "load_existing_layer") { this.segment.classList.add("segments_layer_is_selected"); }
+
+		this.segment_text_1.addEventListener("click", e => { this.click_handler(e); });
+		this.segment_text_1.addEventListener("dblclick", e => { this.segment_double_click_handler(); });
+		this.segment_text_1.addEventListener("input", e => this.segment_text_input_handler(e));
+		this.segment_text_1.addEventListener("focus", e => {
 			this.parent.parent.in_text_editor = true;
 		});
-		this.segment_text_1.addEventListener("blur", (e) => {
+		this.segment_text_1.addEventListener("blur", e => {
 			// this.segment.contentEditable = false;
 			this.segment_text_1.contentEditable = false;
 			this.parent.parent.in_text_editor = false;
 		});
 	}
 	ChangeTextFormat(sent_style) {
+
 		if (sent_style.style === "fontSize") {
 			if (sent_style.type === "increase") {
-				this.segment_text_1.style[sent_style.style] =
-					parseInt(this.segment_text_1.style[sent_style.style]) +
-					1 +
-					"px";
-				this.data.text[0].styles[sent_style.style] =
-					parseInt(this.segment_text_1.style[sent_style.style]) +
-					1 +
-					"px";
-			} else if (sent_style.type === "decrease") {
-				this.segment_text_1.style[sent_style.style] =
-					parseInt(this.segment_text_1.style[sent_style.style]) -
-					1 +
-					"px";
-				this.data.text[0].styles[sent_style.style] =
-					parseInt(this.segment_text_1.style[sent_style.style]) -
-					1 +
-					"px";
+				this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
+				this.data.text[0].styles[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
 			}
-		} else if (
-			this.segment_text_1.style[sent_style.style] === sent_style.value
-		) {
+			else if (sent_style.type === "decrease") {
+				this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) - 1) + "px";
+				this.data.text[0].styles[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) - 1) + "px";
+			}
+		}
+		else if (this.segment_text_1.style[sent_style.style] === sent_style.value) {
 			this.segment_text_1.style[sent_style.style] = "unset";
 			this.data.text[0].styles[sent_style.style] = "unset";
-		} else {
+		}
+		else {
 			this.segment_text_1.style[sent_style.style] = sent_style.value;
 			this.data.text[0].styles[sent_style.style] = sent_style.value;
 		}
 	}
 	SegmentPresenceStartRangeHandler(e, direction) {
-		let new_saturation_value = (
-			e.target.value / GLOBAL_presence_scale
-		).toFixed(1);
+		let new_saturation_value = (e.target.value / GLOBAL_presence_scale).toFixed(1);
 		let formated_color_value;
 		// set the sliders to the value of the first layer/segment selected
 
 		if (this.parent.parent.PresenceSliderEnd.disabled === true) {
 			let color_value = this.data.color.split(", ")[1].slice(0, -4);
 			let new_color_value = color_value + new_saturation_value + ")";
-			formated_color_value =
-				"linear-gradient(to right, " +
-				new_color_value +
-				", " +
-				new_color_value +
-				")";
+			formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";
 			this.data.start_presence = parseInt(e.target.value);
 			this.data.end_presence = parseInt(e.target.value);
-		} else {
+		}
+		else {
 			if (direction === "start") {
 				let color_value = this.data.color.split(", ")[1].slice(0, -4);
 				let ending_color = this.data.color.split(", ")[2];
 				let new_color_value = color_value + new_saturation_value + ")";
-				formated_color_value =
-					"linear-gradient(to right, " +
-					new_color_value +
-					", " +
-					ending_color;
+				formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
 				this.data.start_presence = parseInt(e.target.value);
-			} else if (direction === "end") {
+			}
+			else if (direction === "end") {
 				let color_value = this.data.color.split(", ")[2].slice(0, -5);
 				let starting_color = this.data.color.split(", ")[1];
 				let new_color_value = color_value + new_saturation_value + "))";
-				formated_color_value =
-					"linear-gradient(to right, " +
-					starting_color +
-					", " +
-					new_color_value;
+				formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
 				this.data.end_presence = parseInt(e.target.value);
 			}
 		}
@@ -2119,8 +1943,8 @@ class Auralayer {
 		});
 
 		this.SaveToFileButton = createNewElement({ type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: { innerHTML: `<i class="bi-download"></i>`, type: "button", title: "Save Analysis to File" }, dataset: { bsToggle: "modal", bsTarget: "#download" } });
-		// this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
-		this.SaveToFileButton.addEventListener("click", e => { download_image(); });
+		this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
+		// this.SaveToFileButton.addEventListener("click", e => { download_image(); });
 
 		this.ShareAnalysisButton = createNewElement({
 			type: "button",
@@ -2404,6 +2228,7 @@ class Auralayer {
 				},
 			},
 		});
+		this.TextEditingUnderlineButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-underline"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "underline" }) } } });
 		this.TextEditingStrikeThroughButton = createNewElement({
 			type: "button",
 			classes: [
