@@ -679,7 +679,6 @@ class Segment {
 		this.TextEditingRightAlignButton = createNewElement({ type: "button", classes: ["TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-justify-right"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "right" }) } } });
 		this.TextEditingBoldButton = createNewElement({ type: "button", classes: ["TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-bold"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontWeight", value: "bold" }) } } });
 		this.TextEditingItalicButton = createNewElement({ type: "button", classes: ["TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-italic"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontStyle", value: "italic" }) } } });
-		this.TextEditingUnderlineButton = createNewElement({ type: "button", classes: ["TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-underline"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "underline" }) } } });
 		this.TextEditingStrikeThroughButton = createNewElement({ type: "button", classes: ["TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `<i class="bi-type-strikethrough"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "line-through" }) } } });
 		this.TextEditingFontSizeIncreaseButton = createNewElement({ type: "button", classes: ["TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `A+` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "increase" }) } } });
 		this.TextEditingFontSizeDecreaseButton = createNewElement({ type: "button", classes: ["TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer_SingleSegment, properties: { innerHTML: `A-` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "decrease" }) } } });
@@ -700,6 +699,7 @@ class Segment {
 		});
 	}
 	ChangeTextFormat(sent_style) {
+
 		if (sent_style.style === "fontSize") {
 			if (sent_style.type === "increase") {
 				this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
@@ -1246,9 +1246,8 @@ class Auralayer {
 		// -----------------------------------
 		//       SLIDER CONTAINER COMPONENTS
 		// -----------------------------------    
-		this.SeekSlider = createNewElement({ type: "input", classes: ["slider", "SeekSlider"], parent: this.SliderContainer, properties: { type: "range", value: 0 } });
+		this.SeekSlider = createNewElement({ type: "input", classes: ["slider", "SeekSlider"], parent: this.SliderContainer, properties: { type: "range" } });
 		this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));
-
 
 		// -----------------------------------
 		//      LEFT OUTER COLUMN COMPONENTS
@@ -1720,20 +1719,20 @@ class Auralayer {
 		});
 		this.AccordionContainer1 = createNewElement({ type: "div", classes: ["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties: { id: "collapsing" } });
 		this.TextEditingMenuContainer = createNewElement({ type: "div", classes: ["TextEditingMenuContainer"], parent: this.AccordionContainer1, properties: {} });
-		this.TextEditingLeftAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-justify-left"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "left" }) } } });
-		this.TextEditingCenterAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-justify"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "center" }) } } });
-		this.TextEditingRightAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-justify-right"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "right" }) } } });
-		this.TextEditingBoldButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-bold"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontWeight", value: "bold" }) } } });
-		this.TextEditingItalicButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-italic"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontStyle", value: "italic" }) } } });
-		this.TextEditingUnderlineButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-underline"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "underline" }) } } });
-		this.TextEditingStrikeThroughButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-strikethrough"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "line-through" }) } } });
-		this.TextEditingFontSizeIncreaseButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `A+` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "increase" }) } } });
-		this.TextEditingFontSizeDecreaseButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `A-` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "decrease" }) } } });
+		this.TextEditingLeftAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-justify-left" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "left" }) } } });
+		this.TextEditingCenterAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-justify" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "center" }) } } });
+		this.TextEditingRightAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-justify-right" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "right" }) } } });
+		this.TextEditingBoldButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-type-bold" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "fontWeight", value: "bold" }) } } });
+		this.TextEditingItalicButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-type-italic" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "fontStyle", value: "italic" }) } } });
+		this.TextEditingUnderlineButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-type-underline" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "underline" }) } } });
+		this.TextEditingStrikeThroughButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `< i class="bi-type-strikethrough" ></i > ` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "line-through" }) } } });
+		this.TextEditingFontSizeIncreaseButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `A + ` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "increase" }) } } });
+		this.TextEditingFontSizeDecreaseButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `A - ` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "decrease" }) } } });
 		this.AccordionContainer2 = createNewElement({ type: "div", classes: ["AccordionContainer2", "col-md-10", "p-1", "m-auto", "my-3"], parent: this.AccordionContainer1, properties: {} });
 		this.AccordionContainer3 = createNewElement({ type: "div", classes: ["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties: { id: "table-video" } });
 		this.DataTableContainer1 = createNewElement({ type: "div", classes: ["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties: {} });
 		this.DataAccordionHeader = createNewElement({ type: "h2", classes: ["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties: {} });
-		this.DataAccordionButton = createNewElement({ type: "button", classes: ["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties: { type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table` }, dataset: { bsToggle: "collapse", bsTarget: "#collapseOne" }, attributes: { "aria-expanded": "false", "aria-controls": "collapseOne" } });
+		this.DataAccordionButton = createNewElement({ type: "button", classes: ["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties: { type: "button", innerHTML: `< i class="bi-table" ></i >& emsp; Data table` }, dataset: { bsToggle: "collapse", bsTarget: "#collapseOne" }, attributes: { "aria-expanded": "false", "aria-controls": "collapseOne" } });
 		this.DataAccordionBody = createNewElement({ type: "div", classes: ["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties: { id: "collapseOne" }, dataset: { bsParent: "#table-video" } });
 		this.DataAccordionBodyInterior = createNewElement({ type: "div", classes: ["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties: {} });
 		this.SearchTableInput = createNewElement({ type: "input", classes: ["table-filter"], parent: this.DataAccordionBodyInterior, properties: { type: "text", placeholder: "Item to filter.." }, dataset: { table: "order-table" } });
@@ -1743,7 +1742,7 @@ class Auralayer {
 		this.DataTableTable = new Tablesort(this.DataTable);
 		this.VideoContainer1 = createNewElement({ type: "div", classes: ["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties: {} });
 		this.VideoAccordionHeader = createNewElement({ type: "h2", classes: ["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties: {} });
-		this.VideoAccordionButton = createNewElement({ type: "button", classes: ["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties: { type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media` }, dataset: { bsToggle: "collapse", bsTarget: "#collapseTwo" }, attributes: { "aria-expanded": "false", "aria-controls": "collapseTwo" } });
+		this.VideoAccordionButton = createNewElement({ type: "button", classes: ["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties: { type: "button", innerHTML: `< i class="bi-youtube" ></i >& emsp; Media` }, dataset: { bsToggle: "collapse", bsTarget: "#collapseTwo" }, attributes: { "aria-expanded": "false", "aria-controls": "collapseTwo" } });
 		this.VideoAccordionBody = createNewElement({ type: "div", classes: ["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties: { id: "collapseTwo" }, dataset: { bsParent: "#table-video" } });
 		this.VideoAccordionBodyInterior = createNewElement({ type: "div", classes: ["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties: {} });
 
@@ -2012,6 +2011,15 @@ class Auralayer {
 			return acc;
 		}, -1);
 
+		return smallestPositiveIndex;
+	}
+	deselect_all_segments() {
+		for (let i = 0; i < this.layers.length; i++) {
+			for (let j = 0; j < this.layers[i].segment_array.length; j++) {
+				this.layers[i].segment_array[j].segment.classList.remove("segment_selected");
+				this.layers[i].segment_array[j].TextEditingMenuContainer_SingleSegment.style.display = "none";
+			}
+		}
 		return smallestPositiveIndex;
 	}
 	deselect_all_segments() {
@@ -2436,8 +2444,8 @@ class Auralayer {
 
 
 		this.uploaded_audio = createNewElement({ type: "audio", classes: ["user_audio"], parent: this.VideoAccordionBodyInterior, properties: { controls: true } });
-		this.uploaded_audio.addEventListener("play", e => { this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`; });
-		this.uploaded_audio.addEventListener("pause", e => { this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`; });
+		this.uploaded_audio.addEventListener("play", e => { this.audio_play_button.innerHTML = `< i class="bi-pause-circle" ></i > `; });
+		this.uploaded_audio.addEventListener("pause", e => { this.audio_play_button.innerHTML = `< i class="bi-play-circle" ></i > `; });
 		// this.VideoAccordionBody.appendChild(this.loaded_file_name_label);
 
 		if (developing === true && location.hostname.includes("localhost")) {
@@ -2494,25 +2502,25 @@ class Auralayer {
 					//Its playing...do your job
 					console.log("playing!");
 					this.pause_audio();
-					this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
+					this.audio_play_button.innerHTML = `< i class="bi-play-circle" ></i > `;
 				}
 				else {
 					console.log('not playing');
 					//Not playing...maybe paused, stopped or never played.
 					this.play_audio();
-					this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
+					this.audio_play_button.innerHTML = `< i class="bi-pause-circle" ></i > `;
 				}
 				break;
 			case 'youtube_link':
 				if (youtube_player_state != YT.PlayerState.PAUSED) {
 					playerx.g.classList.remove("small_youtube_video_for_iframes");
 					playerx.pauseVideo();
-					this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
+					this.audio_play_button.innerHTML = `< i class="bi-play-circle" ></i > `;
 				}
 				else {
 					playerx.g.classList.remove("small_youtube_video_for_iframes");
 					playerx.playVideo();
-					this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
+					this.audio_play_button.innerHTML = `< i class="bi-pause-circle" ></i > `;
 				}
 
 				break;
@@ -2693,11 +2701,11 @@ class Auralayer {
 				if (typeof youtube_player_state !== "undefined") {
 					if (youtube_player_state === 2) {
 						console.log("PAUSED");
-						this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
+						this.audio_play_button.innerHTML = `< i class="bi-play-circle" ></i > `;
 					}
 					else if (youtube_player_state === 1) {
 						console.log("PLAYING");
-						this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
+						this.audio_play_button.innerHTML = `< i class="bi-pause-circle" ></i > `;
 					}
 				}
 				break;
