@@ -6,18 +6,18 @@ In development!
 
 - [x] **confirm before navigating away**
 - [ ] draggable cursor
-- [ ] timestamps listed (every 30 secs? every minute? configurable?)
+- [x] timestamps listed (every 30 secs? every minute? configurable?)
 - [ ] double-click to edit layer name
 - [ ] select segment + Y to jump cursor to beginning of segment
 - [x] [move visual for (user) cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) when hovering/moving (playback) cursor
 - [ ] snap cursor to beginnings/ends of segments
-- [ ] highlight row background instead of dotted border
+- [x] highlight row background instead of dotted border (caused weird problems - back to orange outline)
 - [ ] Spacer layer (for showing groups of layers)
 - [ ] editable data table
-- [ ] more space for layer names
-- [ ] pattern overlays white instead of black
+- [x] more space for layer names (also added ellipsis when too long)
+- [x] pattern overlays white instead of black (added duplicate white set)
 - [ ] I think 10 steps is too many and would go back to 5 (0–4)
-- [ ] need a back button after submitting what kind of starting point (e.g., after pressing YT, need to be able to go back and select load from file)
+- [x] need a back button after submitting what kind of starting point (e.g., after pressing YT, need to be able to go back and select load from file)
 - [x] ability to select a blank/missing segment—currently no good way to fill in a gap
 - [ ] download button asks whether you want to save data file or image
 - [ ] duplicate layer button
