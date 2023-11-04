@@ -3151,4 +3151,5 @@ function onPlayerStateChange(event) {
 	if (project.iframe_embed === true) {
 		playerx.g.classList.remove("small_youtube_video_for_iframes");
 	}
+}
 }  
