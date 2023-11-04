@@ -48,4 +48,6 @@ In development!
 
 - [ ] Sometimes when switching windows the analysis disappears and I go back to the start screen
 - [ ] data table collapsible expands when the table is open
-- [ ] changing from "Gradient" to "slope" doesn't redraw things that were already gradient-ized or slope-ified; in general it's just a bit weird when you mess around with that setting
+- [ ] changing from "Gradient" to "slope" doesn't redraw things that were already gradient-ized or slope-ified; in general it's just a bit weird when you mess around with that setting.
+  - [ ] I think when you switch from gradient to slope, the opacity of all segments needs to get reset to 1
+  - [ ] and the opacity info needs to be converted to gradient info.
