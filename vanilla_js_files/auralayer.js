@@ -3940,6 +3940,12 @@ class Auralayer {
 			)
 		);
 
+		this.deselect_all_layers();
+		this.deselect_all_segments();
+
+		this.layers[this.layers.length - 1].select_box.click();
+		this.layers[this.layers.length - 1].segment_array[0].segment_text_1.click();
+
 		// this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
 		// let segment_margin_top = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-top'));
 		let segment_margin_bottom = parseInt(
@@ -3975,6 +3981,9 @@ class Auralayer {
 		// this.timestamp_array.forEach(each=>each.)
 
 		// this.save_array.forEach(each=>console.log(each.program_data));
+
+		// select new layer
+		// this.select_box.click();
 
 	}
 	delete_layer(sent_layer_id) {
@@ -4134,28 +4143,16 @@ class Auralayer {
 								width_new * this.scale + "px";
 
 							if (direction === "left") {
-								this.layers[i].layer_data.segments[k].end_pos =
-									this.layers[i].layer_data.segments[k]
-										.end_pos +
-									width_to_add_to_merging_segment +
-									1;
-							} else if (direction === "right") {
-								this.layers[i].layer_data.segments[
-									k
-								].start_pos =
-									this.layers[i].layer_data.segments[k]
-										.start_pos -
-									width_to_add_to_merging_segment -
-									1;
-								this.layers[i].segment_array[
-									k
-								].segment.style.left =
-									(this.layers[i].layer_data.segments[k]
-										.start_pos /
-										this.resolution) *
-									this.scale +
-									"px";
+								this.layers[i].layer_data.segments[k].end_pos = this.layers[i].layer_data.segments[k].end_pos + width_to_add_to_merging_segment + 1;
 							}
+							else if (direction === "right") {
+
+								this.layers[i].layer_data.segments[k].start_pos = this.layers[i].layer_data.segments[k].start_pos - width_to_add_to_merging_segment - 1;
+								this.layers[i].segment_array[k].segment.style.left = ((this.layers[i].layer_data.segments[k].start_pos) / this.resolution) * this.scale + "px";
+							}
+
+
+							this.layers[i].segment_array[k].segment_text_1.click();
 						}
 					}
 				}
@@ -4164,32 +4161,24 @@ class Auralayer {
 		this.save_state();
 	}
 	delete_button_handler(e) {
+
 		for (let i = 0; i < this.layers.length; i++) {
 			for (let j = 0; j < this.layers[i].segment_array.length; j++) {
-				if (
-					this.layers[i].segment_array[j].segment.classList.contains(
-						"segment_selected"
-					)
-				) {
+				if (this.layers[i].segment_array[j].segment.classList.contains("segment_selected")) {
+
 					// let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 					let formated_color_value;
 					let urlText = "";
-					let initial_value =
-						this.layers[i].segment_array[j].data.color;
+					let initial_value = this.layers[i].segment_array[j].data.color;
 					let color_value_1 = "";
 					let color_value_2 = "";
 					let initial_saturation_1 = "1.0";
 					let initial_saturation_2 = "1.0";
 
-					[color_value_1, initial_saturation_1, urlText] =
-						this.GetRGBA_Values({ value: initial_value, num: 0 });
-					[color_value_2, initial_saturation_2, urlText] =
-						this.GetRGBA_Values({ value: initial_value, num: 1 });
+					[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({ value: initial_value, num: 0 });
+					[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({ value: initial_value, num: 1 });
 
-					formated_color_value =
-						"linear-gradient(to right, " +
-						(color_value_1 + "0.0), ") +
-						(color_value_2 + "0.0))");
+					formated_color_value = "linear-gradient(to right, " + (color_value_1 + "0.0), ") + (color_value_2 + "0.0))");
 
 					this.layers[i].segment_array[j].data.start_presence = 0;
 					this.layers[i].segment_array[j].data.end_presence = 0;
