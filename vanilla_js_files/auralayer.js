@@ -297,7 +297,7 @@ class Layer {
 		// this.layer_controls_holder.addEventListener("click", e=> this.select_box.click());
 		let width =
 			(this.parent.file_length / this.parent.resolution) *
-				this.parent.scale -
+			this.parent.scale -
 			1 +
 			this.parent.scale / this.parent.resolution +
 			"px";
@@ -390,68 +390,38 @@ class Layer {
 			debugger;
 		});
 
-		this.color_picker.addEventListener("change", (e) =>
-			this.color_picker_handler(e)
-		);
-		// this.color_picker.addEventListener("click", e=>this.color_picker_handler(e));
-		this.color_picker.addEventListener("input", (e) =>
-			this.color_picker_handler(e)
-		);
-		this.color_picker.addEventListener("blur", (e) =>
-			this.parent.save_state()
-		);
 
-		this.delete_layer_button = createNewElement({
-			type: "button",
-			classes: [
-				"delete_layer_button",
-				"layer_controls_elements",
-				"btn",
-				"btn-secondary",
-			],
-			parent: this.layer_settings_container,
-			properties: { innerHTML: `<i class="bi bi-trash"></i>` },
-		});
-		this.delete_layer_button.addEventListener("click", (e) =>
-			this.delete_layer_button_handler()
-		);
+		this.color_picker.addEventListener("change", e => this.color_picker_handler(e));
+		// this.color_picker.addEventListener("click", e=>this.color_picker_handler(e));
+		this.color_picker.addEventListener("input", e => this.color_picker_handler(e));
+		this.color_picker.addEventListener("blur", e => this.parent.save_state());
+
+
+		this.delete_layer_button = createNewElement({ type: "button", classes: ["delete_layer_button", "layer_controls_elements", "btn", "btn-secondary"], parent: this.layer_settings_container, properties: { innerHTML: `<i class="bi bi-trash"></i>` } });
+		this.delete_layer_button.addEventListener("click", e => this.delete_layer_button_handler());
 		// this.grip = createNewElement({type:"div", classes: ["layer_grip", "layer_controls_elements"], parent: this.layer_controls_holder, properties: {innerHTML: "⋮⋮"}});
 		// this.grip.addEventListener("click",e=>this.select_box.click());
-		this.name = createNewElement({
-			type: "div",
-			classes: ["layer_name", "layer_controls_elements"],
-			parent: this.layer_controls_holder,
-			properties: { innerHTML: this.layer_data.name, draggable: true },
-		});
-		this.name.addEventListener("click", (e) => {
-			this.select_box.click();
-		});
+		this.name = createNewElement({ type: "div", classes: ["layer_name", "layer_controls_elements"], parent: this.layer_controls_holder, properties: { innerHTML: this.layer_data.name, draggable: true } });
+		this.name.addEventListener("click", e => { this.select_box.click() });
 		// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
-		this.name.addEventListener("input", (e) =>
-			this.layer_name_input_handler(e)
-		);
-		this.name.addEventListener("focus", (e) => {
-			this.parent.in_text_editor = true;
-		});
-		this.name.addEventListener("blur", (e) => {
+		this.name.addEventListener("input", e => this.layer_name_input_handler(e));
+		this.name.addEventListener("focus", e => { this.parent.in_text_editor = true; });
+		this.name.addEventListener("blur", e => {
 			this.name.contentEditable = false;
+			this.name.classList.remove("layer_name_being_edited");
 			this.parent.in_text_editor = false;
 		});
-		this.name.addEventListener("dragstart", (e) => {
-			this.layer_container.classList.add("dragging");
-		});
-		this.name.addEventListener("touchstart", (e) => {
-			this.layer_container.classList.add("dragging");
-		});
-		this.name.addEventListener("dragend", (e) => {
+		this.name.addEventListener("dragstart", e => { this.layer_container.classList.add("dragging"); });
+		this.name.addEventListener("touchstart", e => { this.layer_container.classList.add("dragging"); });
+		this.name.addEventListener("dragend", e => {
 			this.layer_container.classList.remove("dragging");
 			this.parent.save_state();
 		});
-		this.name.addEventListener("touchend", (e) => {
+		this.name.addEventListener("touchend", e => {
 			this.layer_container.classList.remove("dragging");
 			this.parent.save_state();
 		});
-		this.name.addEventListener("touchcancel", (e) => {
+		this.name.addEventListener("touchcancel", e => {
 			this.layer_container.classList.remove("dragging");
 			this.parent.save_state();
 		});
@@ -521,147 +491,71 @@ class Layer {
 			styles: { display: "none" },
 		});
 
-		this.shape_background_texture_1 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_1"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_horizontal_lines.png)" },
-			properties: { title: "Horizontal_Lines" },
-		});
-		this.shape_background_texture_2 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_2"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_dots_1.png)" },
-			properties: { title: "Dots_1" },
-		});
-		this.shape_background_texture_3 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_3"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_dots_2.png)" },
-			properties: { title: "Dots_2" },
-		});
-		this.shape_background_texture_4 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_4"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_vertical_lines_1.png)" },
-			properties: { title: "Vertical_Lines 1" },
-		});
-		this.shape_background_texture_5 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_5"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_vertical_lines_2.png)" },
-			properties: { title: "Vertical_Lines 2" },
-		});
-		this.shape_background_texture_6 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_6"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_diagonal_line_1.png)" },
-			properties: { title: "Diagonal_Line 1" },
-		});
-		this.shape_background_texture_7 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_7"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_diagonal_line_2.png)" },
-			properties: { title: "Diagonal_Line 2" },
-		});
-		this.shape_background_texture_8 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_8"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_circle_1.png)" },
-			properties: { title: "Circle_1" },
-		});
-		this.shape_background_texture_9 = createNewElement({
-			type: "button",
-			classes: ["shape_background_texture", "shape_background_texture_9"],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_circle_2.png)" },
-			properties: { title: "Circle_2" },
-		});
-		this.shape_background_texture_10 = createNewElement({
-			type: "button",
-			classes: [
-				"shape_background_texture",
-				"shape_background_texture_10",
-			],
-			parent: this.texture_selector,
-			styles: { background: "url(images/pattern_blank.png)" },
-			properties: { title: "Blank" },
-		});
-		this.shape_background_texture_11 = createNewElement({
-			type: "button",
-			classes: [
-				"shape_background_texture",
-				"shape_background_texture_11",
-			],
-			parent: this.texture_selector,
-			styles: {
-				background: "url(images/pattern_vertical_and_horizontal_1.png)",
-			},
-			properties: { title: "Vertical and Horizontal Lines" },
-		});
-		this.shape_background_texture_12 = createNewElement({
-			type: "button",
-			classes: [
-				"shape_background_texture",
-				"shape_background_texture_12",
-			],
-			parent: this.texture_selector,
-			styles: {
-				background:
-					"url(images/2-square-pattern-tiled-graphicsfairy-32.png)",
-			},
-			properties: { title: "Square pattern 1" },
-		});
+		this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_1'], parent: this.texture_selector, styles: { background: 'url(images/pattern_horizontal_lines.png)' }, properties: { title: "Horizontal_Lines" } });
+		this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_2'], parent: this.texture_selector, styles: { background: 'url(images/pattern_dots_1.png)' }, properties: { title: "Dots_1" } });
+		this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_3'], parent: this.texture_selector, styles: { background: 'url(images/pattern_dots_2.png)' }, properties: { title: "Dots_2" } });
+		this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_4'], parent: this.texture_selector, styles: { background: 'url(images/pattern_vertical_lines_1.png)' }, properties: { title: "Vertical_Lines 1" } });
+		this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_5'], parent: this.texture_selector, styles: { background: 'url(images/pattern_vertical_lines_2.png)' }, properties: { title: "Vertical_Lines 2" } });
+		this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_6'], parent: this.texture_selector, styles: { background: 'url(images/pattern_diagonal_line_1.png)' }, properties: { title: "Diagonal_Line 1" } });
+		this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7'], parent: this.texture_selector, styles: { background: 'url(images/pattern_diagonal_line_2.png)' }, properties: { title: "Diagonal_Line 2" } });
+		this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8'], parent: this.texture_selector, styles: { background: 'url(images/pattern_circle_1.png)' }, properties: { title: "Circle_1" } });
+		this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9'], parent: this.texture_selector, styles: { background: 'url(images/pattern_circle_2.png)' }, properties: { title: "Circle_2" } });
+		this.shape_background_texture_10 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10'], parent: this.texture_selector, styles: { background: 'url(images/pattern_blank.png)' }, properties: { title: "Blank" } });
+		this.shape_background_texture_11 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11'], parent: this.texture_selector, styles: { background: 'url(images/pattern_vertical_and_horizontal_1.png)' }, properties: { title: "Vertical and Horizontal Lines" } });
 
-		this.shape_background_texture_1.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_2.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_3.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_4.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_5.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_6.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_7.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_8.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_9.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_10.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_11.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
-		this.shape_background_texture_12.addEventListener("click", (e) =>
-			this.create_layer_background_texture(e)
-		);
+		this.shape_background_texture_1_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_1_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_horizontal_lines-white.png)' }, properties: { title: "Horizontal_Lines white" } });
+		this.shape_background_texture_2_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_2_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_dots_1-white.png)' }, properties: { title: "Dots_1 white" } });
+		this.shape_background_texture_3_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_3_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_dots_2-white.png)' }, properties: { title: "Dots_2 white" } });
+		this.shape_background_texture_4_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_4_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_vertical_lines_1-white.png)' }, properties: { title: "Vertical_Lines 1 white" } });
+		this.shape_background_texture_5_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_5_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_vertical_lines_2-white.png)' }, properties: { title: "Vertical_Lines 2 white" } });
+		this.shape_background_texture_6_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_6_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_diagonal_line_1-white.png)' }, properties: { title: "Diagonal_Line 1 white" } });
+		this.shape_background_texture_7_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_diagonal_line_2-white.png)' }, properties: { title: "Diagonal_Line 2 white" } });
+		this.shape_background_texture_8_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_circle_1-white.png)' }, properties: { title: "Circle_1 white" } });
+		this.shape_background_texture_9_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_circle_2-white.png)' }, properties: { title: "Circle_2 white" } });
+		this.shape_background_texture_10_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_blank-white.png)' }, properties: { title: "Blank white" } });
+		this.shape_background_texture_11_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11_white'], parent: this.texture_selector, styles: { background: 'url(images/pattern_vertical_and_horizontal_1-white.png)' }, properties: { title: "Vertical and Horizontal Lines white" } });
+
+
+
+
+		// this.shape_background_texture_12 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_12'], parent: this.texture_selector, styles:{background:'url(images/2-square-pattern-tiled-graphicsfairy-32.png)'}, properties: {title: "Square pattern 1"}});
+
+
+
+		this.shape_background_texture_1.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_2.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_3.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_4.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_5.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_6.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_7.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_8.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_9.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_10.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_11.addEventListener('click', e => this.create_layer_background_texture(e));
+
+		this.shape_background_texture_1_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_2_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_3_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_4_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_5_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_6_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_7_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_8_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_9_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_10_white.addEventListener('click', e => this.create_layer_background_texture(e));
+		this.shape_background_texture_11_white.addEventListener('click', e => this.create_layer_background_texture(e));
+
+
+
+
 	}
 	layer_settings_button_handler(e) {
 		if (this.layer_settings_container.style.display === "flex") {
 			this.layer_settings_container.style.display = "none";
 			this.texture_selector.style.display = "none";
-		} else {
+		}
+		else {
 			this.layer_settings_container.style.display = "flex";
 			this.texture_selector.style.display = "none";
 		}
@@ -670,7 +564,8 @@ class Layer {
 		if (this.texture_selector.style.display === "block") {
 			this.texture_selector.style.display = "none";
 			// this.layer_settings_container.style.display = "none";
-		} else {
+		}
+		else {
 			this.texture_selector.style.display = "block";
 			this.layer_settings_container.style.display = "none";
 		}
@@ -680,9 +575,7 @@ class Layer {
 			let initial_value = this.segment_array[i].segment.style.background;
 
 			// Extract the portion between "linear-gradient(" and "))"
-			const gradientText = initial_value.match(
-				/linear-gradient\((.*?)\)\)/
-			)[0];
+			const gradientText = initial_value.match(/linear-gradient\((.*?)\)\)/)[0];
 
 			this.segment_array[i].segment.style.background =
 				e.target.style.background + " center center, " + gradientText;
@@ -707,15 +600,14 @@ class Layer {
 	}
 	layer_name_double_click_handler(e) {
 		this.name.contentEditable = true;
+		this.name.classList.add("layer_name_being_edited");
 		this.name.focus();
 		window.getSelection().selectAllChildren(this.name);
 	}
 	layer_name_input_handler(e) {
 		this.layer_data.name = e.target.innerText;
 		for (let i = 0; i < this.segment_array.length; i++) {
-			this.segment_array[i].segment_table_row.querySelector(
-				".SegmentTableName"
-			).innerText = this.layer_data.name;
+			this.segment_array[i].segment_table_row.querySelector(".SegmentTableName").innerText = this.layer_data.name;
 		}
 
 		this.parent.save_state();
@@ -862,7 +754,7 @@ class Layer {
 			this.texture_selector.style.display = "none";
 		}
 	}
-	split_segment() {}
+	split_segment() { }
 	create_segment(
 		start,
 		end = -1,
@@ -969,8 +861,8 @@ class Layer {
 						this.parent.resolution -
 						this.layer_data.segments[this.current_segment_index]
 							.start_pos /
-							this.parent.resolution) *
-						this.parent.scale +
+						this.parent.resolution) *
+					this.parent.scale +
 					this.parent.scale / this.parent.resolution -
 					1 +
 					"px";
@@ -996,7 +888,7 @@ class Layer {
 			this.parent.save_state();
 		}
 	}
-	delete_segment() {}
+	delete_segment() { }
 }
 class Segment {
 	constructor(
@@ -1051,7 +943,7 @@ class Segment {
 		let width =
 			(this.data.end_pos / this.parent.parent.resolution -
 				this.data.start_pos / this.parent.parent.resolution) *
-				this.parent.parent.scale +
+			this.parent.parent.scale +
 			this.parent.parent.scale / this.parent.parent.resolution -
 			1 +
 			"px";
@@ -1063,7 +955,7 @@ class Segment {
 			styles: {
 				left:
 					(this.data.start_pos / this.parent.parent.resolution) *
-						this.parent.parent.scale +
+					this.parent.parent.scale +
 					"px",
 				width: width,
 				background: this.data.color,
@@ -1075,21 +967,12 @@ class Segment {
 
 		// properties: {contentEditable: false, innerText: this.data.text[0].inner_text}
 
-		this.segment_text_1 = createNewElement({
-			type: "div",
-			classes: ["segment_text_1", "segment_text"],
-			parent: this.segment,
-			properties: {
-				innerText: this.data.text[0].inner_text,
-				contentEditable: false,
-			},
-			styles: this.data.text[0].styles,
-		});
+		this.segment_text_1 = createNewElement({ type: "div", classes: ["segment_text_1", "segment_text"], parent: this.segment, properties: { innerText: this.data.text[0].inner_text, contentEditable: false }, styles: this.data.text[0].styles });
 
-		let time_stamp =
-			Math.floor(this.data.start_pos / 60) +
-			":" +
-			String(Math.floor(this.data.start_pos % 60)).padStart(2, "0");
+
+		// let time_stamp = Math.floor(this.data.start_pos/60) + ":" + String(Math.floor(this.data.start_pos%60)).padStart(2,'0');
+
+		let time_stamp = Math.floor((this.data.start_pos / 10) / 60) + ":" + String(Math.floor((this.data.start_pos / 10) % 60)).padStart(2, '0') + ":" + String((this.data.start_pos) % 10).padStart(1, '0');
 
 		this.segment_table_row = createNewElement({
 			type: "tr",
@@ -1531,10 +1414,10 @@ class Segment {
 				this.parent.parent.PresenceSliderEnd.disabled = false;
 			}
 
-			// this.parent.parent.TextFormattingMenuContainer.style.display = "flex";
-			[
-				...this.parent.parent.TextFormattingMenuContainer.children,
-			].forEach((each) => (each.style.cursor = "auto"));
+			// this.parent.parent.TextEditingMenuContainer.style.display = "flex";
+			[...this.parent.parent.TextEditingMenuContainer.children].forEach(each => each.style.cursor = "auto");
+
+
 		}
 
 		this.tapHandler(e);
@@ -1552,61 +1435,39 @@ class Auralayer {
 		this.load_from_file_mode = false;
 		this.skip_amount = 10;
 		this.resolution = 10;
-		this.colors = [
-			"95,70,128",
-			"212,129,46",
-			"189,88,69",
-			"227,177,60",
-			"53,103,146",
-			"88,164,164",
-			"59,131,88",
-			"127,174,86",
-		];
+		this.time_stamp_distance = 30;
+		this.colors = ["95,70,128", "212,129,46", "189,88,69", "227,177,60", "53,103,146", "88,164,164", "59,131,88", "127,174,86"];
 		this.layers = [];
 		this.example_data = example_data;
-		if (Object.keys(this.example_data).length === 0) {
-			this.example_data = {
-				piece_info: {
-					media_type: "none",
-					name: "new_auralayer",
-					layer_id_pos: 0,
-					scale: 3,
-					color_count: 0,
-					slider_thumb_offset: 0,
-					slider_thumb_height: 0,
-					segment_decrescendo: "gradient",
-				},
-				layers: [],
-			};
-		}
+		if (Object.keys(this.example_data).length === 0) { this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 3, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0, segment_decrescendo: "gradient" }, layers: [] } }
 		this.scale = this.example_data.piece_info.scale;
 		this.color_count = this.example_data.piece_info.color_count;
 		this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
-		this.slider_thumb_offset =
-			this.example_data.piece_info.slider_thumb_offset;
-		this.slider_thumb_height =
-			this.example_data.piece_info.slider_thumb_height;
-		this.segment_decrescendo =
-			this.example_data.piece_info.segment_decrescendo;
+		this.slider_thumb_offset = this.example_data.piece_info.slider_thumb_offset;
+		this.slider_thumb_height = this.example_data.piece_info.slider_thumb_height;
+		this.segment_decrescendo = this.example_data.piece_info.segment_decrescendo;
 		// this.segment_height = this.example_data.piece_info.segment_height;
-		this.segment_height = parseInt(
-			getComputedStyle(document.documentElement, null).getPropertyValue(
-				"--segment-height"
-			)
-		);
+		this.segment_height = parseInt(getComputedStyle(document.documentElement, null).getPropertyValue('--segment-height'));
 		this.audio_speed = 10;
 		this.dragged_layer = -1;
 		this.length_padding = GLOBAL_length_padding;
 		this.check_for_url_data();
+		this.create_activity_selection_interface();
+		this.initialize_interface();
 		if (this.url_activity_text !== "") {
 			this.load_from_server(this.url_activity_text);
 			return false;
 		}
-		setTimeout(() => {
-			console.log("TimeOUT");
-			this.create_activity_selection_interface();
-			this.initialize_interface();
-		}, "200");
+		else {
+			// this.create_activity_selection_interface();
+			// this.initialize_interface();	
+		}
+		// setTimeout(()=>
+		// 	{
+		// 		console.log("TimeOUT");
+		// 		this.create_activity_selection_interface();
+		// 		this.initialize_interface();	
+		// 	}, "200");
 
 		// this.create_activity_selection_interface();
 		// this.initialize_interface();
@@ -1616,18 +1477,18 @@ class Auralayer {
 		// if embedded for analysis master - don't alert about navigating away
 		// if(this.analysis_master_embed = true)
 		if (this.analysis_master_embed === false) {
-			window.addEventListener("beforeunload", function (e) {
+			window.addEventListener('beforeunload', function (e) {
 				// Chrome requires returnValue to be set
-				e.returnValue = "";
+				e.returnValue = '';
 			});
 		}
 	}
 	load_from_server(link_id) {
 		// Read file from server given file name
-		fetch("./saves/" + link_id + ".auralayer")
-			.then((response) => response.json())
-			.then((data_from_file) => this.load_mechanism(data_from_file))
-			.catch((error) => console.log(error));
+		fetch("saves/" + link_id + ".auralayer")
+			.then(response => response.json())
+			.then(data_from_file => this.load_mechanism(data_from_file))
+			.catch(error => console.log(error));
 	}
 	load_mechanism(loaded_data) {
 		// this.loaded_file = JSON.parse( loaded_data );
@@ -1636,170 +1497,33 @@ class Auralayer {
 		this.load_from_file(this.loaded_file);
 	}
 	create_activity_selection_interface() {
-		this.ActivitySelectionContainer = createNewElement({
-			type: "div",
-			classes: ["ActivitySelectionContainer"],
-			parent: document.body,
-		});
-		this.ActivitySelectionHeader = createNewElement({
-			type: "div",
-			classes: ["ActivitySelectionHeader"],
-			parent: this.ActivitySelectionContainer,
-			properties: {
-				innerHTML: `<h1 class="text-primary fw-light">Auralayer</h1>`,
-			},
-		});
-		this.ActivitySelectionBody = createNewElement({
-			type: "div",
-			classes: ["ActivitySelectionBody"],
-			parent: this.ActivitySelectionContainer,
-		});
-		this.NewAuralayerFromYoutubeContainer = createNewElement({
-			type: "div",
-			classes: [
-				"NewAuralayerFromYoutubeContainer",
-				"ActivityButtonContainer",
-			],
-			parent: this.ActivitySelectionBody,
-		});
-		this.NewAuralayerFromYoutubeButton = createNewElement({
-			type: "button",
-			classes: [
-				"NewAuralayerFromYoutubeButton",
-				"btn",
-				"btn-outline-primary",
-			],
-			parent: this.NewAuralayerFromYoutubeContainer,
-			properties: { innerText: "Create" },
-			events: { click: (e) => this.StartYoutubeActivitySetup() },
-		});
-		this.NewAuralayerFromYoutubeDescription = createNewElement({
-			type: "div",
-			classes: ["NewAuralayerFromYoutubeDescription"],
-			parent: this.NewAuralayerFromYoutubeContainer,
-			properties: {
-				innerText: "Create a new Auralayer using a YouTube link",
-			},
-		});
-		this.NewAuralayerFromAudioFileContainer = createNewElement({
-			type: "div",
-			classes: [
-				"NewAuralayerFromAudioFileContainer",
-				"ActivityButtonContainer",
-			],
-			parent: this.ActivitySelectionBody,
-		});
-		this.NewAuralayerFromAudioFileButton = createNewElement({
-			type: "button",
-			classes: [
-				"NewAuralayerFromAudioFileButton",
-				"btn",
-				"btn-outline-primary",
-			],
-			parent: this.NewAuralayerFromAudioFileContainer,
-			properties: { innerText: "Create" },
-			events: { click: (e) => this.StartAudioFileActivitySetup() },
-		});
-		this.NewAuralayerFromAudioFileDescription = createNewElement({
-			type: "div",
-			classes: ["NewAuralayerFromAudioFileDescription"],
-			parent: this.NewAuralayerFromAudioFileContainer,
-			properties: {
-				innerText:
-					"Create a new Auralayer using an audio file on your device",
-			},
-		});
-		this.OpenExistingAuralayerFromFileContainer = createNewElement({
-			type: "div",
-			classes: [
-				"OpenExistingAuralayerFromFileContainer",
-				"ActivityButtonContainer",
-			],
-			parent: this.ActivitySelectionBody,
-		});
-		this.OpenExistingAuralayerFromFileButton = createNewElement({
-			type: "button",
-			classes: [
-				"OpenExistingAuralayerFromFileButton",
-				"btn",
-				"btn-outline-primary",
-			],
-			parent: this.OpenExistingAuralayerFromFileContainer,
-			properties: { innerText: "Open" },
-			events: { click: (e) => this.ImportFromFile.click() },
-		});
-		this.OpenExistingAuralayerFromFileDescription = createNewElement({
-			type: "div",
-			classes: ["OpenExistingAuralayerFromFileDescription"],
-			parent: this.OpenExistingAuralayerFromFileContainer,
-			properties: {
-				innerText:
-					"Open an existing Auralayer analysis from an auralayer file",
-			},
-		});
-		this.NewAuralayerFromAudioFileWithAbsoluteURL_Container =
-			createNewElement({
-				type: "div",
-				classes: [
-					"NewAuralayerFromAudioFileWithAbsoluteURL_Container",
-					"ActivityButtonContainer",
-				],
-				parent: this.ActivitySelectionBody,
-				styles: { display: "none" },
-			});
-		this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement(
-			{
-				type: "button",
-				classes: [
-					"NewAuralayerFromAudioFileWithAbsoluteURL_Button",
-					"btn",
-					"btn-outline-primary",
-				],
-				parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container,
-				properties: { innerText: "Create" },
-			}
-		);
-		this.NewAuralayerFromAudioFileWithAbsoluteURL_Description =
-			createNewElement({
-				type: "div",
-				classes: [
-					"NewAuralayerFromAudioFileWithAbsoluteURL_Description",
-				],
-				parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container,
-				properties: {
-					innerText: "Create a new Auralayer using an absolute URL",
-				},
-			});
-		this.ActivitySelectionFooter = createNewElement({
-			type: "div",
-			classes: ["ActivitySelectionFooter"],
-			parent: this.ActivitySelectionContainer,
-		});
-		this.ImportFromFile = createNewElement({
-			type: "input",
-			classes: ["InterfaceButton"],
-			parent: document.body,
-			properties: { type: "file" },
-			styles: { display: "none" },
-			events: { change: (e) => this.RequestFileFromUser(e) },
-		});
+		this.ActivitySelectionContainer = createNewElement({ type: "div", classes: ["ActivitySelectionContainer"], parent: document.body });
+		this.ActivitySelectionHeader = createNewElement({ type: "div", classes: ["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties: { innerHTML: `<h1 class="text-primary fw-light">Auralayer</h1>` } });
+		this.ActivitySelectionBody = createNewElement({ type: "div", classes: ["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
+		this.NewAuralayerFromYoutubeContainer = createNewElement({ type: "div", classes: ["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody });
+		this.NewAuralayerFromYoutubeButton = createNewElement({ type: "button", classes: ["NewAuralayerFromYoutubeButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties: { innerText: "Create" }, events: { click: e => this.StartYoutubeActivitySetup() } });
+		this.NewAuralayerFromYoutubeDescription = createNewElement({ type: "div", classes: ["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties: { innerText: "Create a new Auralayer using a YouTube link" } });
+		this.NewAuralayerFromAudioFileContainer = createNewElement({ type: "div", classes: ["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody });
+		this.NewAuralayerFromAudioFileButton = createNewElement({ type: "button", classes: ["NewAuralayerFromAudioFileButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties: { innerText: "Create" }, events: { click: e => this.StartAudioFileActivitySetup() } });
+		this.NewAuralayerFromAudioFileDescription = createNewElement({ type: "div", classes: ["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties: { innerText: "Create a new Auralayer using an audio file on your device" } });
+		this.OpenExistingAuralayerFromFileContainer = createNewElement({ type: "div", classes: ["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody });
+		this.OpenExistingAuralayerFromFileButton = createNewElement({ type: "button", classes: ["OpenExistingAuralayerFromFileButton", "btn", "btn-outline-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties: { innerText: "Open" }, events: { click: e => this.ImportFromFile.click() } });
+		this.OpenExistingAuralayerFromFileDescription = createNewElement({ type: "div", classes: ["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties: { innerText: "Open an existing Auralayer analysis from an auralayer file" } });
+		this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({ type: "div", classes: ["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: { display: "none" } });
+		this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({ type: "button", classes: ["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties: { innerText: "Create" } });
+		this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({ type: "div", classes: ["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties: { innerText: "Create a new Auralayer using an absolute URL" } });
+		this.ActivitySelectionFooter = createNewElement({ type: "div", classes: ["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
+		this.ImportFromFile = createNewElement({ type: 'input', classes: ["InterfaceButton"], parent: document.body, properties: { type: 'file' }, styles: { display: 'none' }, events: { change: e => this.RequestFileFromUser(e) } });
 
 		// this.NewAuralayerFromYoutubeButton.addEventListener("click", e=>this.StartYoutubeActivitySetup());
 		// this.NewAuralayerFromAudioFileButton.addEventListener("click", e=>this.StartAudioFileActivitySetup());
-		// this.OpenExistingAuralayerFromFileButton.addEventListener("click", e => this.ImportFromFile.click());
+		// this.OpenExistingAuralayerFromFileButton.addEventListener("click", e => this.ImportFromFile.click());	
 		// this.ImportFromFile.addEventListener('change', e=>this.RequestFileFromUser(e));
 
-		if (location.hostname.includes("localhost")) {
-			this.NewAuralayerFromAudioFileWithAbsoluteURL_Container.style.display =
-				"flex";
-		}
+		if (location.hostname.includes("localhost")) { this.NewAuralayerFromAudioFileWithAbsoluteURL_Container.style.display = "flex"; }
 	}
 	initialize_interface() {
-		this.AuralayerProgram = createNewElement({
-			type: "div",
-			classes: ["AuralayerProgram"],
-			parent: document.body,
-		});
+		this.AuralayerProgram = createNewElement({ type: "div", classes: ["AuralayerProgram"], parent: document.body });
 
 		// -----------------------------------
 		//      MAIN INTERFACE COMPONENTS
@@ -2177,6 +1901,11 @@ class Auralayer {
 			classes: ["AllLayerContainers"],
 			parent: this.BodyContainer,
 		});
+		this.LoadingSpinner = createNewElement({ type: "div", classes: ["LoadingSpinner", "spinner-border", "text-primary"], parent: this.AllLayerContainers, properties: { role: "status", innerHTML: `<span class="visually-hidden">Loading...</span>` }, styles: { display: "none" } });
+
+		// <div class="spinner-border text-primary" role="status">
+		// 	<span class="visually-hidden">Loading...</span>
+		// </div>
 		this.AllLayerContainers.addEventListener("dragover", (e) => {
 			this.dragging_handler(e);
 		});
@@ -2209,16 +1938,31 @@ class Auralayer {
 
 		// -----------------------------------
 		//       SLIDER CONTAINER COMPONENTS
+		// -----------------------------------    
+		this.SeekSlider = createNewElement({ type: "input", classes: ["slider", "SeekSlider"], parent: this.SliderContainer, properties: { type: "range" } });
+		this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));
+
+
 		// -----------------------------------
-		this.SeekSlider = createNewElement({
-			type: "input",
-			classes: ["slider", "SeekSlider"],
-			parent: this.SliderContainer,
-			properties: { type: "range" },
-		});
-		this.SeekSlider.addEventListener("input", (e) =>
-			this.seek_slider_moved_handler(e)
-		);
+		//      LEFT OUTER COLUMN COMPONENTS
+		// -----------------------------------       
+		// this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
+		this.UndoZoomContainer = createNewElement({ type: "div", classes: ["UndoZoomContainer", "col"], parent: this.HeaderContainer, properties: { id: "undo-redo" } });
+		this.UndoButtonGroup = createNewElement({ type: "div", classes: ["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties: { role: "group" } });
+		this.ZoomButtonGroup = createNewElement({ type: "div", classes: ["ZoomButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties: { role: "group" } });
+
+		this.ZoomOutButton = createNewElement({ type: "button", classes: ["ZoomOutButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: { type: "button", innerHTML: `<i class="bi-zoom-out"></i>` } });
+		this.ZoomOutButton.addEventListener("click", e => { this.zoom_handler("out") });
+		this.ZoomInButton = createNewElement({ type: "button", classes: ["ZoomInButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: { type: "button", title: "Zoom in", innerHTML: `<i class="bi-zoom-in"></i>` } });
+		this.ZoomInButton.addEventListener("click", e => { this.zoom_handler("in") });
+
+
+		this.UndoButton = createNewElement({ type: "button", classes: ["UndoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: { innerText: "Undo", type: "button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>` } });
+		this.UndoButton.addEventListener("click", e => { this.undo_handler() });
+		this.RedoButton = createNewElement({ type: "button", classes: ["RedoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: { innerText: "Redo", type: "button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>` } });
+		this.RedoButton.addEventListener("click", e => { this.redo_handler() });
+
+
 
 		// -----------------------------------
 		//      AUDIO CONTROLs
@@ -2374,20 +2118,9 @@ class Auralayer {
 			properties: { id: "export" },
 		});
 
-		this.SaveToFileButton = createNewElement({
-			type: "button",
-			classes: ["SaveToFileButton", "btn", "btn-secondary"],
-			parent: this.ExportButtonContainer,
-			properties: {
-				innerHTML: `<i class="bi-download"></i>`,
-				type: "button",
-				title: "Save Analysis to File",
-			},
-			dataset: { bsToggle: "modal", bsTarget: "#download" },
-		});
-		this.SaveToFileButton.addEventListener("click", (e) => {
-			this.save_to_file();
-		});
+		this.SaveToFileButton = createNewElement({ type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: { innerHTML: `<i class="bi-download"></i>`, type: "button", title: "Save Analysis to File" }, dataset: { bsToggle: "modal", bsTarget: "#download" } });
+		// this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
+		this.SaveToFileButton.addEventListener("click", e => { download_image(); });
 
 		this.ShareAnalysisButton = createNewElement({
 			type: "button",
@@ -3266,7 +2999,7 @@ class Auralayer {
 									parseInt(
 										this.layers[i].segment_array[j]
 											.segment_text_1.style[
-											sent_style.style
+										sent_style.style
 										]
 									) +
 									1 +
@@ -3277,7 +3010,7 @@ class Auralayer {
 									parseInt(
 										this.layers[i].segment_array[j]
 											.segment_text_1.style[
-											sent_style.style
+										sent_style.style
 										]
 									) +
 									1 +
@@ -3289,7 +3022,7 @@ class Auralayer {
 									parseInt(
 										this.layers[i].segment_array[j]
 											.segment_text_1.style[
-											sent_style.style
+										sent_style.style
 										]
 									) -
 									1 +
@@ -3300,7 +3033,7 @@ class Auralayer {
 									parseInt(
 										this.layers[i].segment_array[j]
 											.segment_text_1.style[
-											sent_style.style
+										sent_style.style
 										]
 									) -
 									1 +
@@ -3379,53 +3112,29 @@ class Auralayer {
 
 		for (let i = 0; i < this.layers.length; i++) {
 			for (let j = 0; j < this.layers[i].segment_array.length; j++) {
-				// this.layers[i].segment_array[j].segment.style.width = ((this.layers[i].segment_array[j].data.end_pos - this.layers[i].segment_array[j].data.start_pos ) * this.scale) + (this.scale-1) +  "px";
-				// this.layers[i].segment_array[j].segment.style.width = (((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution) - 1 ) * this.scale) + (this.scale-1) +  "px";
-				// this.layers[i].segment_array[j].segment.style.width = (((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution) - 1 ) * this.scale) + (this.scale-1) +  "px";
-				this.layers[i].segment_array[j].segment.style.width =
-					(this.layers[i].segment_array[j].data.end_pos /
-						this.resolution -
-						this.layers[i].segment_array[j].data.start_pos /
-							this.resolution) *
-						this.scale +
-					this.scale / this.resolution -
-					1 +
-					"px";
-				this.layers[i].segment_array[j].segment.style.left =
-					(this.layers[i].segment_array[j].data.start_pos /
-						this.resolution) *
-						this.scale +
-					"px";
+				this.layers[i].segment_array[j].segment.style.width = ((((this.layers[i].segment_array[j].data.end_pos / this.resolution) - (this.layers[i].segment_array[j].data.start_pos / this.resolution)) * this.scale) + (this.scale / this.resolution) - 1) + "px";
+				this.layers[i].segment_array[j].segment.style.left = ((this.layers[i].segment_array[j].data.start_pos / this.resolution) * this.scale) + "px";
 			}
 
-			// this.layers[i].layer_segment_holder.style.width = ((((this.file_length/this.resolution) / this.length_padding) * this.scale) - 1)  + "px";
-			// this.layers[i].layer_segment_holder.style.width = (((this.file_length/this.resolution) * this.scale) - 1 )  + "px";
-			this.layers[i].layer_segment_holder.style.width =
-				(this.file_length / this.resolution) * this.scale -
-				1 +
-				this.scale / this.resolution +
-				"px";
+			this.layers[i].layer_segment_holder.style.width = ((((this.file_length / this.resolution) * this.scale) - 1) + (this.scale / this.resolution)) + "px";
 		}
-		// this.SeekSlider.style.width = ((this.file_length/this.resolution) / this.length_padding) * this.scale + "px";
-		this.SeekSlider.style.width =
-			(this.file_length / this.resolution) * this.scale -
-			1 +
-			this.scale / this.resolution +
-			"px";
+
+		this.timestamp_array.forEach((each, index) => {
+			// console.log("current: " + each.style.left + " - new: " + (this.time_stamp_distance * this.scale) + "- this.scale:" + this.scale);
+			console.log("LEFT: " + ((this.time_stamp_distance * this.scale) * index));
+			each.style.left = ((this.time_stamp_distance * index) * this.scale) + "px";
+		});
+
+		this.SeekSlider.style.width = ((((this.file_length / this.resolution) * this.scale) - 1) + (this.scale / this.resolution)) + "px";
 		this.save_state();
 	}
 	change_opacity(e, direction) {
 		for (let i = 0; i < this.layers.length; i++) {
 			for (let j = 0; j < this.layers[i].segment_array.length; j++) {
-				if (
-					this.layers[i].segment_array[j].segment.classList.contains(
-						"segment_selected"
-					)
-				) {
-					this.layers[i].segment_array[j].segment.style.filter =
-						"opacity()";
-					this.layers[i].segment_array[j].data.styles.filter =
-						"opacity()";
+				if (this.layers[i].segment_array[j].segment.classList.contains("segment_selected")) {
+
+					this.layers[i].segment_array[j].segment.style.filter = "opacity()";
+					this.layers[i].segment_array[j].data.styles.filter = "opacity()";
 
 					let new_saturation_value = (
 						e.target.value / GLOBAL_presence_scale
@@ -3717,60 +3426,26 @@ class Auralayer {
 		return [color_value, initial_saturation, urlText];
 	}
 	StartYoutubeActivitySetup() {
+		this.LoadingSpinner.style.display = "block";
 		this.example_data.piece_info.media_type = "youtube";
-		this.activity_type = "youtube_link";
-		let youtube_url = "Paste URL here";
+		this.activity_type = 'youtube_link';
+		let youtube_url = 'Paste URL here';
 
-		const url_prompt_backdrop = createNewElement({
-			type: "div",
-			classes: ["url_prompt_backdrop"],
-			parent: document.body,
-		});
-		const url_prompt_box_container = createNewElement({
-			type: "div",
-			classes: ["url_prompt_box_container"],
-			parent: document.body,
-		});
-		const url_prompt_box_top = createNewElement({
-			type: "div",
-			classes: ["url_prompt_box_top"],
-			parent: url_prompt_box_container,
-			properties: { innerText: "Paste a YouTube URL below" },
-		});
-		const url_prompt_box_middle = createNewElement({
-			type: "div",
-			classes: ["url_prompt_box_middle"],
-			parent: url_prompt_box_container,
-		});
-		const url_prompt_input_box = createNewElement({
-			type: "input",
-			classes: [],
-			parent: url_prompt_box_middle,
-			properties: {
-				id: "url_prompt_input_box",
-				innerText: "Paste a YouTube URL below",
-				type: "text",
-				placeholder: "Paste URL here",
-			},
-		});
-		const url_prompt_submit_button = createNewElement({
-			type: "button",
-			classes: [],
-			parent: url_prompt_box_middle,
-			properties: { id: "url_prompt_submit_button", innerText: "Start" },
-		});
-		const url_prompt_box_bottom = createNewElement({
-			type: "div",
-			classes: ["url_prompt_box_bottom"],
-			parent: url_prompt_box_container,
-		});
+		this.url_prompt_backdrop = createNewElement({ type: "div", classes: ["url_prompt_backdrop"], parent: document.body });
+		this.url_prompt_box_container = createNewElement({ type: "div", classes: ["url_prompt_box_container"], parent: document.body });
+		this.url_prompt_box_top = createNewElement({ type: "div", classes: ["url_prompt_box_top"], parent: this.url_prompt_box_container, properties: { innerText: "Paste a YouTube URL below" } });
+		this.url_prompt_box_middle = createNewElement({ type: "div", classes: ["url_prompt_box_middle"], parent: this.url_prompt_box_container });
+		this.url_prompt_input_box = createNewElement({ type: "input", classes: [], parent: this.url_prompt_box_middle, properties: { id: "url_prompt_input_box", innerText: "Paste a YouTube URL below", type: "text", placeholder: "Paste URL here" } });
+		this.url_prompt_submit_button = createNewElement({ type: "button", classes: [], parent: this.url_prompt_box_middle, properties: { id: "url_prompt_submit_button", innerText: "Start" } });
+		this.url_prompt_cancel_button = createNewElement({ type: "button", classes: ["url_prompt_cancel_button"], parent: this.url_prompt_box_middle, properties: { innerHTML: "✖️" }, events: { click: e => this.url_prompt_cancel_button_handler() } });
+		this.url_prompt_box_bottom = createNewElement({ type: "div", classes: ["url_prompt_box_bottom"], parent: this.url_prompt_box_container });
 
 		if (this.load_from_file_mode === true) {
 			youtube_url = this.example_data.piece_info.video_id;
 			this.loaded_file_name_label = this.example_data.piece_info.video_id;
 			setup_youtube_player();
-			url_prompt_backdrop.style.display = "none";
-			url_prompt_box_container.style.display = "none";
+			this.url_prompt_backdrop.style.display = "none";
+			this.url_prompt_box_container.style.display = "none";
 		}
 
 		if (developing === true) {
@@ -3780,13 +3455,13 @@ class Auralayer {
 			this.loaded_file_name_label = this.example_data.piece_info.video_id;
 			setup_youtube_player();
 
-			url_prompt_backdrop.style.display = "none";
-			url_prompt_box_container.style.display = "none";
+			this.url_prompt_backdrop.style.display = "none";
+			this.url_prompt_box_container.style.display = "none";
 		}
 
-		url_prompt_submit_button.addEventListener("click", (e) => {
+		this.url_prompt_submit_button.addEventListener('click', e => {
 			let breakout = false;
-			youtube_url = url_prompt_input_box.value;
+			youtube_url = this.url_prompt_input_box.value;
 
 			if (breakout === false) {
 				this.example_data.piece_info.video_id =
@@ -3799,7 +3474,7 @@ class Auralayer {
 				} else {
 					alert(
 						"That URL was invalid. Please enter a valid YouTube URL. You entered: " +
-							youtube_url
+						youtube_url
 					);
 				}
 			}
@@ -3809,61 +3484,72 @@ class Auralayer {
 					this.example_data.piece_info.video_id;
 				setup_youtube_player();
 
-				url_prompt_backdrop.style.display = "none";
-				url_prompt_box_container.style.display = "none";
+				this.url_prompt_backdrop.style.display = "none";
+				this.url_prompt_box_container.style.display = "none";
 			}
 		});
 
-		url_prompt_input_box.focus();
+		this.url_prompt_input_box.focus();
 		this.ActivitySelectionContainer.style.display = "none";
+	}
+	url_prompt_cancel_button_handler() {
+		this.ActivitySelectionContainer.style.display = "grid";
+		this.url_prompt_backdrop.remove();
+		this.url_prompt_box_container.remove();
+		this.LoadingSpinner.style.display = "none";
+	}
+	cancel_opening_audio_button_handler() {
+		this.ActivitySelectionContainer.style.display = "grid";
+		this.ActivitySelectionBody.style.display = "block";
+		this.LoadingSpinner.style.display = "none";
+		this.open_audio_button.style.display = "none";
+		this.cancel_opening_audio_button.style.display = "none";
+		this.audio_file_prompt_backdrop.remove();
+		this.audio_file_prompt_box_container.remove();
 	}
 	StartAudioFileActivitySetup(sent_url) {
 		this.example_data.piece_info.media_type = "audio_file";
-		this.activity_type = "audio_file";
+		this.activity_type = 'audio_file';
+
 
 		this.ActivitySelectionBody.style.display = "none";
 
-		this.open_audio_button = createNewElement({
-			type: "input",
-			classes: ["open_audio_button"],
-			parent: document.body,
-			properties: {
-				innerText: "Choose Audio File",
-				type: "file",
-				name: "open_audio_button",
-			},
-			styles: { display: "block" },
-		});
-		this.open_audio_button.addEventListener("change", () =>
-			this.get_user_audio_file("nothing")
-		);
+
+		this.audio_file_prompt_backdrop = createNewElement({ type: "div", classes: ["audio_file_prompt_backdrop"], parent: document.body });
+		this.audio_file_prompt_box_container = createNewElement({ type: "div", classes: ["audio_file_prompt_box_container"], parent: document.body });
+		this.audio_file_prompt_box_top = createNewElement({ type: "div", classes: ["audio_file_prompt_box_top"], parent: this.audio_file_prompt_box_container, properties: { innerText: "Choose Audio File" } });
+		this.audio_file_prompt_box_middle = createNewElement({ type: "div", classes: ["audio_file_prompt_box_middle"], parent: this.audio_file_prompt_box_container });
+		this.open_audio_button = createNewElement({ type: 'input', classes: ["open_audio_button"], parent: this.audio_file_prompt_box_middle, properties: { innerText: "Choose Audio File", type: "file", name: "open_audio_button" }, styles: { display: "block" }, events: { change: () => this.get_user_audio_file('nothing') } });
+		this.cancel_opening_audio_button = createNewElement({ type: "button", classes: ["cancel_opening_audio_button"], parent: this.audio_file_prompt_box_middle, properties: { innerHTML: "✖️" }, events: { click: e => this.cancel_opening_audio_button_handler() } });
+		this.audio_file_prompt_box_bottom = createNewElement({ type: "div", classes: ["audio_file_prompt_box_bottom"], parent: this.audio_file_prompt_box_container });
+
+
 
 		// this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}, styles:{zIndex: 2}});
 		// this.open_file_trigger_button.addEventListener('click', () => this.open_audio_button.click() );
 		// this.loaded_file_name_label = createNewElement({type: "div", classes: ["loaded_file_name_label", "InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
 
 		if (developing === true && location.hostname.includes("localhost")) {
-			this.get_user_audio_file("nothing");
+			this.get_user_audio_file('nothing');
 			this.open_audio_button.style.display = "none";
 			// this.open_file_trigger_button.display = "none";
-		} else {
+		}
+		else {
 			// this.open_audio_button.click();
 		}
 	}
 	get_user_audio_file(sent_url) {
 		this.ActivitySelectionContainer.style.display = "none";
-		this.uploaded_audio = createNewElement({
-			type: "audio",
-			classes: ["user_audio"],
-			parent: this.VideoAccordionBodyInterior,
-			properties: { controls: true },
-		});
-		this.uploaded_audio.addEventListener("play", (e) => {
-			this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
-		});
-		this.uploaded_audio.addEventListener("pause", (e) => {
-			this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
-		});
+		this.LoadingSpinner.style.display = "none";
+		this.open_audio_button.style.display = "none";
+		this.cancel_opening_audio_button.style.display = "none";
+		this.audio_file_prompt_backdrop.remove();
+		this.audio_file_prompt_box_container.remove();
+
+
+		this.uploaded_audio = createNewElement({ type: "audio", classes: ["user_audio"], parent: this.VideoAccordionBodyInterior, properties: { controls: true } });
+		this.uploaded_audio.addEventListener("play", e => { this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`; });
+		this.uploaded_audio.addEventListener("pause", e => { this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`; });
 		// this.VideoAccordionBody.appendChild(this.loaded_file_name_label);
 
 		if (developing === true && location.hostname.includes("localhost")) {
@@ -3909,32 +3595,44 @@ class Auralayer {
 
 		this.start_program_after_media_loaded();
 	}
+	timestamp_lines() {
+		this.timestamp_container = createNewElement({ type: "div", classes: ["timestamp_container"], parent: this.AllLayerContainers, properties: {} });
+		this.timestamp_array = [];
+
+
+		for (let i = 0; i < (parseInt(parseInt((this.file_length / this.resolution) / this.time_stamp_distance)) + 1); i++) {
+
+			let text = String(parseInt(((this.time_stamp_distance * i) / 60))).padStart(1, "0") + ":" + String(parseInt(((this.time_stamp_distance * i) % 60))).padStart(2, "0");
+			let timestamp_outer_div = createNewElement({ type: "div", classes: ["timestamp_outer_div"], parent: this.timestamp_container, properties: {}, styles: { left: ((this.time_stamp_distance * this.scale) * i) + "px" } });
+			let timestamp_line = createNewElement({ type: "div", classes: ["timestamp_line"], parent: timestamp_outer_div, properties: {} });
+			let timestamp_text = createNewElement({ type: "div", classes: ["timestamp_text"], parent: timestamp_outer_div, properties: { innerText: text } });
+			this.timestamp_array.push(timestamp_outer_div);
+		}
+	}
 	play_button_handler() {
 		switch (this.activity_type) {
-			case "audio_file":
+			case 'audio_file':
 				if (!this.uploaded_audio.paused) {
 					//Its playing...do your job
 					console.log("playing!");
 					this.pause_audio();
 					this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
-				} else {
-					console.log("not playing");
+				}
+				else {
+					console.log('not playing');
 					//Not playing...maybe paused, stopped or never played.
 					this.play_audio();
 					this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
 				}
 				break;
-			case "youtube_link":
+			case 'youtube_link':
 				if (youtube_player_state != YT.PlayerState.PAUSED) {
-					playerx.g.classList.remove(
-						"small_youtube_video_for_iframes"
-					);
+					playerx.g.classList.remove("small_youtube_video_for_iframes");
 					playerx.pauseVideo();
 					this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
-				} else {
-					playerx.g.classList.remove(
-						"small_youtube_video_for_iframes"
-					);
+				}
+				else {
+					playerx.g.classList.remove("small_youtube_video_for_iframes");
 					playerx.playVideo();
 					this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
 				}
@@ -3942,17 +3640,16 @@ class Auralayer {
 				break;
 			default:
 				//default option here
-				console.log(
-					"the default option has been reached in the switch statement"
-				);
+				console.log('the default option has been reached in the switch statement');
 		}
 	}
 	play_audio() {
 		switch (this.activity_type) {
-			case "audio_file":
+			case 'audio_file':
 				this.uploaded_audio.play();
 				break;
-			case "youtube_link":
+			case 'youtube_link':
+
 				// player.play();
 				playerx.g.classList.remove("small_youtube_video_for_iframes");
 
@@ -3992,46 +3689,41 @@ class Auralayer {
 
 		r = url.match(rx);
 
-		if (r === null) {
-			return false;
-		} else {
-			return r[1];
-		}
+		if (r === null) { return false; }
+		else { return r[1]; }
 	}
 	check_for_url_data() {
 		let sPageURL = window.location.search.substring(1);
 		if (sPageURL == "") return false;
-		let sURLVariables = sPageURL.split("&");
+		let sURLVariables = sPageURL.split('&');
 
-		let sParameterName = sURLVariables[0].split("=");
-		if (sParameterName[0] == "load") {
+		let sParameterName = sURLVariables[0].split('=');
+		if (sParameterName[0] == 'load') {
 			this.url_activity_text = sParameterName[1];
 		}
 	}
 	setup_youtube_file_info() {
+		this.LoadingSpinner.remove();
 		// this.file_length = parseInt(playerx.getDuration() * this.scale);
 		this.file_length = parseInt(playerx.getDuration()) * this.resolution;
 		this.start_program_after_media_loaded();
-		this.timeupdater = setInterval(
-			(e) => this.move_seek_slider_with_audio_position("ticking_youtube"),
-			10
-		);
+		this.timeupdater = setInterval((e) => this.move_seek_slider_with_audio_position('ticking_youtube'), 10);
 	}
 	start_program_after_media_loaded() {
+		this.timestamp_lines();
+
+
+		this.LoadingSpinner.remove();
 		this.undo_now = true;
 
 		let random_color = "rgba(" + this.colors[this.color_count] + ",1.0)";
 
 		this.SeekSlider.max = this.file_length * this.audio_speed;
 		this.SeekSlider.value = 0;
-		let width =
-			(this.file_length / this.resolution) * this.scale -
-			1 +
-			this.scale / this.resolution +
-			"px";
+		let width = ((((this.file_length / this.resolution) * this.scale) - 1) + (this.scale / this.resolution)) + "px";
 		this.SeekSlider.style.width = width;
 		// this.SeekSlider.style.width = ((this.file_length/this.resolution) / this.length_padding) * this.scale + "px";
-		this.SeekSlider.style.display = "block";
+		this.SeekSlider.style.display = 'block';
 
 		if (this.example_data.layers.length === 0) {
 			this.color_count = (this.color_count + 1) % this.colors.length;
@@ -4093,16 +3785,16 @@ class Auralayer {
 		document.documentElement.style.setProperty(
 			"--slider_thumb_height",
 			(this.segment_height + segment_margin_bottom) * this.layers.length +
-				70 +
-				"px"
+			70 +
+			"px"
 		);
 		document.documentElement.style.setProperty(
 			"--slider_thumb_offset",
 			(((this.segment_height + segment_margin_bottom) / 2) *
 				this.layers.length +
 				25) *
-				-1 +
-				"px"
+			-1 +
+			"px"
 		);
 	}
 	seek_slider_moved_handler(e) {
@@ -4163,8 +3855,8 @@ class Auralayer {
 				);
 				this.SeekSlider.value = parseInt(
 					this.uploaded_audio.currentTime *
-						this.resolution *
-						this.audio_speed
+					this.resolution *
+					this.audio_speed
 				);
 				break;
 			case "youtube_link":
@@ -4173,8 +3865,8 @@ class Auralayer {
 				);
 				this.SeekSlider.value = parseInt(
 					playerx.getCurrentTime() *
-						this.resolution *
-						this.audio_speed
+					this.resolution *
+					this.audio_speed
 				);
 				// console.log("playerx.getCurrentTime(): " + playerx.getCurrentTime());
 				// console.log("this.slider_position: " + this.slider_position);
@@ -4260,39 +3952,30 @@ class Auralayer {
 		document.documentElement.style.setProperty(
 			"--slider_thumb_height",
 			(this.segment_height + segment_margin_bottom) * this.layers.length +
-				70 +
-				"px"
+			70 +
+			"px"
 		);
 		document.documentElement.style.setProperty(
 			"--slider_thumb_offset",
 			(((this.segment_height + segment_margin_bottom) / 2) *
 				this.layers.length +
 				25) *
-				-1 +
-				"px"
+			-1 +
+			"px"
 		);
 
-		this.slider_thumb_height = parseInt(
-			getComputedStyle(document.documentElement, null).getPropertyValue(
-				"--slider_thumb_height"
-			)
-		);
-		this.slider_thumb_offset = parseInt(
-			getComputedStyle(document.documentElement, null).getPropertyValue(
-				"--slider_thumb_offset"
-			)
-		);
-		this.example_data.piece_info.slider_thumb_height =
-			this.slider_thumb_height;
-		this.example_data.piece_info.slider_thumb_offset =
-			this.slider_thumb_offset;
+		this.slider_thumb_height = parseInt(getComputedStyle(document.documentElement, null).getPropertyValue('--slider_thumb_height'));
+		this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement, null).getPropertyValue('--slider_thumb_offset'));
+		this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
+		this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;
 
-		this.save_array[this.save_position].program_data.slider_thumb_height =
-			this.slider_thumb_height;
-		this.save_array[this.save_position].program_data.slider_thumb_offset =
-			this.slider_thumb_offset;
+		this.save_array[this.save_position].program_data.slider_thumb_height = this.slider_thumb_height;
+		this.save_array[this.save_position].program_data.slider_thumb_offset = this.slider_thumb_offset;
+
+		// this.timestamp_array.forEach(each=>each.)
 
 		// this.save_array.forEach(each=>console.log(each.program_data));
+
 	}
 	delete_layer(sent_layer_id) {
 		let layer_id_pos = sent_layer_id;
@@ -4360,7 +4043,7 @@ class Auralayer {
 					if (
 						this.layers[i].layer_data.segments[j].start_pos === 0 &&
 						this.layers[i].layer_data.segments[j].end_pos ===
-							this.file_length
+						this.file_length
 					) {
 						alert(
 							"Layers must have at least 1 segment. You can't delete this one."
@@ -4377,7 +4060,7 @@ class Auralayer {
 					} else if (
 						direction === "right" &&
 						this.layers[i].layer_data.segments[j].end_pos ===
-							this.file_length
+						this.file_length
 					) {
 						alert(
 							"There is no layer to the right of this one to merge with."
@@ -4470,7 +4153,7 @@ class Auralayer {
 									(this.layers[i].layer_data.segments[k]
 										.start_pos /
 										this.resolution) *
-										this.scale +
+									this.scale +
 									"px";
 							}
 						}
@@ -4662,6 +4345,83 @@ function setup_youtube_player() {
 	tag.src = "https://www.youtube.com/iframe_api";
 	let firstScriptTag = document.getElementsByTagName("script")[0];
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+
+function download_image() {
+	const scriptPromise = new Promise((resolve, reject) => {
+		const script = document.createElement('script');
+		document.body.appendChild(script);
+		script.onload = resolve;
+		script.onerror = reject;
+		script.async = true;
+		script.src = 'scripts/html2canvas.min.js';
+	});
+
+	scriptPromise.then(() => {
+
+		project.SeekSlider.style.display = "none";
+		// document.documentElement.style.setProperty("--primary-color-8", "transparent");
+
+		// let element_to_image = document.getElementById('editor');
+		let element_to_image = project.BodyContainer;
+		// let element_to_image = document.body;
+
+		// find the right-most position on the diagram and make the space that wide for the image
+		let all_shapes = document.getElementsByClassName('segment');
+
+		let right_most = 0;
+		// let editor_height = document.getElementById("editor").getBoundingClientRect().height + 10;
+		let editor_height = project.BodyContainer.getBoundingClientRect().height + 10;
+
+		for (let each of all_shapes) { if (each.getBoundingClientRect().right > right_most) { right_most = each.getBoundingClientRect().right; } }
+
+		if (right_most > element_to_image.scrollWidth) {
+			right_most = element_to_image.scrollWidth;
+		}
+		else {
+			right_most = right_most + 20;
+		}
+
+		html2canvas(element_to_image,
+			{
+				scale: 1,
+				backgroundColor: null,
+				windowWidth: right_most,
+				windowHeight: element_to_image.scrollHeight
+			}).then(function (canvas) {
+				project.SeekSlider.style.display = "block";
+				saveAs(canvas.toDataURL(), 'auralayer-diagram.png');
+			});
+	});
+}
+
+
+function saveAs(uri, filename) {
+	var link = document.createElement('a');
+
+	if (typeof link.download === 'string') {
+		link.href = uri;
+		link.download = filename;
+
+		//Firefox requires the link to be in the body
+		document.body.appendChild(link);
+
+		//simulate click
+		link.click();
+
+		//remove the link when done
+		document.body.removeChild(link);
+		//   project.editor_seek_slider.style.display = "block";
+		// project.SeekSlider.style.backgroundColor = "var(--primary-color-9)";
+
+
+		// document.documentElement.style.setProperty("--primary-color-8", window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color-1'));
+		// document.documentElement.style.setProperty("--primary-color-8", '--primary-color-1');
+
+
+	}
+	else { window.open(uri); }
 }
 
 // if this script was in the HTML file "function onYouTubeIframeAPIReady()" would work, but since it's not
