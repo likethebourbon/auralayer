@@ -20,7 +20,10 @@ In development!
 - [ ] need a back button after submitting what kind of starting point (e.g., after pressing YT, need to be able to go back and select load from file)
 - [x] ability to select a blank/missing segment—currently no good way to fill in a gap
 - [ ] download button asks whether you want to save data file or image
-- [ ] duplicate layer buttonf
+- [ ] duplicate layer button
+- [ ] cmd+a to select all segments within a layer
+- [ ] "merge right/left" when selecting multiple segs should merge all selected segs into the leftmost/rightmost seg
+- [ ] after merging segments, the merged segment should be selected
 
 ## Bugs 
 
@@ -29,4 +32,4 @@ In development!
 - [ ] full width or centered graph on opening
 - [ ] Sometimes when switching windows the analysis disappears and I go back to the start screen
 - [ ] data table collapsible expands when the table is open
-- [ ] changing from "Gradient" to "slope" doesn't redraw things that were already gradient-ized or slope-ified
+- [ ] changing from "Gradient" to "slope" doesn't redraw things that were already gradient-ized or slope-ified; in general it's just a bit weird when you mess around with that setting
