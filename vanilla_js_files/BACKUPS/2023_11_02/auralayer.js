@@ -343,7 +343,6 @@ class Layer
 				this.name.addEventListener("blur", e=>
 					{
 						this.name.contentEditable = false;
-						this.name.classList.remove("layer_name_being_edited");
 						this.parent.in_text_editor = false;
 					});
 				this.name.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging");});
@@ -396,24 +395,7 @@ class Layer
 				this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
 				this.shape_background_texture_10 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10'], parent: this.texture_selector, styles:{background:'url(images/pattern_blank.png)'}, properties: {title: "Blank"}});
 				this.shape_background_texture_11 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_and_horizontal_1.png)'}, properties: {title: "Vertical and Horizontal Lines"}});
-
-				this.shape_background_texture_1_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_1_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines-white.png)'}, properties: {title: "Horizontal_Lines white"}});
-				this.shape_background_texture_2_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_2_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1-white.png)'}, properties: {title: "Dots_1 white"}});
-				this.shape_background_texture_3_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_3_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2-white.png)'}, properties: {title: "Dots_2 white"}});
-				this.shape_background_texture_4_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_4_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1-white.png)'}, properties: {title: "Vertical_Lines 1 white"}});
-				this.shape_background_texture_5_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_5_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2-white.png)'}, properties: {title: "Vertical_Lines 2 white"}});
-				this.shape_background_texture_6_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_6_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1-white.png)'}, properties: {title: "Diagonal_Line 1 white"}});
-				this.shape_background_texture_7_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2-white.png)'}, properties: {title: "Diagonal_Line 2 white"}});
-				this.shape_background_texture_8_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1-white.png)'}, properties: {title: "Circle_1 white"}});
-				this.shape_background_texture_9_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2-white.png)'}, properties: {title: "Circle_2 white"}});
-				this.shape_background_texture_10_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_blank-white.png)'}, properties: {title: "Blank white"}});
-				this.shape_background_texture_11_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_and_horizontal_1-white.png)'}, properties: {title: "Vertical and Horizontal Lines white"}});
-
-
-
-
-				// this.shape_background_texture_12 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_12'], parent: this.texture_selector, styles:{background:'url(images/2-square-pattern-tiled-graphicsfairy-32.png)'}, properties: {title: "Square pattern 1"}});
-
+				this.shape_background_texture_12 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_12'], parent: this.texture_selector, styles:{background:'url(images/2-square-pattern-tiled-graphicsfairy-32.png)'}, properties: {title: "Square pattern 1"}});
 
 
 				this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
@@ -427,19 +409,7 @@ class Layer
 				this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
 				this.shape_background_texture_10.addEventListener('click', e=>this.create_layer_background_texture(e));
 				this.shape_background_texture_11.addEventListener('click', e=>this.create_layer_background_texture(e));
-
-				this.shape_background_texture_1_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_2_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_3_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_4_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_5_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_6_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_7_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_8_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_9_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_10_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_11_white.addEventListener('click', e=>this.create_layer_background_texture(e));				
-
+				this.shape_background_texture_12.addEventListener('click', e=>this.create_layer_background_texture(e));
 
 	
 			
@@ -501,7 +471,6 @@ class Layer
 		layer_name_double_click_handler(e)
 			{
 				this.name.contentEditable = true;
-				this.name.classList.add("layer_name_being_edited");
 				this.name.focus();
 				window.getSelection().selectAllChildren(this.name);
 			}
@@ -730,10 +699,7 @@ class Segment
 
 				this.segment_text_1 = createNewElement({type:"div", classes:["segment_text_1", "segment_text"], parent: this.segment, properties:{innerText: this.data.text[0].inner_text, contentEditable: false}, styles: this.data.text[0].styles});
 				
-				
-				// let time_stamp = Math.floor(this.data.start_pos/60) + ":" + String(Math.floor(this.data.start_pos%60)).padStart(2,'0');
-				
-				let time_stamp = Math.floor((this.data.start_pos/10)/60) + ":" + String(Math.floor((this.data.start_pos/10)%60)).padStart(2,'0') + ":" + String((this.data.start_pos)%10).padStart(1,'0');
+				let time_stamp = Math.floor(this.data.start_pos/60) + ":" + String(Math.floor(this.data.start_pos%60)).padStart(2,'0');
 
 				this.segment_table_row = createNewElement({type:"tr", classes:["where"], parent: this.parent.parent.TableBodyTBody, properties:{}});
 					// this.SegmentTableId = createNewElement({type:"td", classes:["SegmentTableId"], parent: this.segment_table_row, properties:{innerText: this.parent.parent.example_data.piece_info.layer_id_pos}});
@@ -965,7 +931,6 @@ class Auralayer
 				this.load_from_file_mode = false;
 				this.skip_amount = 10;
 				this.resolution = 10;
-				this.time_stamp_distance = 30;
 				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
 				this.example_data = example_data;
@@ -983,46 +948,24 @@ class Auralayer
 				this.dragged_layer = -1;
 				this.length_padding = GLOBAL_length_padding;
 				this.check_for_url_data();
-				this.create_activity_selection_interface();
-				this.initialize_interface();	
 				if(this.url_activity_text !== "")
 				{
 					this.load_from_server(this.url_activity_text);	
 					return false;
 				}
-				else
-				{
-					// this.create_activity_selection_interface();
-					// this.initialize_interface();	
-				}
-				// setTimeout(()=>
-				// 	{
-				// 		console.log("TimeOUT");
-				// 		this.create_activity_selection_interface();
-				// 		this.initialize_interface();	
-				// 	}, "200");
-				
-				// this.create_activity_selection_interface();
-        // this.initialize_interface();
-				this.prevent_navigation_without_warning();
-      }
-		prevent_navigation_without_warning()
-			{                    
-				// if embedded for analysis master - don't alert about navigating away
-				// if(this.analysis_master_embed = true)
-				if(this.analysis_master_embed === false)
+				setTimeout(()=>
 					{
-						window.addEventListener('beforeunload', function (e) 
-							{
-								// Chrome requires returnValue to be set
-								e.returnValue = '';
-							});      
-					}
-			}	
+						console.log("TimeOUT");
+						this.create_activity_selection_interface();
+						this.initialize_interface();	
+					}, "200");
+				// this.create_activity_selection_interface();
+        // this.initialize_interface();				
+      }
 		load_from_server(link_id)
 			{
 					// Read file from server given file name
-					fetch("saves/" + link_id + ".auralayer")
+					fetch("./saves/" + link_id + ".auralayer")
 					.then(response => response.json())
 					.then(data_from_file => this.load_mechanism(data_from_file))
 					.catch(error => console.log(error) );
@@ -1128,11 +1071,6 @@ class Auralayer
 				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-xl"], parent: this.Body});
 				this.UtilitiesContainer = createNewElement({type:"div", classes:["UtilitiesContainer", "row", "mx-md-5", "justify-content-between"],parent: this.BodyContainer, properties:{id:"utilites"}});
 				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
-				this.LoadingSpinner = createNewElement({type:"div", classes:["LoadingSpinner", "spinner-border", "text-primary"], parent: this.AllLayerContainers, properties:{role: "status", innerHTML: `<span class="visually-hidden">Loading...</span>`}, styles:{display: "none"}});
-
-				// <div class="spinner-border text-primary" role="status">
-  			// 	<span class="visually-hidden">Loading...</span>
-				// </div>
 				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
 				this.AllLayerContainers.addEventListener("touchmove", e=> { this.dragging_handler(e) });
 				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
@@ -1144,8 +1082,7 @@ class Auralayer
 			//       SLIDER CONTAINER COMPONENTS
 			// -----------------------------------    
 				this.SeekSlider = createNewElement({type: "input", classes: ["slider", "SeekSlider" ], parent: this.SliderContainer, properties:{type: "range" }});
-				this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));
-
+				this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));					
 
 			// -----------------------------------
 			//      LEFT OUTER COLUMN COMPONENTS
@@ -1217,8 +1154,7 @@ class Auralayer
 				this.ExportButtonContainer = createNewElement({type:"div", classes:["ExportButtonContainer", "col-md-2", "text-md-end", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "export"}});
 
 				this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: {innerHTML: `<i class="bi-download"></i>`, type: "button", title:"Save Analysis to File"}, dataset:{bsToggle: "modal", bsTarget: "#download"}});
-				// this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
-				this.SaveToFileButton.addEventListener("click", e => { download_image(); });
+				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
 
 				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}});
 
@@ -1665,20 +1601,18 @@ class Auralayer
 					{
 						for (let j = 0; j < this.layers[i].segment_array.length ; j++)
 							{
+								// this.layers[i].segment_array[j].segment.style.width = ((this.layers[i].segment_array[j].data.end_pos - this.layers[i].segment_array[j].data.start_pos ) * this.scale) + (this.scale-1) +  "px";
+								// this.layers[i].segment_array[j].segment.style.width = (((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution) - 1 ) * this.scale) + (this.scale-1) +  "px";
+								// this.layers[i].segment_array[j].segment.style.width = (((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution) - 1 ) * this.scale) + (this.scale-1) +  "px";
 								this.layers[i].segment_array[j].segment.style.width = ((((this.layers[i].segment_array[j].data.end_pos/this.resolution) - (this.layers[i].segment_array[j].data.start_pos/this.resolution)) * this.scale) + (this.scale/this.resolution) -1) +  "px";
 								this.layers[i].segment_array[j].segment.style.left = ((this.layers[i].segment_array[j].data.start_pos/this.resolution) * this.scale) +  "px";
 							}
 							
+						// this.layers[i].layer_segment_holder.style.width = ((((this.file_length/this.resolution) / this.length_padding) * this.scale) - 1)  + "px";
+						// this.layers[i].layer_segment_holder.style.width = (((this.file_length/this.resolution) * this.scale) - 1 )  + "px";
 						this.layers[i].layer_segment_holder.style.width = ((((this.file_length/this.resolution) * this.scale) - 1 ) + (this.scale/this.resolution) ) + "px";
 					}
-
-				this.timestamp_array.forEach((each,index)=>
-					{
-						// console.log("current: " + each.style.left + " - new: " + (this.time_stamp_distance * this.scale) + "- this.scale:" + this.scale);
-						console.log("LEFT: " + ((this.time_stamp_distance * this.scale) * index) ) ;	
-						each.style.left = ((this.time_stamp_distance * index) * this.scale) +  "px";
-					});
-				
+				// this.SeekSlider.style.width = ((this.file_length/this.resolution) / this.length_padding) * this.scale + "px";
 				this.SeekSlider.style.width = ((((this.file_length/this.resolution) * this.scale) - 1 ) + (this.scale/this.resolution) ) + "px";
 				this.save_state();
 			}	
@@ -1690,9 +1624,13 @@ class Auralayer
 							{
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
-										
 										this.layers[i].segment_array[j].segment.style.filter = "opacity()";
 										this.layers[i].segment_array[j].data.styles.filter = "opacity()";
+										// if(this.layers[i].segment_array[j].data.classes.includes("segment_deleted"))
+										// 	{
+										// 		this.layers[i].segment_array[j].data.classes.splice(this.layers[i].segment_array[j].data.classes.indexOf("segment_deleted"), 1);
+										// 		this.layers[i].segment_array[j].segment.classList.remove("segment_deleted");
+										// 	}
 
 										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
@@ -1709,6 +1647,12 @@ class Auralayer
 										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
 										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});
 
+										// if(urlText !== "")
+										// 	{
+												
+										// 		this.layers[i].segment_array[j].segment.style.filter = "opacity(" + new_saturation_value + ")";
+										// 		this.layers[i].segment_array[j].data.styles.filter = "opacity(" + new_saturation_value + ")";
+										// 	}
 										
 										if(this.PresenceSliderEnd.disabled === true)
 											{
@@ -1718,7 +1662,9 @@ class Auralayer
 												if (this.segment_decrescendo === "gradient")
 													{
 														this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
-														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);														
+														this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
+														// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
 														this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 														this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;	
 													}
@@ -1753,6 +1699,7 @@ class Auralayer
 														if (this.segment_decrescendo === "gradient")
 															{
 																this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
+																// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceStartRange").value = this.layers[i].segment_array[j].data.start_presence;
 																this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 															}
 														else if (this.segment_decrescendo === "slope")
@@ -1781,6 +1728,7 @@ class Auralayer
 														if (this.segment_decrescendo === "gradient")
 															{
 																this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
+																// this.layers[i].segment_array[j].segment_table_row.querySelector(".SegmentPresenceEndRange").value = this.layers[i].segment_array[j].data.end_presence;
 																this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;
 															}
 														else if (this.segment_decrescendo === "slope")
@@ -1792,24 +1740,15 @@ class Auralayer
 											}
 
 
+											
 										if (this.segment_decrescendo === "gradient")
 											{
 												this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
 												this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
 												this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
 											}
-										else if( this.segment_decrescendo === "slope")
-											{
-												
-												let starting_color = color_value_1 + initial_saturation_1 + ")";
-												let ending_color = color_value_2 + initial_saturation_2 + "))";
-												
-												formated_color_value = "linear-gradient(to right, " + starting_color + ", " + ending_color;
-												
-												this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
-												this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
-												this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
-											}
+
+										// this.layers[i].segment_array[j].data.color = urlText + formated_color_value;
 									}
 							}			
 					}
@@ -1857,27 +1796,26 @@ class Auralayer
 			}
 		StartYoutubeActivitySetup()
 			{
-				this.LoadingSpinner.style.display = "block";
+
 				this.example_data.piece_info.media_type = "youtube";
 				this.activity_type = 'youtube_link';
 				let youtube_url = 'Paste URL here';
 
-				this.url_prompt_backdrop = createNewElement({type: "div", classes: ["url_prompt_backdrop"], parent: document.body});
-				this.url_prompt_box_container = createNewElement({type: "div", classes: ["url_prompt_box_container"], parent: document.body});
-					this.url_prompt_box_top = createNewElement({type: "div", classes: ["url_prompt_box_top"], parent: this.url_prompt_box_container, properties:{innerText : "Paste a YouTube URL below"}});
-					this.url_prompt_box_middle = createNewElement({type: "div", classes: ["url_prompt_box_middle"], parent: this.url_prompt_box_container});
-						this.url_prompt_input_box = createNewElement({type: "input", classes: [], parent: this.url_prompt_box_middle,  properties: { id: "url_prompt_input_box", innerText : "Paste a YouTube URL below", type : "text", placeholder: "Paste URL here" }});
-						this.url_prompt_submit_button = createNewElement({type: "button", classes: [], parent: this.url_prompt_box_middle,  properties: { id: "url_prompt_submit_button", innerText : "Start" }});
-						this.url_prompt_cancel_button = createNewElement({type:"button", classes:["url_prompt_cancel_button"], parent: this.url_prompt_box_middle, properties:{innerHTML: "✖️"}, events:{click: e=>this.url_prompt_cancel_button_handler()}});
-					this.url_prompt_box_bottom = createNewElement({type: "div", classes: ["url_prompt_box_bottom"], parent: this.url_prompt_box_container});
+				const url_prompt_backdrop = createNewElement({type: "div", classes: ["url_prompt_backdrop"], parent: document.body});
+				const url_prompt_box_container = createNewElement({type: "div", classes: ["url_prompt_box_container"], parent: document.body});
+					const url_prompt_box_top = createNewElement({type: "div", classes: ["url_prompt_box_top"], parent: url_prompt_box_container, properties:{innerText : "Paste a YouTube URL below"}});
+					const url_prompt_box_middle = createNewElement({type: "div", classes: ["url_prompt_box_middle"], parent: url_prompt_box_container});
+						const url_prompt_input_box = createNewElement({type: "input", classes: [], parent: url_prompt_box_middle,  properties: { id: "url_prompt_input_box", innerText : "Paste a YouTube URL below", type : "text", placeholder: "Paste URL here" }});
+						const url_prompt_submit_button = createNewElement({type: "button", classes: [], parent: url_prompt_box_middle,  properties: { id: "url_prompt_submit_button", innerText : "Start" }});
+					const url_prompt_box_bottom = createNewElement({type: "div", classes: ["url_prompt_box_bottom"], parent: url_prompt_box_container});
 
 				if(this.load_from_file_mode === true)
 					{
 						youtube_url = this.example_data.piece_info.video_id;
 						this.loaded_file_name_label = this.example_data.piece_info.video_id;
 						setup_youtube_player();					
-						this.url_prompt_backdrop.style.display = "none";
-						this.url_prompt_box_container.style.display = "none";
+						url_prompt_backdrop.style.display = "none";
+						url_prompt_box_container.style.display = "none";
 					}
 
 				if (developing === true) 
@@ -1887,14 +1825,14 @@ class Auralayer
 						this.loaded_file_name_label = this.example_data.piece_info.video_id;
 						setup_youtube_player();
 
-						this.url_prompt_backdrop.style.display = "none";
-						this.url_prompt_box_container.style.display = "none";
+						url_prompt_backdrop.style.display = "none";
+						url_prompt_box_container.style.display = "none";
 					}
 
-				this.url_prompt_submit_button.addEventListener('click', e=>
+				url_prompt_submit_button.addEventListener('click', e=>
 					{   
 						let breakout = false;
-						youtube_url = this.url_prompt_input_box.value;
+						youtube_url = url_prompt_input_box.value;
 
 						if(breakout === false)
 							{
@@ -1911,48 +1849,24 @@ class Auralayer
 								this.loaded_file_name_label = this.example_data.piece_info.video_id;
 								setup_youtube_player();
 
-								this.url_prompt_backdrop.style.display = "none";
-								this.url_prompt_box_container.style.display = "none";
+								url_prompt_backdrop.style.display = "none";
+								url_prompt_box_container.style.display = "none";
 							}
 					});
 
-				this.url_prompt_input_box.focus();
+				url_prompt_input_box.focus();
 				this.ActivitySelectionContainer.style.display = "none";
-			}
-		url_prompt_cancel_button_handler()
-			{
-				this.ActivitySelectionContainer.style.display = "grid";
-				this.url_prompt_backdrop.remove();
-				this.url_prompt_box_container.remove();
-				this.LoadingSpinner.style.display = "none";
-			}
-		cancel_opening_audio_button_handler()
-			{
-				this.ActivitySelectionContainer.style.display = "grid";
-				this.ActivitySelectionBody.style.display = "block";
-				this.LoadingSpinner.style.display = "none";
-				this.open_audio_button.style.display = "none";
-				this.cancel_opening_audio_button.style.display = "none";
-				this.audio_file_prompt_backdrop.remove();
-				this.audio_file_prompt_box_container.remove();
 			}
 		StartAudioFileActivitySetup(sent_url)
 			{
 				this.example_data.piece_info.media_type = "audio_file";
 				this.activity_type = 'audio_file';
 			
-				
 				this.ActivitySelectionBody.style.display = "none";
-
-
-				this.audio_file_prompt_backdrop = createNewElement({type: "div", classes: ["audio_file_prompt_backdrop"], parent: document.body});
-				this.audio_file_prompt_box_container = createNewElement({type: "div", classes: ["audio_file_prompt_box_container"], parent: document.body});
-					this.audio_file_prompt_box_top = createNewElement({type: "div", classes: ["audio_file_prompt_box_top"], parent: this.audio_file_prompt_box_container, properties:{innerText : "Choose Audio File"}});
-					this.audio_file_prompt_box_middle = createNewElement({type: "div", classes: ["audio_file_prompt_box_middle"], parent: this.audio_file_prompt_box_container});
-						this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: this.audio_file_prompt_box_middle, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"}, events:{change:() => this.get_user_audio_file('nothing') } });
-						this.cancel_opening_audio_button = createNewElement({type:"button", classes:["cancel_opening_audio_button"], parent: this.audio_file_prompt_box_middle, properties:{innerHTML: "✖️"}, events:{click: e=>this.cancel_opening_audio_button_handler()}});
-					this.audio_file_prompt_box_bottom = createNewElement({type: "div", classes: ["audio_file_prompt_box_bottom"], parent: this.audio_file_prompt_box_container});
 				
+				this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: document.body, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"} });
+				this.open_audio_button.addEventListener('change', () => this.get_user_audio_file('nothing') );
+
 
 
 				// this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}, styles:{zIndex: 2}});
@@ -1973,13 +1887,6 @@ class Auralayer
 		get_user_audio_file(sent_url)
 			{
 				this.ActivitySelectionContainer.style.display = "none";
-				this.LoadingSpinner.style.display = "none";
-				this.open_audio_button.style.display = "none";
-				this.cancel_opening_audio_button.style.display = "none";
-				this.audio_file_prompt_backdrop.remove();
-				this.audio_file_prompt_box_container.remove();
-
-
 				this.uploaded_audio = createNewElement({type:"audio", classes:["user_audio"], parent: this.VideoAccordionBodyInterior, properties:{controls: true}});
 				this.uploaded_audio.addEventListener("play", e=> { this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`; });
 				this.uploaded_audio.addEventListener("pause", e=> { this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`; });					
@@ -2021,22 +1928,6 @@ class Auralayer
 				// 	{ this.loaded_file_name_label.innerText = this.open_audio_button.files[0].name; }
 
 				this.start_program_after_media_loaded();
-			}
-		timestamp_lines()
-			{
-				this.timestamp_container = createNewElement({type:"div", classes:["timestamp_container"], parent: this.AllLayerContainers, properties:{}});
-				this.timestamp_array = [];
-
-				
-				for (let i = 0; i < (parseInt( parseInt((this.file_length / this.resolution)/this.time_stamp_distance) ) + 1) ; i++)
-					{
-						
-						let text = String(parseInt(((this.time_stamp_distance * i)/60))).padStart(1,"0")  + ":" + String(parseInt(((this.time_stamp_distance * i)%60))).padStart(2,"0");
-						let timestamp_outer_div = createNewElement({type:"div", classes:["timestamp_outer_div"], parent: this.timestamp_container, properties:{}, styles:{left: ((this.time_stamp_distance*this.scale)*i) + "px"}});
-						let timestamp_line = createNewElement({type:"div", classes:["timestamp_line"], parent: timestamp_outer_div, properties:{}});
-						let timestamp_text = createNewElement({type:"div", classes:["timestamp_text"], parent: timestamp_outer_div, properties:{innerText: text }});
-						this.timestamp_array.push(timestamp_outer_div);
-					}
 			}
 		play_button_handler()
 			{
@@ -2142,7 +2033,6 @@ class Auralayer
 			}
 		setup_youtube_file_info()
 			{
-				this.LoadingSpinner.remove();
 				// this.file_length = parseInt(playerx.getDuration() * this.scale);
 				this.file_length = parseInt(playerx.getDuration()) * this.resolution;
 				this.start_program_after_media_loaded();
@@ -2150,10 +2040,6 @@ class Auralayer
 			}
 		start_program_after_media_loaded()
 			{
-				this.timestamp_lines();
-
-
-				this.LoadingSpinner.remove();
 				this.undo_now = true;
 				
 				let random_color = "rgba(" + this.colors[this.color_count] + ",1.0)";
@@ -2322,12 +2208,10 @@ class Auralayer
 				this.slider_thumb_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_height'));
 				this.slider_thumb_offset = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--slider_thumb_offset'));
 				this.example_data.piece_info.slider_thumb_height = this.slider_thumb_height;
-				this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;
+				this.example_data.piece_info.slider_thumb_offset = this.slider_thumb_offset;		
 
 				this.save_array[this.save_position].program_data.slider_thumb_height = this.slider_thumb_height;
 				this.save_array[this.save_position].program_data.slider_thumb_offset = this.slider_thumb_offset;
-
-				// this.timestamp_array.forEach(each=>each.)
 							
 				// this.save_array.forEach(each=>console.log(each.program_data));
 				
@@ -2475,8 +2359,7 @@ class Auralayer
 							{
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
-										
-										// let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
+										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
 										let urlText = "";
 										let initial_value = this.layers[i].segment_array[j].data.color;
@@ -2503,12 +2386,8 @@ class Auralayer
 
 										// this.layers[i].segment_array[j].segment.classList.add("segment_deleted");
 										// this.layers[i].segment_array[j].data.classes.push("segment_deleted");
-										
-										// this.layers[i].segment_array[j].segment.style.filter = "opacity(0)";
-										// this.layers[i].segment_array[j].data.styles.filter = "opacity(0)";
-										
-										this.layers[i].segment_array[j].segment.style.backgroundImage = "none";
-										this.layers[i].segment_array[j].data.styles.backgroundImage = "none";
+										this.layers[i].segment_array[j].segment.style.filter = "opacity(0)";
+										this.layers[i].segment_array[j].data.styles.filter = "opacity(0)";
 										
 									}
 							}			
@@ -2643,89 +2522,6 @@ function setup_youtube_player()
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	}
 
-
-function download_image()
-  {      
-    const scriptPromise = new Promise((resolve, reject) => 
-			{
-				const script = document.createElement('script');
-				document.body.appendChild(script);
-				script.onload = resolve;
-				script.onerror = reject;
-				script.async = true;
-				script.src = 'scripts/html2canvas.min.js';
-			});
-
-    scriptPromise.then(() =>
-			{
-				
-				project.SeekSlider.style.display = "none";
-				// document.documentElement.style.setProperty("--primary-color-8", "transparent");
-
-				// let element_to_image = document.getElementById('editor');
-				let element_to_image = project.BodyContainer;
-				// let element_to_image = document.body;
-
-				// find the right-most position on the diagram and make the space that wide for the image
-				let all_shapes = document.getElementsByClassName('segment');
-
-				let right_most = 0;
-				// let editor_height = document.getElementById("editor").getBoundingClientRect().height + 10;
-				let editor_height = project.BodyContainer.getBoundingClientRect().height + 10;
-
-				for( let each of all_shapes) { if (each.getBoundingClientRect().right > right_most) {right_most = each.getBoundingClientRect().right;}}
-
-				if(right_most > element_to_image.scrollWidth)
-					{
-						right_most = element_to_image.scrollWidth;
-					}
-				else
-					{
-						right_most = right_most + 20;
-					}
-
-				html2canvas(element_to_image, 
-					{ 
-						scale: 1,
-						backgroundColor: null,
-						windowWidth: right_most,
-						windowHeight: element_to_image.scrollHeight
-					}).then(function(canvas) { 
-						project.SeekSlider.style.display = "block";
-						saveAs(canvas.toDataURL(), 'auralayer-diagram.png');
-					});               
-			});
-  }
-
-
-function saveAs(uri, filename) 
-  {
-      var link = document.createElement('a');
-
-      if (typeof link.download === 'string') 
-        {
-          link.href = uri;
-          link.download = filename;
-
-          //Firefox requires the link to be in the body
-          document.body.appendChild(link);
-
-          //simulate click
-          link.click();
-
-          //remove the link when done
-          document.body.removeChild(link);
-        //   project.editor_seek_slider.style.display = "block";
-        // project.SeekSlider.style.backgroundColor = "var(--primary-color-9)";
-        
-        
-        // document.documentElement.style.setProperty("--primary-color-8", window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color-1'));
-        // document.documentElement.style.setProperty("--primary-color-8", '--primary-color-1');
-        
-          
-        } 
-      else{ window.open(uri); }
-  }	
 
 // if this script was in the HTML file "function onYouTubeIframeAPIReady()" would work, but since it's not
 // "window.onYouTubeIframeAPIReady = function()" has to be used instead

@@ -39,7 +39,6 @@ padding: 1em;
 	--primary-color-1: #ff9800;
 	--primary-color-2: #fff;
 	--primary-color-3: #4caf50;
-	--primary-color-4: #2196f3;
 	--segment-height: 40px;
 	--segment-margin-top: 5px;
 	--segment-margin-bottom: 5px;
@@ -64,7 +63,7 @@ body
   align-items: center;
 	overscroll-behavior: contain;
 	touch-action: pan-y;
-	/* overflow: hidden; */
+	overflow: hidden;
 	user-select: none;
 	padding-right: 20px;
 }
@@ -210,7 +209,6 @@ button:hover
   
 }
 
-
 .UndoZoomContainer
 {
 	position: absolute;
@@ -225,13 +223,6 @@ button:hover
 			
 	padding: 10px 0px 10px 0px;
 	/* outline: 5px solid lightgray; */
-}
-
-.LoadingSpinner
-{
-	position: absolute;
-	left: 50%;
-	z-index: 2;
 }
 
 .SegmentEditingContainer
@@ -253,7 +244,7 @@ button:hover
 
 .draggable
 {
-	/* cursor: move; */
+	cursor: move;
 }
 
 .draggable.dragging
@@ -269,8 +260,7 @@ button:hover
   /* height: 60px; */
   /* gap: 10px; */
   /* grid-template-columns: 120px auto; */
-	/* grid-template-columns: 120px auto; */
-	grid-template-columns: 200px auto;
+	grid-template-columns: 120px auto;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -281,8 +271,7 @@ button:hover
 {
 	display: grid;
 	/* grid-template-columns: 50px 50px 50px 50px 50px 50px; */
-	/* grid-template-columns: 50px 50px; */
-	grid-template-columns: 50px 130px;
+	grid-template-columns: 50px 50px;
 	grid-gap: 2px;
 	grid-column: 1;
 	cursor: pointer;
@@ -291,7 +280,7 @@ button:hover
 	margin-left: 5px;
 	max-height: var(--segment-height);
 	line-height: 40px;
-	z-index: 2;
+	z-index: 1;
 	background-color: white;
 }
 
@@ -377,7 +366,7 @@ button:hover
 		height: 44px;
 		margin: 3px;
     border-radius: 5px;
-		/* background-color: white !important */
+		background-color: white !important
 	}
 
 .delete_layer_button
@@ -397,36 +386,14 @@ button:hover
 
 .layer_name
 {  
-	/* grid-column: 2;
-	text-align: right;
-	width: 100%;
-	white-space: nowrap; */
-
-	/* padding-right: 10px; */
-	/* overflow: hidden; */
-
-	/* display: flex;
-	flex-direction: row-reverse; */
-
-
-
 	grid-column: 2;
 	text-align: right;
-	/* width: 100%; */
+	width: 100%;
 	white-space: nowrap;
 	/* padding-right: 10px; */
 	/* overflow: hidden; */
-	/* display: flex; */
+	display: flex;
 	flex-direction: row-reverse;
-	overflow: hidden;
-	text-overflow: ellipsis;
-
-}
-
-.layer_name_being_edited
-{
-	overflow: visible;
-	text-overflow: unset;
 }
 
 .layer_settings_button
@@ -473,9 +440,7 @@ button:hover
 {
 	/* background: #ff9800; */
 	/* outline: 3px solid #48484859; */
-	/* outline: 2px dashed #6e6e6e; */
-	outline: 3px solid #ff9800;
-	/* background-color: #ff9800; */
+	outline: 2px dashed #6e6e6e;
 }
 
 .segment
@@ -636,8 +601,7 @@ button:hover
 	height: 50px;
 	/* gap: 10px; */
 	/* grid-template-columns: 120px auto; */
-	/* grid-template-columns: 120px auto; */
-	grid-template-columns: 200px auto;
+	grid-template-columns: 120px auto;
 	margin-top: 5px;
 	margin-bottom: 5px;	
 }
@@ -658,7 +622,7 @@ button:hover
 	outline: none;
 	opacity: 0.7;
 	margin-top:30px;
-	/* cursor: ew-resize; */
+	cursor: pointer;
 	z-index: 1;
 }
 .slider::-webkit-slider-thumb
@@ -670,8 +634,7 @@ button:hover
 	height: var(--slider_thumb_height);
 	transform: translateY(var(--slider_thumb_offset));
 	background: var(--primary-color-1);
-	/* cursor: pointer; */
-	cursor: ew-resize;
+	cursor: pointer;
 }
 
 .slider::-webkit-slider-runnable-track
@@ -697,37 +660,6 @@ button:hover
 	pointer-events: none;
 }
 
-.timestamp_container
-{
-	position: relative;
-	margin-left: 200px;
-	top: 0px;
-}
-
-.timestamp_outer_div
-{
-	position: absolute;
-	pointer-events: none;
-}
-
-.timestamp_line
-{
-	width: 2px;
-	background-color: #d5d5d5c4;
-	height: calc( var(--slider_thumb_height) - 40px);
-	position: relative;
-	pointer-events: none;
-}
-
-.timestamp_text
-{
-	color: #d2d2d2;
-	width: 50px;
-	text-align: center;
-	transform: translateX(-25px);
-	pointer-events: none;
-}
-
 
 .SplitButton, .SaveToFileButton
 	{
@@ -749,7 +681,7 @@ button:hover
 	font-size: 30px;
 }
 
-.backdrop, .url_prompt_backdrop, .audio_file_prompt_backdrop
+.backdrop, .url_prompt_backdrop
 {
 	z-index: 2;
 	position: fixed;
@@ -762,7 +694,7 @@ button:hover
 	-webkit-backdrop-filter: blur(10px);
 }
 
-.url_prompt_box_container, .audio_file_prompt_box_container 
+.url_prompt_box_container 
 {
 	position: absolute;
 	width: 400px;
@@ -775,19 +707,14 @@ button:hover
 	box-shadow: 0px 0px 16px 3px black;
 }
 
-.audio_file_prompt_box_container 
-{
-	border: 10px solid var(--primary-color-4);
-}
-
-.url_prompt_box_top, .url_prompt_box_middle, .url_prompt_box_bottom, .audio_file_prompt_box_top, .audio_file_prompt_box_middle, .audio_file_prompt_box_bottom
+.url_prompt_box_top, .url_prompt_box_middle, .url_prompt_box_bottom
 {
 	position: absolute;
 	width: 100%;
 	text-align: center;
 }
 
-.url_prompt_box_top, .audio_file_prompt_box_top
+.url_prompt_box_top
 {
 	background-color: var(--primary-color-1);
 	height: 20%;
@@ -797,33 +724,18 @@ button:hover
 	color: white;
 }
 
-.audio_file_prompt_box_top
-{
-	background-color: var(--primary-color-4);
-}
-
-.url_prompt_box_middle, .audio_file_prompt_box_middle
+.url_prompt_box_middle
 {
 	background-color: var(--primary-color-1);
 	height: 70%;
 	top: 20%;
 }
 
-.audio_file_prompt_box_middle
-{
-	background-color: var(--primary-color-4);
-}
-
-.url_prompt_box_bottom, .audio_file_prompt_box_bottom
+.url_prompt_box_bottom
 {
 	background-color: var(--primary-color-1);
 	height: 10%;
 	top: 90%;
-}
-
-.audio_file_prompt_box_bottom
-{
-	background-color: var(--primary-color-4);
 }
 
 #url_prompt_input_box
@@ -839,20 +751,6 @@ button:hover
 	font-size: 20px;
 	padding: 10px 20px;
 	margin-top: 31px;
-}
-
-.url_prompt_cancel_button, .cancel_opening_audio_button
-{
-	position: absolute;
-	top: -44px;
-	right: -1px;
-	width: 40px;
-	height: 40px;
-	text-align: center;
-	background-color: #FF5722;
-	border: 3px solid black;
-	border-radius: 5px;
-	cursor: pointer;
 }
 
 .ActivitySelectionContainer
@@ -909,10 +807,7 @@ button:hover
 
 .open_audio_button
 {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	z-index: 3;
 }
 
 /* tablesort.css from https://github.com/tristen/tablesort/blob/master/tablesort.css */
@@ -972,19 +867,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 		color: unset;
 		background-color: unset;
 		border-color: unset;
-	}
-
-.texture_selector
-	{
-		width: 373px;
-		top: -9px;
-	}
-
-	.shape_background_texture
-	{
-		width: 34px;
-		height: 34px;
-	}
+	}     
 }              
 
 @media screen and (min-width: 1024px) 
