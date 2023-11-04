@@ -27,6 +27,7 @@ document.addEventListener('keyup', e =>
 document.addEventListener('keydown', e => 
 	{
 		//if NOT in a textbox
+				console.log("shift: " + e.shiftKey + " - ctrl: " + e.ctrlKey + " - Key: " + e.key);
 				
 		if(project.in_text_editor === false || ( e.ctrlKey && e.key === 'b') || ( e.ctrlKey && e.key === 'i'))
 			{
@@ -53,22 +54,22 @@ document.addEventListener('keydown', e =>
 					}
 				else if ( e.ctrlKey && e.key === 'b')
 					{
-							// e.preventDefault();
-							// console.log("bold");
-							
-							// document.getElementById(project.which_text_box).blur();
-							// project.top_text_style_bold.click();
-							// document.getElementById(project.which_text_box).focus();
+						e.preventDefault();
+						console.log("bold");
+						project.TextEditingBoldButton.click();
 					}
 				else if ( e.ctrlKey && e.key === 'i')
 					{
-							// e.preventDefault();
-							// console.log("italics");
-							
-							// document.getElementById(project.which_text_box).blur();
-							// project.top_text_style_italics.click();
-							// document.getElementById(project.which_text_box).focus();
-					}                     
+						e.preventDefault();
+						console.log("italics");
+						project.TextEditingItalicButton.click();
+					}
+				else if ( e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'u')
+					{
+						e.preventDefault();
+						console.log("underline");
+						project.TextEditingUnderlineButton.click();
+					}    					               
 				else if( e.key === 's')
 					{       
 						//e.preventDefault();
@@ -786,7 +787,7 @@ class Segment
 			}		
 		ChangeTextFormat(sent_style)
 			{
-				
+				debugger
 				if(sent_style.style === "fontSize")
 					{
 						if (sent_style.type === "increase")
@@ -1593,8 +1594,29 @@ class Auralayer
 			}
 		ChangeTextFormat(sent_style)
 			{
+				
 				if(this.AllLayerContainers.querySelectorAll(".segment_selected").length > 0)
 					{
+						
+						let single_selection = this.AllLayerContainers.querySelectorAll(".segment_selected").length === 1;
+						console.log("NUM Selected:" + this.AllLayerContainers.querySelectorAll(".segment_selected").length);
+						let mixed_values = false;
+
+						if(single_selection === false)
+							{
+								let first_style = this.AllLayerContainers.querySelectorAll(".segment_selected")[0].querySelector(".segment_text").style[sent_style.style];
+								for (let i = 1; i < this.AllLayerContainers.querySelectorAll(".segment_selected").length ; i++)
+									{
+										let each = this.AllLayerContainers.querySelectorAll(".segment_selected")[i].querySelector(".segment_text").style[sent_style.style];
+										if(each !== first_style)
+											{
+												mixed_values = true;
+												break;
+											}
+									}
+
+							}
+
 						for (let i = 0; i < this.layers.length ; i++)
 							{
 								for (let j = 0; j < this.layers[i].segment_array.length ; j++)
@@ -1613,6 +1635,11 @@ class Auralayer
 																this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = (parseInt(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style]) - 1) + "px";
 																this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = (parseInt(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style]) - 1) + "px";								
 															}
+													}
+												else if(mixed_values === true)
+													{
+														this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = sent_style.value;
+														this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = sent_style.value;	
 													}
 												else if(this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] === sent_style.value)
 													{
