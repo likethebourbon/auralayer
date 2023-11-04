@@ -24,7 +24,7 @@ In development!
 - [ ] duplicate layer button
 - [ ] cmd+a to select all segments within a layer (but probably not deleted segs/presence 0 segs)
 - [ ] "merge right/left" when selecting multiple segs should merge all selected segs into the leftmost/rightmost seg
-- [ ] after merging segments, the merged segment should be selected
+- [x] after merging segments, the merged segment should be selected
 - [ ] underline option for text
 - [ ] keyboard shortcuts for text formatting
 - [ ] background image of just a lower/upper border or a box
