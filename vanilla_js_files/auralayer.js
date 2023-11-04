@@ -930,7 +930,6 @@ class Segment
 						if(this.parent.select_box.checked === false)
 							{
 								this.parent.select_box.click();
-								// this.parent.select_box.selected = true;
 							}
 
 						if(this.data.presence_sync === true)
@@ -2309,7 +2308,12 @@ class Auralayer
 
 				this.example_data.layers.push( new_initial_layer_data );
 				this.layers.push(new Layer(this.AllLayerContainers, new_initial_layer_data, this.file_length, this, "new_layer"));
-				
+
+				this.deselect_all_layers();
+				this.deselect_all_segments();
+
+				this.layers[this.layers.length - 1].select_box.click();
+				this.layers[this.layers.length -1].segment_array[0].segment_text_1.click();
 				
 				// this.segment_height = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-height'));
 				// let segment_margin_top = parseInt(getComputedStyle(document.documentElement,null).getPropertyValue('--segment-margin-top'));
@@ -2330,6 +2334,9 @@ class Auralayer
 				// this.timestamp_array.forEach(each=>each.)
 							
 				// this.save_array.forEach(each=>console.log(each.program_data));
+
+				// select new layer
+				// this.select_box.click();
 				
 			}
 		delete_layer(sent_layer_id)
@@ -2459,6 +2466,9 @@ class Auralayer
 																this.layers[i].layer_data.segments[k].start_pos = this.layers[i].layer_data.segments[k].start_pos - width_to_add_to_merging_segment - 1;
 																this.layers[i].segment_array[k].segment.style.left = ((this.layers[i].layer_data.segments[k].start_pos)/this.resolution) * this.scale + "px";
 															}
+
+															
+														this.layers[i].segment_array[k].segment_text_1.click();
 													}
 											}												
 									}
