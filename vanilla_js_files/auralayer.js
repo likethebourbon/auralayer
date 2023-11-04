@@ -11,12 +11,9 @@ let example_data = {};
 // -----------------------------------
 //      Keyboard Controls
 // -----------------------------------
-document.addEventListener("keyup", (e) => {
-	if (
-		project.in_text_editor === false ||
-		(e.ctrlKey && e.key === "b") ||
-		(e.ctrlKey && e.key === "i")
-	) {
+document.addEventListener('keyup', e => {
+	if (project.in_text_editor === false || (e.ctrlKey && e.key === 'b') || (e.ctrlKey && e.key === 'i')) {
+
 		// if (e.code === "ControlLeft" )
 		if (e.code === "ShiftLeft") {
 			e.preventDefault();
@@ -24,50 +21,57 @@ document.addEventListener("keyup", (e) => {
 		}
 	}
 });
-document.addEventListener("keydown", (e) => {
+document.addEventListener('keydown', e => {
 	//if NOT in a textbox
+	console.log("shift: " + e.shiftKey + " - ctrl: " + e.ctrlKey + " - Key: " + e.key);
 
-	if (
-		project.in_text_editor === false ||
-		(e.ctrlKey && e.key === "b") ||
-		(e.ctrlKey && e.key === "i")
-	) {
-		if (e.ctrlKey && e.key === "s") {
+	if (project.in_text_editor === false || (e.ctrlKey && e.key === 'b') || (e.ctrlKey && e.key === 'i')) {
+		if (e.ctrlKey && e.key === 's') {
 			e.preventDefault();
 			console.log("Saved: Ctrl + S - Key press");
 			project.SaveToFileButton.click();
-		} else if (e.ctrlKey && e.key === "z") {
+		}
+		else if (e.ctrlKey && e.key === 'z') {
+
 			project.UndoButton.click();
-		} else if (e.ctrlKey && e.key === "y") {
+		}
+		else if (e.ctrlKey && e.key === 'y') {
 			console.log("redo");
 			project.RedoButton.click();
-		} else if (e.key === "n") {
+		}
+		else if (e.key === 'n') {
 			e.preventDefault();
 			project.AddLayerButton.click();
-		} else if (e.ctrlKey && e.key === "b") {
-			// e.preventDefault();
-			// console.log("bold");
-			// document.getElementById(project.which_text_box).blur();
-			// project.top_text_style_bold.click();
-			// document.getElementById(project.which_text_box).focus();
-		} else if (e.ctrlKey && e.key === "i") {
-			// e.preventDefault();
-			// console.log("italics");
-			// document.getElementById(project.which_text_box).blur();
-			// project.top_text_style_italics.click();
-			// document.getElementById(project.which_text_box).focus();
-		} else if (e.key === "s") {
+		}
+		else if (e.ctrlKey && e.key === 'b') {
+			e.preventDefault();
+			console.log("bold");
+			project.TextEditingBoldButton.click();
+		}
+		else if (e.ctrlKey && e.key === 'i') {
+			e.preventDefault();
+			console.log("italics");
+			project.TextEditingItalicButton.click();
+		}
+		else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'u') {
+			e.preventDefault();
+			console.log("underline");
+			project.TextEditingUnderlineButton.click();
+		}
+		else if (e.key === 's') {
 			//e.preventDefault();
 			if (project.view_mode_slider_top_button === false) {
 				project.SplitButton.click();
 			}
-		} else if (e.key === "g") {
-			//g
+		}
+		else if (e.key === 'g')//g
+		{
 			// if(project.view_mode_slider_top_button.checked === false)
 			// 		{
-			// 				project.group_combiner(e);
-			// 		}
-		} else if (e.key === "m") {
+			// 				project.group_combiner(e);        
+			// 		}   
+		}
+		else if (e.key === 'm') {
 			// if(project.view_mode_slider_top_button.checked === false)
 			// 		{
 			// 				if (project.program_version !== "0_0")
@@ -75,12 +79,14 @@ document.addEventListener("keydown", (e) => {
 			// 								project.add_marker_location("");
 			// 								console.log("add marker");
 			// 						}
-			// 		}
-		} else if (e.key === "Escape") {
-			//escape
+			// 		}   
+		}
+		else if (e.key === 'Escape')//escape
+		{
 			project.deselect_all_layers();
 			project.deselect_all_segments();
-		} else if (e.ctrlKey && e.code === "Space") {
+		}
+		else if (e.ctrlKey && e.code === 'Space') {
 			e.preventDefault();
 			console.log("Control and Space pressed");
 			// move playhead to start of selected group
@@ -1090,7 +1096,7 @@ class Segment {
 		});
 	}
 	ChangeTextFormat(sent_style) {
-
+		debugger
 		if (sent_style.style === "fontSize") {
 			if (sent_style.type === "increase") {
 				this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
@@ -2809,6 +2815,22 @@ class Auralayer {
 			this.AllLayerContainers.querySelectorAll(".segment_selected")
 				.length > 0
 		) {
+			let single_selection = this.AllLayerContainers.querySelectorAll(".segment_selected").length === 1;
+			console.log("NUM Selected:" + this.AllLayerContainers.querySelectorAll(".segment_selected").length);
+			let mixed_values = false;
+
+			if (single_selection === false) {
+				let first_style = this.AllLayerContainers.querySelectorAll(".segment_selected")[0].querySelector(".segment_text").style[sent_style.style];
+				for (let i = 1; i < this.AllLayerContainers.querySelectorAll(".segment_selected").length; i++) {
+					let each = this.AllLayerContainers.querySelectorAll(".segment_selected")[i].querySelector(".segment_text").style[sent_style.style];
+					if (each !== first_style) {
+						mixed_values = true;
+						break;
+					}
+				}
+
+			}
+
 			for (let i = 0; i < this.layers.length; i++) {
 				for (let j = 0; j < this.layers[i].segment_array.length; j++) {
 					if (
@@ -2863,6 +2885,10 @@ class Auralayer {
 									) -
 									1 +
 									"px";
+							}
+							else if (mixed_values === true) {
+								this.layers[i].segment_array[j].segment_text_1.style[sent_style.style] = sent_style.value;
+								this.layers[i].segment_array[j].data.text[0].styles[sent_style.style] = sent_style.value;
 							}
 						} else if (
 							this.layers[i].segment_array[j].segment_text_1
