@@ -9,7 +9,7 @@ In development!
 - [ ] timestamps listed (every 30 secs? every minute? configurable?)
 - [ ] double-click to edit layer name
 - [ ] select segment + Y to jump cursor to beginning of segment
-- [ ] [move visual for (user) cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) when hovering/moving (playback) cursor
+- [x] [move visual for (user) cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) when hovering/moving (playback) cursor
 - [ ] snap cursor to beginnings/ends of segments
 - [ ] highlight row background instead of dotted border
 - [ ] Spacer layer (for showing groups of layers)
