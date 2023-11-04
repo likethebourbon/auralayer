@@ -1838,7 +1838,13 @@ class Auralayer {
 		});
 		this.HeaderRowLeft = createNewElement({
 			type: "div",
-			classes: ["HeaderRowLeft", "col-auto", "d-flex", "align-content-center"],
+			classes: [
+				"HeaderRowLeft",
+				"col-auto",
+				"col-md-4",
+				"d-flex",
+				"align-content-center",
+			],
 			parent: this.HeaderRow,
 		});
 		this.HeaderRowCenter = createNewElement({
@@ -1846,6 +1852,7 @@ class Auralayer {
 			classes: [
 				"HeaderRowCenter",
 				"col-auto",
+				"col-md-4",
 				"text-center",
 				"d-flex",
 				"align-content-center",
@@ -1858,7 +1865,9 @@ class Auralayer {
 			classes: [
 				"HeaderRowRight",
 				"col-auto",
+				"col-md-4",
 				"d-flex",
+				"justify-content-end",
 				"align-content-center",
 			],
 			parent: this.HeaderRow,
