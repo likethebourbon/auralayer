@@ -23,7 +23,7 @@ document.addEventListener('keyup', e => {
 });
 document.addEventListener('keydown', e => {
 	//if NOT in a textbox
-	console.log("shift: " + e.shiftKey + " - ctrl: " + e.ctrlKey + " - Key: " + e.key);
+	// console.log("shift: " + e.shiftKey + " - ctrl: " + e.ctrlKey + " - Key: " + e.key);
 
 	if (project.in_text_editor === false || (e.ctrlKey && e.key === 'b') || (e.ctrlKey && e.key === 'i')) {
 		if (e.ctrlKey && e.key === 's') {
@@ -983,90 +983,20 @@ class Segment {
 
 		let time_stamp = Math.floor((this.data.start_pos / 10) / 60) + ":" + String(Math.floor((this.data.start_pos / 10) % 60)).padStart(2, '0') + ":" + String((this.data.start_pos) % 10).padStart(1, '0');
 
-		this.segment_table_row = createNewElement({
-			type: "tr",
-			classes: ["where"],
-			parent: this.parent.parent.TableBodyTBody,
-			properties: {},
-		});
+		this.segment_table_row = createNewElement({ type: "tr", classes: ["where"], parent: this.parent.parent.TableBodyTBody, properties: {} });
 		// this.SegmentTableId = createNewElement({type:"td", classes:["SegmentTableId"], parent: this.segment_table_row, properties:{innerText: this.parent.parent.example_data.piece_info.layer_id_pos}});
-		this.SegmentTimestampInputBox = createNewElement({
-			type: "td",
-			classes: ["SegmentTimestampInputBox"],
-			parent: this.segment_table_row,
-			properties: { innerText: time_stamp },
-		});
-		this.SegmentTableName = createNewElement({
-			type: "td",
-			classes: ["SegmentTableName"],
-			parent: this.segment_table_row,
-			properties: { innerText: this.parent.name.innerText },
-		});
-		this.SegmentTableText = createNewElement({
-			type: "td",
-			classes: ["SegmentTableText"],
-			parent: this.segment_table_row,
-			properties: {},
-		});
-		this.SegmentTextInput = createNewElement({
-			type: "input",
-			classes: ["SegmentTextInput", "form-control"],
-			parent: this.SegmentTableText,
-			properties: { type: "text", value: this.data.text[0].inner_text },
-			events: { input: (e) => this.SegmentTextInput_input_handler(e) },
-		});
-		this.SegmentPresenceStartTR = createNewElement({
-			type: "td",
-			classes: ["SegmentPresenceStartTR"],
-			parent: this.segment_table_row,
-			properties: {},
-		});
-		this.SegmentPresenceStartRange = createNewElement({
-			type: "input",
-			classes: ["SegmentPresenceStartRange"],
-			parent: this.SegmentPresenceStartTR,
-			properties: {
-				type: "range",
-				innerText: this.data.start_presence,
-				min: "0",
-				max: GLOBAL_presence_scale,
-				value: this.data.start_presence,
-			},
-			events: {
-				input: (e) => this.SegmentPresenceStartRangeHandler(e, "start"),
-			},
-		});
-		this.SegmentPresenceEndTR = createNewElement({
-			type: "td",
-			classes: ["SegmentPresenceEndTR"],
-			parent: this.segment_table_row,
-			properties: {},
-		});
-		this.SegmentPresenceEndRange = createNewElement({
-			type: "input",
-			classes: ["SegmentPresenceEndRange"],
-			parent: this.SegmentPresenceEndTR,
-			properties: {
-				type: "range",
-				innerText: this.data.end_presence,
-				min: "0",
-				max: GLOBAL_presence_scale,
-				value: this.data.end_presence,
-				disabled: this.data.presence_sync,
-			},
-			events: {
-				input: (e) => this.SegmentPresenceStartRangeHandler(e, "end"),
-			},
-		});
+		this.SegmentTimestampInputBox = createNewElement({ type: "td", classes: ["SegmentTimestampInputBox"], parent: this.segment_table_row, properties: { innerText: time_stamp } });
+		this.SegmentTableName = createNewElement({ type: "td", classes: ["SegmentTableName"], parent: this.segment_table_row, properties: { innerText: this.parent.name.innerText } });
+		this.SegmentTableText = createNewElement({ type: "td", classes: ["SegmentTableText"], parent: this.segment_table_row, properties: {} });
+		this.SegmentTextInput = createNewElement({ type: "input", classes: ["SegmentTextInput", "form-control"], parent: this.SegmentTableText, properties: { type: "text", value: this.data.text[0].inner_text }, events: { input: e => this.SegmentTextInput_input_handler(e) }, dataset: { text_value: this.data.text[0].inner_text } });
+		this.SegmentPresenceStartTR = createNewElement({ type: "td", classes: ["SegmentPresenceStartTR"], parent: this.segment_table_row, properties: {} });
+		this.SegmentPresenceStartRange = createNewElement({ type: "input", classes: ["SegmentPresenceStartRange"], parent: this.SegmentPresenceStartTR, properties: { type: "range", innerText: this.data.start_presence, min: "0", max: GLOBAL_presence_scale, value: this.data.start_presence }, events: { input: e => this.SegmentPresenceStartRangeHandler(e, "start") } });
+		this.SegmentPresenceEndTR = createNewElement({ type: "td", classes: ["SegmentPresenceEndTR"], parent: this.segment_table_row, properties: {} });
+		this.SegmentPresenceEndRange = createNewElement({ type: "input", classes: ["SegmentPresenceEndRange"], parent: this.SegmentPresenceEndTR, properties: { type: "range", innerText: this.data.end_presence, min: "0", max: GLOBAL_presence_scale, value: this.data.end_presence, disabled: this.data.presence_sync }, events: { input: e => this.SegmentPresenceStartRangeHandler(e, "end") } });
 
-		this.SegmentTextInput.addEventListener(
-			"focus",
-			(e) => (this.parent.parent.in_text_editor = true)
-		);
-		this.SegmentTextInput.addEventListener(
-			"blur",
-			(e) => (this.parent.parent.in_text_editor = false)
-		);
+
+		this.SegmentTextInput.addEventListener("focus", e => this.parent.parent.in_text_editor = true);
+		this.SegmentTextInput.addEventListener("blur", e => this.parent.parent.in_text_editor = false);
 
 		// Text Formatting Flyout Menu
 		this.TextEditingMenuContainer_SingleSegment = createNewElement({ type: "div", classes: ["TextEditingMenuContainer_SingleSegment"], parent: this.segment, properties: {}, styles: { display: "none" } });
@@ -1096,7 +1026,6 @@ class Segment {
 		});
 	}
 	ChangeTextFormat(sent_style) {
-		debugger
 		if (sent_style.style === "fontSize") {
 			if (sent_style.type === "increase") {
 				this.segment_text_1.style[sent_style.style] = (parseInt(this.segment_text_1.style[sent_style.style]) + 1) + "px";
@@ -1154,12 +1083,14 @@ class Segment {
 		this.data.text[0].inner_text = e.target.value;
 		//  this.segment.innerText = e.target.value;
 		this.segment_text_1.innerText = e.target.value;
+		this.SegmentTextInput.dataset.text_value = e.target.value;
+
 	}
 	segment_double_click_handler() {
 		// this.segment.contentEditable = true;
 		this.segment_text_1.contentEditable = true;
 		this.segment_text_1.focus();
-		// this.TextFormattingMenuContainer_SingleSegment.style.display = "flex";
+		// this.TextEditingMenuContainer_SingleSegment.style.display = "flex";
 		// this.segment.focus();
 	}
 	tapHandler(event) {
@@ -1182,6 +1113,7 @@ class Segment {
 	segment_text_input_handler(e) {
 		this.data.text[0].inner_text = e.target.innerText;
 		this.SegmentTextInput.value = e.target.innerText;
+		this.SegmentTextInput.dataset.text_value = e.target.innerText;
 		this.parent.parent.save_state();
 	}
 	click_handler(e) {
@@ -2438,6 +2370,97 @@ class Auralayer {
 			parent: this.VideoAccordionBody,
 			properties: {},
 		});
+		this.AccordionContainer1 = createNewElement({ type: "div", classes: ["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties: { id: "collapsing" } });
+		this.TextEditingMenuContainer = createNewElement({ type: "div", classes: ["TextEditingMenuContainer"], parent: this.AccordionContainer1, properties: {} });
+		this.TextEditingLeftAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-justify-left"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "left" }) } } });
+		this.TextEditingCenterAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-justify"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "center" }) } } });
+		this.TextEditingRightAlignButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-justify-right"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textAlign", value: "right" }) } } });
+		this.TextEditingBoldButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-bold"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontWeight", value: "bold" }) } } });
+		this.TextEditingItalicButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-italic"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "fontStyle", value: "italic" }) } } });
+		this.TextEditingUnderlineButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-underline"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "underline" }) } } });
+		this.TextEditingStrikeThroughButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `<i class="bi-type-strikethrough"></i>` }, events: { click: e => { this.ChangeTextFormat({ style: "textDecoration", value: "line-through" }) } } });
+		this.TextEditingFontSizeIncreaseButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `A+` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "increase" }) } } });
+		this.TextEditingFontSizeDecreaseButton = createNewElement({ type: "button", classes: ["TextEditingButton", "TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties: { innerHTML: `A-` }, events: { click: e => { this.ChangeTextFormat({ style: "fontSize", type: "decrease" }) } } });
+		this.AccordionContainer2 = createNewElement({ type: "div", classes: ["AccordionContainer2", "col-md-10", "p-1", "m-auto", "my-3"], parent: this.AccordionContainer1, properties: {} });
+		this.AccordionContainer3 = createNewElement({ type: "div", classes: ["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties: { id: "table-video" } });
+		this.DataTableContainer1 = createNewElement({ type: "div", classes: ["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties: {} });
+		this.DataAccordionHeader = createNewElement({ type: "h2", classes: ["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties: {} });
+		this.DataAccordionButton = createNewElement({ type: "button", classes: ["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties: { type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table` }, dataset: { bsToggle: "collapse", bsTarget: "#collapseOne" }, attributes: { "aria-expanded": "false", "aria-controls": "collapseOne" } });
+		this.DataAccordionBody = createNewElement({ type: "div", classes: ["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties: { id: "collapseOne" }, dataset: { bsParent: "#table-video" } });
+		this.DataAccordionBodyInterior = createNewElement({ type: "div", classes: ["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties: {} });
+		this.SearchTableInput = createNewElement({ type: "input", classes: ["table-filter"], parent: this.DataAccordionBodyInterior, properties: { type: "text", placeholder: "Item to filter.." }, dataset: { table: "order-table" } });
+		this.DataTable = createNewElement({ type: "table", classes: ["order-table", "table"], parent: this.DataAccordionBodyInterior });
+		this.TableBodyTHead = createNewElement({ type: "thead", classes: ["TableBodyTHead"], parent: this.DataTable, properties: { innerHTML: data_html } });
+		this.TableBodyTBody = createNewElement({ type: "tbody", classes: ["TableBodyTBody"], parent: this.DataTable, properties: {} });
+		this.DataTableTable = new Tablesort(this.DataTable);
+		this.VideoContainer1 = createNewElement({ type: "div", classes: ["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties: {} });
+		this.VideoAccordionHeader = createNewElement({ type: "h2", classes: ["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties: {} });
+		this.VideoAccordionButton = createNewElement({ type: "button", classes: ["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties: { type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media` }, dataset: { bsToggle: "collapse", bsTarget: "#collapseTwo" }, attributes: { "aria-expanded": "false", "aria-controls": "collapseTwo" } });
+		this.VideoAccordionBody = createNewElement({ type: "div", classes: ["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties: { id: "collapseTwo" }, dataset: { bsParent: "#table-video" } });
+		this.VideoAccordionBodyInterior = createNewElement({ type: "div", classes: ["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties: {} });
+
+
+
+		this.SearchTableInput.addEventListener("focus", e => { this.in_text_editor = true });
+		this.SearchTableInput.addEventListener("blur", e => { this.in_text_editor = false });
+
+		(function () {
+			'use strict';
+
+			var TableFilter = (function () {
+				var Arr = Array.prototype;
+				var input;
+
+				function onInputEvent(e) {
+					input = e.target;
+					var table1 = document.getElementsByClassName(input.getAttribute('data-table'));
+					Arr.forEach.call(table1, function (table) {
+						Arr.forEach.call(table.tBodies, function (tbody) {
+							Arr.forEach.call(tbody.rows, filter);
+						});
+					});
+				}
+
+				function filter(row) {
+					var text = row.textContent.toLowerCase();
+
+
+
+					if (row.querySelector(".SegmentTextInput").hasAttribute("data-text_value")) {
+						let input_text_value = row.querySelector(".SegmentTextInput").dataset.text_value;
+						if (input_text_value != "") {
+							text = text + input_text_value.toLowerCase();
+							console.log("NEW: " + text);
+						}
+					}
+
+					// console.log(row);
+					var val = input.value.toLowerCase();
+
+					console.log(val);
+					row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+				}
+
+				return {
+					init: function () {
+						var inputs = document.getElementsByClassName('table-filter');
+						Arr.forEach.call(inputs, function (input) { input.oninput = onInputEvent; });
+					}
+				};
+
+			})();
+
+			/*console.log(document.readyState);
+			document.addEventListener('readystatechange', function() {
+				if (document.readyState === 'complete') {
+					console.log(document.readyState);
+					TableFilter.init();
+				}
+			}); */
+
+			TableFilter.init();
+		})();
+
 
 		// Text Formatting Flyout Menu
 		// this.TextFormattingMenuContainer = createNewElement({type:"div", classes:["TextFormattingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
@@ -2977,6 +3000,7 @@ class Auralayer {
 		});
 
 		this.SeekSlider.style.width = ((((this.file_length / this.resolution) * this.scale) - 1) + (this.scale / this.resolution)) + "px";
+		this.AllLayerContainers.style.width = ((((this.file_length / this.resolution) * this.scale) - 1) + (this.scale / this.resolution)) + "px";
 		this.save_state();
 	}
 	change_opacity(e, direction) {
@@ -3562,6 +3586,7 @@ class Auralayer {
 	}
 	start_program_after_media_loaded() {
 		this.timestamp_lines();
+		this.AllLayerContainers.style.width = ((((this.file_length / this.resolution) * this.scale) - 1) + (this.scale / this.resolution)) + "px";
 
 
 		this.LoadingSpinner.remove();
