@@ -1150,7 +1150,7 @@ class Auralayer
 			// -----------------------------------
 			//       SLIDER CONTAINER COMPONENTS
 			// -----------------------------------    
-				this.SeekSlider = createNewElement({type: "input", classes: ["slider", "SeekSlider" ], parent: this.SliderContainer, properties:{type: "range" }});
+				this.SeekSlider = createNewElement({type: "input", classes: ["slider", "SeekSlider" ], parent: this.SliderContainer, properties:{type: "range", value: 0 }});
 				this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));
 
 
