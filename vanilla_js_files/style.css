@@ -61,9 +61,9 @@ body {
 	align-items: center;
 	overscroll-behavior: contain;
 	touch-action: pan-y;
-	/* overflow: hidden; */
 	user-select: none;
 	/* padding-right: 20px; */
+	/* overflow: hidden; */
 }
 
 
@@ -339,7 +339,7 @@ button:hover
 .background_texture {
 	width: 44px;
 	height: 44px;
-
+}
 
 .shape_background_texture {
 	width: 44px;
@@ -486,7 +486,6 @@ button:hover
 .TextEditingMenuContainer_SingleSegment {
 	position: absolute;
 	height: 50px;
-
 	background-color: white;
 	box-shadow: 0px 0px 8px 3px;
 	top: 50px;
@@ -948,3 +947,82 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 @media screen and (min-width: 1024px) {}
+
+
+/* ABOUT PAGE */
+
+.grid_container_briformer_examples {
+			display: grid;
+			grid-template-columns: 50% 50%;
+			/* grid-template-rows: 300px 300px 300px; */
+			grid-template-rows: 300px;
+			grid-column-gap: 15px;
+			grid-row-gap: 15px;
+			margin-right: 50px;
+			margin-left: 50px;
+		}
+
+		.grid_item_briformer_examples img {
+			width: calc(100% - 53px);
+			height: 149px;
+			background-color: white;
+			/* margin-left: 20px; */
+			padding-left: 20px;
+			padding-right: 20px;
+			border-radius: 10px;
+			object-fit: cover;
+			object-position: left;
+			box-shadow: 0px 0px 2px 2px #c2c2c2;
+			cursor: pointer;
+		}
+
+		.grid_item_briformer_examples img:hover {
+			box-shadow: 0px 0px 4px 4px gray;
+		}
+
+		.grid_item_briformer_examples {
+			color: gray;
+		}
+
+		.grid_item_briformer_examples:hover {
+			color: black;
+		}
+
+		.grid_item_briformer_examples h2:hover {
+			color: crimson;
+		}
+
+		@media screen and (max-width: 600px) {}
+
+		@media screen and (max-width: 825px) {
+			.grid_container_briformer_examples {
+				display: grid;
+				grid-template-columns: 100%;
+				/* grid-template-rows: 300px 300px 300px 300px 300px 300px 300px; */
+				grid-template-rows: 300px;
+				grid-column-gap: 15px;
+				grid-row-gap: 15px;
+			}
+		}
+
+		@media screen and (min-width: 1024px) {}
+
+		kbd { /* copied from StackOverflow */
+			background-color: rgb(229, 230, 231) !important;
+			color: rgb(12,13,14) !important;
+			border: 1px solid rgb(186, 191, 197);
+			box-shadow: rgba(12, 13, 14, 0.15) 0px 1px 1px 0px, #fff 0px 1px 0px 0px inset;
+			background-color: var(--black-200);
+			border-radius: 4px;
+			color: var(--bs-body);
+			font-size: .75rem;
+			display: inline-block;
+			margin: 0 .1em;
+			overflow-wrap: break-word;
+			padding: .1em .6em;
+			text-shadow: white 0px 1px 0px;
+			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
+			padding: .1em .6em;
+			line-height: 1.1;
+			margin: 0 .1em;
+		} 
