@@ -1092,7 +1092,7 @@ class Auralayer
 				this.HeaderRowCenter = createNewElement({ type: "div", classes: [ "HeaderRowCenter", "col-auto", "col-md-4", "text-center", "d-flex", "align-content-center"], parent: this.HeaderRow, properties: { id: "page-header" }, });
 				this.HeaderRowRight = createNewElement({type: "div", classes: ["HeaderRowRight","col-auto","col-md-4","d-flex","justify-content-end","align-content-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
 
-				this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowCenter, properties:{innerText: "Auralayer"}});
+				// this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowCenter, properties:{innerText: "Auralayer"}});
 
 				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
 
