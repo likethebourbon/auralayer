@@ -30,6 +30,7 @@ We have standard methods of visually representing
 - Many authors represent instrumentation and timbre with layer graphs (Butler 2006; Dolan 2013) [add image]
 - Such graphs can be made with Excel or Powerpoint, but it's laborious
 
+
 ---
 
 ## Solution?
@@ -81,3 +82,4 @@ Auralayer: a web app designed for ease of use
 ## Feature Requests?
 
 - QR code for suggestions/bugs
+

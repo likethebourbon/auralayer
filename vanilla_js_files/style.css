@@ -235,6 +235,7 @@ button:hover
 	cursor: move;
 } */
 
+
 .draggable.dragging {
 	opacity: 0.1;
 }
@@ -250,6 +251,7 @@ button:hover
 	grid-template-columns: 200px auto;
 	margin-top: 5px;
 	margin-bottom: 5px;
+
 }
 
 
@@ -337,7 +339,7 @@ button:hover
 .background_texture {
 	width: 44px;
 	height: 44px;
-}
+
 
 .shape_background_texture {
 	width: 44px;
@@ -384,6 +386,7 @@ button:hover
 	flex-direction: row-reverse;
 	overflow: hidden;
 	text-overflow: ellipsis;
+
 
 }
 
@@ -478,6 +481,7 @@ button:hover
 	user-select: none;
 	color: white;
 }
+
 
 .TextEditingMenuContainer_SingleSegment {
 	position: absolute;
@@ -637,6 +641,7 @@ button:hover
 	top: 0px;
 }
 
+
 .timestamp_outer_div {
 	position: absolute;
 	pointer-events: none;
@@ -680,6 +685,7 @@ button:hover
 .backdrop,
 .url_prompt_backdrop,
 .audio_file_prompt_backdrop {
+
 	z-index: 2;
 	position: fixed;
 	width: 100%;
@@ -714,6 +720,7 @@ button:hover
 .audio_file_prompt_box_top,
 .audio_file_prompt_box_middle,
 .audio_file_prompt_box_bottom {
+
 	position: absolute;
 	width: 100%;
 	text-align: center;
@@ -721,6 +728,7 @@ button:hover
 
 .url_prompt_box_top,
 .audio_file_prompt_box_top {
+
 	background-color: var(--primary-color-1);
 	height: 20%;
 	font-weight: bold;
@@ -740,12 +748,14 @@ button:hover
 	top: 20%;
 }
 
+
 .audio_file_prompt_box_middle {
 	background-color: var(--primary-color-4);
 }
 
 .url_prompt_box_bottom,
 .audio_file_prompt_box_bottom {
+
 	background-color: var(--primary-color-1);
 	height: 10%;
 	top: 90%;
@@ -756,6 +766,7 @@ button:hover
 }
 
 #url_prompt_input_box {
+
 	width: 90%;
 	margin-top: 20px;
 	height: 31px;
@@ -770,6 +781,7 @@ button:hover
 
 .url_prompt_cancel_button,
 .cancel_opening_audio_button {
+
 	position: absolute;
 	top: -44px;
 	right: -1px;
@@ -783,6 +795,7 @@ button:hover
 }
 
 .ActivitySelectionContainer {
+
 	position: fixed;
 	display: grid;
 	grid-template-columns: auto 550px auto;
@@ -830,6 +843,7 @@ button:hover
 }
 
 .open_audio_button {
+
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -892,6 +906,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 		background-color: unset;
 		border-color: unset;
 	}
+
 
 	.texture_selector {
 		width: 373px;
