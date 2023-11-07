@@ -997,6 +997,7 @@ class Auralayer
 					this.load_from_server(this.url_activity_text);	
 					return false;
 				}
+
 				else
 				{
 					// this.create_activity_selection_interface();
@@ -1085,12 +1086,13 @@ class Auralayer
 			// -----------------------------------
 			//      HEADER COMPONENTS
 			// -----------------------------------
-				this.HeaderContainer = createNewElement({type: "div", classes:["container-xl"], parent: this.Header});
-				this.HeaderRow = createNewElement({type: "div", classes:["d-flex", "flex-row", "my-1", "justify-content-stretch"], parent: this.HeaderContainer});
-				this.HeaderRowLeft = createNewElement({type: "div", classes:["col-1"], parent: this.HeaderRow});
-				this.HeaderRowRight = createNewElement({type: "div", classes:["col-10", "text-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
+				this.HeaderContainer = createNewElement({type: "div", classes:["container-fluid"], parent: this.Header});
+				this.HeaderRow = createNewElement({type: "div", classes: ["row", "my-1", "justify-content-between", "flex-nowrap"], parent: this.HeaderContainer});
+				this.HeaderRowLeft = createNewElement({type: "div", classes: ["HeaderRowLeft", "col-auto", "col-md-4", "d-flex", "align-content-center"], parent: this.HeaderRow});
+				this.HeaderRowCenter = createNewElement({ type: "div", classes: [ "HeaderRowCenter", "col-auto", "col-md-4", "text-center", "d-flex", "align-content-center"], parent: this.HeaderRow, properties: { id: "page-header" }, });
+				this.HeaderRowRight = createNewElement({type: "div", classes: ["HeaderRowRight","col-auto","col-md-4","d-flex","justify-content-end","align-content-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
 
-				this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowRight, properties:{innerText: "Auralayer"}});
+				this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowCenter, properties:{innerText: "Auralayer"}});
 
 				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
 
@@ -1132,7 +1134,7 @@ class Auralayer
 			// -----------------------------------
 			//      BODY COMPONENTS (not document.body but Auralayer's body)
 			// -----------------------------------
-				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-xl"], parent: this.Body});
+				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-fluid"], parent: this.Body});
 				this.UtilitiesContainer = createNewElement({type:"div", classes:["UtilitiesContainer", "row", "mx-md-5", "justify-content-between"],parent: this.BodyContainer, properties:{id:"utilites"}});
 				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
 				this.LoadingSpinner = createNewElement({type:"div", classes:["LoadingSpinner", "spinner-border", "text-primary"], parent: this.AllLayerContainers, properties:{role: "status", innerHTML: `<span class="visually-hidden">Loading...</span>`}, styles:{display: "none"}});
@@ -1143,7 +1145,8 @@ class Auralayer
 				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
 				this.AllLayerContainers.addEventListener("touchmove", e=> { this.dragging_handler(e) });
 				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
-				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2"], parent: this.Body, properties:{id:"interface-container"}});
+				this.SegmentEditingSuperContainer = createNewElement({type: "div",classes: ["SegmentEditingSuperContainer", "col-lg-8", "mx-auto"],parent: this.Body,});
+				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2", "my-3"], parent: this.SegmentEditingSuperContainer, properties:{id:"interface-container"}});
 
 				
 
@@ -1158,19 +1161,19 @@ class Auralayer
 			//      LEFT OUTER COLUMN COMPONENTS
 			// -----------------------------------       
 				// this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
-				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.HeaderContainer, properties:{id: "undo-redo"} } );
+				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer"], parent: this.HeaderRowRight, properties:{id: "undo-redo"} } );
 				this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
-				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
+				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group", "mx-2"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 
-				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
+				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
 				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});				
-				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
+				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
 				this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
 
 
-				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
+				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
 				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
-				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
+				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
 				this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
 
 
@@ -1179,7 +1182,7 @@ class Auralayer
 			//      AUDIO CONTROLs
 			// -----------------------------------  				
 
-				this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`}, events: {click: e=>this.play_button_handler(e)}});
+				this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`}, events: {click: e=>this.play_button_handler(e)}});
 				// this.audio_pause_button = createNewElement({type:"button", classes:["audio_pause_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-pause-circle"></i>`}});
 
 			// -----------------------------------
@@ -1272,19 +1275,32 @@ class Auralayer
 					{/* <th role="columnheader" class="col-1">ID</th> */}
 
 				let data_html = `
-						<tr>
-								<th role="columnheader" class="col-3" data-sort-method="number">Time</th>
-								<th role="columnheader" class="col-5">Layer</th>
+						<tr> 
+								<th role="columnheader" class="col-1" data-sort-method="number">Time</th>
+								<th role="columnheader" class="col-2">Layer</th>
 								<th role="columnheader" class="col-5">Text</th>
-								<th role="columnheader" class="col-4">Starting Presence</th>
-								<th role="columnheader" class="col-4">Ending Presence</th>
+								<th role="columnheader" class="col-2">Starting Presence</th>
+								<th role="columnheader" class="col-2">Ending Presence</th>
 						</tr>
-			`;
-
+			`; // These are supposed to add up to 12 ^^
 
 				//data-sort-method="number"
 
-				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties:{id: "collapsing"}});
+this.TextEditingMenuContainer = createNewElement({type: "div",classes: ["TextEditingMenuContainer","btn-toolbar","justify-content-center",],parent: this.SegmentEditingSuperContainer,properties: {role: "toolbar",},});
+	this.AlignmentGroup = createNewElement({type: "div",classes: ["AlignmentGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
+	this.TextFormatGroup = createNewElement({type: "div",classes: ["TextFormatGroup","btn-group","btn-group-small","mx-2",],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
+	this.TextSizeGroup = createNewElement({type: "div",classes: ["TextSizeGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
+
+this.TextEditingLeftAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingLeftAlignButton","btn","btn-light",],parent: this.AlignmentGroup,properties: { innerHTML: `<i class="bi-justify-left"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "left",});},},});
+this.TextEditingCenterAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingCenterAlignButton","btn","btn-light",],parent: this.AlignmentGroup,properties: { innerHTML: `<i class="bi-justify"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "center",});},},});
+this.TextEditingRightAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingRightAlignButton","btn","btn-light",],parent: this.AlignmentGroup,properties: { innerHTML: `<i class="bi-justify-right"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "right",});},},});
+
+this.TextEditingBoldButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingBoldButton","btn","btn-light",],parent: this.TextFormatGroup,properties: { innerHTML: `<i class="bi-type-bold"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "fontWeight",value: "bold",});},},});this.TextEditingItalicButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingItalicButton","btn","btn-light",],parent: this.TextFormatGroup,properties: { innerHTML: `<i class="bi-type-italic"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "fontStyle",value: "italic",});},},});
+this.TextEditingStrikeThroughButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingStrikeThroughButton","btn","btn-light",],parent: this.TextFormatGroup,properties: {innerHTML: `<i class="bi-type-strikethrough"></i>`,},events: {click: (e) => {this.ChangeTextFormat({style: "textDecoration",value: "line-through",});},},});
+this.TextEditingFontSizeIncreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeIncreaseButton","btn","btn-light",],parent: this.TextSizeGroup,properties: { innerHTML: `A+` },events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "increase",});},},});
+this.TextEditingFontSizeDecreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeDecreaseButton","btn","btn-light",],parent: this.TextSizeGroup,properties: { innerHTML: `A-` },events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "decrease",});},},});
+
+				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center"], parent: this.Body, properties:{id: "collapsing"}});
 					this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.AccordionContainer1  , properties:{}});
 						this.TextEditingLeftAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-left"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "left"})}}});
 						this.TextEditingCenterAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "center"})}}});
@@ -1299,17 +1315,18 @@ class Auralayer
 						this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
 							this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
 								this.DataAccordionHeader = createNewElement({type:"h2", classes:["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties:{}});
-									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
+									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed", "ps-5"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
 							this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
 								this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
+									this.DataTableWrapper = createNewElement({type: "div",classes: ["col"],parent: this.DataAccordionBodyInterior,});
+										this.DataTable = createNewElement({type: "table",classes: ["table", "table-responsive"],parent: this.DataTableWrapper,});
 									this.SearchTableInput = createNewElement({type:"input", classes:["table-filter"], parent: this.DataAccordionBodyInterior, properties:{type: "text", placeholder: "Item to filter.."}, dataset: {table: "order-table"}});
-									this.DataTable = createNewElement({type: "table", classes:["order-table", "table"], parent: this.DataAccordionBodyInterior});
 										this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
 										this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
 									this.DataTableTable = new Tablesort(this.DataTable);
 							this.VideoContainer1 = createNewElement({type:"div", classes:["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
 								this.VideoAccordionHeader = createNewElement({type:"h2", classes:["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties:{}});
-									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
+									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed","ps-5"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
 								this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
 									this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
 
