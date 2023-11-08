@@ -157,6 +157,7 @@ button:hover
 	overflow-x: auto;
 	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 	padding: 1em;
+	padding-left: 0px;
 }
 
 /* .Body_al {
@@ -886,6 +887,71 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 
+.modal_background
+{
+	position: absolute;
+	width:100%;
+	height: 100%;
+	background-color: #555555b5;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	z-index: 2;
+	top: 0px;
+	left: 0px;
+}
+
+#shareable_link_modal, #shareable_link_modal_close
+{
+	position: absolute;
+	width: auto;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #3b8457;
+	text-align: center;
+	color: white;
+	padding: 29px;
+	box-shadow: 0 0 10px black;
+	z-index: 2;
+}
+
+#shareable_link_modal_close
+{
+	cursor: pointer;
+	z-index: 2;
+}
+
+#copy_to_clipboard_button, #copy_to_qrcode_button
+{
+	border: 2px solid white;
+	z-index: 2;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.interface_button
+{
+	/* font-family: 'segoe ui', sans-serif; */
+	font-family: 'Cabin', 'Open Sans', sans-serif; 
+}
+
+#share_url_text
+{
+	width: 100%;
+}
+
+button.interface_button, input[type="file" i]::-webkit-file-upload-button
+{
+	border: none;
+	padding: 9px;
+	min-width: 57px;
+	margin: 4px;
+	color: white;
+	background-color: #3b8457;
+	cursor: pointer;
+	font-weight: 500;
+}
 
 @media screen and (max-width: 600px) {
 	.small_youtube_video_for_iframes {
