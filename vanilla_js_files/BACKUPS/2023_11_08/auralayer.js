@@ -149,6 +149,7 @@ document.addEventListener('keydown', e =>
 					}
 				else if (e.shiftKey)
 					{
+						// debugger
 						e.preventDefault();
 						ctrl_down = true;
 					}
@@ -322,7 +323,7 @@ class Layer
 				
 				this.color_picker.addEventListener("click", e=> { myPicker.show(); });
 
-				// myPicker.trigger("show", e=>{debugger});
+				myPicker.trigger("show", e=>{debugger});
 
 		 
 				this.color_picker.addEventListener("change", e=>this.color_picker_handler(e));
@@ -969,10 +970,8 @@ class Auralayer
 				this.analysis_master_embed = false;
 				this.view_mode_slider_top_button = false;
 				this.load_from_file_mode = false;
-				this.default_font_name = 'Cabin';
 				this.skip_amount = 10;
 				this.resolution = 10;
-				this.program_version = "0_0";
 				this.time_stamp_distance = 30;
 				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
@@ -998,7 +997,6 @@ class Auralayer
 					this.load_from_server(this.url_activity_text);	
 					return false;
 				}
-
 				else
 				{
 					// this.create_activity_selection_interface();
@@ -1087,13 +1085,12 @@ class Auralayer
 			// -----------------------------------
 			//      HEADER COMPONENTS
 			// -----------------------------------
-				this.HeaderContainer = createNewElement({type: "div", classes:["container-fluid"], parent: this.Header});
-				this.HeaderRow = createNewElement({type: "div", classes: ["row", "my-1", "justify-content-between", "flex-nowrap"], parent: this.HeaderContainer});
-				this.HeaderRowLeft = createNewElement({type: "div", classes: ["HeaderRowLeft", "col-auto", "col-md-4", "d-flex", "align-content-center"], parent: this.HeaderRow});
-				this.HeaderRowCenter = createNewElement({ type: "div", classes: [ "HeaderRowCenter", "col-auto", "col-md-4", "text-center", "d-flex", "align-content-center"], parent: this.HeaderRow, properties: { id: "page-header" }, });
-				this.HeaderRowRight = createNewElement({type: "div", classes: ["HeaderRowRight","col-auto","col-md-4","d-flex","justify-content-end","align-content-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
+				this.HeaderContainer = createNewElement({type: "div", classes:["container-xl"], parent: this.Header});
+				this.HeaderRow = createNewElement({type: "div", classes:["d-flex", "flex-row", "my-1", "justify-content-stretch"], parent: this.HeaderContainer});
+				this.HeaderRowLeft = createNewElement({type: "div", classes:["col-1"], parent: this.HeaderRow});
+				this.HeaderRowRight = createNewElement({type: "div", classes:["col-10", "text-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
 
-				// this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowCenter, properties:{innerText: "Auralayer"}});
+				this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowRight, properties:{innerText: "Auralayer"}});
 
 				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
 
@@ -1135,7 +1132,7 @@ class Auralayer
 			// -----------------------------------
 			//      BODY COMPONENTS (not document.body but Auralayer's body)
 			// -----------------------------------
-				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-fluid"], parent: this.Body});
+				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-xl"], parent: this.Body});
 				this.UtilitiesContainer = createNewElement({type:"div", classes:["UtilitiesContainer", "row", "mx-md-5", "justify-content-between"],parent: this.BodyContainer, properties:{id:"utilites"}});
 				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
 				this.LoadingSpinner = createNewElement({type:"div", classes:["LoadingSpinner", "spinner-border", "text-primary"], parent: this.AllLayerContainers, properties:{role: "status", innerHTML: `<span class="visually-hidden">Loading...</span>`}, styles:{display: "none"}});
@@ -1146,8 +1143,7 @@ class Auralayer
 				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
 				this.AllLayerContainers.addEventListener("touchmove", e=> { this.dragging_handler(e) });
 				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
-				this.SegmentEditingSuperContainer = createNewElement({type: "div",classes: ["SegmentEditingSuperContainer", "col-lg-8", "mx-auto"],parent: this.Body,});
-				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2", "my-3"], parent: this.SegmentEditingSuperContainer, properties:{id:"interface-container"}});
+				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2"], parent: this.Body, properties:{id:"interface-container"}});
 
 				
 
@@ -1162,19 +1158,19 @@ class Auralayer
 			//      LEFT OUTER COLUMN COMPONENTS
 			// -----------------------------------       
 				// this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
-				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer"], parent: this.HeaderRowRight, properties:{id: "undo-redo"} } );
+				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.HeaderContainer, properties:{id: "undo-redo"} } );
 				this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
-				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group", "mx-2"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
+				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
 
-				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
+				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", innerHTML: `<i class="bi-zoom-out"></i>`}});
 				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});				
-				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
+				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
 				this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
 
 
-				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
+				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
 				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
-				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
+				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
 				this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
 
 
@@ -1183,7 +1179,7 @@ class Auralayer
 			//      AUDIO CONTROLs
 			// -----------------------------------  				
 
-				this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`}, events: {click: e=>this.play_button_handler(e)}});
+				this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`}, events: {click: e=>this.play_button_handler(e)}});
 				// this.audio_pause_button = createNewElement({type:"button", classes:["audio_pause_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-pause-circle"></i>`}});
 
 			// -----------------------------------
@@ -1231,8 +1227,7 @@ class Auralayer
 				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
 				// this.SaveToFileButton.addEventListener("click", e => { download_image(); });
 
-				// this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}, events:{click: e=>this.create_shareable_link()}});
-				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, events:{click: e=>this.create_shareable_link()}});
+				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}});
 
 				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
 				this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
@@ -1277,48 +1272,44 @@ class Auralayer
 					{/* <th role="columnheader" class="col-1">ID</th> */}
 
 				let data_html = `
-						<tr> 
-								<th role="columnheader" class="col-1" data-sort-method="number">Time</th>
-								<th role="columnheader" class="col-2">Layer</th>
+						<tr>
+								<th role="columnheader" class="col-3" data-sort-method="number">Time</th>
+								<th role="columnheader" class="col-5">Layer</th>
 								<th role="columnheader" class="col-5">Text</th>
-								<th role="columnheader" class="col-2">Starting Presence</th>
-								<th role="columnheader" class="col-2">Ending Presence</th>
+								<th role="columnheader" class="col-4">Starting Presence</th>
+								<th role="columnheader" class="col-4">Ending Presence</th>
 						</tr>
-			`; // These are supposed to add up to 12 ^^
+			`;
+
 
 				//data-sort-method="number"
 
-				this.TextEditingMenuContainer = createNewElement({type: "div",classes: ["TextEditingMenuContainer","btn-toolbar","justify-content-center",],parent: this.SegmentEditingSuperContainer,properties: {role: "toolbar",},});
-					this.AlignmentGroup = createNewElement({type: "div",classes: ["AlignmentGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
-					this.TextFormatGroup = createNewElement({type: "div",classes: ["TextFormatGroup","btn-group","btn-group-small","mx-2",],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
-					this.TextSizeGroup = createNewElement({type: "div",classes: ["TextSizeGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
-
-				this.TextEditingLeftAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingLeftAlignButton","btn","btn-light",],parent: this.AlignmentGroup,properties: { innerHTML: `<i class="bi-justify-left"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "left",});},},});
-				this.TextEditingCenterAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingCenterAlignButton","btn","btn-light",],parent: this.AlignmentGroup,properties: { innerHTML: `<i class="bi-justify"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "center",});},},});
-				this.TextEditingRightAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingRightAlignButton","btn","btn-light",],parent: this.AlignmentGroup,properties: { innerHTML: `<i class="bi-justify-right"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "right",});},},});
-
-				this.TextEditingBoldButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingBoldButton","btn","btn-light",],parent: this.TextFormatGroup,properties: { innerHTML: `<i class="bi-type-bold"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "fontWeight",value: "bold",});},},});this.TextEditingItalicButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingItalicButton","btn","btn-light",],parent: this.TextFormatGroup,properties: { innerHTML: `<i class="bi-type-italic"></i>` },events: {click: (e) => {this.ChangeTextFormat({style: "fontStyle",value: "italic",});},},});
-				this.TextEditingStrikeThroughButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingStrikeThroughButton","btn","btn-light",],parent: this.TextFormatGroup,properties: {innerHTML: `<i class="bi-type-strikethrough"></i>`,},events: {click: (e) => {this.ChangeTextFormat({style: "textDecoration",value: "line-through",});},},});
-				this.TextEditingFontSizeIncreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeIncreaseButton","btn","btn-light",],parent: this.TextSizeGroup,properties: { innerHTML: `A+` },events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "increase",});},},});
-				this.TextEditingFontSizeDecreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeDecreaseButton","btn","btn-light",],parent: this.TextSizeGroup,properties: { innerHTML: `A-` },events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "decrease",});},},});
-
-				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center", "px-4"], parent: this.Body, properties:{id: "collapsing"}});
-					this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "col-xxl-8", "p-1", "m-auto"], parent: this.AccordionContainer1, properties:{}});
+				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center"], parent: this.SegmentEditingContainer, properties:{id: "collapsing"}});
+					this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.AccordionContainer1  , properties:{}});
+						this.TextEditingLeftAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingLeftAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-left"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "left"})}}});
+						this.TextEditingCenterAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingCenterAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "center"})}}});
+						this.TextEditingRightAlignButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingRightAlignButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-justify-right"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textAlign", value: "right"})}}});
+						this.TextEditingBoldButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingBoldButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-bold"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontWeight", value: "bold"})}}});
+						this.TextEditingItalicButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingItalicButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-italic"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "fontStyle", value: "italic"})}}});
+						this.TextEditingUnderlineButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingUnderlineButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-underline"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "underline"})}}});
+						this.TextEditingStrikeThroughButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingStrikeThroughButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`<i class="bi-type-strikethrough"></i>`}, events:{click:e=>{this.ChangeTextFormat({style: "textDecoration", value: "line-through"})}}});
+						this.TextEditingFontSizeIncreaseButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingFontSizeIncreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A+`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "increase"})}}});
+						this.TextEditingFontSizeDecreaseButton = createNewElement({type:"button", classes:["TextEditingButton", "TextEditingFontSizeDecreaseButton", "btn", "btn-outline-secondary", "border-0"], parent: this.TextEditingMenuContainer, properties:{innerHTML:`A-`}, events:{click:e=>{this.ChangeTextFormat({style: "fontSize", type: "decrease"})}}});
+					this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "p-1", "m-auto", "my-3"], parent: this.AccordionContainer1, properties:{}});
 						this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
 							this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
 								this.DataAccordionHeader = createNewElement({type:"h2", classes:["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties:{}});
-									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed", "ps-5"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
+									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
 							this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
 								this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
-									this.DataTableWrapper = createNewElement({type: "div",classes: ["col"],parent: this.DataAccordionBodyInterior,});
-										this.DataTable = createNewElement({type: "table",classes: ["table", "table-responsive"],parent: this.DataTableWrapper,});
 									this.SearchTableInput = createNewElement({type:"input", classes:["table-filter"], parent: this.DataAccordionBodyInterior, properties:{type: "text", placeholder: "Item to filter.."}, dataset: {table: "order-table"}});
+									this.DataTable = createNewElement({type: "table", classes:["order-table", "table"], parent: this.DataAccordionBodyInterior});
 										this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
 										this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
 									this.DataTableTable = new Tablesort(this.DataTable);
 							this.VideoContainer1 = createNewElement({type:"div", classes:["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
 								this.VideoAccordionHeader = createNewElement({type:"h2", classes:["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties:{}});
-									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed","ps-5"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
+									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
 								this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
 									this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
 
@@ -1352,6 +1343,8 @@ class Auralayer
 							{
 								var text = row.textContent.toLowerCase();
 
+								
+
 								if(row.querySelector(".SegmentTextInput").hasAttribute("data-text_value"))
 									{
 										let input_text_value = row.querySelector(".SegmentTextInput").dataset.text_value;
@@ -1362,6 +1355,7 @@ class Auralayer
 											}
 									}
 
+								// console.log(row);
 								var val = input.value.toLowerCase();
 								
 								console.log(val);
@@ -1378,13 +1372,13 @@ class Auralayer
 						
 						})();
 				
-					console.log(document.readyState);
+					/*console.log(document.readyState);
 					document.addEventListener('readystatechange', function() {
 						if (document.readyState === 'complete') {
 							console.log(document.readyState);
 							TableFilter.init();
 						}
-					}); 
+					}); */
 					
 					TableFilter.init(); 
 				})();
@@ -2704,210 +2698,6 @@ class Auralayer
 						this.StartAudioFileActivitySetup()
 					}				
 			}
-		create_shareable_link()
-			{
-				let qr_code_script = document.createElement('script');
-				qr_code_script.src = "https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js";
-				document.body.append(qr_code_script);
-				qr_code_script.addEventListener('load', () =>
-					{
-						this.modal_background = document.createElement('div');
-						this.modal_background.classList.add("modal_background");
-						this.modal_background.style.display = "none";
-						document.body.appendChild(this.modal_background);
-						this.modal_background.addEventListener( 'click' , () => 
-								{
-										this.modal_background.style.display = "none"; 
-										this.shareable_link_modal.style.display = "none";
-										this.copy_to_clipboard_button.style.display = "none";
-										this.shareable_link_modal_close.style.display = "none";
-								} );
-						
-						
-						
-						this.shareable_link_modal = document.createElement('div');
-						this.shareable_link_modal.title = "Copy and share this link";
-						this.shareable_link_modal.id = "shareable_link_modal";
-						this.shareable_link_modal.style.display = "none";
-						this.shareable_link_modal.classList.add("interface_button");
-						document.body.appendChild(this.shareable_link_modal);
-						//this.shareable_link_modal.addEventListener( 'click' , () => {this.shareable_link_modal.style.display = "none"; this.modal_background.style.display = "none";} );
-
-
-						this.shareable_link_modal_close = document.createElement('div');
-						this.shareable_link_modal_close.title = "Copy and share this link";
-						this.shareable_link_modal_close.id = "shareable_link_modal_close";
-						this.shareable_link_modal_close.classList.add("interface_button");
-						this.shareable_link_modal_close.style.display = "none";
-						this.shareable_link_modal_close.addEventListener("click", () =>
-								{
-										this.shareable_link_modal_close.style.display = "none";
-										this.modal_background.style.display = "none";
-								});
-						document.body.appendChild(this.shareable_link_modal_close);
-
-						this.share_url_text = document.createElement("input");
-						this.share_url_text.type = 'text';
-						// this.share_url_text.isContentEditable = false;
-						this.share_url_text.id = "share_url_text";
-						this.share_url_text.classList.add("interface_button");
-						this.share_url_text.style.display = "none";
-						this.shareable_link_modal.appendChild(this.share_url_text);
-
-						this.share_url_copied_text = document.createElement("span");
-						this.share_url_copied_text.id = "share_url_copied_text";
-						this.share_url_copied_text.classList.add("interface_button");
-						this.share_url_copied_text.style.display = "none";
-						this.shareable_link_modal_close.appendChild(this.share_url_copied_text);
-
-
-						this.copy_to_clipboard_button = document.createElement('button');
-						this.copy_to_clipboard_button.innerText = "Copy Link to Clipboard";
-						this.copy_to_clipboard_button.title = "Copy URL to clipboard";
-						this.copy_to_clipboard_button.id = "copy_to_clipboard_button";
-						this.copy_to_clipboard_button.classList.add("interface_button");
-						this.copy_to_clipboard_button.style.display = "block";
-						this.copy_to_clipboard_button.addEventListener('click', () =>
-								{
-										this.share_url_text.focus();
-										this.share_url_text.select();
-										document.execCommand('copy');
-										this.share_url_text.style.display = "none";
-										this.shareable_link_modal.style.display = "none";
-										this.shareable_link_modal_close.style.display = "block";
-										this.copy_to_clipboard_button.style.display = "none";
-										this.share_url_copied_text.style.display = "block";
-										this.share_url_copied_text.innerHTML = "Link has been copied to your clipboard!📋";
-								});
-						this.shareable_link_modal.appendChild(this.copy_to_clipboard_button);
-
-						let horizontal_rule_link = document.createElement("hr");                    
-						this.shareable_link_modal.appendChild(document.createElement("hr"));
-
-						this.copy_to_qrcode_button = document.createElement('button');
-						this.copy_to_qrcode_button.innerText = "Download QR code";
-						this.copy_to_qrcode_button.title = "Download QR code";
-						this.copy_to_qrcode_button.id = "copy_to_qrcode_button";
-						this.copy_to_qrcode_button.classList.add("interface_button");
-						this.copy_to_qrcode_button.style.display = "block";
-						this.copy_to_qrcode_button.addEventListener('click', () =>
-								{
-										// create temporary link
-										this.tmpLink = document.createElement( 'a' );  
-										this.tmpLink.download = 'auralayer_qr_code.png'; // set the name of the download file 
-										this.tmpLink.href = this.imageData;  
-										this.shareable_link_modal.appendChild(this.tmpLink);
-								
-										// temporarily add link to body and initiate the download  
-										document.body.appendChild( this.tmpLink );  
-										this.tmpLink.click();  
-										document.body.removeChild( this.tmpLink );  
-								});
-						this.shareable_link_modal.appendChild(this.copy_to_qrcode_button);
-
-						// let save_all = this.save_mechanism();
-						let save_all = this.example_data;
-						let file_name = "auralayer_file.auralayer";
-						let activity_type_for_link = "";
-						let primary_url;
-
-						// if(this.diagram_title.innerHTML == "") file_name = "auralayer_file.auralayer";
-						// else file_name = this.diagram_title + ".auralayer";
-
-						let element = document.createElement('a');
-						let export_data = JSON.stringify(save_all, null, 2); // put data in me first   
-
-						//do stuff with the file at this point
-						let date = new Date();
-						let time_stamp = date.getUTCFullYear() + "_" + 
-														(date.getUTCMonth() + 1) + "_" + 
-														date.getUTCDate() + "_" +
-														date.getUTCHours() + "_" + 
-														date.getUTCMinutes() + "_" +
-														date.getUTCMilliseconds();
-
-						let random_bit = Math.random().toString(36).substr(2, 5);
-						let unique_file_name = time_stamp + "_" + random_bit;
-
-						console.log(time_stamp);
-						
-
-						if( this.activity_type == "audio_file" && !(this.url_activity_text == "load_from_web_link_audio_file" == "load_from_web_link_audio_file" || this.url_activity_text == "open_from_web_link_audio_file2"))
-							{ activity_type_for_link = "load";}
-						else if(this.activity_type == "youtube_link" || this.activity_type == "open_from_web_link_youtube")
-							{ activity_type_for_link = "open_from_web_link_youtube"; }
-						else if (this.url_activity_text == "load_from_web_link_audio_file" || this.url_activity_text == "load")
-							{ activity_type_for_link = "load_from_web_link_audio_file"; }
-						else
-							{ console.error("the activity has not been accounted for"); }
-
-						if(location.href.includes("localhost"))
-							{ primary_url = 'http://localhost/auralayer/vanilla_js_files/auralayer.html?load='; }
-						else
-							{ primary_url = 'https://brianedwardjarvis.com/auralayer/auralayer.html?load='; }
-
-						// this.current_share_url = primary_url + activity_type_for_link + "&shared_briform_id=" + "v_" + this.program_version + "/" + unique_file_name;
-						this.current_share_url = primary_url + "v_" + this.program_version + "/" + unique_file_name;
-
-						console.log(  this.activity_type);
-
-						let my_data = '{"file_name" : "' + "v_" + this.program_version + "/" + unique_file_name + '","file_content" : ' + export_data + '}';
-						
-						fetch(
-							"upload.php", 
-							{
-								method: "post",
-								headers: {'Content-Type':'application/json'}, // this line is important, if this content-type is not set it wont work
-								body: my_data
-							})
-							.then(result => result.text())
-							.then(text => create_shareable_url.call(this, text) )
-							.catch(console.error);		
-
-						function create_shareable_url(returned_text_from_php)
-							{
-								this.share_url_copied_text.style.display = "none";
-								this.shareable_link_modal.style.display = "block";
-								this.modal_background.style.display = "block";
-								this.copy_to_clipboard_button.style.display = "block";
-								this.share_url_text.value = this.current_share_url;
-								this.share_url_text.style.display = "block";
-								this.share_url_text.contentEditable = false;
-								this.share_url_text.focus();
-								this.share_url_text.select();
-								if(document.querySelectorAll("#qrcode").length > 0)
-									{ document.querySelectorAll("#qrcode").forEach(each=>each.remove()); }
-
-								this.qr_canvas = document.createElement("canvas");
-								this.qr_canvas.id = "qrcode";
-								const ctx = this.qr_canvas.getContext('2d');
-
-								
-								this.qr = new QRious({ element: this.qr_canvas, background: 'white', foreground: '#000', level: 'H', padding: 42, size: 300, value: this.current_share_url});
-
-								ctx.font = "italic bold 30px " + this.default_font_name;
-								ctx.fillStyle = "#000";
-								ctx.fillText("Auralayer", 90, 30);
-
-								ctx.font = "italic bold 20px " + this.default_font_name;
-								ctx.fillStyle = "#000";
-								ctx.fillText("Layer Graph", 94, 285);  
-								
-
-								const image = new Image(); // width, height values are optional params 
-								image.src = 'icons/favicon.png';
-								ctx.drawImage(image, 5, 5, 30, 30);
-								image.addEventListener("load", (e) => {
-									ctx.drawImage(image, 5, 5, 30, 30);
-									this.imageData = this.qr_canvas.toDataURL("image/png");
-									this.shareable_link_modal.appendChild(this.qr_canvas);
-								});								
-
-								// this.imageData = this.qr_canvas.toDataURL("image/png");
-								// this.shareable_link_modal.appendChild(this.qr_canvas);
-							}
-						});
-			}			
   }
 
 project = new Auralayer();
