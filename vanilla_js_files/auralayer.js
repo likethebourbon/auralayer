@@ -1045,6 +1045,22 @@ class Auralayer
 			}
 		create_activity_selection_interface()
 			{
+
+				// MODAL
+				// this.ActivitySelectionContainer = createNewElement({type: "div", classes: ["ActivitySelectionContainer", "modal", "fade"], parent: document.body, properties:{id: "startModal", "data-bs-backdrop": "static", "data-bs-keyboard": "false", tabindex:"-1", "aria-labelledby":"startModalLabel", "aria-hidden":"true"}});
+				// 	this.ActivitySelectionDialog = createNewElement({type: "div", classes: ["ActivitySelectionDialog", "modal-dialog", "modal-dialog-centered", "modal-lg"], parent: document.ActivitySelectionContainer});
+				// 		this.ActivitySelectionContent = createNewElement({type: "div", classes:["ActivitySelectionContent", "modal-content"], parent: document.ActivitySelectionDialog});
+				// 			this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader", "modal-header"], parent: this.ActivitySelectionContent, properties:{innerHTML : `<h1 class="modal-title fs-5" id="startModalLabel">Create Auralayer</h1>`}});
+				// 				this.ActivitySelectionClose = createNewElement({type: "button", classes: ["btn-close"], parent: this.ActivitySelectionHeader, properties: {"data-bs-dismiss": "modal", "aria-label": "close"}});
+				// 			this.ActivitySelectionBody = createNewElement({type: "div", classes: ["ActivitySelectionBody", "modal-body"], parent: this.ActivitySelectionContent, properties: {}});
+				// 				this.ActivitySelectionButtonWrapper = createNewElement({type: "div", classes: ["ActivitySelectionButtonWrapper", "d-grid", "gap-2", "col-sm-6", "mx-auto"], parent: this.ActivitySelectionBody, properties: {}});
+				// 					this.NewAuralayerButtonGroup = createNewElement({type: "div", classes: ["NewAuralayerButtonGroup", "btn-group", "btn-group-vertical"], parent: this.ActivitySelectionButtonWrapper, properties: {}});
+				// 						this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes: ["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.ActivitySelectionButtonGroup, properties: {innerHTML: "Create with Youtube audio"}});
+				// 						this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes: ["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.ActivitySelectionButtonGroup, properties: {innerHTML: "Create with local audio"}});
+				// 						this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes: ["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.ActivitySelectionButtonGroup, properties: {innerHTML: "Create with absolute URL"}});
+				// 					this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes: ["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.ActivitySelectionButtonWrapper, properties: {}});
+
+				// ORIGINAL 
 				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
 					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
 					this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
