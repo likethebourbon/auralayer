@@ -42,17 +42,12 @@ In development!
 - [x] selecting a small segment turns it white so hard to see what's selected vs deleted—need external border instead of internal
 - [x] overflow-y is hidden?
 - [ ] full width or centered graph on opening
-- [ ] data table collapsible expands when the table is open, but only on full width
+- [x] data table collapsible expands when the table is open, but only on full width
 - [ ] changing from "Gradient" to "slope" doesn't redraw things that were already gradient-ized or slope-ified; in general it's just a bit weird when you mess around with that setting.
 
   - [ ] I think when you switch from gradient to slope, the opacity of all segments needs to get reset to 1
   - [ ] and the opacity info needs to be converted to gradient info.
-  - [ ] data table timestamps are wack
-  - [ ]
+- [ ] data table timestamps are wack
 
-- [ ] Sometimes when switching windows the analysis disappears and I go back to the start screen
-- [ ] data table collapsible expands when the table is open
-- [ ] changing from "Gradient" to "slope" doesn't redraw things that were already gradient-ized or slope-ified; in general it's just a bit weird when you mess around with that setting.
-  - [ ] I think when you switch from gradient to slope, the opacity of all segments needs to get reset to 1
 
-  - [ ] and the opacity info needs to be converted to gradient info.
+- [x] Sometimes when switching windows the analysis disappears and I go back to the start screen
