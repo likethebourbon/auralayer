@@ -406,15 +406,11 @@ class Layer
 				this.shape_background_texture_7_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2-white.png)'}, properties: {title: "Diagonal_Line 2 white"}});
 				this.shape_background_texture_8_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1-white.png)'}, properties: {title: "Circle_1 white"}});
 				this.shape_background_texture_9_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2-white.png)'}, properties: {title: "Circle_2 white"}});
-				this.shape_background_texture_10_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_blank-white.png)'}, properties: {title: "Blank white"}});
+				// this.shape_background_texture_10_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_blank-white.png)'}, properties: {title: "Blank white"}});
 				this.shape_background_texture_11_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_and_horizontal_1-white.png)'}, properties: {title: "Vertical and Horizontal Lines white"}});
 
 
-
-
 				// this.shape_background_texture_12 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_12'], parent: this.texture_selector, styles:{background:'url(images/2-square-pattern-tiled-graphicsfairy-32.png)'}, properties: {title: "Square pattern 1"}});
-
-
 
 				this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
 				this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
@@ -437,12 +433,8 @@ class Layer
 				this.shape_background_texture_7_white.addEventListener('click', e=>this.create_layer_background_texture(e));
 				this.shape_background_texture_8_white.addEventListener('click', e=>this.create_layer_background_texture(e));
 				this.shape_background_texture_9_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_10_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-				this.shape_background_texture_11_white.addEventListener('click', e=>this.create_layer_background_texture(e));				
-
-
-	
-			
+				// this.shape_background_texture_10_white.addEventListener('click', e=>this.create_layer_background_texture(e));
+				this.shape_background_texture_11_white.addEventListener('click', e=>this.create_layer_background_texture(e));
       }
 		layer_settings_button_handler(e)
 			{
@@ -812,41 +804,109 @@ class Segment
 			}					
 		SegmentPresenceStartRangeHandler(e, direction)
 			{
+				
 				let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 				let formated_color_value;
+
+				let first_color_saturation_value;
+				let second_color_saturation_value;
+				try
+					{ first_color_saturation_value = 10 - parseInt(this.data.styles.clipPath.replace("polygon(","").replace(")","").split(", ")[1].split(" ")[1])/10; }
+				catch(error)
+					{ first_color_saturation_value = 10; }						
+					
+				try
+					{ second_color_saturation_value = 10 - parseInt(this.data.styles.clipPath.replace("polygon(","").replace(")","").split(", ")[0].split(" ")[1])/10; }
+				catch(error)
+					{ second_color_saturation_value = 10; }							
 				// set the sliders to the value of the first layer/segment selected
+
+
+
+				let urlText = "";
+				let initial_value = this.data.color;
+				let color_value_1 = "";
+				let color_value_2 = "";
+				let initial_saturation_1 = "1.0";
+				let initial_saturation_2 = "1.0";
+
+				[color_value_1, initial_saturation_1, urlText] = this.parent.parent.GetRGBA_Values({value: initial_value, num:0});
+				[color_value_2, initial_saturation_2, urlText] = this.parent.parent.GetRGBA_Values({value: initial_value, num:1});
+
 				
-				if(this.parent.parent.PresenceSliderEnd.disabled === true)
+				// if(this.parent.parent.PresenceSliderEnd.disabled === true)
+				if(this.data.presence_sync === true)
 					{
-						let color_value = this.data.color.split(", ")[1].slice(0,-4);
-						let new_color_value = color_value + new_saturation_value + ")";
-						formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
-						this.data.start_presence = parseInt(e.target.value);
-						this.data.end_presence = parseInt(e.target.value);
+						if (this.parent.parent.segment_decrescendo === "gradient")
+							{
+								// let color_value = this.data.color.split(", ")[1].slice(0,-4);
+								// let new_color_value = color_value + new_saturation_value + ")";
+								let new_color_value = color_value_1 + new_saturation_value + ")";
+								formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";									
+								this.data.start_presence = parseInt(e.target.value);
+								this.data.end_presence = parseInt(e.target.value);
+							}
+						else if (this.parent.parent.segment_decrescendo === "slope" && new_saturation_value > 0)
+							{
+								this.segment.style.clipPath = "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - new_saturation_value * 10) * 10) + "%, 100% 100%, 0 100%)";
+								this.data.styles.clipPath =  "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - new_saturation_value * 10) * 10) + "%, 100% 100%, 0 100%)";
+								this.SegmentPresenceEndRange.value = this.SegmentPresenceStartRange.value;
+							}						
 					}
 				else
 					{
+						console.log("first_color_saturation_value: " + first_color_saturation_value);
 						if(direction === "start")
 							{
-								let color_value = this.data.color.split(", ")[1].slice(0,-4);
-								let ending_color = this.data.color.split(", ")[2];
-								let new_color_value = color_value + new_saturation_value + ")";
-								formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
-								this.data.start_presence = parseInt(e.target.value);
+								if (this.parent.parent.segment_decrescendo === "gradient")
+								{
+									// let color_value = this.data.color.split(", ")[1].slice(0,-4);
+									// let ending_color = this.data.color.split(", ")[2];
+									// let new_color_value = color_value + new_saturation_value + ")";
+									
+									let new_color_value = color_value_1 + new_saturation_value + ")";
+									let new_color_value_2 = color_value_2 + initial_saturation_2 + "))";
+									// formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + ending_color;
+									formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value_2;
+									this.data.start_presence = parseInt(e.target.value);
+								}
+							else if (this.parent.parent.segment_decrescendo === "slope" && (first_color_saturation_value > 0 || new_saturation_value > 0 ))
+								{
+									this.segment.style.clipPath = "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - (first_color_saturation_value )) * 10) + "%, 100% 100%, 0 100%)";
+									this.data.styles.clipPath = "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - (first_color_saturation_value )) * 10) + "%, 100% 100%, 0 100%)";
+								}
 							}
 						else if(direction === "end")
 							{	
-								let color_value = this.data.color.split(", ")[2].slice(0,-5);
-								let starting_color = this.data.color.split(", ")[1];
-								let new_color_value = color_value + new_saturation_value + "))";
-								formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
-								this.data.end_presence = parseInt(e.target.value);
+								if (this.parent.parent.segment_decrescendo === "gradient")
+								{
+									let color_value = this.data.color.split(", ")[2].slice(0,-5);
+									let starting_color = this.data.color.split(", ")[1];
+									let new_color_value = color_value_1 + new_saturation_value + "))";
+									let new_color_value_2 = color_value_2 + initial_saturation_1 + ")";
+									// formated_color_value = "linear-gradient(to right, " + starting_color + ", " + new_color_value;
+									formated_color_value = "linear-gradient(to right, " + new_color_value_2 + ", " + new_color_value;
+									this.data.end_presence = parseInt(e.target.value);
+								}
+							else if (this.parent.parent.segment_decrescendo === "slope" && (second_color_saturation_value > 0 || new_saturation_value > 0 ))
+								{
+									this.segment.style.clipPath = "polygon(0 " + parseInt((10 - (second_color_saturation_value )) * 10) + "%, 100% " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% 100%, 0 100%)";
+									this.data.styles.clipPath =  "polygon(0 " + parseInt((10 - (second_color_saturation_value )) * 10) + "%, 100% " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% 100%, 0 100%)";
+								}
 							}		
 					}
 
-				this.data.color = formated_color_value;
-				this.segment.style.background =  formated_color_value;
-				this.data.styles.background = formated_color_value;
+				
+				if(typeof formated_color_value !== "undefined")
+					{
+						this.data.color = urlText + formated_color_value;
+						this.segment.style.background =  urlText + formated_color_value;
+						this.data.styles.background = urlText + formated_color_value;
+					}
+
+					// console.log("this.data.start_presence: " + this.data.start_presence);
+					// console.log("this.data.end_presence: " + this.data.end_presence);
+
 			}
 		SegmentTextInput_input_handler(e)
 			{
@@ -871,11 +931,11 @@ class Segment
 				if(!this.tapedTwice)
 					{
 						this.tapedTwice = true;
-						console.log("tapedTwice = " + this.tapedTwice);
+						// console.log("tapedTwice = " + this.tapedTwice);
 						setTimeout( () =>
 							{
 								this.tapedTwice = false;
-								console.log("tapedTwice = " + this.tapedTwice);
+								// console.log("tapedTwice = " + this.tapedTwice);
 							}, 300 );
 						return false;
 					}
@@ -898,17 +958,12 @@ class Segment
 				let deselect = false;
 				deselect = this.segment.classList.contains("segment_selected");
 				if(ctrl_down === false)
-					{
-						// this.parent.parent.Body.querySelectorAll(".segment_selected").forEach(each=>each.classList.remove("segment_selected"));
-						// this.parent.parent.BodyContainer.querySelectorAll(".segment_selected").forEach(each=>{ each.classList.remove("segment_selected");});
-					}
+					{}
 
 				this.parent.parent.hide_all_TextEditingMenuContainer_SingleSegments();
-				// this.parent.parent.TextEditingMenuContainer.style.display = "none";
-				// this.parent.parent.TextEditingMenuContainer.style.cursor = "not-allowed";
+
 				[...this.parent.parent.TextEditingMenuContainer.children].forEach(each=>each.style.cursor = "not-allowed");
 				
-
 				if(deselect === true)
 					{
 						// deselect this segment
@@ -925,32 +980,69 @@ class Segment
 				else
 					{
 						// select this segment
-						this.segment.classList.add("segment_selected");						
-						let first_color_saturation_value = this.data.color.split(", ")[1].slice(-4).slice(0,3);
-						let second_color_saturation_value = this.data.color.split(", ")[2].slice(-5).slice(0,3)
-						this.PresenceSliderStart.value = parseInt(first_color_saturation_value * GLOBAL_presence_scale); 
-						this.PresenceSliderEnd.value = parseInt(second_color_saturation_value * GLOBAL_presence_scale);
-						this.data.start_presence = parseInt(this.PresenceSliderStart.value);
-						this.data.end_presence = parseInt(this.PresenceSliderEnd.value);
-						this.parent.parent.PresenceSliderStart.disabled = false;
-						
-						if(this.parent.select_box.checked === false)
-							{
-								this.parent.select_box.click();
-							}
+						this.segment.classList.add("segment_selected");
 
-						if(this.data.presence_sync === true)
+						let first_color_saturation_value;
+						let second_color_saturation_value;
+						try
 							{
-								this.parent.parent.PresenceSliderEnd.disabled = true;
+								first_color_saturation_value = 10 - parseInt(this.data.styles.clipPath.replace("polygon(","").replace(")","").split(", ")[1].split(" ")[1])/10;
+							}
+						catch(error)
+							{ first_color_saturation_value = 10; }
+
+							try
+							{
+								second_color_saturation_value = 10 - parseInt(this.data.styles.clipPath.replace("polygon(","").replace(")","").split(", ")[0].split(" ")[1])/10;
+							}
+						catch(error)
+							{ second_color_saturation_value = 10; }							
+
+						if(first_color_saturation_value === second_color_saturation_value)
+							{
+								this.parent.parent.PresenceSliderIndependentButton.children[0].classList.remove("bi-unlock");
+								this.parent.parent.PresenceSliderIndependentButton.children[0].classList.add("bi-lock");
 							}
 						else
 							{
-								this.parent.parent.PresenceSliderEnd.disabled = false;
+								this.parent.parent.PresenceSliderIndependentButton.children[0].classList.remove("bi-lock");
+								this.parent.parent.PresenceSliderIndependentButton.children[0].classList.add("bi-unlock");								
 							}
 
-						// this.parent.parent.TextEditingMenuContainer.style.display = "flex";
-						[...this.parent.parent.TextEditingMenuContainer.children].forEach(each=>each.style.cursor = "auto");
+						if (this.parent.parent.segment_decrescendo === "gradient")
+							{
 
+								this.PresenceSliderStart.value = this.data.start_presence; 
+								this.PresenceSliderEnd.value = this.data.end_presence;
+								// this.PresenceSliderStart.value = parseInt(this.data.start_presence * GLOBAL_presence_scale); 
+								// this.PresenceSliderEnd.value = parseInt(this.data.end_presence * GLOBAL_presence_scale);
+							}
+						else if(this.parent.parent.segment_decrescendo === "slope")
+							{
+								this.PresenceSliderStart.value = second_color_saturation_value; 
+								this.PresenceSliderEnd.value = first_color_saturation_value;
+							}
+
+
+
+						// this.data.start_presence = parseInt(this.PresenceSliderStart.value);
+						// this.data.end_presence = parseInt(this.PresenceSliderEnd.value);
+						this.parent.parent.PresenceSliderStart.disabled = false;
+						
+						if(this.parent.select_box.checked === false)
+							{ this.parent.select_box.click(); }
+
+							
+						if(this.data.presence_sync === true)
+							{ this.parent.parent.PresenceSliderEnd.disabled = true; }
+						else
+							{
+								this.parent.parent.PresenceSliderEnd.disabled = false;
+								this.parent.parent.PresenceSliderIndependentButton.children[0].classList.remove("bi-lock");
+								this.parent.parent.PresenceSliderIndependentButton.children[0].classList.add("bi-unlock");									
+							}
+
+						[...this.parent.parent.TextEditingMenuContainer.children].forEach(each=>each.style.cursor = "auto");
 
 					}
 					
@@ -978,7 +1070,7 @@ class Auralayer
 				this.layers = [];
 				this.example_data = example_data;
 				if(Object.keys(this.example_data).length === 0)
-					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 3, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0, segment_decrescendo: "gradient" }, layers: [] }}
+					{ this.example_data = { piece_info: { media_type: "none", name: "new_auralayer", layer_id_pos: 0, scale: 3, color_count: 0, slider_thumb_offset: 0, slider_thumb_height: 0, segment_decrescendo: "slope" }, layers: [] }}
 				this.scale = this.example_data.piece_info.scale;
 				this.color_count = this.example_data.piece_info.color_count;
 				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
@@ -1045,20 +1137,48 @@ class Auralayer
 			}
 		create_activity_selection_interface()
 			{
+
+
+				// <!-- Modal -->
+				// <div class="modal fade" id="startModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
+				// 		<div class="modal-dialog modal-dialog-centered modal-lg">
+				// 				<div class="modal-content">
+				// 						<div class="modal-header">
+				
+				// 								<h1 class="modal-title fs-5" id="startModalLabel">Start Auralayer</h1>
+				// 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				// 						</div>
+				// 						<div class="modal-body">
+				// 								<div class="d-grid gap-2 col-sm-6 mx-auto">
+				// 										<button type="button" class="btn btn-primary">Create with Youtube audio</button>
+				// 										<button type="button" class="btn btn-primary">Create with local audio</button>
+				// 										<button type="button" class="btn btn-primary">Load file</button>
+				// 								</div>
+				// 						</div>
+												
+				// 						</div>
+				// 				</div>
+				// 		</div>
+
+
+
+
+
+
 				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
 					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
 					this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
 						this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-							this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
+							this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
 							this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
 						this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-							this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
+							this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
 							this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
 						this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-							this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-outline-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
+							this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
 							this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});						
 						this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
-							this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-outline-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
+							this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
 							this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});						
 					this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
 				this.ImportFromFile = createNewElement({type:'input', classes:["InterfaceButton"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}, events:{change: e=>this.RequestFileFromUser(e)}});
@@ -1111,8 +1231,9 @@ class Auralayer
 
 				this.SegmentDecresendoSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentDecresendoSelectContainer, properties:{innerText: "Segment decrescendo", htmlFor: "decrescendo"}});
 				this.SegmentDecresendoSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentDecresendoSelectContainer, attributes:{"aria-label": "Segment decrescendo"}, events:{change:e=>this.SegmentDecresendoSelectBoxHandler(e)}});
-				this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"gradient", innerText:"Gradient"}, attributes:{selected: true}});
-				this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}});
+				this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}, attributes:{selected: true}});
+				this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"gradient", innerText:"Gradient"}});
+				// this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}});
 
 
 				this.SegmentColorPaletteSelectContainer = createNewElement({type: "p", classes:["SegmentColorPaletteSelectContainer"], parent: this.HeaderSettingsMenuBody});
@@ -1235,42 +1356,54 @@ class Auralayer
 				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, events:{click: e=>this.create_shareable_link()}});
 
 				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
+
 				this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
 				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start", disabled: true} });
 				this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
+				this.PresenceSliderStartValueText = createNewElement({type:"div", classes:["PresenceSliderStartValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderStart.value}});
 
 				this.PresenceSliderEndLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_end", innerText: "Presence (end)"}});
 				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} });
 				this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
+				this.PresenceSliderEndValueText = createNewElement({type:"div", classes:["PresenceSliderEndValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderEnd.value}});
 
 				this.PresenceLockContainer = createNewElement({type: "div", classes: ["PresenceLockContainer", "col-1", "align-items-center"], parent: this.LayerEditingRow, properties: {}});
 				this.PresenceLockDiv = createNewElement({type:"div", classes:["link-presence", "text-center"], parent: this.PresenceLockContainer});
 
 				this.PresenceSliderIndependentToggle = createNewElement({type:"input", classes: ["PresenceSliderIndependentToggle"], parent: this.PresenceLockDiv, properties: {type: "checkbox"}, styles:{display: "none"}});
-				this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-link-45deg"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo"}});
+				// this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-link-45deg"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo"}});
+				this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-lock"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo"}});
 				this.PresenceSliderIndependentButton.addEventListener("click", ()=>this.PresenceSliderIndependentToggle.click());
 								
 				this.PresenceSliderIndependentToggle.addEventListener("change",e=>
 					{
+						
 						if(this.PresenceSliderEnd.disabled === false)
 							{
-								this.PresenceSliderStart.disabled = true;
+								this.PresenceSliderStart.disabled = false;
 								this.PresenceSliderEnd.disabled = true;
 								
 								// this.PresenceSliderIndependentButton.classList.remove("PresenceSliderIndependentButtonSelected");
 								this.presence_slider_toggle_handler();
-								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link");
-								this.PresenceSliderIndependentButton.children[0].classList.add("bi-link-45deg");
+								// this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link");
+								// this.PresenceSliderIndependentButton.children[0].classList.add("bi-link-45deg");
+								
+								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-unlock");
+								this.PresenceSliderIndependentButton.children[0].classList.add("bi-lock");
 							}
 						else
 							{
+								
 								this.PresenceSliderStart.disabled = false;
 								this.PresenceSliderEnd.disabled = false;
 								
 								this.presence_slider_toggle_handler();
 								// this.PresenceSliderIndependentButton.classList.add("PresenceSliderIndependentButtonSelected");
-								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link-45deg");
-								this.PresenceSliderIndependentButton.children[0].classList.add("bi-link");
+								// this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link-45deg");
+								// this.PresenceSliderIndependentButton.children[0].classList.add("bi-link");
+
+								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-lock");
+								this.PresenceSliderIndependentButton.children[0].classList.add("bi-unlock");
 							}
 					});
 
@@ -1311,7 +1444,7 @@ class Auralayer
 							this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
 								this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
 									this.DataTableWrapper = createNewElement({type: "div",classes: ["col"],parent: this.DataAccordionBodyInterior,});
-										this.DataTable = createNewElement({type: "table",classes: ["table", "table-responsive"],parent: this.DataTableWrapper,});
+										this.DataTable = createNewElement({type: "table",classes: ["order-table", "table", "table-responsive"],parent: this.DataTableWrapper,});
 									this.SearchTableInput = createNewElement({type:"input", classes:["table-filter"], parent: this.DataAccordionBodyInterior, properties:{type: "text", placeholder: "Item to filter.."}, dataset: {table: "order-table"}});
 										this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
 										this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
@@ -1330,6 +1463,7 @@ class Auralayer
 				(function() {
 					'use strict';
 				
+					
 				var TableFilter = (function()
 					{
 						var Arr = Array.prototype;
@@ -1477,7 +1611,7 @@ class Auralayer
 								if(this.save_array.length > 0)
 									{
 										this.save_position++;
-										console.log("save_position increased to: " + this.save_position);
+										// console.log("save_position increased to: " + this.save_position);
 									}
 
 								// if(this.save_position < (this.save_array.length - 1))
@@ -1513,7 +1647,7 @@ class Auralayer
 									}
 							}
 						
-						console.log("SAVE");
+						// console.log("SAVE");
 						// this.save_array.forEach(each=>console.log(each.program_data));
 						// this.save_array.forEach(each=>console.log(each.layer_data[0].segments));							
 						// console.log(this.save_array);
@@ -1801,8 +1935,8 @@ class Auralayer
 								if(this.layers[i].segment_array[j].segment.classList.contains("segment_selected"))
 									{
 										
-										this.layers[i].segment_array[j].segment.style.filter = "opacity()";
-										this.layers[i].segment_array[j].data.styles.filter = "opacity()";
+										// this.layers[i].segment_array[j].segment.style.filter = "opacity()";
+										// this.layers[i].segment_array[j].data.styles.filter = "opacity()";
 
 										let new_saturation_value = (e.target.value/GLOBAL_presence_scale).toFixed(1);
 										let formated_color_value;
@@ -1815,13 +1949,39 @@ class Auralayer
 										let color_value_2 = "";
 										let initial_saturation_1 = "1.0";
 										let initial_saturation_2 = "1.0";
+
+										let first_color_saturation_value;
+										let second_color_saturation_value;
+										try
+											{ first_color_saturation_value = 10 - parseInt(this.layers[i].segment_array[j].data.styles.clipPath.replace("polygon(","").replace(")","").split(", ")[1].split(" ")[1])/10; }
+										catch(error)
+											{ first_color_saturation_value = 10; }						
+											
+										try
+											{ second_color_saturation_value = 10 - parseInt(this.layers[i].segment_array[j].data.styles.clipPath.replace("polygon(","").replace(")","").split(", ")[0].split(" ")[1])/10; }
+										catch(error)
+											{ second_color_saturation_value = 10; }													
 																				
+										// console.log("first_color_saturation_value: " + first_color_saturation_value);
+
 										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
 										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});
+
+										console.log("initial_saturation_1: " + initial_saturation_1);
+										console.log("initial_saturation_2: " + initial_saturation_2);
+
+										this.PresenceSliderStartValueText.style.display = "block";
+										this.PresenceSliderEndValueText.style.display = "block";
+										setTimeout(e=>
+											{
+												this.PresenceSliderStartValueText.style.display = "none";
+												this.PresenceSliderEndValueText.style.display = "none";
+											}, 1000);
 
 										
 										if(this.PresenceSliderEnd.disabled === true)
 											{
+												
 												let new_color_value = color_value_1 + new_saturation_value + ")";
 												formated_color_value = "linear-gradient(to right, " + new_color_value + ", " + new_color_value + ")";
 												
@@ -1834,10 +1994,15 @@ class Auralayer
 													}
 												else if (this.segment_decrescendo === "slope" && new_saturation_value > 0)
 													{
-														console.log(new_saturation_value);
-														this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
-														this.layers[i].segment_array[j].data.styles.clipPath =  "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
+														
+														this.layers[i].segment_array[j].data.start_presence = parseInt(initial_saturation_1 * GLOBAL_presence_scale);
+														this.layers[i].segment_array[j].data.end_presence = parseInt(initial_saturation_2 * GLOBAL_presence_scale);
+														this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - new_saturation_value * 10) * 10) + "%, 100% 100%, 0 100%)";
+														this.layers[i].segment_array[j].data.styles.clipPath =  "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - new_saturation_value * 10) * 10) + "%, 100% 100%, 0 100%)";
+														// this.PresenceSliderEnd.value = this.PresenceSliderStart.value;
 													}
+
+													this.PresenceSliderEnd.value = this.PresenceSliderStart.value;
 											}
 										else
 											{
@@ -1847,6 +2012,7 @@ class Auralayer
 
 												if(direction === "start")
 													{	
+														
 														if(color_value_1.includes("rgba"))
 															{
 																ending_color = color_value_2 + initial_saturation_2 + "))";
@@ -1865,11 +2031,10 @@ class Auralayer
 																this.layers[i].segment_array[j].data.start_presence = parseInt(e.target.value);
 																this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.layers[i].segment_array[j].data.start_presence;
 															}
-														else if (this.segment_decrescendo === "slope")
-															{
-																
-																this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% 0, 100% 100%, 0 100%)";
-																this.layers[i].segment_array[j].data.styles.clipPath = "polygon(0 " + ((1- new_saturation_value) * 100) + "%, 100% 0, 100% 100%, 0 100%)";
+														else if (this.segment_decrescendo === "slope" && (first_color_saturation_value > 0 || new_saturation_value > 0 ))
+															{																
+																this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - (first_color_saturation_value )) * 10) + "%, 100% 100%, 0 100%)";
+																this.layers[i].segment_array[j].data.styles.clipPath = "polygon(0 " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% " + parseInt((10 - (first_color_saturation_value )) * 10) + "%, 100% 100%, 0 100%)";
 															}
 													}
 												else if(direction === "end")
@@ -1893,14 +2058,19 @@ class Auralayer
 																this.layers[i].segment_array[j].data.end_presence = parseInt(e.target.value);
 																this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.layers[i].segment_array[j].data.end_presence;
 															}
-														else if (this.segment_decrescendo === "slope")
+														else if (this.segment_decrescendo === "slope" && (second_color_saturation_value > 0 || new_saturation_value > 0 ))
 															{
-																this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 0, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
-																this.layers[i].segment_array[j].data.styles.clipPath =  "polygon(0 0, 100% " + ((1- new_saturation_value) * 100) + "%, 100% 100%, 0 100%)";
+																this.layers[i].segment_array[j].segment.style.clipPath = "polygon(0 " + parseInt((10 - (second_color_saturation_value )) * 10) + "%, 100% " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% 100%, 0 100%)";
+																this.layers[i].segment_array[j].data.styles.clipPath =  "polygon(0 " + parseInt((10 - (second_color_saturation_value )) * 10) + "%, 100% " + parseInt((10 - (new_saturation_value * 10)) * 10) + "%, 100% 100%, 0 100%)";
 															}
 													}		
 											}
 
+										this.layers[i].segment_array[j].SegmentPresenceStartRange.value = this.PresenceSliderStart.value;											
+										this.layers[i].segment_array[j].SegmentPresenceEndRange.value = this.PresenceSliderEnd.value;
+										this.PresenceSliderStartValueText.innerText = this.PresenceSliderStart.value;
+										this.PresenceSliderEndValueText.innerText = this.PresenceSliderEnd.value;
+										
 
 										if (this.segment_decrescendo === "gradient")
 											{
@@ -2606,6 +2776,9 @@ class Auralayer
 										let color_value_2 = "";
 										let initial_saturation_1 = "1.0";
 										let initial_saturation_2 = "1.0";
+										
+
+										
 																				
 										[color_value_1, initial_saturation_1, urlText] = this.GetRGBA_Values({value: initial_value, num:0});
 										[color_value_2, initial_saturation_2, urlText] = this.GetRGBA_Values({value: initial_value, num:1});														
@@ -2615,12 +2788,19 @@ class Auralayer
 										this.layers[i].segment_array[j].data.start_presence = 0;
 										this.layers[i].segment_array[j].data.end_presence = 0;						
 										
+										this.PresenceSliderStart.value = 0;
+										this.PresenceSliderEnd.value = 0;		
+
 										this.layers[i].segment_array[j].SegmentPresenceStartRange.value = 0;
 										this.layers[i].segment_array[j].SegmentPresenceEndRange.value = 0;																			
 
-										this.layers[i].segment_array[j].data.color = urlText + formated_color_value
-										this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
-										this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
+										// this.layers[i].segment_array[j].data.color = urlText + formated_color_value
+										// this.layers[i].segment_array[j].segment.style.background = urlText + formated_color_value;
+										// this.layers[i].segment_array[j].data.styles.background = urlText + formated_color_value;
+
+										// this.layers[i].segment_array[j].data.color = formated_color_value
+										this.layers[i].segment_array[j].segment.style.background = formated_color_value;
+										this.layers[i].segment_array[j].data.styles.background = formated_color_value;										
 
 
 										// this.layers[i].segment_array[j].segment.classList.add("segment_deleted");
@@ -2629,8 +2809,8 @@ class Auralayer
 										// this.layers[i].segment_array[j].segment.style.filter = "opacity(0)";
 										// this.layers[i].segment_array[j].data.styles.filter = "opacity(0)";
 										
-										this.layers[i].segment_array[j].segment.style.backgroundImage = "none";
-										this.layers[i].segment_array[j].data.styles.backgroundImage = "none";
+										// this.layers[i].segment_array[j].segment.style.backgroundImage = "none";
+										// this.layers[i].segment_array[j].data.styles.backgroundImage = "none";
 										
 									}
 							}			

@@ -267,7 +267,7 @@ button:hover
 	cursor: pointer;
 	position: sticky;
 	left: 0px;
-	margin-left: 5px;
+	padding-left: 5px;
 	max-height: var(--segment-height);
 	line-height: 40px;
 	z-index: 2;
@@ -480,7 +480,7 @@ button:hover
 	width: 100%;
 	height: 100%;
 	user-select: none;
-	color: white;
+	color: black;
 }
 
 
@@ -570,6 +570,12 @@ button:hover
 	bottom: -22px;
 	left: 50%;
 	transform: translateX(-50%);
+}
+
+.PresenceSliderStartValueText, .PresenceSliderEndValueText
+{
+	position: absolute;
+	display: none;
 }
 
 .SliderContainer {
@@ -804,8 +810,12 @@ button:hover
 	left: 0px;
 	width: 100%;
 	height: 100%;
-	background-color: var(--primary-color-2);
+	/* background-color: var(--primary-color-2);
+	z-index: 2; */
+	background-color: #00000078;
 	z-index: 2;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 }
 
 .ActivitySelectionHeader {
