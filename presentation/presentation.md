@@ -9,7 +9,7 @@ date: "November 11, 2023"
 output: revealjs::revealjs_presentation
 ---
 
-# [Auralayer](https://brianedwardjarvis.com/auralayer/auralayer.html)
+# Auralayer
 
 [Brian Jarvis](brianedwardjarvis.com) | [Megan Lavengood](meganlavengood.com) | [Evan Williams](https://github.com/likethebourbon)
 
@@ -27,9 +27,10 @@ We have standard methods of visually representing
 
 ---
 
-- Many authors represent instrumentation and timbre with layer graphs (Butler 2006; Dolan 2013) [add image]
+- Many authors represent instrumentation and timbre with layer graphs (Butler 2006; Dolan 2013)
 - Such graphs can be made with Excel or Powerpoint, but it's laborious
 
+![](dolan.png)
 
 ---
 
@@ -43,6 +44,10 @@ Auralayer: a web app designed for ease of use
 2. User imports a recording (not a score!)
 3. User adds layers
 4. User splits layers into segments
+
+--
+
+![](demo-screenshot.png)
 
 ---
 
