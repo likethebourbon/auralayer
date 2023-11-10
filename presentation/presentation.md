@@ -49,10 +49,11 @@ Auralayer: a web app designed for ease of use
 ## Features
 
 - Mobile friendly
-- Get audio from Youtube or local file
-- Save and share via data file, image, or QR code
+- Get audio from YouTube or local file
+- Save and share via data file or QR code; download image in future version
 - Assign layer names/colors
-- Show layer presence (loudness, etc.?) through opacity or layer height
+- Add text to layer segments
+- Show segment presence (loudness, etc.?) through opacity or height
   - cresc./decresc. through gradients or slopes
 - Play back audio as cursor advances through graph
 
@@ -72,14 +73,16 @@ Auralayer: a web app designed for ease of use
 
 ## Try it?
 
-- There will be bugs! Sorry!
-- QR code for finished analysis
-- QR code for new analysis
-- QR code for suggestions/bugs
+[https://brianedwardjarvis.com/auralayer/home.html](https://brianedwardjarvis.com/auralayer/home.html)
+
+<img src="auralayer-app.png" class="r-stretch">
+
+*there will be bugs! sorry!*
 
 ---
 
-## Feature Requests?
+## Feature Requests? Bugs?
 
-- QR code for suggestions/bugs
+Fill out this form:
 
+<img src="auralayer-form.png" class="r-stretch">
