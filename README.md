@@ -35,6 +35,7 @@ In development!
 - [ ] shift+click selects all contiguous segments; cmd+click selects multiple segments
 
 - [ ] spinner when loading a file
+- [ ] repaint all layers according to color scheme
 
 ## Bugs
 
@@ -51,3 +52,4 @@ In development!
 
 
 - [x] Sometimes when switching windows the analysis disappears and I go back to the start screen
+- [ ] after adding a number of textures, I can't add textures unless I change the color first
