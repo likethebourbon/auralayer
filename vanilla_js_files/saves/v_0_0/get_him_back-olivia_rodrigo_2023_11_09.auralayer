@@ -5,8 +5,8 @@
     "layer_id_pos": 14,
     "scale": 7,
     "color_count": 7,
-    "slider_thumb_offset": -362,
-    "slider_thumb_height": 745,
+    "slider_thumb_offset": -340,
+    "slider_thumb_height": 700,
     "segment_decrescendo": "slope",
     "video_id": "ZsJ-BHohXRI"
   },
@@ -3434,138 +3434,14 @@
             "segment"
           ],
           "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
-          "start_pos": 407,
-          "end_pos": 645,
-          "start_presence": 10,
-          "end_presence": 10,
-          "presence_sync": true,
-          "styles": {},
-          "text": [
-            {
-              "inner_text": "",
-              "styles": {
-                "textAlign": "center",
-                "fontSize": "14px"
-              }
-            }
-          ]
-        },
-        {
-          "classes": [
-            "segment"
-          ],
-          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
-          "start_pos": 646,
-          "end_pos": 885,
-          "start_presence": 10,
-          "end_presence": 10,
-          "presence_sync": true,
-          "styles": {},
-          "text": [
-            {
-              "inner_text": "",
-              "styles": {
-                "textAlign": "center",
-                "fontSize": "14px"
-              }
-            }
-          ]
-        },
-        {
-          "classes": [
-            "segment"
-          ],
-          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
-          "start_pos": 886,
-          "end_pos": 1180,
-          "start_presence": 10,
-          "end_presence": 10,
-          "presence_sync": true,
-          "styles": {},
-          "text": [
-            {
-              "inner_text": "",
-              "styles": {
-                "textAlign": "center",
-                "fontSize": "14px"
-              }
-            }
-          ]
-        },
-        {
-          "classes": [
-            "segment"
-          ],
-          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
-          "start_pos": 1181,
-          "end_pos": 1537,
-          "start_presence": 10,
-          "end_presence": 10,
-          "presence_sync": true,
-          "styles": {},
-          "text": [
-            {
-              "inner_text": "",
-              "styles": {
-                "textAlign": "center",
-                "fontSize": "14px"
-              }
-            }
-          ]
-        },
-        {
-          "classes": [
-            "segment"
-          ],
-          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
-          "start_pos": 1538,
-          "end_pos": 1832,
-          "start_presence": 10,
-          "end_presence": 10,
-          "presence_sync": true,
-          "styles": {},
-          "text": [
-            {
-              "inner_text": "",
-              "styles": {
-                "textAlign": "center",
-                "fontSize": "14px"
-              }
-            }
-          ]
-        },
-        {
-          "classes": [
-            "segment"
-          ],
-          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
-          "start_pos": 1833,
-          "end_pos": 2100,
-          "start_presence": 10,
-          "end_presence": 10,
-          "presence_sync": true,
-          "styles": {},
-          "text": [
-            {
-              "inner_text": "",
-              "styles": {
-                "textAlign": "center",
-                "fontSize": "14px"
-              }
-            }
-          ]
-        },
-        {
-          "classes": [
-            "segment"
-          ],
-          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
           "start_pos": 50,
-          "end_pos": 406,
-          "start_presence": 10,
-          "end_presence": 10,
+          "end_pos": 2100,
+          "start_presence": 0,
+          "end_presence": 0,
           "presence_sync": true,
-          "styles": {},
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))"
+          },
           "text": [
             {
               "inner_text": "",
