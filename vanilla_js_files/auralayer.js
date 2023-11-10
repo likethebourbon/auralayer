@@ -710,6 +710,12 @@ class Segment
 				// width:  (((this.data.end_pos/this.parent.parent.resolution) - (this.data.start_pos/this.parent.parent.resolution)) * this.parent.parent.scale) + (this.parent.parent.scale-1) + "px",
 				// width:  ((((this.data.end_pos/this.parent.parent.resolution) - (this.data.start_pos/this.parent.parent.resolution)) * this.parent.parent.scale) - 1) + "px",
 				let width = ((((this.data.end_pos/this.parent.parent.resolution) - (this.data.start_pos/this.parent.parent.resolution)) * this.parent.parent.scale) + (this.parent.parent.scale/this.parent.parent.resolution) -1) +  "px";
+				
+				
+				if(typeof this.data.styles.background !== "undefined")
+					{
+						this.data.color = this.data.styles.background;
+					}
 
 				this.segment = createNewElement({type:"div", classes: this.data.classes, parent: this.layer_segment_holder, styles:
 					{
@@ -1162,26 +1168,50 @@ class Auralayer
 
 
 
-
-
-
-				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
-					this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
-					this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
-						this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-							this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
-							this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
-						this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-							this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
-							this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
-						this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-							this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
-							this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});						
-						this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
-							this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
-							this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});						
-					this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
+				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer", "container-fluid"], parent: document.body});
+				// this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
+				this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody", "d-grid", "col-4", "mx-auto", "justify-items-center", "gap-2"], parent: this.ActivitySelectionContainer });
+			
+					this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+						// this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
+						this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with YouTube link"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
+						// this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
+					this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+						this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with local audio file"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
+						// this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
+						// this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
+					this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+						this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Load .auralayer file"}, events:{click: e => this.ImportFromFile.click()}});		
+						// this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
+						// this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});						
+					this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
+						this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with absolute URL"}});
+						// this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
+						// this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});						
+				this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
 				this.ImportFromFile = createNewElement({type:'input', classes:["InterfaceButton"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}, events:{change: e=>this.RequestFileFromUser(e)}});
+			
+			
+			
+			
+
+				// this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer"], parent: document.body});
+				// 	this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
+				// 	this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody"], parent: this.ActivitySelectionContainer });
+				// 		this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+				// 			this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
+				// 			this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
+				// 		this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+				// 			this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
+				// 			this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
+				// 		this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
+				// 			this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
+				// 			this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});						
+				// 		this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
+				// 			this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
+				// 			this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});						
+				// 	this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
+				// this.ImportFromFile = createNewElement({type:'input', classes:["InterfaceButton"], parent: document.body, properties:{type:'file'}, styles:{display:'none'}, events:{change: e=>this.RequestFileFromUser(e)}});
 				
 				// this.NewAuralayerFromYoutubeButton.addEventListener("click", e=>this.StartYoutubeActivitySetup());
 				// this.NewAuralayerFromAudioFileButton.addEventListener("click", e=>this.StartAudioFileActivitySetup());
@@ -2137,6 +2167,7 @@ class Auralayer
 			}
 		StartYoutubeActivitySetup()
 			{
+				this.AuralayerProgram.style.display = "block";
 				this.LoadingSpinner.style.display = "block";
 				this.example_data.piece_info.media_type = "youtube";
 				this.activity_type = 'youtube_link';
@@ -2173,6 +2204,7 @@ class Auralayer
 
 				this.url_prompt_submit_button.addEventListener('click', e=>
 					{   
+						// this.AuralayerProgram.style.display = "block";
 						let breakout = false;
 						youtube_url = this.url_prompt_input_box.value;
 
@@ -2201,14 +2233,17 @@ class Auralayer
 			}
 		url_prompt_cancel_button_handler()
 			{
-				this.ActivitySelectionContainer.style.display = "grid";
+				this.AuralayerProgram.style.display = "none";
+				// this.ActivitySelectionContainer.style.display = "grid";
+				this.ActivitySelectionContainer.style.display = "block";
 				this.url_prompt_backdrop.remove();
 				this.url_prompt_box_container.remove();
 				this.LoadingSpinner.style.display = "none";
 			}
 		cancel_opening_audio_button_handler()
 			{
-				this.ActivitySelectionContainer.style.display = "grid";
+				// this.ActivitySelectionContainer.style.display = "grid";
+				this.ActivitySelectionContainer.style.display = "block";
 				this.ActivitySelectionBody.style.display = "block";
 				this.LoadingSpinner.style.display = "none";
 				this.open_audio_button.style.display = "none";
@@ -2252,6 +2287,7 @@ class Auralayer
 			}
 		get_user_audio_file(sent_url)
 			{
+				this.AuralayerProgram.style.display = "block";
 				this.ActivitySelectionContainer.style.display = "none";
 				this.LoadingSpinner.style.display = "none";
 				this.open_audio_button.style.display = "none";

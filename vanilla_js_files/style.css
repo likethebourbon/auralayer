@@ -120,6 +120,7 @@ button:hover
 
 
 .AuralayerProgram {
+	display: none;
 	position: relative;
 	width: 100%;
 
@@ -802,7 +803,7 @@ button:hover
 
 .ActivitySelectionContainer {
 
-	position: fixed;
+	/* position: fixed;
 	display: grid;
 	grid-template-columns: auto 550px auto;
 	grid-template-rows: 50px auto 50px;
@@ -810,12 +811,22 @@ button:hover
 	left: 0px;
 	width: 100%;
 	height: 100%;
-	/* background-color: var(--primary-color-2);
-	z-index: 2; */
 	background-color: #00000078;
 	z-index: 2;
 	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px); */
+
+	position: fixed;
+	/* display: grid;
+	/* grid-template-columns: auto 550px auto;
+	grid-template-rows: 50px auto 50px; */
+	top: 20vh;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: var(--primary-color-2);
+	z-index: 2;	
+	
 }
 
 .ActivitySelectionHeader {
@@ -829,9 +840,11 @@ button:hover
 }
 
 .ActivitySelectionBody {
-	grid-row: 2;
-	grid-column: 2;
+	/* grid-row: 2;
+	grid-column: 2; */
 	background-color: var(--primary-color-2);
+
+	
 }
 
 .ActivitySelectionFooter {
