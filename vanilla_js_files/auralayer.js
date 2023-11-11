@@ -2278,7 +2278,7 @@ class Auralayer
 			}
 		StartAudioFileActivitySetup(sent_url)
 			{
-				debugger
+				
 				this.example_data.piece_info.media_type = "audio_file";
 				this.activity_type = 'audio_file';
 			
@@ -2949,7 +2949,7 @@ class Auralayer
 				
 				this.example_data = data;
 				
-				debugger
+				
 				if(typeof this.example_data.piece_info.loaded_file_name_label !== "undefined")
 					{
 						if(this.example_data.piece_info.loaded_file_name_label !== "")
@@ -2965,7 +2965,7 @@ class Auralayer
 				this.segment_decrescendo = this.example_data.piece_info.segment_decrescendo;
 				this.load_from_file_mode = true;
 
-				debugger
+				
 				
 				if(this.example_data.piece_info.media_type === "youtube")
 					{
