@@ -4,7 +4,7 @@ let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
 let project;
 let playerx;
-let ctrl_down = false;
+let shift_down = false;
 let lastActiveElement = document.activeElement;
 let example_data = {};
 
@@ -20,7 +20,7 @@ document.addEventListener('keyup', e =>
 				if (e.code === "ShiftLeft")
 					{
 						e.preventDefault();
-						ctrl_down = false;
+						shift_down = false;
 					}
 			}
 	});
@@ -150,9 +150,9 @@ document.addEventListener('keydown', e =>
 				else if (e.shiftKey)
 					{
 						e.preventDefault();
-						ctrl_down = true;
+						shift_down = true;
 					}
-				else if (e.shiftKey && e.key === 'ArrowRight')
+				else if (shift_down === true && e.key === 'ArrowRight')
 						{
 								//fast forward 1 seconds
 								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
@@ -162,7 +162,7 @@ document.addEventListener('keydown', e =>
 																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + 1;
 																break;
 														case 'youtube_link':
-																player.seekTo(player.getCurrentTime() + 1);
+																playerx.seekTo(player.getCurrentTime() + 1);
 																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
 																break;
 														default:
@@ -171,7 +171,7 @@ document.addEventListener('keydown', e =>
 												}  
 
 						}
-				else if (e.shiftKey && e.key === 'ArrowLeft')
+				else if (shift_down === true && e.key === 'ArrowLeft')
 						{
 								//fast forward 1 seconds
 								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
@@ -181,7 +181,7 @@ document.addEventListener('keydown', e =>
 																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - 1;
 																break;
 														case 'youtube_link':
-																player.seekTo(player.getCurrentTime() - 1);
+																playerx.seekTo(player.getCurrentTime() - 1);
 																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
 																break;
 														default:
@@ -560,7 +560,7 @@ class Layer
 				
 				if(e.target.checked === true)
 					{
-						if(ctrl_down === false)
+						if(shift_down === false)
 							{
 								this.parent.deselect_all_layers();
 							}
@@ -963,7 +963,7 @@ class Segment
 				// left control key is not being held, then only allow one segment to be selected at a time
 				let deselect = false;
 				deselect = this.segment.classList.contains("segment_selected");
-				if(ctrl_down === false)
+				if(shift_down === false)
 					{}
 
 				this.parent.parent.hide_all_TextEditingMenuContainer_SingleSegments();
@@ -1071,6 +1071,7 @@ class Auralayer
 				this.skip_amount = 10;
 				this.resolution = 10;
 				this.program_version = "0_0";
+				this.loaded_file_name_label = "";
 				this.time_stamp_distance = 30;
 				this.colors = ["95,70,128","212,129,46","189,88,69","227,177,60","53,103,146","88,164,164","59,131,88","127,174,86"];
 				this.layers = [];
@@ -1093,6 +1094,7 @@ class Auralayer
 				this.initialize_interface();	
 				if(this.url_activity_text !== "")
 				{
+
 					this.load_from_server(this.url_activity_text);	
 					return false;
 				}
@@ -1177,7 +1179,7 @@ class Auralayer
 						this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with YouTube link"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
 						// this.NewAuralayerFromYoutubeDescription = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeDescription"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create a new Auralayer using a YouTube link"}});
 					this.NewAuralayerFromAudioFileContainer = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
-						this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with local audio file"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
+						this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with local audio file"}, events:{click: e=>this.StartAudioFileActivitySetup("nothing")}});
 						// this.NewAuralayerFromAudioFileButton = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileButton", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartAudioFileActivitySetup()}});
 						// this.NewAuralayerFromAudioFileDescription = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileDescription"], parent: this.NewAuralayerFromAudioFileContainer, properties:{innerText : "Create a new Auralayer using an audio file on your device"}});
 					this.OpenExistingAuralayerFromFileContainer = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
@@ -1185,7 +1187,7 @@ class Auralayer
 						// this.OpenExistingAuralayerFromFileButton = createNewElement({type: "button", classes:["OpenExistingAuralayerFromFileButton", "btn", "btn-primary"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open"}, events:{click: e => this.ImportFromFile.click()}});
 						// this.OpenExistingAuralayerFromFileDescription = createNewElement({type: "div", classes:["OpenExistingAuralayerFromFileDescription"], parent: this.OpenExistingAuralayerFromFileContainer, properties:{innerText : "Open an existing Auralayer analysis from an auralayer file"}});						
 					this.NewAuralayerFromAudioFileWithAbsoluteURL_Container = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Container", "ActivityButtonContainer"], parent: this.ActivitySelectionBody, styles: {display: "none"}});
-						this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with absolute URL"}});
+						this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.ActivitySelectionBody, properties:{innerText : "Create with absolute URL"}, events:{click:() => this.StartAudioFileActivitySetup()}});
 						// this.NewAuralayerFromAudioFileWithAbsoluteURL_Button = createNewElement({type: "button", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Button", "btn", "btn-primary"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create"}});
 						// this.NewAuralayerFromAudioFileWithAbsoluteURL_Description = createNewElement({type: "div", classes:["NewAuralayerFromAudioFileWithAbsoluteURL_Description"], parent: this.NewAuralayerFromAudioFileWithAbsoluteURL_Container, properties:{innerText : "Create a new Auralayer using an absolute URL"}});						
 				this.ActivitySelectionFooter = createNewElement({type:"div", classes:["ActivitySelectionFooter"], parent: this.ActivitySelectionContainer });
@@ -1851,7 +1853,7 @@ class Auralayer
 							{
 								this.layers[i].segment_array[j].TextEditingMenuContainer_SingleSegment.style.display = "none";
 								
-								if(ctrl_down === false)
+								if(shift_down === false)
 									{this.layers[i].segment_array[j].segment.classList.remove("segment_selected")}
 							}
 					}				
@@ -2276,23 +2278,25 @@ class Auralayer
 			}
 		StartAudioFileActivitySetup(sent_url)
 			{
+				
 				this.example_data.piece_info.media_type = "audio_file";
 				this.activity_type = 'audio_file';
 			
 				
 				this.ActivitySelectionBody.style.display = "none";
 
+				if(sent_url === "nothing")
+					{
+						this.audio_file_prompt_backdrop = createNewElement({type: "div", classes: ["audio_file_prompt_backdrop"], parent: document.body});
+						this.audio_file_prompt_box_container = createNewElement({type: "div", classes: ["audio_file_prompt_box_container"], parent: document.body});
+							this.audio_file_prompt_box_top = createNewElement({type: "div", classes: ["audio_file_prompt_box_top"], parent: this.audio_file_prompt_box_container, properties:{innerText : "Choose Audio File"}});
+							this.audio_file_prompt_box_middle = createNewElement({type: "div", classes: ["audio_file_prompt_box_middle"], parent: this.audio_file_prompt_box_container});
+								this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: this.audio_file_prompt_box_middle, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"}, events:{change:() => this.get_user_audio_file('nothing') } });
+								this.cancel_opening_audio_button = createNewElement({type:"button", classes:["cancel_opening_audio_button"], parent: this.audio_file_prompt_box_middle, properties:{innerHTML: "✖️"}, events:{click: e=>this.cancel_opening_audio_button_handler()}});
+							this.audio_file_prompt_box_bottom = createNewElement({type: "div", classes: ["audio_file_prompt_box_bottom"], parent: this.audio_file_prompt_box_container});
+					}
 
-				this.audio_file_prompt_backdrop = createNewElement({type: "div", classes: ["audio_file_prompt_backdrop"], parent: document.body});
-				this.audio_file_prompt_box_container = createNewElement({type: "div", classes: ["audio_file_prompt_box_container"], parent: document.body});
-					this.audio_file_prompt_box_top = createNewElement({type: "div", classes: ["audio_file_prompt_box_top"], parent: this.audio_file_prompt_box_container, properties:{innerText : "Choose Audio File"}});
-					this.audio_file_prompt_box_middle = createNewElement({type: "div", classes: ["audio_file_prompt_box_middle"], parent: this.audio_file_prompt_box_container});
-						this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: this.audio_file_prompt_box_middle, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"}, events:{change:() => this.get_user_audio_file('nothing') } });
-						this.cancel_opening_audio_button = createNewElement({type:"button", classes:["cancel_opening_audio_button"], parent: this.audio_file_prompt_box_middle, properties:{innerHTML: "✖️"}, events:{click: e=>this.cancel_opening_audio_button_handler()}});
-					this.audio_file_prompt_box_bottom = createNewElement({type: "div", classes: ["audio_file_prompt_box_bottom"], parent: this.audio_file_prompt_box_container});
 				
-
-
 				// this.open_file_trigger_button = createNewElement({type: "button", classes: ["InterfaceButton"], parent: document.body, properties: {innerText: "Choose Audio File 2"}, styles:{zIndex: 2}});
 				// this.open_file_trigger_button.addEventListener('click', () => this.open_audio_button.click() );
 				// this.loaded_file_name_label = createNewElement({type: "div", classes: ["loaded_file_name_label", "InterfaceButton"], parent: document.body, properties: {innerText: "(no audio file loaded)"}});
@@ -2307,17 +2311,25 @@ class Auralayer
 					{
 						// this.open_audio_button.click();
 					}
+
+				if(sent_url !== "nothing")
+					{
+						this.get_user_audio_file(sent_url);
+					}
 			}
 		get_user_audio_file(sent_url)
 			{
 				this.AuralayerProgram.style.display = "block";
 				this.ActivitySelectionContainer.style.display = "none";
 				this.LoadingSpinner.style.display = "none";
-				this.open_audio_button.style.display = "none";
-				this.cancel_opening_audio_button.style.display = "none";
-				this.audio_file_prompt_backdrop.remove();
-				this.audio_file_prompt_box_container.remove();
 
+				if(sent_url === "nothing")
+					{
+						this.open_audio_button.style.display = "none";
+						this.cancel_opening_audio_button.style.display = "none";
+						this.audio_file_prompt_backdrop.remove();
+						this.audio_file_prompt_box_container.remove();
+					}
 
 				this.uploaded_audio = createNewElement({type:"audio", classes:["user_audio"], parent: this.VideoAccordionBodyInterior, properties:{controls: true}});
 				this.uploaded_audio.addEventListener("play", e=> { this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`; });
@@ -2328,7 +2340,14 @@ class Auralayer
 					{          											
 						this.uploaded_audio.src = 'Puccini-Vissi_d_arte_vissi_d_amore_Tosca.mp3';
 						// this.uploaded_audio.src = 'http://192.168.1.111/bri_former_server_sample/sheep_may_safely_graze.mp3';
-					}                      
+					} 
+				else if(sent_url !== "nothing")
+					{
+						this.uploaded_audio.src = sent_url;
+						// don't forget to revoke the blobURI when you don't need it
+						this.uploaded_audio.onend = function(e) { URL.revokeObjectURL(this.open_audio_button.src); }
+						// this.open_audio_button.style.display = 'none';
+					}					                     
 				else if(!this.open_audio_button.files.length)
 					{ alert('no file selected'); }
 				else
@@ -2927,12 +2946,26 @@ class Auralayer
 		load_from_file(data)
 			{			
 				// this.example_data = JSON.parse(data);
+				
 				this.example_data = data;
+				
+				
+				if(typeof this.example_data.piece_info.loaded_file_name_label !== "undefined")
+					{
+						if(this.example_data.piece_info.loaded_file_name_label !== "")
+							{
+								this.loaded_file_name_label = this.example_data.piece_info.loaded_file_name_label;
+							}
+						
+					}
+
 				this.scale = this.example_data.piece_info.scale;
 				this.layer_id_pos = this.example_data.piece_info.layer_id_pos;
 				this.color_count = this.example_data.piece_info.color_count;
 				this.segment_decrescendo = this.example_data.piece_info.segment_decrescendo;
 				this.load_from_file_mode = true;
+
+				
 				
 				if(this.example_data.piece_info.media_type === "youtube")
 					{
@@ -2940,7 +2973,15 @@ class Auralayer
 					}
 				else if (this.example_data.piece_info.media_type === "audio_file")
 					{
-						this.StartAudioFileActivitySetup()
+						if(this.loaded_file_name_label === "")
+							{
+								this.StartAudioFileActivitySetup("nothing")
+							}
+						else
+							{
+								this.StartAudioFileActivitySetup(this.loaded_file_name_label)
+							}
+						
 					}				
 			}
 		create_shareable_link()

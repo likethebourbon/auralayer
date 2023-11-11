@@ -1,0 +1,3924 @@
+{
+  "piece_info": {
+    "media_type": "audio_file",
+    "loaded_file_name_label": "https://brianedwardjarvis.com/auralayer/audio_stored/come_on_feel_the_Illinoise.mp3",
+    "name": "new_auralayer",
+    "layer_id_pos": 14,
+    "scale": 3,
+    "color_count": 7,
+    "slider_thumb_offset": -362,
+    "slider_thumb_height": 745,
+    "segment_decrescendo": "gradient"
+  },
+  "layers": [
+    {
+      "name": "Layer 1",
+      "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 0,
+          "end_pos": 599,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 600,
+          "end_pos": 748,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 749,
+          "end_pos": 1185,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 1186,
+          "end_pos": 1335,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 1336,
+          "end_pos": 1390,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+          "start_pos": 1391,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 0
+    },
+    {
+      "name": "Layer 2",
+      "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 0,
+          "end_pos": 53,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 54,
+          "end_pos": 163,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 164,
+          "end_pos": 380,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 381,
+          "end_pos": 488,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 489,
+          "end_pos": 599,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 600,
+          "end_pos": 667,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 668,
+          "end_pos": 681,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 682,
+          "end_pos": 749,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 750,
+          "end_pos": 857,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 858,
+          "end_pos": 965,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 966,
+          "end_pos": 1076,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1077,
+          "end_pos": 1133,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1134,
+          "end_pos": 1184,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1185,
+          "end_pos": 1253,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1335,
+          "end_pos": 1403,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1254,
+          "end_pos": 1267,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1268,
+          "end_pos": 1334,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+          "start_pos": 1404,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 1
+    },
+    {
+      "name": "Layer 3",
+      "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 0,
+          "end_pos": 52,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 53,
+          "end_pos": 161,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 162,
+          "end_pos": 490,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 491,
+          "end_pos": 597,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 598,
+          "end_pos": 653,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 654,
+          "end_pos": 667,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 668,
+          "end_pos": 723,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 724,
+          "end_pos": 735,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 736,
+          "end_pos": 857,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 858,
+          "end_pos": 965,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 966,
+          "end_pos": 1075,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 1076,
+          "end_pos": 1186,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 1187,
+          "end_pos": 1235,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 1236,
+          "end_pos": 1252,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 1253,
+          "end_pos": 1298,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 1299,
+          "end_pos": 1308,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 1309,
+          "end_pos": 1333,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 1334,
+          "end_pos": 1405,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 1406,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 2
+    },
+    {
+      "name": "Layer 4",
+      "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 0,
+          "end_pos": 163,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 164,
+          "end_pos": 206,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 207,
+          "end_pos": 216,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 217,
+          "end_pos": 243,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 260,
+          "end_pos": 272,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 273,
+          "end_pos": 313,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 244,
+          "end_pos": 259,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 314,
+          "end_pos": 326,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 327,
+          "end_pos": 354,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 355,
+          "end_pos": 378,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 379,
+          "end_pos": 489,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 490,
+          "end_pos": 531,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 532,
+          "end_pos": 544,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 545,
+          "end_pos": 572,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 573,
+          "end_pos": 597,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 598,
+          "end_pos": 857,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 858,
+          "end_pos": 899,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 900,
+          "end_pos": 913,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 914,
+          "end_pos": 940,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 941,
+          "end_pos": 965,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 966,
+          "end_pos": 1008,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 1009,
+          "end_pos": 1021,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 1022,
+          "end_pos": 1049,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 1050,
+          "end_pos": 1076,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 1077,
+          "end_pos": 1404,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_blank-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 1405,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 3
+    },
+    {
+      "name": "Layer 5",
+      "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 0,
+          "end_pos": 599,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 675,
+          "end_pos": 684,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 685,
+          "end_pos": 721,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 749,
+          "end_pos": 1076,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 600,
+          "end_pos": 654,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 655,
+          "end_pos": 674,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 722,
+          "end_pos": 735,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 736,
+          "end_pos": 748,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1077,
+          "end_pos": 1188,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 1189,
+          "end_pos": 1226,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1227,
+          "end_pos": 1240,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1241,
+          "end_pos": 1253,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1254,
+          "end_pos": 1270,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 1271,
+          "end_pos": 1308,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1309,
+          "end_pos": 1391,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 1392,
+          "end_pos": 1404,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1405,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 4
+    },
+    {
+      "name": "Layer 6",
+      "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 0,
+          "end_pos": 598,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 599,
+          "end_pos": 613,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 656,
+          "end_pos": 667,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 614,
+          "end_pos": 625,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 626,
+          "end_pos": 640,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 641,
+          "end_pos": 655,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 668,
+          "end_pos": 695,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 696,
+          "end_pos": 708,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 709,
+          "end_pos": 722,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 723,
+          "end_pos": 735,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 736,
+          "end_pos": 750,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 751,
+          "end_pos": 1185,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1186,
+          "end_pos": 1199,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1200,
+          "end_pos": 1212,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1213,
+          "end_pos": 1226,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1227,
+          "end_pos": 1239,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1240,
+          "end_pos": 1254,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1255,
+          "end_pos": 1267,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1268,
+          "end_pos": 1281,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1282,
+          "end_pos": 1295,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1296,
+          "end_pos": 1308,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1309,
+          "end_pos": 1322,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1323,
+          "end_pos": 1336,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 1337,
+          "end_pos": 1389,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 1405,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1390,
+          "end_pos": 1404,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 5
+    },
+    {
+      "name": "Layer 9",
+      "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 0,
+          "end_pos": 1404,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 1405,
+          "end_pos": 1751,
+          "start_presence": 5,
+          "end_presence": 5,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 1752,
+          "end_pos": 2364,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 2365,
+          "end_pos": 2538,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 2539,
+          "end_pos": 2712,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 2713,
+          "end_pos": 2887,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 2888,
+          "end_pos": 3060,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))",
+          "start_pos": 3061,
+          "end_pos": 3585,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(95, 70, 128), rgb(95, 70, 128))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+          "start_pos": 3586,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(95, 70, 128, 0), rgba(95, 70, 128, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 8
+    },
+    {
+      "name": "Layer 7",
+      "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+          "start_pos": 0,
+          "end_pos": 1403,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+          "start_pos": 1752,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))",
+          "start_pos": 1404,
+          "end_pos": 1751,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 6
+    },
+    {
+      "name": "Layer 8",
+      "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+          "start_pos": 0,
+          "end_pos": 1590,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(127, 174, 86), rgb(127, 174, 86))",
+          "start_pos": 1591,
+          "end_pos": 1669,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(127, 174, 86), rgb(127, 174, 86))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+          "start_pos": 1670,
+          "end_pos": 2026,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(127, 174, 86), rgb(127, 174, 86))",
+          "start_pos": 2027,
+          "end_pos": 2364,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgb(127, 174, 86), rgb(127, 174, 86))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+          "start_pos": 2365,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_diagonal_line_1-white.png\") center center, linear-gradient(to right, rgba(127, 174, 86, 0), rgba(127, 174, 86, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 7
+    },
+    {
+      "name": "Layer 10",
+      "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 0,
+          "end_pos": 1666,
+          "start_presence": 5,
+          "end_presence": 5,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 1667,
+          "end_pos": 1752,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 1753,
+          "end_pos": 2320,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 2321,
+          "end_pos": 2364,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 2365,
+          "end_pos": 3062,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))",
+          "start_pos": 3063,
+          "end_pos": 3411,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(212, 129, 46), rgb(212, 129, 46))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+          "start_pos": 3412,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(212, 129, 46, 0), rgba(212, 129, 46, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 9
+    },
+    {
+      "name": "Layer 11",
+      "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 0,
+          "end_pos": 1752,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))",
+          "start_pos": 1753,
+          "end_pos": 3324,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgb(189, 88, 69), rgb(189, 88, 69))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+          "start_pos": 3325,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_dots_1-white.png\") center center, linear-gradient(to right, rgba(189, 88, 69, 0), rgba(189, 88, 69, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 10
+    },
+    {
+      "name": "Layer 12",
+      "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 0,
+          "end_pos": 1927,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 1928,
+          "end_pos": 2015,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 2016,
+          "end_pos": 3588,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))",
+          "start_pos": 3589,
+          "end_pos": 3943,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgb(227, 177, 60), rgb(227, 177, 60))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+          "start_pos": 3944,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(227, 177, 60, 0), rgba(227, 177, 60, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 11
+    },
+    {
+      "name": "Layer 13",
+      "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(53, 103, 146, 0), rgba(53, 103, 146, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(53, 103, 146, 0), rgba(53, 103, 146, 0))",
+          "start_pos": 0,
+          "end_pos": 2366,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(53, 103, 146, 0), rgba(53, 103, 146, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgb(53, 103, 146), rgb(53, 103, 146))",
+          "start_pos": 2367,
+          "end_pos": 3943,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgb(53, 103, 146), rgb(53, 103, 146))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(53, 103, 146, 0), rgba(53, 103, 146, 0))",
+          "start_pos": 3944,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_vertical_and_horizontal_1-white.png\") center center, linear-gradient(to right, rgba(53, 103, 146, 0), rgba(53, 103, 146, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 12
+    },
+    {
+      "name": "Layer 14",
+      "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 0,
+          "end_pos": 2532,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 2533,
+          "end_pos": 2888,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 2889,
+          "end_pos": 3058,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 3059,
+          "end_pos": 3236,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 3237,
+          "end_pos": 3410,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 3411,
+          "end_pos": 3585,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 3586,
+          "end_pos": 3761,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 3762,
+          "end_pos": 3940,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 3941,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 13
+    },
+    {
+      "name": "Layer 15",
+      "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+          "start_pos": 0,
+          "end_pos": 2887,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))",
+          "start_pos": 2888,
+          "end_pos": 3058,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+          "start_pos": 3059,
+          "end_pos": 3236,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))",
+          "start_pos": 3237,
+          "end_pos": 3410,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))",
+          "start_pos": 3411,
+          "end_pos": 3585,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))",
+          "start_pos": 3586,
+          "end_pos": 3761,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgb(59, 131, 88), rgb(59, 131, 88))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+          "start_pos": 3762,
+          "end_pos": 3940,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+          "start_pos": 3941,
+          "end_pos": 4050,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "url(\"images/pattern_horizontal_lines-white.png\") center center, linear-gradient(to right, rgba(59, 131, 88, 0), rgba(59, 131, 88, 0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 14
+    }
+  ]
+}

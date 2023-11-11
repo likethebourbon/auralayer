@@ -1,0 +1,761 @@
+{
+  "piece_info": {
+    "media_type": "youtube",
+    "name": "new_auralayer",
+    "layer_id_pos": 4,
+    "scale": 9,
+    "color_count": 5,
+    "slider_thumb_offset": -137,
+    "slider_thumb_height": 295,
+    "segment_decrescendo": "slope",
+    "video_id": "Y8oDnUga0JU"
+  },
+  "layers": [
+    {
+      "name": "",
+      "color": "linear-gradient(to right, rgba(255,255,255,1.0), rgba(255,255,255,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(255,255,255,1.0), rgba(255,255,255,1.0))",
+          "start_pos": 0,
+          "end_pos": 639,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(255,255,255,1.0), rgba(255,255,255,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(255,255,255,1.0), rgba(255,255,255,1.0))",
+          "start_pos": 640,
+          "end_pos": 1329,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "\"Fly to Paradise\" by Eric Whitacre\"",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "26px",
+                "fontWeight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(255,255,255,1.0), rgba(255,255,255,1.0))",
+          "start_pos": 1330,
+          "end_pos": 7970,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 1
+    },
+    {
+      "name": "Choir",
+      "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 0,
+          "end_pos": 619,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1), rgba(127,174,86,0.4))",
+          "start_pos": 1167,
+          "end_pos": 1292,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,1), rgba(127,174,86,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1), rgba(127,174,86,0.4))",
+          "start_pos": 1293,
+          "end_pos": 1417,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,1), rgba(127,174,86,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 1418,
+          "end_pos": 7970,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 620,
+          "end_pos": 799,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "(Not aligned)",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "20px",
+                "fontWeight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 800,
+          "end_pos": 1166,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 0
+    },
+    {
+      "name": "Soloist",
+      "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 0,
+          "end_pos": 574,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "24px",
+                "fontWeight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 575,
+          "end_pos": 651,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 652,
+          "end_pos": 719,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 720,
+          "end_pos": 788,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 789,
+          "end_pos": 827,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 828,
+          "end_pos": 901,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 902,
+          "end_pos": 971,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 972,
+          "end_pos": 1020,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 1021,
+          "end_pos": 1199,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1200,
+          "end_pos": 1389,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "(Aligned)",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "21px",
+                "fontWeight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 1390,
+          "end_pos": 7970,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 4
+    },
+    {
+      "name": "Accomp.",
+      "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+          "start_pos": 0,
+          "end_pos": 603,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))",
+          "start_pos": 604,
+          "end_pos": 727,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))",
+          "start_pos": 728,
+          "end_pos": 852,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))",
+          "start_pos": 853,
+          "end_pos": 978,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))",
+          "start_pos": 979,
+          "end_pos": 1166,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))",
+          "start_pos": 1167,
+          "end_pos": 1292,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))",
+          "start_pos": 1293,
+          "end_pos": 1417,
+          "start_presence": 10,
+          "end_presence": 4,
+          "presence_sync": false,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,0.4))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+          "start_pos": 1418,
+          "end_pos": 7970,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 2
+    },
+    {
+      "name": "Build",
+      "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 0,
+          "end_pos": 1107,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1), rgba(189,88,69,1))",
+          "start_pos": 1108,
+          "end_pos": 1168,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": false,
+          "styles": {
+            "clipPath": "polygon(0 100%, 100% 0%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(189,88,69,1), rgba(189,88,69,1))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1169,
+          "end_pos": 7970,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 3
+    }
+  ]
+}
