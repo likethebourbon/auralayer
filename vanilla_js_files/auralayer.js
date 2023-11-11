@@ -4,7 +4,7 @@ let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
 let project;
 let playerx;
-let ctrl_down = false;
+let shift_down = false;
 let lastActiveElement = document.activeElement;
 let example_data = {};
 
@@ -20,7 +20,7 @@ document.addEventListener('keyup', e =>
 				if (e.code === "ShiftLeft")
 					{
 						e.preventDefault();
-						ctrl_down = false;
+						shift_down = false;
 					}
 			}
 	});
@@ -150,9 +150,9 @@ document.addEventListener('keydown', e =>
 				else if (e.shiftKey)
 					{
 						e.preventDefault();
-						ctrl_down = true;
+						shift_down = true;
 					}
-				else if (e.shiftKey && e.key === 'ArrowRight')
+				else if (shift_down === true && e.key === 'ArrowRight')
 						{
 								//fast forward 1 seconds
 								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
@@ -162,7 +162,7 @@ document.addEventListener('keydown', e =>
 																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + 1;
 																break;
 														case 'youtube_link':
-																player.seekTo(player.getCurrentTime() + 1);
+																playerx.seekTo(player.getCurrentTime() + 1);
 																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
 																break;
 														default:
@@ -171,7 +171,7 @@ document.addEventListener('keydown', e =>
 												}  
 
 						}
-				else if (e.shiftKey && e.key === 'ArrowLeft')
+				else if (shift_down === true && e.key === 'ArrowLeft')
 						{
 								//fast forward 1 seconds
 								// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
@@ -181,7 +181,7 @@ document.addEventListener('keydown', e =>
 																project.uploaded_audio.currentTime = project.uploaded_audio.currentTime - 1;
 																break;
 														case 'youtube_link':
-																player.seekTo(player.getCurrentTime() - 1);
+																playerx.seekTo(player.getCurrentTime() - 1);
 																// project.uploaded_audio.currentTime = project.uploaded_audio.currentTime + project.skip_amount;
 																break;
 														default:
@@ -560,7 +560,7 @@ class Layer
 				
 				if(e.target.checked === true)
 					{
-						if(ctrl_down === false)
+						if(shift_down === false)
 							{
 								this.parent.deselect_all_layers();
 							}
@@ -963,7 +963,7 @@ class Segment
 				// left control key is not being held, then only allow one segment to be selected at a time
 				let deselect = false;
 				deselect = this.segment.classList.contains("segment_selected");
-				if(ctrl_down === false)
+				if(shift_down === false)
 					{}
 
 				this.parent.parent.hide_all_TextEditingMenuContainer_SingleSegments();
@@ -1853,7 +1853,7 @@ class Auralayer
 							{
 								this.layers[i].segment_array[j].TextEditingMenuContainer_SingleSegment.style.display = "none";
 								
-								if(ctrl_down === false)
+								if(shift_down === false)
 									{this.layers[i].segment_array[j].segment.classList.remove("segment_selected")}
 							}
 					}				
