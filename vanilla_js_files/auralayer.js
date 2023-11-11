@@ -1172,7 +1172,7 @@ class Auralayer
 
 				this.ActivitySelectionContainer = createNewElement({type: "div", classes:["ActivitySelectionContainer", "container-fluid"], parent: document.body});
 				// this.ActivitySelectionHeader = createNewElement({type:"div", classes:["ActivitySelectionHeader"], parent: this.ActivitySelectionContainer, properties:{innerHTML : `<h1 class="text-primary fw-light">Auralayer</h1>`}});
-				this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody", "d-grid", "col-4", "mx-auto", "justify-items-center", "gap-2"], parent: this.ActivitySelectionContainer });
+				this.ActivitySelectionBody = createNewElement({type:"div", classes:["ActivitySelectionBody", "d-grid", "col-md-4", "col-10", "mx-auto", "justify-items-center", "gap-2"], parent: this.ActivitySelectionContainer });
 			
 					this.NewAuralayerFromYoutubeContainer = createNewElement({type: "div", classes:["NewAuralayerFromYoutubeContainer", "ActivityButtonContainer"], parent: this.ActivitySelectionBody});
 						// this.NewAuralayerFromYoutubeButton = createNewElement({type: "button", classes:["NewAuralayerFromYoutubeButton", "btn", "btn-primary"], parent: this.NewAuralayerFromYoutubeContainer, properties:{innerText : "Create"}, events:{click: e=>this.StartYoutubeActivitySetup()}});
@@ -2198,13 +2198,23 @@ class Auralayer
 				this.activity_type = 'youtube_link';
 				let youtube_url = 'Paste URL here';
 
+					// {
+					// 	this.audio_file_prompt_backdrop = createNewElement({type: "div", classes: ["audio_file_prompt_backdrop"], parent: document.body});
+					// 	this.audio_file_prompt_box_container = createNewElement({type: "div", classes: ["audio_file_prompt_box_container", "border-rounded"], parent: document.body});
+					// 		this.audio_file_prompt_box_top = createNewElement({type: "div", classes: ["audio_file_prompt_box_top", "modal-header", "d-flex", "justify-content-between"], parent: this.audio_file_prompt_box_container, properties:{innerHTML : "<h5 class='modal-title'>Create with local audio file</h5>"}});
+					// 		this.audio_file_prompt_box_middle = createNewElement({type: "div", classes: ["audio_file_prompt_box_middle"], parent: this.audio_file_prompt_box_container});
+					// 			this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: this.audio_file_prompt_box_middle, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"}, events:{change:() => this.get_user_audio_file('nothing') } });
+					// 			this.cancel_opening_audio_button = createNewElement({type:"button", classes:["cancel_opening_audio_button", "btn-close"], parent: this.audio_file_prompt_box_top, events:{click: e=>this.cancel_opening_audio_button_handler()}});
+					// 		this.audio_file_prompt_box_bottom = createNewElement({type: "div", classes: ["audio_file_prompt_box_bottom"], parent: this.audio_file_prompt_box_container});
+					// }
+
 				this.url_prompt_backdrop = createNewElement({type: "div", classes: ["url_prompt_backdrop"], parent: document.body});
-				this.url_prompt_box_container = createNewElement({type: "div", classes: ["url_prompt_box_container"], parent: document.body});
-					this.url_prompt_box_top = createNewElement({type: "div", classes: ["url_prompt_box_top"], parent: this.url_prompt_box_container, properties:{innerText : "Paste a YouTube URL below"}});
-					this.url_prompt_box_middle = createNewElement({type: "div", classes: ["url_prompt_box_middle"], parent: this.url_prompt_box_container});
-						this.url_prompt_input_box = createNewElement({type: "input", classes: [], parent: this.url_prompt_box_middle,  properties: { id: "url_prompt_input_box", innerText : "Paste a YouTube URL below", type : "text", placeholder: "Paste URL here" }});
-						this.url_prompt_submit_button = createNewElement({type: "button", classes: [], parent: this.url_prompt_box_middle,  properties: { id: "url_prompt_submit_button", innerText : "Start" }});
-						this.url_prompt_cancel_button = createNewElement({type:"button", classes:["url_prompt_cancel_button"], parent: this.url_prompt_box_middle, properties:{innerHTML: "✖️"}, events:{click: e=>this.url_prompt_cancel_button_handler()}});
+				this.url_prompt_box_container = createNewElement({type: "div", classes: ["url_prompt_box_container", "border-rounded"], parent: document.body});
+					this.url_prompt_box_top = createNewElement({type: "div", classes: ["url_prompt_box_top",  "modal-header", "d-flex", "justify-content-between", "mb-4"], parent: this.url_prompt_box_container, properties:{innerHTML : "<h5 class='modal-title'>Create with Youtube link</h5>"}});
+						this.url_prompt_cancel_button = createNewElement({type:"button", classes:["url_prompt_cancel_button", "btn-close"], parent: this.url_prompt_box_top, events:{click: e=>this.url_prompt_cancel_button_handler()}});
+					this.url_prompt_box_middle = createNewElement({type: "div", classes: ["url_prompt_box_middle", "input-group", "mb-3"], parent: this.url_prompt_box_container});
+						this.url_prompt_input_box = createNewElement({type: "input", classes: ["form-control"], parent: this.url_prompt_box_middle,  properties: { id: "url_prompt_input_box", innerText : "Paste a YouTube URL below", type : "text", placeholder: "Paste URL here" }});
+						this.url_prompt_submit_button = createNewElement({type: "button", classes: ["btn", "btn-primary"], parent: this.url_prompt_box_middle,  properties: { id: "url_prompt_submit_button", innerText : "Start" }});
 					this.url_prompt_box_bottom = createNewElement({type: "div", classes: ["url_prompt_box_bottom"], parent: this.url_prompt_box_container});
 
 				if(this.load_from_file_mode === true)
@@ -2288,11 +2298,11 @@ class Auralayer
 				if(sent_url === "nothing")
 					{
 						this.audio_file_prompt_backdrop = createNewElement({type: "div", classes: ["audio_file_prompt_backdrop"], parent: document.body});
-						this.audio_file_prompt_box_container = createNewElement({type: "div", classes: ["audio_file_prompt_box_container"], parent: document.body});
-							this.audio_file_prompt_box_top = createNewElement({type: "div", classes: ["audio_file_prompt_box_top"], parent: this.audio_file_prompt_box_container, properties:{innerText : "Choose Audio File"}});
+						this.audio_file_prompt_box_container = createNewElement({type: "div", classes: ["audio_file_prompt_box_container", "border-rounded"], parent: document.body});
+							this.audio_file_prompt_box_top = createNewElement({type: "div", classes: ["audio_file_prompt_box_top", "modal-header", "d-flex", "justify-content-between", "mb-4"], parent: this.audio_file_prompt_box_container, properties:{innerHTML : "<h5 class='modal-title'>Create with local audio file</h5>"}});
 							this.audio_file_prompt_box_middle = createNewElement({type: "div", classes: ["audio_file_prompt_box_middle"], parent: this.audio_file_prompt_box_container});
-								this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button"], parent: this.audio_file_prompt_box_middle, properties: {innerText: "Choose Audio File", type: "file", name: "open_audio_button"}, styles:{display: "block"}, events:{change:() => this.get_user_audio_file('nothing') } });
-								this.cancel_opening_audio_button = createNewElement({type:"button", classes:["cancel_opening_audio_button"], parent: this.audio_file_prompt_box_middle, properties:{innerHTML: "✖️"}, events:{click: e=>this.cancel_opening_audio_button_handler()}});
+								this.open_audio_button = createNewElement({type: 'input', classes: ["open_audio_button", "form-control"], parent: this.audio_file_prompt_box_middle, properties: {type: "file", name: "open_audio_button"}, styles:{display: "block"}, events:{change:() => this.get_user_audio_file('nothing') } });
+								this.cancel_opening_audio_button = createNewElement({type:"button", classes:["cancel_opening_audio_button", "btn-close"], parent: this.audio_file_prompt_box_top, events:{click: e=>this.cancel_opening_audio_button_handler()}});
 							this.audio_file_prompt_box_bottom = createNewElement({type: "div", classes: ["audio_file_prompt_box_bottom"], parent: this.audio_file_prompt_box_container});
 					}
 

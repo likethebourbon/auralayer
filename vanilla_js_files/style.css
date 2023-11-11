@@ -665,6 +665,8 @@ button:hover
 .backdrop,
 .url_prompt_backdrop,
 .audio_file_prompt_backdrop {
+	/* original
+	
 	z-index: 2;
 	position: fixed;
 	width: 100%;
@@ -673,22 +675,45 @@ button:hover
 	left: 0px;
 	background-color: #8080808a;
 	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-}
+	-webkit-backdrop-filter: blur(10px); */
 
+	/* bootstrap */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+
+}
+@media screen and (min-width:768px) {
 .url_prompt_box_container,
 .audio_file_prompt_box_container {
 	position: absolute;
-	width: 400px;
+	padding: 1rem;
+	width: 500px;
 	height: 200px;
-	border: 10px solid var(--primary-color-1);
+}
+}
+.url_prompt_box_container,
+.audio_file_prompt_box_container {
+	position: absolute;
+	padding: 1rem;
+	width: 90%;
+	height: 200px;
+	border: 1px var(--bs-border-color-translucent);
+	border-radius: 7px;
+	background: var(--bs-body-bg);
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 2;
-	box-shadow: 0px 0px 16px 3px black;
 }
 
+
+/* 
 .audio_file_prompt_box_container {
 	border: 10px solid var(--primary-color-4);
 }
@@ -706,54 +731,53 @@ button:hover
 
 .url_prompt_box_top,
 .audio_file_prompt_box_top {
-	background-color: var(--primary-color-1);
+	background-color: var(--bs-body-bg);
 	height: 20%;
 	font-weight: bold;
 	line-height: 200%;
 	font-size: 20px;
-	color: white;
 }
 
 .audio_file_prompt_box_top {
-	background-color: var(--primary-color-4);
+	background-color: var(--bs-body-bg);
 }
 
 .url_prompt_box_middle,
 .audio_file_prompt_box_middle {
-	background-color: var(--primary-color-1);
+	background-color: var(--bs-body-bg);
 	height: 70%;
 	top: 20%;
 }
 
 .audio_file_prompt_box_middle {
-	background-color: var(--primary-color-4);
+	background-color: var(--bs-body-bg);
 }
 
 .url_prompt_box_bottom,
 .audio_file_prompt_box_bottom {
-	background-color: var(--primary-color-1);
+	background-color: var(--bs-body-bg);
 	height: 10%;
 	top: 90%;
 }
 
 .audio_file_prompt_box_bottom {
-	background-color: var(--primary-color-4);
-}
+	background-color: var(--bs-body-bg);
+} */
 
-#url_prompt_input_box {
+/* #url_prompt_input_box {
 	width: 90%;
 	margin-top: 20px;
 	height: 31px;
-}
+} */
 
-#url_prompt_submit_button {
+/* #url_prompt_submit_button {
 	background-color: var(--primary-color-2);
 	font-size: 20px;
 	padding: 10px 20px;
 	margin-top: 31px;
-}
+} */
 
-.url_prompt_cancel_button,
+/* .url_prompt_cancel_button,
 .cancel_opening_audio_button {
 	position: absolute;
 	top: -44px;
@@ -765,7 +789,7 @@ button:hover
 	border: 3px solid black;
 	border-radius: 5px;
 	cursor: pointer;
-}
+} */
 
 .ActivitySelectionContainer {
 
@@ -788,7 +812,7 @@ button:hover
 	/* display: grid;
 	/* grid-template-columns: auto 550px auto;
 	grid-template-rows: 50px auto 50px; */
-	top: 20vh;
+	top: 30vh;
 	left: 0px;
 	width: 100%;
 	height: 100%;
@@ -833,12 +857,12 @@ button:hover
 	min-width: 100px;
 }
 
-.open_audio_button {
+/* .open_audio_button {
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-}
+} */
 
 /* tablesort.css from https://github.com/tristen/tablesort/blob/master/tablesort.css */
 
