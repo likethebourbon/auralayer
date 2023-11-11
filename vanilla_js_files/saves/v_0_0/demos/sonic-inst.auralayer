@@ -1,0 +1,2002 @@
+{
+  "piece_info": {
+    "media_type": "audio_file",
+    "name": "new_auralayer",
+    "loaded_file_name_label": "https://brianedwardjarvis.com/auralayer/audio_stored/launch_base_zone_act_1.mp3",
+    "layer_id_pos": 12,
+    "scale": 19,
+    "color_count": 5,
+    "slider_thumb_offset": -317,
+    "slider_thumb_height": 655,
+    "segment_decrescendo": "gradient"
+  },
+  "layers": [
+    {
+      "name": "Layer 6",
+      "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 0,
+          "end_pos": 36,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 37,
+          "end_pos": 56,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 57,
+          "end_pos": 75,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 76,
+          "end_pos": 97,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 98,
+          "end_pos": 116,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 117,
+          "end_pos": 136,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 137,
+          "end_pos": 151,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 152,
+          "end_pos": 330,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 331,
+          "end_pos": 350,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 351,
+          "end_pos": 369,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 370,
+          "end_pos": 389,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 390,
+          "end_pos": 408,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 409,
+          "end_pos": 428,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 429,
+          "end_pos": 448,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,1.0), rgba(88,164,164,1.0))",
+          "start_pos": 449,
+          "end_pos": 467,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+          "start_pos": 468,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(88,164,164,0.0), rgba(88,164,164,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 5
+    },
+    {
+      "name": "Layer 5",
+      "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 0,
+          "end_pos": 171,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 172,
+          "end_pos": 198,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 199,
+          "end_pos": 211,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 212,
+          "end_pos": 307,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 308,
+          "end_pos": 313,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 314,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 4
+    },
+    {
+      "name": "Layer 10",
+      "color": "linear-gradient(to right, rgba(212,129,46,1.0), rgba(212,129,46,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+          "start_pos": 0,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 9
+    },
+    {
+      "name": "Layer 9",
+      "color": "linear-gradient(to right, rgba(174,40,138,1.0), rgba(174,40,138,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(174,40,138,0.0), rgba(174,40,138,0.0))",
+          "start_pos": 0,
+          "end_pos": 311,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(174,40,138,0.0), rgba(174,40,138,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(174,40,138,1.0), rgba(174,40,138,1.0))",
+          "start_pos": 312,
+          "end_pos": 630,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(174,40,138,1.0), rgba(174,40,138,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 8
+    },
+    {
+      "name": "Layer 11",
+      "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 0,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 10
+    },
+    {
+      "name": "Layer 7",
+      "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 0,
+          "end_pos": 156,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 157,
+          "end_pos": 191,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 192,
+          "end_pos": 199,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 200,
+          "end_pos": 231,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 232,
+          "end_pos": 238,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 239,
+          "end_pos": 267,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 268,
+          "end_pos": 274,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 275,
+          "end_pos": 308,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 309,
+          "end_pos": 314,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 315,
+          "end_pos": 471,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 472,
+          "end_pos": 505,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 506,
+          "end_pos": 511,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 512,
+          "end_pos": 544,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 545,
+          "end_pos": 550,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 551,
+          "end_pos": 583,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 584,
+          "end_pos": 589,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 590,
+          "end_pos": 623,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 624,
+          "end_pos": 628,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 629,
+          "end_pos": 630,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 6
+    },
+    {
+      "name": "Layer 8",
+      "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 0,
+          "end_pos": 191,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 192,
+          "end_pos": 197,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 198,
+          "end_pos": 230,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 231,
+          "end_pos": 236,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 237,
+          "end_pos": 268,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 269,
+          "end_pos": 275,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 276,
+          "end_pos": 308,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 309,
+          "end_pos": 315,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 316,
+          "end_pos": 504,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 505,
+          "end_pos": 510,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 511,
+          "end_pos": 543,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 544,
+          "end_pos": 549,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 550,
+          "end_pos": 583,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 584,
+          "end_pos": 589,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 590,
+          "end_pos": 623,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 624,
+          "end_pos": 628,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 629,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 7
+    },
+    {
+      "name": "Layer 12",
+      "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 0,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 11
+    },
+    {
+      "name": "Layer 1",
+      "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+          "start_pos": 0,
+          "end_pos": 135,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+          "start_pos": 136,
+          "end_pos": 148,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+          "start_pos": 149,
+          "end_pos": 630,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 0
+    },
+    {
+      "name": "Layer 13",
+      "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 0,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 12
+    },
+    {
+      "name": "Layer 4",
+      "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 0,
+          "end_pos": 81,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+          "start_pos": 82,
+          "end_pos": 141,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 142,
+          "end_pos": 165,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+          "start_pos": 166,
+          "end_pos": 295,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+          "start_pos": 312,
+          "end_pos": 630,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 296,
+          "end_pos": 311,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 3
+    },
+    {
+      "name": "Layer 3",
+      "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 0,
+          "end_pos": 19,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 151,
+          "end_pos": 314,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 315,
+          "end_pos": 472,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 473,
+          "end_pos": 630,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 20,
+          "end_pos": 150,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 2
+    },
+    {
+      "name": "Layer 2",
+      "color": "linear-gradient(to right, rgba(212,129,46,1.0), rgba(212,129,46,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,1.0), rgba(212,129,46,1.0))",
+          "start_pos": 0,
+          "end_pos": 135,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+          "start_pos": 136,
+          "end_pos": 155,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,1.0), rgba(212,129,46,1.0))",
+          "start_pos": 156,
+          "end_pos": 292,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+          "start_pos": 293,
+          "end_pos": 312,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(212,129,46,0.0), rgba(212,129,46,0.0))",
+            "backgroundImage": "none"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(212,129,46,1.0), rgba(212,129,46,1.0))",
+          "start_pos": 313,
+          "end_pos": 630,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 1
+    }
+  ]
+}
