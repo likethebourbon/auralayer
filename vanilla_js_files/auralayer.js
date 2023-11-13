@@ -1,4 +1,4 @@
-let developing = false;
+let developing = true;
 let youtube_player_state = -2;
 let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
@@ -1091,7 +1091,8 @@ class Auralayer
 				this.length_padding = GLOBAL_length_padding;
 				this.check_for_url_data();
 				this.create_activity_selection_interface();
-				this.initialize_interface();	
+				this.initialize_interface();
+				this.prevent_navigation_without_warning();
 				if(this.url_activity_text !== "")
 				{
 
@@ -1113,19 +1114,26 @@ class Auralayer
 				
 				// this.create_activity_selection_interface();
         // this.initialize_interface();
-				this.prevent_navigation_without_warning();
+				// this.prevent_navigation_without_warning();
       }
 		prevent_navigation_without_warning()
 			{                    
 				// if embedded for analysis master - don't alert about navigating away
 				// if(this.analysis_master_embed = true)
+				
 				if(this.analysis_master_embed === false)
 					{
-						window.addEventListener('beforeunload', function (e) 
-							{
-								// Chrome requires returnValue to be set
-								e.returnValue = '';
-							});      
+
+							// Enable navigation prompt
+							window.onbeforeunload = function() {
+								return true;
+							};
+
+						// window.addEventListener('beforeunload', function (e) 
+						// 	{
+						// 		// Chrome requires returnValue to be set
+						// 		e.returnValue = '';
+						// 	});      
 					}
 			}	
 		load_from_server(link_id)
@@ -1293,8 +1301,8 @@ class Auralayer
 
 				this.SegmentColorPaletteSelectContainer = createNewElement({type: "p", classes:["SegmentColorPaletteSelectContainer"], parent: this.HeaderSettingsMenuBody});
 				
-				this.SegmentColorPaletteSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentColorPaletteSelectContainer, properties:{innerText: "Segment color palette", htmlFor: "palette"}});
-				this.SegmentColorPaletteSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentColorPaletteSelectContainer, attributes:{"aria-label": "Color palette"}});
+				this.SegmentColorPaletteSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentColorPaletteSelectContainer, properties:{innerText: "Segment color palette (coming soon)", htmlFor: "palette"}});
+				this.SegmentColorPaletteSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentColorPaletteSelectContainer, attributes:{"aria-label": "Color palette"}, properties:{disabled: true}});
 				this.SegmentColorPaletteSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"1", innerText:"Bright", selected: true}});
 				this.SegmentColorPaletteSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"2", innerText:"Dark"}});
 				this.SegmentColorPaletteSelectBoxOption3 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"3", innerText:"Warm"}});
