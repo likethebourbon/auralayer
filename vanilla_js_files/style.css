@@ -56,6 +56,11 @@
 	-webkit-user-select: none !important;
 }
 
+[contenteditable] {
+	-webkit-user-select: text !important;
+	user-select: text !important;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
@@ -67,6 +72,8 @@ body {
 	/* padding-right: 20px; */
 	/* overflow: hidden; */
 }
+
+
 
 /* .btn-primary
 {

@@ -339,7 +339,13 @@ class Layer
 				this.name.addEventListener("click", e=> {	 this.select_box.click() });
 				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
 				this.name.addEventListener("input", e=> this.layer_name_input_handler(e));
-				this.name.addEventListener("focus", e=> { this.parent.in_text_editor = true; });				
+				this.name.addEventListener("focus", e=>
+					{
+						console.log(e);
+						this.name.tabIndex = 0;
+						this.parent.in_text_editor = true; 
+						// window.getSelection().selectAllChildren(this.name);
+					});
 				this.name.addEventListener("blur", e=>
 					{
 						this.name.contentEditable = false;
@@ -503,6 +509,7 @@ class Layer
 			}
 		layer_name_input_handler(e)
 			{
+				console.log(e);
 				this.layer_data.name = e.target.innerText;
 				for (let i = 0; i < this.segment_array.length ; i++)
 					{
@@ -2480,7 +2487,6 @@ class Auralayer
 			}
 		play_audio()
 			{
-				debugger
 					switch (this.activity_type)
 							{
 									case 'audio_file':
