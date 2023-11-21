@@ -1,0 +1,1473 @@
+{
+  "piece_info": {
+    "media_type": "youtube",
+    "name": "new_auralayer",
+    "layer_id_pos": 11,
+    "scale": 5,
+    "color_count": 4,
+    "slider_thumb_offset": -205,
+    "slider_thumb_height": 430,
+    "segment_decrescendo": "slope",
+    "video_id": "b2_CJ_nx-l4"
+  },
+  "layers": [
+    {
+      "name": "Ocarina",
+      "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 0,
+          "end_pos": 35,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 36,
+          "end_pos": 230,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 231,
+          "end_pos": 425,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 426,
+          "end_pos": 597,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+          "start_pos": 624,
+          "end_pos": 641,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 598,
+          "end_pos": 623,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 642,
+          "end_pos": 672,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+          "start_pos": 673,
+          "end_pos": 690,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 691,
+          "end_pos": 1407,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))",
+          "start_pos": 1408,
+          "end_pos": 1424,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,1.0), rgba(227,177,60,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 1425,
+          "end_pos": 1603,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 1604,
+          "end_pos": 1796,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))",
+          "start_pos": 1797,
+          "end_pos": 1820,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(227,177,60,0.0), rgba(227,177,60,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 4
+    },
+    {
+      "name": "Brassy FM synth",
+      "color": "linear-gradient(to right, rgba(252,118,92,1.0), rgba(252,118,92,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))",
+          "start_pos": 0,
+          "end_pos": 819,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(252,118,92,1.0), rgba(252,118,92,1.0))",
+          "start_pos": 820,
+          "end_pos": 1011,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(252,118,92,1.0), rgba(252,118,92,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))",
+          "start_pos": 1012,
+          "end_pos": 1096,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))",
+          "start_pos": 1097,
+          "end_pos": 1186,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))",
+          "start_pos": 1187,
+          "end_pos": 1404,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))",
+          "start_pos": 1405,
+          "end_pos": 1820,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(252,118,92,0.0), rgba(252,118,92,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 10
+    },
+    {
+      "name": "Vocals",
+      "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 0,
+          "end_pos": 35,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 36,
+          "end_pos": 230,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 231,
+          "end_pos": 1205,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 1206,
+          "end_pos": 1407,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1408,
+          "end_pos": 1424,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1), rgba(189,88,69,1))",
+          "start_pos": 1425,
+          "end_pos": 1449,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 50%, 100% 50%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(189,88,69,1), rgba(189,88,69,1))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1604,
+          "end_pos": 1626,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1749,
+          "end_pos": 1820,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1450,
+          "end_pos": 1473,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 1474,
+          "end_pos": 1503,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1504,
+          "end_pos": 1579,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 1580,
+          "end_pos": 1603,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 1627,
+          "end_pos": 1649,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1650,
+          "end_pos": 1669,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1), rgba(189,88,69,1))",
+          "start_pos": 1670,
+          "end_pos": 1686,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 20%, 100% 20%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(189,88,69,1), rgba(189,88,69,1))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,1.0), rgba(189,88,69,1.0))",
+          "start_pos": 1687,
+          "end_pos": 1718,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))",
+          "start_pos": 1719,
+          "end_pos": 1748,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(189,88,69,0.0), rgba(189,88,69,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 2
+    },
+    {
+      "name": "Guitars",
+      "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))",
+          "start_pos": 0,
+          "end_pos": 35,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(59,131,88,0.0), rgba(59,131,88,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 36,
+          "end_pos": 425,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 30%, 100% 30%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 426,
+          "end_pos": 597,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 598,
+          "end_pos": 1012,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 30%, 100% 30%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 1013,
+          "end_pos": 1185,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))",
+          "start_pos": 1186,
+          "end_pos": 1820,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 30%, 100% 30%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(59,131,88,1.0), rgba(59,131,88,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 3
+    },
+    {
+      "name": "High sine synth",
+      "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 0,
+          "end_pos": 1014,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))",
+          "start_pos": 1015,
+          "end_pos": 1188,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,1.0), rgba(127,174,86,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))",
+          "start_pos": 1189,
+          "end_pos": 1820,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(127,174,86,0.0), rgba(127,174,86,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 11
+    },
+    {
+      "name": "Bass",
+      "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 0,
+          "end_pos": 35,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 36,
+          "end_pos": 1205,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1206,
+          "end_pos": 1327,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))",
+          "start_pos": 1328,
+          "end_pos": 1345,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,0.0), rgba(53,103,146,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 1346,
+          "end_pos": 1407,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": false,
+          "styles": {
+            "clipPath": "polygon(0 90%, 100% 0%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))",
+          "start_pos": 1408,
+          "end_pos": 1820,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(53,103,146,1.0), rgba(53,103,146,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 1
+    },
+    {
+      "name": "Aux percussion",
+      "color": "linear-gradient(to right, rgba(165,121,222,1.0), rgba(165,121,222,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(165,121,222,0.0), rgba(165,121,222,0.0))",
+          "start_pos": 0,
+          "end_pos": 35,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(165,121,222,0.0), rgba(165,121,222,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(165,121,222,0.0), rgba(165,121,222,0.0))",
+          "start_pos": 36,
+          "end_pos": 1406,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(165,121,222,0.0), rgba(165,121,222,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(165,121,222,1.0), rgba(165,121,222,1.0))",
+          "start_pos": 1407,
+          "end_pos": 1796,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 20%, 100% 20%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(165,121,222,1.0), rgba(165,121,222,1.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(165,121,222,0.0), rgba(165,121,222,0.0))",
+          "start_pos": 1797,
+          "end_pos": 1820,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(165,121,222,0.0), rgba(165,121,222,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 5
+    },
+    {
+      "name": "Drum kit\n\n",
+      "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+      "segments": [
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+          "start_pos": 0,
+          "end_pos": 35,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+          "start_pos": 36,
+          "end_pos": 1327,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,1))",
+          "start_pos": 1328,
+          "end_pos": 1345,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": false,
+          "styles": {
+            "clipPath": "polygon(0 0%, 100% 100%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,1))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))",
+          "start_pos": 1346,
+          "end_pos": 1391,
+          "start_presence": 0,
+          "end_presence": 0,
+          "presence_sync": true,
+          "styles": {
+            "background": "linear-gradient(to right, rgba(95,70,128,0.0), rgba(95,70,128,0.0))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,1))",
+          "start_pos": 1392,
+          "end_pos": 1407,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {
+            "clipPath": "polygon(0 100%, 100% 0%, 100% 100%, 0 100%)",
+            "background": "linear-gradient(to right, rgba(95,70,128,1), rgba(95,70,128,1))"
+          },
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        },
+        {
+          "classes": [
+            "segment"
+          ],
+          "color": "linear-gradient(to right, rgba(95,70,128,1.0), rgba(95,70,128,1.0))",
+          "start_pos": 1408,
+          "end_pos": 1820,
+          "start_presence": 10,
+          "end_presence": 10,
+          "presence_sync": true,
+          "styles": {},
+          "text": [
+            {
+              "inner_text": "",
+              "styles": {
+                "textAlign": "center",
+                "fontSize": "14px"
+              }
+            }
+          ]
+        }
+      ],
+      "markers": [],
+      "layer_id_pos": 0
+    }
+  ]
+}
