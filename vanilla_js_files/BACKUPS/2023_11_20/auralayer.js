@@ -339,13 +339,7 @@ class Layer
 				this.name.addEventListener("click", e=> {	 this.select_box.click() });
 				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
 				this.name.addEventListener("input", e=> this.layer_name_input_handler(e));
-				this.name.addEventListener("focus", e=>
-					{
-						console.log(e);
-						this.name.tabIndex = 0;
-						this.parent.in_text_editor = true; 
-						// window.getSelection().selectAllChildren(this.name);
-					});
+				this.name.addEventListener("focus", e=> { this.parent.in_text_editor = true; });				
 				this.name.addEventListener("blur", e=>
 					{
 						this.name.contentEditable = false;
@@ -509,7 +503,6 @@ class Layer
 			}
 		layer_name_input_handler(e)
 			{
-				console.log(e);
 				this.layer_data.name = e.target.innerText;
 				for (let i = 0; i < this.segment_array.length ; i++)
 					{
@@ -1285,7 +1278,7 @@ class Auralayer
 
 				// this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowCenter, properties:{innerText: "Auralayer"}});
 
-				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["HeaderSettingsGearButton", "btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
+				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
 
 				this.HeaderSettingsMenu = createNewElement({type:"div", classes:["offcanvas", "offcanvas-start"], parent: this.HeaderRowLeft, properties:{id:"offcanvasExample", tabIndex: "-1"}, attributes:{"aria-labelledby": "Settings"}});
 
@@ -1597,16 +1590,7 @@ class Auralayer
 				// Text Formatting Flyout Menu
 				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
 				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.HeaderContainer , properties:{}, styles:{display: "none"}});
-				
-				if(this.iframe_embed === true)
-					{
-						this.SegmentEditingSuperContainer.style.display = "none";
-						this.AccordionContainer1.style.display = "none";
-						this.HeaderSettingsGearButton.style.display = "none";
-
-						document.getElementsByTagName("header")[0].style.display = "none";
-						this.HeaderRowCenter.innerHTML = `<h2><a class="nav-link" href="about.html" target="_blank">Auralayer</a></h2>`
-					}
+								
       }
 		SegmentDecresendoSelectBoxHandler(e)
 			{
@@ -2413,17 +2397,6 @@ class Auralayer
 				// 	{ this.loaded_file_name_label.innerText = this.open_audio_button.files[0].name; }
 
 				this.start_program_after_media_loaded();
-
-				if (this.iframe_embed === true)
-				{
-					this.uploaded_audio.classList.add("small_iframe_mp3");
-					this.Body.appendChild(this.uploaded_audio);
-
-				}
-			else
-				{
-					this.VideoAccordionBodyInterior.appendChild(this.uploaded_audio);		
-				}
 			}
 		timestamp_lines()
 			{
@@ -2464,17 +2437,13 @@ class Auralayer
 					case 'youtube_link':
 						if (youtube_player_state != YT.PlayerState.PAUSED)
 							{
-								
 								playerx.g.classList.remove("small_youtube_video_for_iframes");
-								playerx.g.classList.add("small_iframe_youtube_after_clicking");
 								playerx.pauseVideo();
 								this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
 							}
 						else
 							{
-								
 								playerx.g.classList.remove("small_youtube_video_for_iframes");
-								playerx.g.classList.add("small_iframe_youtube_after_clicking");
 								playerx.playVideo();
 								this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
 							}
@@ -2542,27 +2511,9 @@ class Auralayer
 				let sURLVariables = sPageURL.split('&');
 						
 				let sParameterName = sURLVariables[0].split('=');
-				
-				
 				if (sParameterName[0] == 'load') 
 					{
 						this.url_activity_text = sParameterName[1];
-					}
-
-				if(sURLVariables.length == 2)
-					{
-						sParameterName = sURLVariables[1].split('=');
-						if (sParameterName[0] == 'iframe') 
-							{
-								if(sParameterName[1] == "true")
-									{
-										this.iframe_embed = true;
-									}
-								else
-									{
-										this.iframe_embed = false;
-									}
-							}		
 					}
 			}
 		setup_youtube_file_info()
@@ -2572,11 +2523,6 @@ class Auralayer
 				this.file_length = parseInt(playerx.getDuration()) * this.resolution;
 				this.start_program_after_media_loaded();
 				this.timeupdater = setInterval((e) => this.move_seek_slider_with_audio_position('ticking_youtube') , 10);
-
-				if(this.iframe_embed === true)
-					{
-						playerx.g.classList.add("small_youtube_video_for_iframes");
-					}
 			}
 		start_program_after_media_loaded()
 			{
@@ -3414,17 +3360,7 @@ window.onYouTubeIframeAPIReady = function()
 		youtube_player.id = 'player';
 
 		// document.body.appendChild(youtube_player);
-		
-		if (project.iframe_embed === true)
-			{
-				project.Body.appendChild(youtube_player);
-			}
-		else
-			{
-				project.VideoAccordionBodyInterior.appendChild(youtube_player);		
-			}
-		
-		
+		project.VideoAccordionBodyInterior.appendChild(youtube_player);
 
 		playerx = new YT.Player('player', 
 		{
@@ -3460,6 +3396,5 @@ function onPlayerStateChange(event)
 		if(project.iframe_embed === true)
 			{
 				playerx.g.classList.remove("small_youtube_video_for_iframes");
-				playerx.g.classList.add("small_iframe_youtube_after_clicking");
 			}
 	}  

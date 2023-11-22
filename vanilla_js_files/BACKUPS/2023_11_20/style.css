@@ -56,11 +56,6 @@
 	-webkit-user-select: none !important;
 }
 
-[contenteditable] {
-	-webkit-user-select: text !important;
-	user-select: text !important;
-}
-
 body {
 	display: flex;
 	flex-direction: column;
@@ -72,8 +67,6 @@ body {
 	/* padding-right: 20px; */
 	/* overflow: hidden; */
 }
-
-
 
 /* .btn-primary
 {
@@ -970,13 +963,13 @@ input[type="file" i]::-webkit-file-upload-button {
 }
 
 @media screen and (max-width: 600px) {
-	/* .small_youtube_video_for_iframes {
+	.small_youtube_video_for_iframes {
 		position: absolute;
 		width: 50px !important;
 		height: 50px !important;
 		top: 52px;
 		left: 16px;
-	} */
+	}
 }
 
 @media screen and (max-width: 825px) {
@@ -1069,24 +1062,6 @@ input[type="file" i]::-webkit-file-upload-button {
 .grid_item_briformer_examples h2:hover {
 	color: crimson;
 }
-
-.small_youtube_video_for_iframes
-{
-	position: absolute;
-	width: 50px !important;
-	height: 50px !important;
-	top: 0px;
-	right: 7px;
-}
-
-.small_iframe_youtube_after_clicking, .small_iframe_mp3
-{
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	margin-top: 15px;
-}
-
 
 @media screen and (max-width: 600px) {
 }
