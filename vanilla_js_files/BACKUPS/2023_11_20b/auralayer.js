@@ -339,13 +339,7 @@ class Layer
 				this.name.addEventListener("click", e=> {	 this.select_box.click() });
 				// this.name.addEventListener("dblclick", e=> this.layer_name_double_click_handler(e));
 				this.name.addEventListener("input", e=> this.layer_name_input_handler(e));
-				this.name.addEventListener("focus", e=>
-					{
-						console.log(e);
-						this.name.tabIndex = 0;
-						this.parent.in_text_editor = true; 
-						// window.getSelection().selectAllChildren(this.name);
-					});
+				this.name.addEventListener("focus", e=> { this.parent.in_text_editor = true; });				
 				this.name.addEventListener("blur", e=>
 					{
 						this.name.contentEditable = false;
@@ -509,7 +503,6 @@ class Layer
 			}
 		layer_name_input_handler(e)
 			{
-				console.log(e);
 				this.layer_data.name = e.target.innerText;
 				for (let i = 0; i < this.segment_array.length ; i++)
 					{
@@ -2464,26 +2457,17 @@ class Auralayer
 					case 'youtube_link':
 						if (youtube_player_state != YT.PlayerState.PAUSED)
 							{
-							
-								if(this.iframe_embed === true)
-									{
-										playerx.g.classList.remove("small_youtube_video_for_iframes");
-										playerx.g.classList.add("small_iframe_youtube_after_clicking");
-									}
-
+								
+								playerx.g.classList.remove("small_youtube_video_for_iframes");
+								playerx.g.classList.add("small_iframe_youtube_after_clicking");
 								playerx.pauseVideo();
 								this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
 							}
 						else
 							{
 								
-								if(this.iframe_embed === true)
-									{
-										playerx.g.classList.remove("small_youtube_video_for_iframes");
-										playerx.g.classList.add("small_iframe_youtube_after_clicking");
-									}								
-
-								
+								playerx.g.classList.remove("small_youtube_video_for_iframes");
+								playerx.g.classList.add("small_iframe_youtube_after_clicking");
 								playerx.playVideo();
 								this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
 							}
@@ -2496,6 +2480,7 @@ class Auralayer
 			}
 		play_audio()
 			{
+				debugger
 					switch (this.activity_type)
 							{
 									case 'audio_file':
