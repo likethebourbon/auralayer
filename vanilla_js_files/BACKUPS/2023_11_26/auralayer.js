@@ -2464,26 +2464,17 @@ class Auralayer
 					case 'youtube_link':
 						if (youtube_player_state != YT.PlayerState.PAUSED)
 							{
-							
-								if(this.iframe_embed === true)
-									{
-										playerx.g.classList.remove("small_youtube_video_for_iframes");
-										playerx.g.classList.add("small_iframe_youtube_after_clicking");
-									}
-
+								
+								playerx.g.classList.remove("small_youtube_video_for_iframes");
+								playerx.g.classList.add("small_iframe_youtube_after_clicking");
 								playerx.pauseVideo();
 								this.audio_play_button.innerHTML = `<i class="bi-play-circle"></i>`;
 							}
 						else
 							{
 								
-								if(this.iframe_embed === true)
-									{
-										playerx.g.classList.remove("small_youtube_video_for_iframes");
-										playerx.g.classList.add("small_iframe_youtube_after_clicking");
-									}								
-
-								
+								playerx.g.classList.remove("small_youtube_video_for_iframes");
+								playerx.g.classList.add("small_iframe_youtube_after_clicking");
 								playerx.playVideo();
 								this.audio_play_button.innerHTML = `<i class="bi-pause-circle"></i>`;
 							}
@@ -3451,8 +3442,7 @@ window.onYouTubeIframeAPIReady = function()
 function onPlayerReady(event)
 	{
 		console.log('onPlayerReady called');
-		// if(event.target.playerInfo.duration === 0)
-		if(event.target.getDuration() === 0)
+		if(event.target.playerInfo.duration === 0)
 			{
 				console.log("The YouTube video has a duration of 0 which means there was a problem. The interface will not be loaded in instances like these.");
 			}

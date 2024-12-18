@@ -3451,8 +3451,7 @@ window.onYouTubeIframeAPIReady = function()
 function onPlayerReady(event)
 	{
 		console.log('onPlayerReady called');
-		// if(event.target.playerInfo.duration === 0)
-		if(event.target.getDuration() === 0)
+		if(event.target.playerInfo.duration === 0)
 			{
 				console.log("The YouTube video has a duration of 0 which means there was a problem. The interface will not be loaded in instances like these.");
 			}
