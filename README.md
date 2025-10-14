@@ -26,7 +26,7 @@ In development!
       **Brian:** I can't replicate this.
 - [ ] duplicate layer button  
       **Brian:** Completed. This was difficult 😞. There is now a button with this functionality in each layer settings fly-out menu
-- [ ] cmd+a to select all segments within a layer (but probably not deleted segs/presence 0 segs)
+- [ ] cmd+a to select all segments within a layer (but probably not deleted segs/presence 0 segs)  
       **Brian:** Complete. Also works when multiple layers are selected. All segments from all selected layers that have a presence > 0 will be selected
 - [ ] "merge right/left" when selecting multiple segs should merge all selected segs into the leftmost/rightmost seg
 - [ ] background image of just a lower/upper border or a box
