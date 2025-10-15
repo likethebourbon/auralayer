@@ -451,6 +451,10 @@ button:hover
 	z-index: 1;
 }
 
+.segment_row_selected {
+	background-color: lightgray;
+}
+
 .segment_deleted {
 	background-size: 0 0 !important;
 }
@@ -934,6 +938,16 @@ th[role="columnheader"]:not(.no-sort):hover:after {
 	z-index: 2;
 }
 
+.SegmentTimestampInputBoxText {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.SegmentTimestampInputBoxButtonIncreaseBeginning, .SegmentTimestampInputBoxButtonDecreaseBegining, .SegmentTimestampInputBoxButtonDecreaseEnding, .SegmentTimestampInputBoxButtonIncreaseEnding{
+
+}
+
+
 #shareable_link_modal_close {
 	cursor: pointer;
 	z-index: 2;
@@ -1087,6 +1101,9 @@ input[type="file" i]::-webkit-file-upload-button {
 	margin-top: 15px;
 }
 
+.SegmentTimestampInputBox {
+	display: flex;
+}
 
 @media screen and (max-width: 600px) {
 }
