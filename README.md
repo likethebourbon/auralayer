@@ -4,13 +4,15 @@ In development!
 
 ## Feature requests
 
-- [ ] draggable cursor
+- [ ] draggable cursor  
+      **Brian:** This isn't a feature that I want because it encourages decisions to be made while not listening and I want to minimize that. Now that the timestamps can be edited in the Data table there is at least a way to edit them without listening which I know is important when lining up splits on different layers.
 - [ ] double-click to edit layer name  
       **Brian:** Complete - However, I feel like I added this feature before and something happened on touch devices ...
 - [ ] select segment + Y to jump cursor to beginning of segment
 - [ ] snap cursor to beginnings/ends of segments
 - [ ] Spacer layer (for showing groups of layers). The problem with just deleting all the info from a layer is that it shows up in the data table and puts a bunch of blanks in there, which is a problem for sorting, I think.  
-      **Brian:** I added a toggle in each layer settings called "Data Table". If you toggle it off, it won't show in the Data Table
+      **Brian:** I added a toggle in each layer settings called "Data Table". If you toggle it off, it won't show in the Data Table  
+      **Brian:** I also added two new textures that are just supposed to be used as lines that separate layers on spacer layers
 - [ ] Ability to hide layer names (so that in the data table the layer could still be named, but not visually shown on the graph)  
       **Brian:** I added a toggle in each layer settings called "Hide Name" to do this
 - [ ] editable data table  
@@ -29,8 +31,10 @@ In development!
 - [ ] cmd+a to select all segments within a layer (but probably not deleted segs/presence 0 segs)  
       **Brian:** Complete. Also works when multiple layers are selected. All segments from all selected layers that have a presence > 0 will be selected
 - [ ] "merge right/left" when selecting multiple segs should merge all selected segs into the leftmost/rightmost seg
-- [ ] background image of just a lower/upper border or a box
-- [ ] shift+click selects all contiguous segments; cmd+click selects multiple segments
+- [ ] background image of just a lower/upper border or a box  
+      **Brian**: I don't know what this one is
+- [ ] shift+click selects all contiguous segments; cmd+click selects multiple segments  
+      **Brian**: Completed but the shortcuts is cmd+shift+click to do this
 - [ ] spinner when loading a file  
       **Brian:** This is already there, right?
 - [ ] repaint all layers according to color scheme
