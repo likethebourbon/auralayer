@@ -1,4 +1,4 @@
-let developing = false;
+let developing = true;
 let youtube_player_state = -2;
 let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
@@ -370,7 +370,7 @@ class Layer
 					}).join('')
 
 				let colors_hex = this.parent.colors.map(each=>rgbToHex(each.split(",").map(each=>parseInt(each))));
-				var myPicker = new JSColor(this.color_picker, {format:'hex',	palette: colors_hex});
+				var myPicker = new JSColor(this.color_picker, {format:'hexa',	palette: colors_hex});
 				// var myPicker = new JSColor(this.color_picker, { paletteSetsAlpha: true, palette: colors_hex});
 				
 				this.color_picker.addEventListener("click", e=> { myPicker.show(); });
@@ -415,8 +415,8 @@ class Layer
 							this.name.style.color = "transparent";
 						}
 					});
-				this.name.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging");});
-				this.name.addEventListener("touchstart", e=> { this.layer_container.classList.add("dragging"); });				
+				this.name.addEventListener("dragstart", e=> { this.layer_container.classList.add("dragging");	});
+				this.name.addEventListener("touchstart", e=> { this.layer_container.classList.add("dragging"); });
 				this.name.addEventListener("dragend", e=> 
 					{
 						this.layer_container.classList.remove("dragging");
@@ -699,9 +699,24 @@ class Layer
 						let current_color = e.target.value;
 						
 						// convert hex to rgb
-						var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(current_color);
-						let result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
-						let formated_color_value_for_layer = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + ",1.0)";
+						let result;
+						let result_rgb;
+						let formated_color_value_for_layer;
+
+						debugger
+						if(current_color.length === 7) {
+							result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(current_color);
+							result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16),  }
+							formated_color_value_for_layer = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + ",1.0)";
+						} else if(current_color.length === 9) {
+							result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(current_color);
+							result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16), a: parseInt(result[4], 16),  }
+							formated_color_value_for_layer = "rgba(" + result_rgb.r + "," + result_rgb.g + "," + result_rgb.b + "," + result_rgb.a + ")";
+						} else {
+							alert("Brian, there's something wrong with this color")
+						}
+
+						// let result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
 						let layer_color_formated = "linear-gradient(to right, " + formated_color_value_for_layer + ", " + formated_color_value_for_layer + ")";
 						
 						this.color_picker_button.style.background = urlText + layer_color_formated;
@@ -1676,90 +1691,137 @@ class Auralayer
 			}
     initialize_interface()
       {
-        this.AuralayerProgram = createNewElement({type:"div", classes: ["AuralayerProgram"], parent: document.body});
+        // this.AuralayerProgram = createNewElement({type:"div", classes: ["AuralayerProgram"], parent: document.body});
+				this.AuralayerProgram = document.querySelector(".AuralayerProgram");
 
 			// -----------------------------------
 			//      MAIN INTERFACE COMPONENTS
 			// -----------------------------------        
-        this.Header = createNewElement({type:"header", classes: ["Header_al"], parent: this.AuralayerProgram});
-        // this.Body = createNewElement({type:"main", classes: ["Body_al", "d-flex", "flex-nowrap"], parent: this.AuralayerProgram});
-				this.Body = createNewElement({type:"main", classes: ["Body_al"], parent: this.AuralayerProgram});
-        this.Footer = createNewElement({type:"footer", classes: ["Footer_al"], parent: this.AuralayerProgram});
+        // this.Header = createNewElement({type:"header", classes: ["Header_al"], parent: this.AuralayerProgram});
+				this.Header = document.querySelector(".Header_al");
+
+        // this.Body_al = createNewElement({type:"main", classes: ["Body_al", "d-flex", "flex-nowrap"], parent: this.AuralayerProgram});
+
+				// this.Body_al = createNewElement({type:"main", classes: ["Body_al"], parent: this.AuralayerProgram});
+				this.Body_al = document.querySelector(".Body_al");
+
+        // this.Footer = createNewElement({type:"footer", classes: ["Footer_al"], parent: this.AuralayerProgram});
+				this.Footer = document.querySelector(".Footer_al");
         // this.LeftOuterColumn = createNewElement({type:"div", classes: ["LeftOuterColumn"], parent: this.AuralayerProgram});
 				// this.RightOuterColumn = createNewElement({type:"div", classes: ["RightOuterColumn"], parent: this.AuralayerProgram});
 
 			// -----------------------------------
 			//      HEADER COMPONENTS
 			// -----------------------------------
-				this.HeaderContainer = createNewElement({type: "div", classes:["container-fluid"], parent: this.Header});
-				this.HeaderRow = createNewElement({type: "div", classes: ["row", "my-1", "justify-content-between", "flex-nowrap"], parent: this.HeaderContainer});
-				this.HeaderRowLeft = createNewElement({type: "div", classes: ["HeaderRowLeft", "col-auto", "col-md-4", "d-flex", "align-content-center"], parent: this.HeaderRow});
-				this.HeaderRowCenter = createNewElement({ type: "div", classes: [ "HeaderRowCenter", "col-auto", "col-md-4", "text-center", "d-flex", "align-content-center"], parent: this.HeaderRow, properties: { id: "page-header" }, });
-				this.HeaderRowRight = createNewElement({type: "div", classes: ["HeaderRowRight","col-auto","col-md-4","d-flex","justify-content-end","align-content-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
+				// this.HeaderContainer = createNewElement({type: "div", classes:["HeaderContainer", "container-fluid"], parent: this.Header});
+				this.HeaderContainer = document.querySelector(".HeaderContainer");
+					// this.HeaderRow = createNewElement({type: "div", classes: ["HeaderRow", "row", "my-1", "justify-content-between", "flex-nowrap"], parent: this.HeaderContainer});
+					this.HeaderRow = document.querySelector(".HeaderRow");
 
-				// this.HeaderTitle = createNewElement({type: "h1", classes:["text-primary", "fw-light"], parent: this.HeaderRowCenter, properties:{innerText: "Auralayer"}});
+						// this.HeaderRowLeft = createNewElement({type: "div", classes: ["HeaderRowLeft", "col-auto", "col-md-4", "d-flex", "align-content-center"], parent: this.HeaderRow});
 
-				this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["HeaderSettingsGearButton", "btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button", title: "Header settings gear button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
+						this.HeaderRowLeft = document.querySelector(".HeaderRowLeft");
+							// this.HeaderSettingsGearButton = createNewElement({type:"button", classes: ["HeaderSettingsGearButton", "btn", "btn-outline-secondary", "border-0"], parent: this.HeaderRowLeft, properties:{innerHTML: `<i class="bi-gear-fill"></i>`, type:"button", title: "Header settings gear button"}, dataset:{bsToggle: "offcanvas", bsTarget: "#offcanvasExample"}, attributes: {"aria-controls" : "offcanvasExample"}});
+							this.HeaderSettingsGearButton = document.querySelector(".HeaderSettingsGearButton");
 
-				this.HeaderSettingsMenu = createNewElement({type:"div", classes:["offcanvas", "offcanvas-start"], parent: this.HeaderRowLeft, properties:{id:"offcanvasExample", tabIndex: "-1"}, attributes:{"aria-labelledby": "Settings"}});
+							// this.HeaderSettingsMenu = createNewElement({type:"div", classes:["HeaderSettingsMenu", "offcanvas", "offcanvas-start"], parent: this.HeaderRowLeft, properties:{id:"offcanvasExample", tabIndex: "-1"}, attributes:{"aria-labelledby": "Settings"}});
+							this.HeaderSettingsMenu = document.querySelector(".HeaderSettingsMenu");
 
-				this.HeaderSettingsMenuHeader = createNewElement({type:"div", classes:["offcanvas-header"], parent: this.HeaderSettingsMenu});
-				this.HeaderSettingsMenuHeaderTitle = createNewElement({type: "h5", classes: ["offcanvas-title"], parent: this.HeaderSettingsMenuHeader, properties:{innerText: "Settings", id: "Settings"}});
+								// this.HeaderSettingsMenuHeader = createNewElement({type:"div", classes:["offcanvas-header"], parent: this.HeaderSettingsMenu});
+								this.HeaderSettingsMenuHeader = document.querySelector(".HeaderSettingsMenuHeader");
 
-				this.HeaderSettingsMenuHeaderCloseButton = createNewElement({type: "button", classes:["btn-close"], parent: this.HeaderSettingsMenuHeader, properties:{type:"button"}, attributes:{"aria-label": "Close"}, dataset:{ bsDismiss: "offcanvas"}});
+									// this.HeaderSettingsMenuHeaderTitle = createNewElement({type: "h5", classes: ["offcanvas-title"], parent: this.HeaderSettingsMenuHeader, properties:{innerText: "Settings", id: "Settings"}});
+									this.HeaderSettingsMenuHeaderTitle = document.querySelector(".HeaderSettingsMenuHeaderTitle");
 
-				this.HeaderSettingsMenuBody = createNewElement({type:"div", classes:["offcanvas-body"], parent: this.HeaderSettingsMenu});
+									// this.HeaderSettingsMenuHeaderCloseButton = createNewElement({type: "button", classes:["HeaderSettingsMenuHeaderCloseButton", "btn-close"], parent: this.HeaderSettingsMenuHeader, properties:{type:"button"}, attributes:{"aria-label": "Close"}, dataset:{ bsDismiss: "offcanvas"}});
+									this.HeaderSettingsMenuHeaderCloseButton = document.querySelector(".HeaderSettingsMenuHeaderCloseButton");
 
+								// this.HeaderSettingsMenuBody = createNewElement({type:"div", classes:["offcanvas-body"], parent: this.HeaderSettingsMenu});
+								this.HeaderSettingsMenuBody = document.querySelector(".HeaderSettingsMenuBody");
 
-				this.SegmentDecresendoSelectContainer = createNewElement({type: "p", classes:["SegmentDecresendoSelectContainer"], parent: this.HeaderSettingsMenuBody});
+									// this.SegmentDecresendoSelectContainer = createNewElement({type: "p", classes:["SegmentDecresendoSelectContainer"], parent: this.HeaderSettingsMenuBody});
+									this.SegmentDecresendoSelectContainer = document.querySelector(".SegmentDecresendoSelectContainer");
 
-				this.SegmentDecresendoSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentDecresendoSelectContainer, properties:{innerText: "Segment decrescendo", htmlFor: "decrescendo"}});
-				this.SegmentDecresendoSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentDecresendoSelectContainer, attributes:{"aria-label": "Segment decrescendo"}, events:{change:e=>this.SegmentDecresendoSelectBoxHandler(e)}});
-				this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}, attributes:{selected: true}});
-				this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"gradient", innerText:"Gradient"}});
-				// this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}});
+										// this.SegmentDecresendoSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentDecresendoSelectContainer, properties:{innerText: "Segment decrescendo", htmlFor: "decrescendo"}});
+										this.SegmentDecresendoSelectLabel = document.querySelector(".SegmentDecresendoSelectLabel");
+										
+										// this.SegmentDecresendoSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentDecresendoSelectContainer, attributes:{"aria-label": "Segment decrescendo"}, events:{change:e=>this.SegmentDecresendoSelectBoxHandler(e)}});
+										this.SegmentDecresendoSelectBox = document.querySelector(".SegmentDecresendoSelectBox");
+										this.SegmentDecresendoSelectBox.addEventListener("change", e=>this.SegmentDecresendoSelectBoxHandler(e));
 
+											// this.SegmentDecresendoSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"slope", innerText:"Slope"}, attributes:{selected: true}});
+											this.SegmentDecresendoSelectBoxOption2 = document.querySelector(".SegmentDecresendoSelectBoxOption2");
 
-				this.SegmentColorPaletteSelectContainer = createNewElement({type: "p", classes:["SegmentColorPaletteSelectContainer"], parent: this.HeaderSettingsMenuBody});
-				
-				this.SegmentColorPaletteSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentColorPaletteSelectContainer, properties:{innerText: "Segment color palette (coming soon)", htmlFor: "palette"}});
-				this.SegmentColorPaletteSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentColorPaletteSelectContainer, attributes:{"aria-label": "Color palette"}, properties:{disabled: true}});
-				this.SegmentColorPaletteSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"1", innerText:"Bright", selected: true}});
-				this.SegmentColorPaletteSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"2", innerText:"Dark"}});
-				this.SegmentColorPaletteSelectBoxOption3 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"3", innerText:"Warm"}});
-				this.SegmentColorPaletteSelectBoxOption4 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"4", innerText:"Cool"}});
-				this.SegmentColorPaletteSelectBoxOption5 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"5", innerText:"Rainbow"}});
-				this.SegmentColorPaletteSelectBoxOption6 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"6", innerText:"Rainbow (desaturated)"}});
-				this.SegmentColorPaletteSelectBoxOption7 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"7", innerText:"Sunset"}});
-				this.SegmentColorPaletteSelectBoxOption8 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"8", innerText:"Green–Black"}});
-				this.SegmentColorPaletteSelectBoxOption9 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"9", innerText:"Pink–Blue"}});
-				this.SegmentColorPaletteSelectBoxOption10 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"10", innerText:"Cornflower–White"}});
+											// this.SegmentDecresendoSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentDecresendoSelectBox, properties:{value:"gradient", innerText:"Gradient"}});
+											this.SegmentDecresendoSelectBoxOption1 = document.querySelector(".SegmentDecresendoSelectBoxOption1");
+
+									// this.SegmentColorPaletteSelectContainer = createNewElement({type: "p", classes:["SegmentColorPaletteSelectContainer"], parent: this.HeaderSettingsMenuBody});
+									this.SegmentColorPaletteSelectContainer = document.querySelector(".SegmentColorPaletteSelectContainer" );
+
+									// this.SegmentColorPaletteSelectLabel = createNewElement({type:"label", classes:[], parent:this.SegmentColorPaletteSelectContainer, properties:{innerText: "Segment color palette (coming soon)", htmlFor: "palette"}});
+									this.SegmentColorPaletteSelectLabel = document.querySelector(".SegmentColorPaletteSelectLabel");
+
+										// this.SegmentColorPaletteSelectBox = createNewElement({type:"select", classes:["form-select"], parent:this.SegmentColorPaletteSelectContainer, attributes:{"aria-label": "Color palette"}, properties:{disabled: true}});
+										this.SegmentColorPaletteSelectBox = document.querySelector(".SegmentColorPaletteSelectBox");
+										
+											// this.SegmentColorPaletteSelectBoxOption1 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"1", innerText:"Bright", selected: true}});
+											// this.SegmentColorPaletteSelectBoxOption2 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"2", innerText:"Dark"}});
+											// this.SegmentColorPaletteSelectBoxOption3 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"3", innerText:"Warm"}});
+											// this.SegmentColorPaletteSelectBoxOption4 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"4", innerText:"Cool"}});
+											// this.SegmentColorPaletteSelectBoxOption5 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"5", innerText:"Rainbow"}});
+											// this.SegmentColorPaletteSelectBoxOption6 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"6", innerText:"Rainbow (desaturated)"}});
+											// this.SegmentColorPaletteSelectBoxOption7 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"7", innerText:"Sunset"}});
+											// this.SegmentColorPaletteSelectBoxOption8 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"8", innerText:"Green–Black"}});
+											// this.SegmentColorPaletteSelectBoxOption9 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"9", innerText:"Pink–Blue"}});
+											// this.SegmentColorPaletteSelectBoxOption10 = createNewElement({type:"option", classes:[], parent:this.SegmentColorPaletteSelectBox, properties:{value:"10", innerText:"Cornflower–White"}});
+										
+											this.SegmentColorPaletteSelectBoxOption1 = document.querySelector(".SegmentColorPaletteSelectBoxOption1");
+											this.SegmentColorPaletteSelectBoxOption2 = document.querySelector(".SegmentColorPaletteSelectBoxOption2");
+											this.SegmentColorPaletteSelectBoxOption3 = document.querySelector(".SegmentColorPaletteSelectBoxOption3");
+											this.SegmentColorPaletteSelectBoxOption4 = document.querySelector(".SegmentColorPaletteSelectBoxOption4");
+											this.SegmentColorPaletteSelectBoxOption5 = document.querySelector(".SegmentColorPaletteSelectBoxOption5");
+											this.SegmentColorPaletteSelectBoxOption6 = document.querySelector(".SegmentColorPaletteSelectBoxOption6");
+											this.SegmentColorPaletteSelectBoxOption7 = document.querySelector(".SegmentColorPaletteSelectBoxOption7");
+											this.SegmentColorPaletteSelectBoxOption8 = document.querySelector(".SegmentColorPaletteSelectBoxOption8");
+											this.SegmentColorPaletteSelectBoxOption9 = document.querySelector(".SegmentColorPaletteSelectBoxOption9");
+											this.SegmentColorPaletteSelectBoxOption10 = document.querySelector(".SegmentColorPaletteSelectBoxOption10");
+
+						// this.HeaderRowCenter = createNewElement({ type: "div", classes: [ "HeaderRowCenter", "col-auto", "col-md-4", "text-center", "d-flex", "align-content-center"], parent: this.HeaderRow, properties: { id: "page-header" }, });
+						this.HeaderRowCenter = document.querySelector(".HeaderRowCenter");
+						// this.HeaderRowRight = createNewElement({type: "div", classes: ["HeaderRowRight","col-auto","col-md-4","d-flex","justify-content-end","align-content-center"], parent: this.HeaderRow, properties:{id: "page-header"}});
+						this.HeaderRowRight = document.querySelector(".HeaderRowRight");			
+
 			
-
 
 			// -----------------------------------
 			//      BODY COMPONENTS (not document.body but Auralayer's body)
 			// -----------------------------------
-				this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-fluid"], parent: this.Body});
-				this.UtilitiesContainer = createNewElement({type:"div", classes:["UtilitiesContainer", "row", "mx-md-5", "justify-content-between"],parent: this.BodyContainer, properties:{id:"utilites"}});
-				this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
-				this.LoadingSpinner = createNewElement({type:"div", classes:["LoadingSpinner", "spinner-border", "text-primary"], parent: this.AllLayerContainers, properties:{role: "status", innerHTML: `<span class="visually-hidden">Loading...</span>`}, styles:{display: "none"}});
 
-				// <div class="spinner-border text-primary" role="status">
-  			// 	<span class="visually-hidden">Loading...</span>
-				// </div>
-				this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
-				this.AllLayerContainers.addEventListener("touchmove", e=> { this.dragging_handler(e) });
-				this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
-				this.SegmentEditingSuperContainer = createNewElement({type: "div",classes: ["SegmentEditingSuperContainer", "col-lg-8", "mx-auto"],parent: this.Body,});
-				this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2", "my-3"], parent: this.SegmentEditingSuperContainer, properties:{id:"interface-container"}});
+				// this.BodyContainer = createNewElement({type:"div", classes:["BodyContainer", "container-fluid"], parent: this.Body_al});
+				this.BodyContainer = document.querySelector(".BodyContainer");
+					this.UtilitiesContainer = document.querySelector(".UtilitiesContainer");
+					// this.AllLayerContainers = createNewElement({type:"div", classes: ["AllLayerContainers"], parent: this.BodyContainer});
+					this.AllLayerContainers = document.querySelector(".AllLayerContainers");
+					this.AllLayerContainers.addEventListener("dragover", e=> { this.dragging_handler(e) });
+					this.AllLayerContainers.addEventListener("touchmove", e=> { this.dragging_handler(e) });
+						// this.LoadingSpinner = createNewElement({type:"div", classes:["LoadingSpinner", "spinner-border", "text-primary"], parent: this.AllLayerContainers, properties:{role: "status", innerHTML: `<span class="visually-hidden">Loading...</span>`}, styles:{display: "none"}});
+						this.LoadingSpinner = document.querySelector(".LoadingSpinner");
+					// this.SliderContainer = createNewElement({type: "div", classes: ["SliderContainer"], parent: this.BodyContainer});
+					this.SliderContainer = document.querySelector(".SliderContainer");
+
+				// this.SegmentEditingSuperContainer = createNewElement({type: "div",classes: ["SegmentEditingSuperContainer", "col-lg-8", "mx-auto"],parent: this.Body_al,});
+				this.SegmentEditingSuperContainer = document.querySelector(".SegmentEditingSuperContainer");
+				// this.SegmentEditingContainer = createNewElement({type:"div", classes: ["SegmentEditingContainer","row", "justify-content-md-around", "align-items-center", "g-2", "my-3"], parent: this.SegmentEditingSuperContainer, properties:{id:"interface-container"}});
+				this.SegmentEditingContainer = document.querySelector(".SegmentEditingContainer");
 
 				
 
 			// -----------------------------------
 			//       SLIDER CONTAINER COMPONENTS
 			// -----------------------------------    
-				this.SeekSlider = createNewElement({type: "input", classes: ["slider", "SeekSlider" ], parent: this.SliderContainer, properties:{type: "range", value: 0 }});
+
+				// this.SeekSlider = createNewElement({type: "input", classes: ["slider", "SeekSlider" ], parent: this.SliderContainer, properties:{type: "range", value: 0 }});
+				this.SeekSlider = document.querySelector(".SeekSlider");
 				this.SeekSlider.addEventListener("input", (e) => this.seek_slider_moved_handler(e));
 
 
@@ -1767,129 +1829,172 @@ class Auralayer
 			//      LEFT OUTER COLUMN COMPONENTS
 			// -----------------------------------       
 				// this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer", "col"], parent: this.UtilitiesContainer, properties:{id: "undo-redo"} } );
-				this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer"], parent: this.HeaderRowRight, properties:{id: "undo-redo"} } );
-				this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
-				this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group", "mx-2"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
-
-				this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom out", innerHTML: `<i class="bi-zoom-out"></i>`}});
-				this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});				
-				this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
-				this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
 
 
-				this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
-				this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
-				this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
-				this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
+				// this.UndoZoomContainer = createNewElement ( {type:"div", classes:["UndoZoomContainer"], parent: this.HeaderRowRight, properties:{id: "undo-redo"} } );
+				this.UndoZoomContainer = document.querySelector(".UndoZoomContainer");
 
+					// this.UndoButtonGroup = createNewElement ( {type:"div", classes:["UndoButtonGroup", "btn-group"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
+					this.UndoButtonGroup = document.querySelector(".UndoButtonGroup" );
+
+						// this.UndoButton = createNewElement({type: "button", classes:["UndoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Undo", type:"button", title: "Undo", innerHTML: `<i class="bi-arrow-counterclockwise"></i>`}});
+						this.UndoButton = document.querySelector(".UndoButton");
+						this.UndoButton.addEventListener("click", e=>{this.undo_handler()});
+						// this.RedoButton = createNewElement({type: "button", classes:["RedoButton", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoButtonGroup, properties: {innerText: "Redo", type:"button", title: "Redo", innerHTML: `<i class="bi-arrow-clockwise"></i>`}});
+						this.RedoButton = document.querySelector(".RedoButton");
+						this.RedoButton.addEventListener("click", e=>{this.redo_handler()});
+
+
+					// this.ZoomButtonGroup = createNewElement ( {type:"div", classes:["ZoomButtonGroup", "btn-group", "mx-2"], parent: this.UndoZoomContainer, properties:{role: "group"} } );
+					this.ZoomButtonGroup = document.querySelector(".ZoomButtonGroup" );
+
+						// this.ZoomOutButton = createNewElement({type:"button", classes:["ZoomOutButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom out", innerHTML: `<i class="bi-zoom-out"></i>`}});
+						this.ZoomOutButton = document.querySelector(".ZoomOutButton" );
+						this.ZoomOutButton.addEventListener("click", e=>{this.zoom_handler("out")});				
+						// this.ZoomInButton = createNewElement({type:"button", classes:["ZoomInButton", "btn", "btn-outline-secondary", "border-0"], parent: this.ZoomButtonGroup, properties: {type: "button", title: "Zoom in", innerHTML:`<i class="bi-zoom-in"></i>`}});
+						this.ZoomInButton = document.querySelector(".ZoomInButton");
+						this.ZoomInButton.addEventListener("click", e=>{this.zoom_handler("in")});
 
 
 			// -----------------------------------
 			//      AUDIO CONTROLs
 			// -----------------------------------  				
 
-				this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`, title: "Play Audio Button"}, events: {click: e=>this.play_button_handler(e)}});
-				// this.audio_pause_button = createNewElement({type:"button", classes:["audio_pause_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-pause-circle"></i>`}});
+					// this.audio_play_button = createNewElement({type:"button", classes:["audio_play_button", "btn", "btn-outline-secondary", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-play-circle"></i>`, title: "Play Audio Button"}, events: {click: e=>this.play_button_handler(e)}});
+					this.audio_play_button = document.querySelector(".audio_play_button");
+					this.audio_play_button.addEventListener( "click",  e=> this.play_button_handler(e) );
+					// this.audio_pause_button = createNewElement({type:"button", classes:["audio_pause_button", "btn", "btn-outline-secondary", "rounded-0", "rounded-top", "border-0"], parent: this.UndoZoomContainer, properties: {innerHTML: `<i class="bi-pause-circle"></i>`}});
 
 			// -----------------------------------
 			//    LAYER EDITING CONTAINER COMPONENTS
 			// -----------------------------------    
 
-				this.LayerEditingContainer = createNewElement({type:"div", classes:["col-md-3", "text-md-start", "text-center"], parent: this.SegmentEditingContainer, properties: {id:"new-layer"}});
+				// this.LayerEditingContainer = createNewElement({type:"div", classes:["col-md-3", "text-md-start", "text-center"], parent: this.SegmentEditingContainer, properties: {id:"new-layer"}});
+				this.LayerEditingContainer = document.querySelector(".LayerEditingContainer");
 				
-				this.LayerEditingRow = createNewElement({type:"div", classes:["LayerEditingRow", "row", "align-items-center", "flex-nowrap"], parent: this.LayerEditingContainer, properties:{}});
+					// this.LayerEditingRow = createNewElement({type:"div", classes:["LayerEditingRow", "row", "align-items-center", "flex-nowrap"], parent: this.LayerEditingContainer, properties:{}});	
+					this.LayerEditingRow = document.querySelector(".LayerEditingRow");	
 
-				this.AddLayerRowContainer = createNewElement({type:"div", classes:["AddLayerRowContainer", "col-4"], parent: this.LayerEditingRow, properties:{}});
-				this.AddLayerButton = createNewElement({type:"button", classes: ["AddLayerButton", "btn", "btn-primary"], parent: this.AddLayerRowContainer, properties: {innerHTML: `<i class="bi-plus-lg"></i>`, title: "Add new layer", type: "button"}});
-				this.AddLayerButton.addEventListener("click", e=>this.add_layer_handler());			
+						// this.AddLayerRowContainer = createNewElement({type:"div", classes:["AddLayerRowContainer", "col-4"], parent: this.LayerEditingRow, properties:{}});
+						this.AddLayerRowContainer = document.querySelector(".AddLayerRowContainer");
+
+							// this.AddLayerButton = createNewElement({type:"button", classes: ["AddLayerButton", "btn", "btn-primary"], parent: this.AddLayerRowContainer, properties: {innerHTML: `<i class="bi-plus-lg"></i>`, title: "Add new layer", type: "button"}});
+							this.AddLayerButton = document.querySelector(".AddLayerButton");
+							this.AddLayerButton.addEventListener("click", e=>this.add_layer_handler());			
 
 			// -----------------------------------
 			//    SEGMENT EDITING CONTAINER COMPONENTS
 			// -----------------------------------        
-				
-		
-				
-
-
-				this.SegmentEditingContainer2 = createNewElement({type:"div", classes:["col-md-4", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "edit-layers"}});
-
-				this.SplitButton = createNewElement({type:"button", classes: ["SplitButton", "btn", "btn-primary"], parent: this.SegmentEditingContainer2, properties: {innerHTML: `<i class="bi-layout-split"></i>`, type: "button", title: "Split"}});
-				this.SplitButton.addEventListener('click', e=>this.split_selected_segment(e));
-
-				this.MergeButtonGroup = createNewElement({type:"div", classes:["btn-group"], parent: this.SegmentEditingContainer2, properties:{role: "group"}});
-
-				this.MergeLeftButton = createNewElement({type:"button", classes: ["MergeLeftButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-left"></i>`, role: "group", type: "button", title: "Merge left"}});
-				this.MergeLeftButton.addEventListener('click', e=>this.merge_segments(e,"left"));
-
-				this.MergeRightButton = createNewElement({type:"button", classes: ["MergeRightButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-right"></i>`, role: "group", type: "button", title: "Merge right"}});
-				this.MergeRightButton.addEventListener('click', e=>this.merge_segments(e, "right"));				
-				
-				// this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-bookmark-plus-fill"></i>`, role: "group", type: "button", title: "Add Marker"}});
-				// this.AddMarkerButton.addEventListener('click', e=>this.add_marker(e));
-
-				this.DeleteButton = createNewElement({type:"button", classes: ["DeleteButton", "btn", "btn-danger"], parent: this.SegmentEditingContainer2, properties: {innerText: "Delete", type: "button", title: "Delete layer", innerHTML: `<i class="bi-x-lg"></i>`}});
-				this.DeleteButton.addEventListener('click', e=>this.delete_button_handler(e));					
-
-				this.ExportButtonContainer = createNewElement({type:"div", classes:["ExportButtonContainer", "col-md-2", "text-md-end", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "export"}});
-
-				this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: {innerHTML: `<i class="bi-download"></i>`, type: "button", title:"Save Analysis to File"}, dataset:{bsToggle: "modal", bsTarget: "#download"}});
-				this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
-				// this.SaveToFileButton.addEventListener("click", e => { download_image(); });
-
-				// this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}, events:{click: e=>this.create_shareable_link()}});
-				this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, attributes:{title: "Share analysis button"}, events:{click: e=>this.create_shareable_link()}});
-
-				this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
-
-				this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
-				this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start", disabled: true}, attributes:{title: "Presence Slider Start"}});
-				this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
-				this.PresenceSliderStartValueText = createNewElement({type:"div", classes:["PresenceSliderStartValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderStart.value}});
-
-				this.PresenceSliderEndLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_end", innerText: "Presence (end)"}});
-				this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} , attributes:{title: "Presence Slider End"}});
-				this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
-				this.PresenceSliderEndValueText = createNewElement({type:"div", classes:["PresenceSliderEndValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderEnd.value}});
-
-				this.PresenceLockContainer = createNewElement({type: "div", classes: ["PresenceLockContainer", "col-1", "align-items-center"], parent: this.LayerEditingRow, properties: {}});
-				this.PresenceLockDiv = createNewElement({type:"div", classes:["link-presence", "text-center"], parent: this.PresenceLockContainer});
-
-				this.PresenceSliderIndependentToggle = createNewElement({type:"input", classes: ["PresenceSliderIndependentToggle"], parent: this.PresenceLockDiv, properties: {type: "checkbox"}, styles:{display: "none"}});
-				// this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-link-45deg"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo"}});
-				this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-lock"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo", title: "Presence slider indepenence toggle button"}});
-				this.PresenceSliderIndependentButton.addEventListener("click", ()=>this.PresenceSliderIndependentToggle.click());
-								
-				this.PresenceSliderIndependentToggle.addEventListener("change",e=>
-					{
 						
-						if(this.PresenceSliderEnd.disabled === false)
-							{
-								this.PresenceSliderStart.disabled = false;
-								this.PresenceSliderEnd.disabled = true;
-								
-								// this.PresenceSliderIndependentButton.classList.remove("PresenceSliderIndependentButtonSelected");
-								this.presence_slider_toggle_handler();
-								// this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link");
-								// this.PresenceSliderIndependentButton.children[0].classList.add("bi-link-45deg");
-								
-								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-unlock");
-								this.PresenceSliderIndependentButton.children[0].classList.add("bi-lock");
-							}
-						else
-							{
-								
-								this.PresenceSliderStart.disabled = false;
-								this.PresenceSliderEnd.disabled = false;
-								
-								this.presence_slider_toggle_handler();
-								// this.PresenceSliderIndependentButton.classList.add("PresenceSliderIndependentButtonSelected");
-								// this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link-45deg");
-								// this.PresenceSliderIndependentButton.children[0].classList.add("bi-link");
 
-								this.PresenceSliderIndependentButton.children[0].classList.remove("bi-lock");
-								this.PresenceSliderIndependentButton.children[0].classList.add("bi-unlock");
-							}
-					});
+
+				// this.SegmentEditingSubContainer = createNewElement({type:"div", classes:["col-md-4", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "edit-layers"}});
+				this.SegmentEditingSubContainer = document.querySelector(".SegmentEditingSubContainer");
+
+					// this.SplitButton = createNewElement({type:"button", classes: ["SplitButton", "btn", "btn-primary"], parent: this.SegmentEditingSubContainer, properties: {innerHTML: `<i class="bi-layout-split"></i>`, type: "button", title: "Split"}});
+					this.SplitButton = document.querySelector(".SplitButton");
+					this.SplitButton.addEventListener('click', e=>this.split_selected_segment(e));
+
+					// this.MergeButtonGroup = createNewElement({type:"div", classes:["btn-group"], parent: this.SegmentEditingSubContainer, properties:{role: "group"}});
+					this.MergeButtonGroup = document.querySelector(".MergeButtonGroup");
+
+						// this.MergeLeftButton = createNewElement({type:"button", classes: ["MergeLeftButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-left"></i>`, role: "group", type: "button", title: "Merge left"}});
+						this.MergeLeftButton = document.querySelector(".MergeLeftButton");
+						this.MergeLeftButton.addEventListener('click', e=>this.merge_segments(e,"left"));
+
+						// this.MergeRightButton = createNewElement({type:"button", classes: ["MergeRightButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-box-arrow-in-right"></i>`, role: "group", type: "button", title: "Merge right"}});
+						this.MergeRightButton = document.querySelector(".MergeRightButton");
+						this.MergeRightButton.addEventListener('click', e=>this.merge_segments(e, "right"));				
+				
+						// this.AddMarkerButton = createNewElement({type:"button", classes: ["AddMarkerButton", "btn", "btn-primary"], parent: this.MergeButtonGroup, properties: {innerHTML: `<i class="bi-bookmark-plus-fill"></i>`, role: "group", type: "button", title: "Add Marker"}});
+						// this.AddMarkerButton.addEventListener('click', e=>this.add_marker(e));
+
+					// this.DeleteButton = createNewElement({type:"button", classes: ["DeleteButton", "btn", "btn-danger"], parent: this.SegmentEditingSubContainer, properties: {innerText: "Delete", type: "button", title: "Zero Presence", innerHTML: `<i class="bi-x-lg"></i>`}});
+					this.DeleteButton = document.querySelector(".DeleteButton");
+					this.DeleteButton.addEventListener('click', e=>this.delete_button_handler(e));					
+
+				// this.ExportButtonContainer = createNewElement({type:"div", classes:["ExportButtonContainer", "col-md-2", "text-md-end", "text-center", "flex-nowrap"], parent: this.SegmentEditingContainer, properties:{id: "export"}});
+				this.ExportButtonContainer = document.querySelector(".ExportButtonContainer");
+
+					// this.SaveToFileButton = createNewElement({type: "button", classes: ["SaveToFileButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties: {innerHTML: `<i class="bi-download"></i>`, type: "button", title:"Save Analysis to File"}, dataset:{bsToggle: "modal", bsTarget: "#download"}});
+					this.SaveToFileButton = document.querySelector(".SaveToFileButton");
+					this.SaveToFileButton.addEventListener("click", e => { this.save_to_file(); });
+					// this.SaveToFileButton.addEventListener("click", e => { download_image(); });
+
+					// this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}, events:{click: e=>this.create_shareable_link()}});
+					// this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, attributes:{title: "Share analysis button"}, events:{click: e=>this.create_shareable_link()}});
+					this.ShareAnalysisButton = document.querySelector(".ShareAnalysisButton");
+					this.ShareAnalysisButton.addEventListener("click", e=> this.create_shareable_link());
+
+				// this.PresenceSliderContainer = createNewElement({type: "div", classes: ["PresenceSliderContainer", "col-7"], parent: this.LayerEditingRow, properties: {}});
+				this.PresenceSliderContainer = document.querySelector(".PresenceSliderContainer");
+
+					// this.PresenceSliderStartLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_start", innerText: "Presence (start)"}});
+					this.PresenceSliderStartLabel = document.querySelector(".PresenceSliderStartLabel");
+					// this.PresenceSliderStart = createNewElement({type: "input", classes:["PresenceSliderStart", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range"  , min: 0, max: GLOBAL_presence_scale, id: "presence_start", disabled: true}, attributes:{title: "Presence Slider Start"}});
+					this.PresenceSliderStart = document.querySelector(".PresenceSliderStart");
+					this.PresenceSliderStart.max = GLOBAL_presence_scale;
+					this.PresenceSliderStart.addEventListener("input",e=>this.change_opacity(e,"start"));
+
+					// this.PresenceSliderStartValueText = createNewElement({type:"div", classes:["PresenceSliderStartValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderStart.value}});
+					this.PresenceSliderStartValueText = document.querySelector(".PresenceSliderStartValueText");
+					this.PresenceSliderStartValueText.innerText = this.PresenceSliderStart.value;
+
+
+					// this.PresenceSliderEndLabel = createNewElement({type:"label", classes:["form-label"], parent: this.PresenceSliderContainer, properties:{for: "presence_end", innerText: "Presence (end)"}});
+					this.PresenceSliderEndLabel = document.querySelector(".PresenceSliderEndLabel");
+					// this.PresenceSliderEnd = createNewElement({type: "input", classes:["PresenceSliderEnd", "presence_slider", "form-range"], parent: this.PresenceSliderContainer, properties:{type: "range" , min: 0, max: GLOBAL_presence_scale, id:"presence_end",disabled: true} , attributes:{title: "Presence Slider End"}});
+					this.PresenceSliderEnd = document.querySelector(".PresenceSliderEnd");
+					this.PresenceSliderEnd.max = GLOBAL_presence_scale;
+					this.PresenceSliderEnd.addEventListener("input",e=>this.change_opacity(e,"end"));
+
+					// this.PresenceSliderEndValueText = createNewElement({type:"div", classes:["PresenceSliderEndValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderEnd.value}});
+					this.PresenceSliderEndValueText = document.querySelector(".PresenceSliderEndValueText");
+					this.PresenceSliderEndValueText.innerText = this.PresenceSliderEnd.value;
+
+				// this.PresenceLockContainer = createNewElement({type: "div", classes: ["PresenceLockContainer", "col-1", "align-items-center"], parent: this.LayerEditingRow, properties: {}});
+				this.PresenceLockContainer = document.querySelector(".PresenceLockContainer");
+					// this.PresenceLockDiv = createNewElement({type:"div", classes:["link-presence", "text-center"], parent: this.PresenceLockContainer});
+					this.PresenceLockDiv = document.querySelector(".PresenceLockDiv");
+
+						// this.PresenceSliderIndependentToggle = createNewElement({type:"input", classes: ["PresenceSliderIndependentToggle"], parent: this.PresenceLockDiv, properties: {type: "checkbox"}, styles:{display: "none"}});
+						this.PresenceSliderIndependentToggle = document.querySelector(".PresenceSliderIndependentToggle");
+						// this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-link-45deg"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo"}});
+						// this.PresenceSliderIndependentButton = createNewElement({type:"button", classes: ["PresenceSliderIndependentButton", "btn", "active", "btn-sm"], parent: this.PresenceLockDiv, properties: {innerHTML: `<i class="bi-lock"></i>`}, dataset: {bsToggle: "button"}, attributes:{"aria-pressed": "Segment decrescendo", title: "Presence slider indepenence toggle button"}});
+						this.PresenceSliderIndependentButton = document.querySelector(".PresenceSliderIndependentButton");
+						this.PresenceSliderIndependentButton.addEventListener("click", ()=>this.PresenceSliderIndependentToggle.click());
+								
+						this.PresenceSliderIndependentToggle.addEventListener("change",e=>
+							{
+								
+								if(this.PresenceSliderEnd.disabled === false)
+									{
+										this.PresenceSliderStart.disabled = false;
+										this.PresenceSliderEnd.disabled = true;
+										
+										// this.PresenceSliderIndependentButton.classList.remove("PresenceSliderIndependentButtonSelected");
+										this.presence_slider_toggle_handler();
+										// this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link");
+										// this.PresenceSliderIndependentButton.children[0].classList.add("bi-link-45deg");
+										
+										this.PresenceSliderIndependentButton.children[0].classList.remove("bi-unlock");
+										this.PresenceSliderIndependentButton.children[0].classList.add("bi-lock");
+									}
+								else
+									{
+										
+										this.PresenceSliderStart.disabled = false;
+										this.PresenceSliderEnd.disabled = false;
+										
+										this.presence_slider_toggle_handler();
+										// this.PresenceSliderIndependentButton.classList.add("PresenceSliderIndependentButtonSelected");
+										// this.PresenceSliderIndependentButton.children[0].classList.remove("bi-link-45deg");
+										// this.PresenceSliderIndependentButton.children[0].classList.add("bi-link");
+
+										this.PresenceSliderIndependentButton.children[0].classList.remove("bi-lock");
+										this.PresenceSliderIndependentButton.children[0].classList.add("bi-unlock");
+									}
+							});
 
 					{/* <th role="columnheader" class="col-1">ID</th> */}
 
@@ -1901,129 +2006,175 @@ class Auralayer
 								<th role="columnheader" class="col-2">Starting Presence</th>
 								<th role="columnheader" class="col-2">Ending Presence</th>
 						</tr>
-			`; // These are supposed to add up to 12 ^^
+				`; // These are supposed to add up to 12 ^^
 
 				//data-sort-method="number"
 
-				this.TextEditingMenuContainer = createNewElement({type: "div",classes: ["TextEditingMenuContainer","btn-toolbar","justify-content-center",],parent: this.SegmentEditingSuperContainer,properties: {role: "toolbar",},});
-					this.AlignmentGroup = createNewElement({type: "div",classes: ["AlignmentGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
-					this.TextFormatGroup = createNewElement({type: "div",classes: ["TextFormatGroup","btn-group","btn-group-small","mx-2",],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
-					this.TextSizeGroup = createNewElement({type: "div",classes: ["TextSizeGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group",},});
+				// this.TextEditingMenuContainer = createNewElement({type: "div",classes: ["TextEditingMenuContainer","btn-toolbar","justify-content-center"], parent: this.SegmentEditingSuperContainer,properties: {role: "toolbar",},});
+				this.TextEditingMenuContainer = document.querySelector(".TextEditingMenuContainer");
+					// this.AlignmentGroup = createNewElement({type: "div",classes: ["AlignmentGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group"}});
+					this.AlignmentGroup = document.querySelector(".AlignmentGroup");
+					// this.TextFormatGroup = createNewElement({type: "div",classes: ["TextFormatGroup","btn-group","btn-group-small","mx-2"], parent: this.TextEditingMenuContainer,properties: {role: "group"}});
+					this.TextFormatGroup = document.querySelector(".TextFormatGroup");
+					// this.TextSizeGroup = createNewElement({type: "div",classes: ["TextSizeGroup", "btn-group", "btn-group-small"],parent: this.TextEditingMenuContainer,properties: {role: "group"}});
+					this.TextSizeGroup = document.querySelector(".TextSizeGroup");
 
-				this.TextEditingLeftAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingLeftAlignButton","btn","btn-light",],parent: this.AlignmentGroup, properties:{ innerHTML: `<i class="bi-justify-left"></i>` }, attributes:{title: "Text editing left align button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "left",});},},});
-				this.TextEditingCenterAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingCenterAlignButton","btn","btn-light",],parent: this.AlignmentGroup, properties:{ innerHTML: `<i class="bi-justify"></i>` }, attributes:{title: "Text editing center align button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "center",});},},});
-				this.TextEditingRightAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingRightAlignButton","btn","btn-light",],parent: this.AlignmentGroup, properties:{ innerHTML: `<i class="bi-justify-right"></i>` }, attributes:{title: "Text editing right align button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "right",});},},});
+				// this.TextEditingLeftAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingLeftAlignButton","btn","btn-light",],parent: this.AlignmentGroup, properties:{ innerHTML: `<i class="bi-justify-left"></i>` }, attributes:{title: "Text editing left align button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "left"});}}});
+				this.TextEditingLeftAlignButton = document.querySelector(".TextEditingLeftAlignButton");
+				this.TextEditingLeftAlignButton.addEventListener( "click", (e) => {this.ChangeTextFormat({style: "textAlign",value: "left"})});
 
-				this.TextEditingBoldButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingBoldButton","btn","btn-light",],parent: this.TextFormatGroup, properties:{ innerHTML: `<i class="bi-type-bold"></i>` }, attributes:{title: "Text editing bold button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontWeight",value: "bold",});},},});
-				this.TextEditingItalicButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingItalicButton","btn","btn-light",],parent: this.TextFormatGroup,properties: { innerHTML: `<i class="bi-type-italic"></i>` }, attributes:{title: "Text editing italic button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontStyle",value: "italic",});},},});
-				this.TextEditingStrikeThroughButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingStrikeThroughButton","btn","btn-light",],parent: this.TextFormatGroup, properties:{innerHTML: `<i class="bi-type-strikethrough"></i>`,}, attributes:{title: "Text editing strike through button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textDecoration",value: "line-through",});},},});
-				this.TextEditingFontSizeIncreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeIncreaseButton","btn","btn-light",],parent: this.TextSizeGroup, properties:{ innerHTML: `A+` }, attributes:{title: "Text editing font size increase button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "increase",});},},});
-				this.TextEditingFontSizeDecreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeDecreaseButton","btn","btn-light",],parent: this.TextSizeGroup, properties:{ innerHTML: `A-` }, attributes:{title: "Text editing font size decrease button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "decrease",});},},});
+				// this.TextEditingCenterAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingCenterAlignButton","btn","btn-light",],parent: this.AlignmentGroup, properties:{ innerHTML: `<i class="bi-justify"></i>` }, attributes:{title: "Text editing center align button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "center"});}}});
+				this.TextEditingCenterAlignButton = document.querySelector(".TextEditingCenterAlignButton");
+				this.TextEditingCenterAlignButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "textAlign",value: "center"})});
 
-				this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center", "px-4"], parent: this.Body, properties:{id: "collapsing"}});
-					this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "col-xxl-8", "p-1", "m-auto"], parent: this.AccordionContainer1, properties:{}});
-						this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
-							this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
-								this.DataAccordionHeader = createNewElement({type:"h2", classes:["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties:{}});
-									this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed", "ps-5"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
-							this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
-								this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
-									this.SearchTableInput = createNewElement({type:"input", classes:["table-filter"], parent: this.DataAccordionBodyInterior, properties:{type: "text", placeholder: "Item to filter.."}, dataset: {table: "order-table"}});
-									this.DataTableWrapper = createNewElement({type: "div",classes: ["col"],parent: this.DataAccordionBodyInterior,});
-										this.DataTable = createNewElement({type: "table",classes: ["order-table", "table", "table-responsive"],parent: this.DataTableWrapper,});
-											this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
-											this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
-									this.DataTableTable = new Tablesort(this.DataTable);
-							this.VideoContainer1 = createNewElement({type:"div", classes:["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
-								this.VideoAccordionHeader = createNewElement({type:"h2", classes:["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties:{}});
-									this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed","ps-5"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
-								this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
-									this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
+				// this.TextEditingRightAlignButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingRightAlignButton","btn","btn-light",],parent: this.AlignmentGroup, properties:{ innerHTML: `<i class="bi-justify-right"></i>` }, attributes:{title: "Text editing right align button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textAlign",value: "right"});}}});
+				this.TextEditingRightAlignButton = document.querySelector(".TextEditingRightAlignButton");
+				this.TextEditingRightAlignButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "textAlign",value: "right"})});
+
+				// this.TextEditingBoldButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingBoldButton","btn","btn-light",],parent: this.TextFormatGroup, properties:{ innerHTML: `<i class="bi-type-bold"></i>` }, attributes:{title: "Text editing bold button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontWeight",value: "bold"});}}});
+				this.TextEditingBoldButton = document.querySelector(".TextEditingBoldButton");
+				this.TextEditingBoldButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "fontWeight",value: "bold"})});
+
+				// this.TextEditingItalicButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingItalicButton","btn","btn-light",],parent: this.TextFormatGroup,properties: { innerHTML: `<i class="bi-type-italic"></i>` }, attributes:{title: "Text editing italic button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontStyle",value: "italic"});}}});
+				this.TextEditingItalicButton = document.querySelector(".TextEditingItalicButton");
+				this.TextEditingItalicButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "fontStyle",value: "italic"})});
+
+				// this.TextEditingStrikeThroughButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingStrikeThroughButton","btn","btn-light",],parent: this.TextFormatGroup, properties:{innerHTML: `<i class="bi-type-strikethrough"></i>`,}, attributes:{title: "Text editing strike through button"}, events: {click: (e) => {this.ChangeTextFormat({style: "textDecoration", value: "line-through"});}}});
+				this.TextEditingStrikeThroughButton = document.querySelector(".TextEditingStrikeThroughButton");
+				this.TextEditingStrikeThroughButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "textDecoration", value: "line-through"})});
 
 
+				// this.TextEditingFontSizeIncreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeIncreaseButton","btn","btn-light",],parent: this.TextSizeGroup, properties:{ innerHTML: `A+` }, attributes:{title: "Text editing font size increase button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "increase"});}}});
+				this.TextEditingFontSizeIncreaseButton = document.querySelector(".TextEditingFontSizeIncreaseButton");
+				this.TextEditingFontSizeIncreaseButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "fontSize",type: "increase"})});
 
-				this.SearchTableInput.addEventListener("focus",e=> {this.in_text_editor = true});
-				this.SearchTableInput.addEventListener("blur",e=>{this.in_text_editor = false});
+				// this.TextEditingFontSizeDecreaseButton = createNewElement({type: "button",classes: ["TextEditingButton","TextEditingFontSizeDecreaseButton","btn","btn-light",],parent: this.TextSizeGroup, properties:{ innerHTML: `A-` }, attributes:{title: "Text editing font size decrease button"}, events: {click: (e) => {this.ChangeTextFormat({style: "fontSize",type: "decrease"});}}});
+				this.TextEditingFontSizeDecreaseButton = document.querySelector(".TextEditingFontSizeDecreaseButton");
+				this.TextEditingFontSizeDecreaseButton.addEventListener("click", (e) => {this.ChangeTextFormat({style: "fontSize",type: "decrease"})});
+
+
+				// this.AccordionContainer1 = createNewElement({type:"div", classes:["AccordionContainer1", "row", "text-center", "px-4"], parent: this.Body_al, properties:{id: "collapsing"}});
+				this.AccordionContainer1 = document.querySelector(".AccordionContainer1");
+					// this.AccordionContainer2 = createNewElement({type:"div", classes:["AccordionContainer2", "col-md-10", "col-xxl-8", "p-1", "m-auto"], parent: this.AccordionContainer1, properties:{}});
+					this.AccordionContainer2 = document.querySelector(".AccordionContainer2");
+						// this.AccordionContainer3 = createNewElement({type:"div", classes:["AccordionContainer3", "accordion"], parent: this.AccordionContainer2, properties:{id: "table-video"}});
+						this.AccordionContainer3 = document.querySelector(".AccordionContainer3");
+							// this.DataTableContainer1 = createNewElement({type:"div", classes:["DataTableContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
+							this.DataTableContainer1 = document.querySelector(".DataTableContainer1");
+								// this.DataAccordionHeader = createNewElement({type:"h2", classes:["DataAccordionHeader", "accordion-header"], parent: this.DataTableContainer1, properties:{}});
+								this.DataAccordionHeader = document.querySelector(".DataAccordionHeader");
+									// this.DataAccordionButton = createNewElement({type:"button", classes:["DataAccordionButton", "accordion-button", "collapsed", "ps-5"], parent: this.DataAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-table"></i>&emsp; Data table`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseOne"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseOne"}});
+									this.DataAccordionButton = document.querySelector(".DataAccordionButton");
+								// this.DataAccordionBody = createNewElement({type:"div", classes:["DataAccordionBody", "accordion-collapse", "collapse"], parent: this.DataTableContainer1, properties:{id: "collapseOne"}, dataset:{bsParent: "#table-video"}});
+								this.DataAccordionBody = document.querySelector(".DataAccordionBody");
+									// this.DataAccordionBodyInterior = createNewElement({type:"div", classes:["DataAccordionBodyInterior", "accordion-body", "text-center"], parent: this.DataAccordionBody, properties:{}});
+									this.DataAccordionBodyInterior = document.querySelector(".DataAccordionBodyInterior");
+										// this.SearchTableInput = createNewElement({type:"input", classes:["table-filter"], parent: this.DataAccordionBodyInterior, properties:{type: "text", placeholder: "Item to filter.."}, dataset: {table: "order-table"}});
+										this.SearchTableInput = document.querySelector(".SearchTableInput");
+										// this.DataTableWrapper = createNewElement({type: "div",classes: ["col"],parent: this.DataAccordionBodyInterior});
+										this.DataTableWrapper = document.querySelector(".DataTableWrapper");
+											// this.DataTable = createNewElement({type: "table",classes: ["order-table", "table", "table-responsive"],parent: this.DataTableWrapper,});
+											this.DataTable = document.querySelector(".DataTable");
+												// this.TableBodyTHead = createNewElement({type:"thead", classes:["TableBodyTHead"], parent: this.DataTable, properties:{innerHTML: data_html}});
+												this.TableBodyTHead = document.querySelector(".TableBodyTHead"); 
+												// this.TableBodyTBody = createNewElement({type:"tbody", classes:["TableBodyTBody"], parent: this.DataTable, properties:{}});
+												this.TableBodyTBody = document.querySelector(".TableBodyTBody");
+										this.DataTableTable = new Tablesort(this.DataTable);
+							// this.VideoContainer1 = createNewElement({type:"div", classes:["VideoContainer1", "accordion-item"], parent: this.AccordionContainer3, properties:{}});
+							this.VideoContainer1 = document.querySelector(".VideoContainer1");
+								// this.VideoAccordionHeader = createNewElement({type:"h2", classes:["VideoAccordionHeader", "accordion-header"], parent: this.VideoContainer1, properties:{}});
+								this.VideoAccordionHeader = document.querySelector(".VideoAccordionHeader");
+									// this.VideoAccordionButton = createNewElement({type:"button", classes:["VideoAccordionButton", "accordion-button", "collapsed","ps-5"], parent: this.VideoAccordionHeader, properties:{type: "button", innerHTML: `<i class="bi-youtube"></i>&emsp; Media`}, dataset:{bsToggle: "collapse", bsTarget: "#collapseTwo"}, attributes:{"aria-expanded": "false", "aria-controls": "collapseTwo"}});
+									this.VideoAccordionButton = document.querySelector(".VideoAccordionButton");
+								// this.VideoAccordionBody = createNewElement({type:"div", classes:["VideoAccordionBody", "accordion-collapse", "collapse"], parent: this.VideoContainer1, properties:{id: "collapseTwo"}, dataset:{bsParent: "#table-video"}});
+								this.VideoAccordionBody = document.querySelector(".VideoAccordionBody");
+									// this.VideoAccordionBodyInterior = createNewElement({type:"div", classes:["VideoAccordionBodyInterior", "accordion-body", "text-center"], parent: this.VideoAccordionBody, properties:{}});
+									this.VideoAccordionBodyInterior = document.querySelector(".VideoAccordionBodyInterior");
+
+
+
+			this.SearchTableInput.addEventListener("focus",e=> {this.in_text_editor = true});
+			this.SearchTableInput.addEventListener("blur",e=>{this.in_text_editor = false});
+			
+			(function() {
+				'use strict';
+			
 				
-				(function() {
-					'use strict';
+			var TableFilter = (function()
+				{
+					var Arr = Array.prototype;
+					var input;
 				
-					
-				var TableFilter = (function()
-					{
-						var Arr = Array.prototype;
-						var input;
-					
-						function onInputEvent(e)
-							{
-								input = e.target;
-								var table1 = document.getElementsByClassName(input.getAttribute('data-table'));
-								Arr.forEach.call(table1, function(table)
-									{
-										Arr.forEach.call(table.tBodies, function(tbody)
-											{
-												Arr.forEach.call(tbody.rows, filter);
-											});
-									});
-							}
-				
-						function filter(row)
-							{
-								var text = row.textContent.toLowerCase();
-
-								if(row.querySelector(".SegmentTextInput").hasAttribute("data-text_value"))
-									{
-										let input_text_value = row.querySelector(".SegmentTextInput").dataset.text_value;
-										if(input_text_value != "")
-											{													
-												text = text + input_text_value.toLowerCase();
-												console.log("NEW: " + text);
-											}
-									}
-
-								var val = input.value.toLowerCase();
-								
-								console.log(val);
-								if(row.classList.contains("row_hidden_from_table") === false) {
-									row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-								}
-							}
-				
-						return{
-							init: function()
+					function onInputEvent(e)
+						{
+							input = e.target;
+							var table1 = document.getElementsByClassName(input.getAttribute('data-table'));
+							Arr.forEach.call(table1, function(table)
 								{
-									var inputs = document.getElementsByClassName('table-filter');
-									Arr.forEach.call(inputs, function(input) { input.oninput = onInputEvent; });
-								}
-							};
-						
-						})();
-				
-					console.log(document.readyState);
-					document.addEventListener('readystatechange', function() {
-						if (document.readyState === 'complete') {
-							console.log(document.readyState);
-							TableFilter.init();
+									Arr.forEach.call(table.tBodies, function(tbody)
+										{
+											Arr.forEach.call(tbody.rows, filter);
+										});
+								});
 						}
-					}); 
+			
+					function filter(row)
+						{
+							var text = row.textContent.toLowerCase();
+
+							if(row.querySelector(".SegmentTextInput").hasAttribute("data-text_value"))
+								{
+									let input_text_value = row.querySelector(".SegmentTextInput").dataset.text_value;
+									if(input_text_value != "")
+										{													
+											text = text + input_text_value.toLowerCase();
+											console.log("NEW: " + text);
+										}
+								}
+
+							var val = input.value.toLowerCase();
+							
+							console.log(val);
+							if(row.classList.contains("row_hidden_from_table") === false) {
+								row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+							}
+						}
+			
+					return{
+						init: function()
+							{
+								var inputs = document.getElementsByClassName('table-filter');
+								Arr.forEach.call(inputs, function(input) { input.oninput = onInputEvent; });
+							}
+						};
 					
-					TableFilter.init(); 
-				})();
-				
-
-				// Text Formatting Flyout Menu
-				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
-				// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.HeaderContainer , properties:{}, styles:{display: "none"}});
-				
-				if(this.iframe_embed === true)
-					{
-						this.SegmentEditingSuperContainer.style.display = "none";
-						this.AccordionContainer1.style.display = "none";
-						this.HeaderSettingsGearButton.style.display = "none";
-
-						document.getElementsByTagName("header")[0].style.display = "none";
-						this.HeaderRowCenter.innerHTML = `<h2><a class="nav-link" href="about.html" target="_blank">Auralayer</a></h2>`
+					})();
+			
+				console.log(document.readyState);
+				document.addEventListener('readystatechange', function() {
+					if (document.readyState === 'complete') {
+						console.log(document.readyState);
+						TableFilter.init();
 					}
+				}); 
+				
+				TableFilter.init(); 
+			})();
+			
+
+			// Text Formatting Flyout Menu
+			// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.SegmentEditingContainer , properties:{}, styles:{display: "none"}});
+			// this.TextEditingMenuContainer = createNewElement({type:"div", classes:["TextEditingMenuContainer"], parent: this.HeaderContainer , properties:{}, styles:{display: "none"}});
+			
+			if(this.iframe_embed === true)
+				{
+					this.SegmentEditingSuperContainer.style.display = "none";
+					this.AccordionContainer1.style.display = "none";
+					this.HeaderSettingsGearButton.style.display = "none";
+
+					document.getElementsByTagName("header")[0].style.display = "none";
+					this.HeaderRowCenter.innerHTML = `<h2><a class="nav-link" href="about.html" target="_blank">Auralayer</a></h2>`
+				}
       }
 		SegmentDecresendoSelectBoxHandler(e)
 			{
@@ -2860,7 +3011,7 @@ class Auralayer
 				if (this.iframe_embed === true)
 				{
 					this.uploaded_audio.classList.add("small_iframe_mp3");
-					this.Body.appendChild(this.uploaded_audio);
+					this.Body_al.appendChild(this.uploaded_audio);
 
 				}
 			else
