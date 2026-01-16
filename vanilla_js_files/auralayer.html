@@ -1,267 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <link rel="shortcut icon" type="image/png" href="icons/favicon.png" />
+        <link rel="apple-touch-icon" sizes="128x128" href="icons/favicon.png" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Auralayer</title>
 
-<head>
-	<link rel="shortcut icon" type="image/png" href="icons/favicon.png" />
-	<link rel="apple-touch-icon" sizes="128x128" href="icons/favicon.png" />
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Auralayer</title>
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 
-	<!-- Bootstrap CSS v5.2.1 -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+        <link href="./bootstrap_icons/bootstrap-icons.min.css" rel="stylesheet" />
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-	<link href="./bootstrap_icons/bootstrap-icons.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
 
-	<link rel="stylesheet" href="style.css" />
-</head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <h1>Auralayer</h1>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="auralayer.html">Create</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-<body>
-	<header>
-		<nav class="navbar navbar-expand-sm bg-body-tertiary">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
+        <div class="AuralayerProgram">
+            <header class="Header_al">
+                <div class="HeaderContainer container-fluid">
+                    <div class="HeaderRow row my-1 justify-content-between flex-nowrap">
+                        <div class="HeaderRowLeft col-auto col-md-4 d-flex align-content-center">
+                            <button class="HeaderSettingsGearButton btn btn-outline-secondary border-0" aria-controls="offcanvasExample" title="Settings" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+                                <i class="bi-gear-fill"></i>
+                            </button>
+                            <div class="HeaderSettingsMenu offcanvas offcanvas-start" id="offcanvasExample" tabindex="-1" aria-labelledby="Settings">
+                                <div class="HeaderSettingsMenuHeader offcanvas-header">
+                                    <h5 class="HeaderSettingsMenuHeaderTitle offcanvas-title" id="Settings">Settings</h5>
+                                    <button class="HeaderSettingsMenuHeaderCloseButton btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
+                                </div>
+                                <div class="HeaderSettingsMenuBody offcanvas-body">
+                                    <p class="SegmentDecresendoSelectContainer">
+                                        <label class="SegmentDecresendoSelectLabel" for="decrescendo">Segment decrescendo</label>
+                                        <select class="SegmentDecresendoSelectBox form-select" name="" id="SegmentDecresendoSelectBox" aria-label="Segment decrescendo">
+                                            <option class="SegmentDecresendoSelectBoxOption2" value="slope" selected>Slope</option>
+                                            <option class="SegmentDecresendoSelectBoxOption1" value="gradient">Gradient</option>
+                                        </select>
+                                    </p>
 
-					<h1>Auralayer</h1>
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
+                                    <p class="SegmentColorPaletteSelectContainer">
+                                        <label class="SegmentColorPaletteSelectLabel" for="palette">Segment color palette (coming soon)</label>
+                                        <select class="SegmentColorPaletteSelectBox form-select" name="" id="SegmentColorPaletteSelectBox" aria-label="Color palette" disabled>
+                                            <option class="SegmentColorPaletteSelectBoxOption1" value="1" selected>Bright</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption2" value="2">Dark</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption3" value="3">Warm</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption4" value="4">Cool</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption5" value="5">Rainbow</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption6" value="6">Rainbow (desaturated)</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption7" value="7">Sunset</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption8" value="8">Green–Black</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption9" value="9">Pink–Blue</option>
+                                            <option class="SegmentColorPaletteSelectBoxOption10" value="10">Cornflower–White</option>
+                                        </select>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="HeaderRowCenter col-auto col-md-4 text-center d-flex align-content-center" id="page-header"></div>
+                        <div class="HeaderRowRight col-auto col-md-4 d-flex justify-content-end align-content-center" id="page-header">
+                            <div class="UndoZoomContainer" id="undo-redo">
+                                <div class="UndoButtonGroup btn-group" role="group">
+                                    <button class="UndoButton btn btn-outline-secondary border-0" type="button" title="Undo (⌘Z)">
+                                        <i class="bi-arrow-counterclockwise"></i>
+                                    </button>
+                                    <button class="RedoButton btn btn-outline-secondary border-0" type="button" title="Redo (⌘⇧Z)">
+                                        <i class="bi-arrow-clockwise"></i>
+                                    </button>
+                                </div>
+                                <div class="ZoomButtonGroup btn-group mx-2" role="group">
+                                    <button class="ZoomOutButton btn btn-outline-secondary border-0" type="button" title="Zoom out">
+                                        <i class="bi-zoom-out"></i>
+                                    </button>
+                                    <button class="ZoomInButton btn btn-outline-secondary border-0" type="button" title="Zoom in">
+                                        <i class="bi-zoom-in"></i>
+                                    </button>
+                                </div>
+                                <button class="audio_play_button btn btn-outline-secondary border-0" title="Play Audio">
+                                    <i class="bi-play-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="Body_al">
+                <div class="BodyContainer container-fluid">
+                    <div class="UtilitiesContainer row mx-md-5 justify-content-between" id="utilites"></div>
+                    <div class="AllLayerContainers">
+                        <div class="LoadingSpinner spinner-border text-primary" role="status" styles="display: 'none'">
+                            <span class="visually-hidden">Loading…</span>
+                        </div>
+                    </div>
+                    <div class="SliderContainer">
+                        <input class="SeekSlider slider" type="range" value="0" />
+                    </div>
+                </div>
+                <div class="SegmentEditingSuperContainer col-lg-8 mx-auto">
+                    <div class="SegmentEditingContainer row justify-content-md-around align-items-center g-2 my-3" id="interface-container">
+                        <div class="LayerEditingContainer col-md-3 text-md-start text-center" id="new-layer">
+                            <div class="LayerEditingRow row align-items-center flex-nowrap">
+                                <div class="AddLayerRowContainer col-4">
+                                    <button class="AddLayerButton btn btn-primary" title="Add new layer (N)" type="button">
+                                        <i class="bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="PresenceSliderContainer col-7">
+                                    <label class="PresenceSliderStartLabel form-label" for="presence_start">Presence (start)</label>
+                                    <input class="PresenceSliderStart presence_slider form-range" type="range" min="0" id="presence_start" title="Presence Start" disabled />
+                                    <div class="PresenceSliderStartValueText"></div>
 
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" href="home.html">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="auralayer.html">Create</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="about.html">About</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
+                                    <label class="PresenceSliderEndLabel form-label" for="presence_end">Presence (end)</label>
+                                    <input class="PresenceSliderEnd presence_slider form-range" type="range" min="0" id="presence_end" title="Presence End" disabled />
+                                    <!-- // this.PresenceSliderEndValueText = createNewElement({type:"div", classes:["PresenceSliderEndValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderEnd.value}}); -->
+                                    <div class="PresenceSliderEndValueText"></div>
+                                </div>
+                                <div class="PresenceLockContainer col-1 align-items-center">
+                                    <div class="PresenceLockDiv link-presence text-center">
+                                        <input class="PresenceSliderIndependentToggle" name="PresenceSliderIndependentToggle" type="checkbox" style="display: none" />
+                                        <button class="PresenceSliderIndependentButton btn active btn-sm" data-bs-toggle="button" aria-pressed="Segment decrescendo" title="Presence indepenence toggle">
+                                            <i class="bi-lock"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="SegmentEditingSubContainer col-md-4 text-center flex-nowrap" id="edit-layers">
+                            <button class="SplitButton btn btn-primary" type="button" title="Split (S)">
+                                <i class="bi-layout-split"></i>
+                            </button>
+                            <div class="MergeButtonGroup btn-group" role="group">
+                                <button class="MergeLeftButton btn btn-primary" role="group" type="button" title="Merge left">
+                                    <i class="bi-box-arrow-in-left"></i>
+                                </button>
+                                <button class="MergeRightButton btn btn-primary" role="group" type="button" title="Merge right">
+                                    <i class="bi-box-arrow-in-right"></i>
+                                </button>
+                            </div>
+                            <button class="DeleteButton btn btn-danger" type="button" title="Delete (del)">
+                                <i class="bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="ExportButtonContainer col-md-2 text-md-end text-center flex-nowrap" id="export">
+                            <button class="SaveToFileButton btn btn-secondary" type="button" title="Save Analysis to File" data-bs-toggle="modal" data-bs-target="#download">
+                                <i class="bi-download"></i>
+                            </button>
+                            <button class="ShareAnalysisButton btn btn-secondary" type="button" title="Share analysis">
+                                <i class="bi-share-fill"></i>
+                            </button>
+                            <button class="SaveToImageButton btn btn-secondary" type="button" title="Save Analysis to Image" data-bs-toggle="modal" data-bs-target="#download">
+                                <i class="bi-card-image"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="TextEditingMenuContainer btn-toolbar justify-content-center" role="toolbar">
+                        <div class="AlignmentGroup btn-group btn-group-small" role="group">
+                            <button class="TextEditingButton TextEditingLeftAlignButton btn btn-light" title="Left align text"><i class="bi-justify-left"></i></button>
+                            <button class="TextEditingButton TextEditingCenterAlignButton btn btn-light" title="Center align text"><i class="bi-justify"></i></button>
+                            <button class="TextEditingButton TextEditingRightAlignButton btn btn-light" title="Right align text"><i class="bi-justify-right"></i></button>
+                        </div>
+                        <div class="TextFormatGroup btn-group btn-group-small mx-2" role="group">
+                            <button class="TextEditingButton TextEditingBoldButton btn btn-light" title="Bold text"><i class="bi-type-bold"></i></button>
+                            <button class="TextEditingButton TextEditingItalicButton btn btn-light" title="Italic text"><i class="bi-type-italic"></i></button>
+                            <button class="TextEditingButton TextEditingStrikeThroughButton btn btn-light" title="Strikethrough text"><i class="bi-type-strikethrough"></i></button>
+                        </div>
+                        <div class="TextSizeGroup btn-group btn-group-small" role="group">
+                            <button class="TextEditingButton TextEditingFontSizeIncreaseButton btn btn-light" title="Increase font size">A+</button>
+                            <button class="TextEditingButton TextEditingFontSizeDecreaseButton btn btn-light" title="Decrease font size">A-</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="AccordionContainer1 row text-center px-4">
+                    <div class="AccordionContainer2 col-md-10 col-xxl-8 p-1 m-auto">
+                        <div class="AccordionContainer3 accordion">
+                            <div class="DataTableContainer1 accordion-item">
+                                <h2 class="DataAccordionHeader accordion-header">
+                                    <button class="DataAccordionButton accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="bi-table"></i>&emsp; Data table
+                                    </button>
+                                </h2>
+                                <div class="DataAccordionBody accordion-collapse collapse" id="collapseOne" data-bs-parent="#table-video">
+                                    <div class="DataAccordionBodyInterior accordion-body text-center">
+                                        <div class="col-md-6 mx-auto"><input class="SearchTableInput table-filter form-control" type="text" placeholder="Item to filter…" data-table="order-table" /></div>
+                                        <div class="DataTableWrapper col">
+                                            <table class="DataTable order-table table table-responsive">
+                                                <thead class="TableBodyTHead">
+                                                    <tr>
+                                                        <th role="columnheader" class="col-1" data-sort-method="number">Time</th>
+                                                        <th role="columnheader" class="col-2">Layer</th>
+                                                        <th role="columnheader" class="col-5">Text</th>
+                                                        <th role="columnheader" class="col-2">Starting Presence</th>
+                                                        <th role="columnheader" class="col-2">Ending Presence</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="TableBodyTBody"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="VideoContainer1 accordion-item">
+                                <h2 class="VideoAccordionHeader accordion-header">
+                                    <button class="VideoAccordionButton accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <i class="bi-youtube"></i>&emsp; Media
+                                    </button>
+                                </h2>
+                                <div class="VideoAccordionBody accordion-collapse collapse" id="collapseTwo" data-bs-parent="#table-video">
+                                    <div class="VideoAccordionBodyInterior accordion-body text-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="Footer_al"></footer>
+        </div>
+        <!-- scripts -->
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 
-	<div class="AuralayerProgram">
-		<header class="Header_al">
-			<div class="HeaderContainer container-fluid">
-				<div class="HeaderRow row my-1 justify-content-between flex-nowrap">
-					<div class="HeaderRowLeft col-auto col-md-4 d-flex align-content-center">
-						<button class="HeaderSettingsGearButton btn btn-outline-secondary border-0" aria-controls="offcanvasExample" title="Settings" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
-							<i class="bi-gear-fill"></i>
-						</button>
-						<div class="HeaderSettingsMenu offcanvas offcanvas-start" id="offcanvasExample" tabindex="-1" aria-labelledby="Settings">
-							<div class="HeaderSettingsMenuHeader offcanvas-header">
+        <script src="scripts/tablesort.min.js"></script>
 
-								<h5 class="HeaderSettingsMenuHeaderTitle offcanvas-title" id="Settings">Settings</h5>
-								<button class="HeaderSettingsMenuHeaderCloseButton btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
-							</div>
-							<div class="HeaderSettingsMenuBody offcanvas-body">
+        <!-- Include sort types you need -->
 
-								<p class="SegmentDecresendoSelectContainer">
-									<label class="SegmentDecresendoSelectLabel" for="decrescendo">Segment decrescendo</label>
-									<select class="SegmentDecresendoSelectBox form-select" name="" id="SegmentDecresendoSelectBox" aria-label="Segment decrescendo">
-										<option class="SegmentDecresendoSelectBoxOption2" value="slope" selected>Slope</option>
-										<option class="SegmentDecresendoSelectBoxOption1" value="gradient">Gradient</option>
-									</select>
-								</p>
+        <script src="scripts/sorts/tablesort.number.min.js"></script>
+        <script src="scripts/sorts/tablesort.dotsep.min.js"></script>
+        <script src="scripts/sorts/tablesort.date.min.js"></script>
+        <script src="scripts/sorts/tablesort.value.js"></script>
 
-								<p class="SegmentColorPaletteSelectContainer">
-									<label class="SegmentColorPaletteSelectLabel" for="palette">Segment color palette (coming soon)</label>
-									<select class="SegmentColorPaletteSelectBox form-select" name="" id="SegmentColorPaletteSelectBox" aria-label="Color palette" disabled>
-										<option class="SegmentColorPaletteSelectBoxOption1" value="1" selected>Bright</option>
-										<option class="SegmentColorPaletteSelectBoxOption2" value="2">Dark</option>
-										<option class="SegmentColorPaletteSelectBoxOption3" value="3">Warm</option>
-										<option class="SegmentColorPaletteSelectBoxOption4" value="4">Cool</option>
-										<option class="SegmentColorPaletteSelectBoxOption5" value="5">Rainbow</option>
-										<option class="SegmentColorPaletteSelectBoxOption6" value="6">Rainbow (desaturated)</option>
-										<option class="SegmentColorPaletteSelectBoxOption7" value="7">Sunset</option>
-										<option class="SegmentColorPaletteSelectBoxOption8" value="8">Green–Black</option>
-										<option class="SegmentColorPaletteSelectBoxOption9" value="9">Pink–Blue</option>
-										<option class="SegmentColorPaletteSelectBoxOption10" value="10">Cornflower–White</option>
-									</select>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="HeaderRowCenter col-auto col-md-4 text-center d-flex align-content-center" id="page-header"></div>
-					<div class="HeaderRowRight col-auto col-md-4 d-flex justify-content-end align-content-center" id="page-header">
-						<div class="UndoZoomContainer" id="undo-redo">
-							<div class="UndoButtonGroup btn-group" role="group">
-								<button class="UndoButton btn btn-outline-secondary border-0" type="button" title="Undo (⌘Z)">
-									<i class="bi-arrow-counterclockwise"></i>
-								</button>
-								<button class="RedoButton btn btn-outline-secondary border-0" type="button" title="Redo (⌘⇧Z)">
-									<i class="bi-arrow-clockwise"></i>
-								</button>
-							</div>
-							<div class="ZoomButtonGroup btn-group mx-2" role="group">
-								<button class="ZoomOutButton btn btn-outline-secondary border-0" type="button" title="Zoom out">
-									<i class="bi-zoom-out"></i>
-								</button>
-								<button class="ZoomInButton btn btn-outline-secondary border-0" type="button" title="Zoom in">
-									<i class="bi-zoom-in"></i>
-								</button>
-							</div>
-							<button class="audio_play_button btn btn-outline-secondary border-0" title="Play Audio">
-								<i class="bi-play-circle"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-		<main class="Body_al">
-			<div class="BodyContainer container-fluid">
-				<div class="UtilitiesContainer row mx-md-5 justify-content-between" id="utilites"></div>
-				<div class="AllLayerContainers">
-					<div class="LoadingSpinner spinner-border text-primary" role="status" styles="display: 'none'">
-						<span class="visually-hidden">Loading…</span>
-					</div>
-				</div>
-				<div class="SliderContainer">
-					<input class="SeekSlider slider" type="range" value="0" />
-				</div>
-			</div>
-			<div class="SegmentEditingSuperContainer col-lg-8 mx-auto">
-				<div class="SegmentEditingContainer row justify-content-md-around align-items-center g-2 my-3" id="interface-container">
-					<div class="LayerEditingContainer col-md-3 text-md-start text-center" id="new-layer">
-						<div class="LayerEditingRow row align-items-center flex-nowrap">
-							<div class="AddLayerRowContainer col-4">
-								<button class="AddLayerButton btn btn-primary" title="Add new layer (N)" type="button">
-									<i class="bi-plus-lg"></i>
-								</button>
-							</div>
-							<div class="PresenceSliderContainer col-7">
-								<label class="PresenceSliderStartLabel form-label" for="presence_start">Presence (start)</label>
-								<input class="PresenceSliderStart presence_slider form-range" type="range" min="0" id="presence_start" title="Presence Start" disabled />
-								<div class="PresenceSliderStartValueText"></div>
+        <script src="scripts/jscolor.js"></script>
 
-								<label class="PresenceSliderEndLabel form-label" for="presence_end">Presence (end)</label>
-								<input class="PresenceSliderEnd presence_slider form-range" type="range" min="0" id="presence_end" title="Presence End" disabled />
-								<!-- // this.PresenceSliderEndValueText = createNewElement({type:"div", classes:["PresenceSliderEndValueText"], parent: this.PresenceSliderContainer, properties:{innerText: this.PresenceSliderEnd.value}}); -->
-								<div class="PresenceSliderEndValueText"></div>
-							</div>
-							<div class="PresenceLockContainer col-1 align-items-center">
-								<div class="PresenceLockDiv link-presence text-center">
-									<input class="PresenceSliderIndependentToggle" name="PresenceSliderIndependentToggle" type="checkbox" style="display: none" />
-									<button class="PresenceSliderIndependentButton btn active btn-sm" data-bs-toggle="button" aria-pressed="Segment decrescendo" title="Presence indepenence toggle">
-										<i class="bi-lock"></i>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="SegmentEditingSubContainer col-md-4 text-center flex-nowrap" id="edit-layers">
-						<button class="SplitButton btn btn-primary" type="button" title="Split (S)">
-							<i class="bi-layout-split"></i>
-						</button>
-						<div class="MergeButtonGroup btn-group" role="group">
-							<button class="MergeLeftButton btn btn-primary" role="group" type="button" title="Merge left">
-								<i class="bi-box-arrow-in-left"></i>
-							</button>
-							<button class="MergeRightButton btn btn-primary" role="group" type="button" title="Merge right">
-								<i class="bi-box-arrow-in-right"></i>
-							</button>
-						</div>
-						<button class="DeleteButton btn btn-danger" type="button" title="Delete (del)">
-							<i class="bi-x-lg"></i>
-						</button>
-					</div>
-					<div class="ExportButtonContainer col-md-2 text-md-end text-center flex-nowrap" id="export">
-						<button class="SaveToFileButton btn btn-secondary" type="button" title="Save Analysis to File" data-bs-toggle="modal" data-bs-target="#download">
-							<i class="bi-download"></i>
-						</button>
-						<button class="ShareAnalysisButton btn btn-secondary" type="button" title="Share analysis">
-							<i class="bi-share-fill"></i>
-						</button>
-					</div>
-				</div>
-				<div class="TextEditingMenuContainer btn-toolbar justify-content-center" role="toolbar">
-					<div class="AlignmentGroup btn-group btn-group-small" role="group">
-						<button class="TextEditingButton TextEditingLeftAlignButton btn btn-light" title="Left align text"><i class="bi-justify-left"></i></button>
-						<button class="TextEditingButton TextEditingCenterAlignButton btn btn-light" title="Center align text"><i class="bi-justify"></i></button>
-						<button class="TextEditingButton TextEditingRightAlignButton btn btn-light" title="Right align text"><i class="bi-justify-right"></i></button>
-					</div>
-					<div class="TextFormatGroup btn-group btn-group-small mx-2" role="group">
-						<button class="TextEditingButton TextEditingBoldButton btn btn-light" title="Bold text"><i class="bi-type-bold"></i></button>
-						<button class="TextEditingButton TextEditingItalicButton btn btn-light" title="Italic text"><i class="bi-type-italic"></i></button>
-						<button class="TextEditingButton TextEditingStrikeThroughButton btn btn-light" title="Strikethrough text"><i class="bi-type-strikethrough"></i></button>
-					</div>
-					<div class="TextSizeGroup btn-group btn-group-small" role="group">
-						<button class="TextEditingButton TextEditingFontSizeIncreaseButton btn btn-light" title="Increase font size">A+</button>
-						<button class="TextEditingButton TextEditingFontSizeDecreaseButton btn btn-light" title="Decrease font size">A-</button>
-					</div>
-				</div>
-			</div>
-			<div class="AccordionContainer1 row text-center px-4">
-				<div class="AccordionContainer2 col-md-10 col-xxl-8 p-1 m-auto">
-					<div class="AccordionContainer3 accordion">
-						<div class="DataTableContainer1 accordion-item">
-
-							<h2 class="DataAccordionHeader accordion-header">
-								<button class="DataAccordionButton accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-									<i class="bi-table"></i>&emsp; Data table
-								</button>
-							</h2>
-							<div class="DataAccordionBody accordion-collapse collapse" id="collapseOne" data-bs-parent="#table-video">
-								<div class="DataAccordionBodyInterior accordion-body text-center">
-									<div class="col-md-6 mx-auto"><input class="SearchTableInput table-filter form-control" type="text" placeholder="Item to filter…" data-table="order-table" /></div>
-									<div class="DataTableWrapper col">
-										<table class="DataTable order-table table table-responsive">
-											<thead class="TableBodyTHead">
-												<tr>
-													<th role="columnheader" class="col-1" data-sort-method="number">Time</th>
-													<th role="columnheader" class="col-2">Layer</th>
-													<th role="columnheader" class="col-5">Text</th>
-													<th role="columnheader" class="col-2">Starting Presence</th>
-													<th role="columnheader" class="col-2">Ending Presence</th>
-												</tr>
-											</thead>
-											<tbody class="TableBodyTBody"></tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="VideoContainer1 accordion-item">
-
-							<h2 class="VideoAccordionHeader accordion-header">
-								<button class="VideoAccordionButton accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									<i class="bi-youtube"></i>&emsp; Media
-								</button>
-							</h2>
-							<div class="VideoAccordionBody accordion-collapse collapse" id="collapseTwo" data-bs-parent="#table-video">
-								<div class="VideoAccordionBodyInterior accordion-body text-center"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-		<footer class="Footer_al"></footer>
-	</div>
-	<!-- scripts -->
-	<!-- Bootstrap JavaScript Libraries -->
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-
-	<script src="scripts/tablesort.min.js"></script>
-
-	<!-- Include sort types you need -->
-
-	<script src="scripts/sorts/tablesort.number.min.js"></script>
-	<script src="scripts/sorts/tablesort.dotsep.min.js"></script>
-	<script src="scripts/sorts/tablesort.date.min.js"></script>
-	<script src="scripts/sorts/tablesort.value.js"></script>
-
-	<script src="scripts/jscolor.js"></script>
-
-	<script src="auralayer.js" type="module"></script>
-</body>
-
+        <script src="auralayer.js" type="module"></script>
+    </body>
 </html>

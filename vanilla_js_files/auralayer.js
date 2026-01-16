@@ -45,7 +45,7 @@ document.addEventListener('keyup', (e) => {
 document.addEventListener('keydown', (e) => {
     //if NOT in a textbox
     // console.log("shift: " + e.shiftKey + " - ctrl: " + e.ctrlKey + " - Key: " + e.key);
-    console.log(e)
+    // console.log(e)
 
     if (project.in_text_editor === false || (e.ctrlKey && e.key === 'b') || (e.ctrlKey && e.key === 'i')) {
         if (e.ctrlKey && e.key === 's') {
@@ -454,6 +454,8 @@ class Layer {
             Blank: 'pattern_blank.png',
             'Vertical and Horizontal Lines': 'pattern_vertical_and_horizontal_1.png',
             'Divider Black': 'pattern_single_horizontal_line_black.png',
+            'Divider Black Top': 'pattern_single_horizontal_line_top_black.png',
+            'Divider Black Bottom': 'pattern_single_horizontal_line_bottom_black.png',
             'Divider Gray': 'pattern_single_horizontal_line_gray.png',
             'Horizontal_Lines white': 'pattern_horizontal_lines-white.png',
             'Dots_1 white': 'pattern_dots_1-white.png',
@@ -484,56 +486,6 @@ class Layer {
                 texture.style.backgroundRepeat = 'repeat-x'
             }
         }
-
-        // this.shape_background_texture_1 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_1'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines.png)'}, properties: {title: "Horizontal_Lines"}});
-        // this.shape_background_texture_2 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_2'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1.png)'}, properties: {title: "Dots_1"}});
-        // this.shape_background_texture_3 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_3'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2.png)'}, properties: {title: "Dots_2"}});
-        // this.shape_background_texture_4 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_4'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1.png)'}, properties: {title: "Vertical_Lines 1"}});
-        // this.shape_background_texture_5 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_5'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2.png)'}, properties: {title: "Vertical_Lines 2"}});
-        // this.shape_background_texture_6 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_6'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1.png)'}, properties: {title: "Diagonal_Line 1"}});
-        // this.shape_background_texture_7 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2.png)'}, properties: {title: "Diagonal_Line 2"}});
-        // this.shape_background_texture_8 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1.png)'}, properties: {title: "Circle_1"}});
-        // this.shape_background_texture_9 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2.png)'}, properties: {title: "Circle_2"}});
-        // this.shape_background_texture_10 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10'], parent: this.texture_selector, styles:{background:'url(images/pattern_blank.png)'}, properties: {title: "Blank"}});
-        // this.shape_background_texture_11 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_11'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_and_horizontal_1.png)'}, properties: {title: "Vertical and Horizontal Lines"}});
-        // this.shape_background_texture_12 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_12'], parent: this.texture_selector, styles:{background:'url(images/pattern_single_horizontal_line_black.png)'}, properties: {title: "Divider Black"}});
-        // this.shape_background_texture_13 = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_13'], parent: this.texture_selector, styles:{background:'url(images/pattern_single_horizontal_line_gray.png)'}, properties: {title: "Divider Gray"}});
-
-        // this.shape_background_texture_1_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_1_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_horizontal_lines-white.png)'}, properties: {title: "Horizontal_Lines white"}});
-        // this.shape_background_texture_2_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_2_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_1-white.png)'}, properties: {title: "Dots_1 white"}});
-        // this.shape_background_texture_3_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_3_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_dots_2-white.png)'}, properties: {title: "Dots_2 white"}});
-        // this.shape_background_texture_4_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_4_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_1-white.png)'}, properties: {title: "Vertical_Lines 1 white"}});
-        // this.shape_background_texture_5_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_5_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_lines_2-white.png)'}, properties: {title: "Vertical_Lines 2 white"}});
-        // this.shape_background_texture_6_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_6_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_1-white.png)'}, properties: {title: "Diagonal_Line 1 white"}});
-        // this.shape_background_texture_7_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_7_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_diagonal_line_2-white.png)'}, properties: {title: "Diagonal_Line 2 white"}});
-        // this.shape_background_texture_8_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_8_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_1-white.png)'}, properties: {title: "Circle_1 white"}});
-        // this.shape_background_texture_9_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_9_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_circle_2-white.png)'}, properties: {title: "Circle_2 white"}});
-        // this.shape_background_texture_10_white = createNewElement({ type: 'button', classes: ['shape_background_texture', 'shape_background_texture_10_white'], parent: this.texture_selector, styles:{background:'url(images/pattern_vertical_and_horizontal_1-white.png)'}, properties: {title: "Vertical and Horizontal Lines white"}});
-
-        // this.shape_background_texture_1.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_2.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_3.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_4.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_5.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_6.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_7.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_8.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_9.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_10.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_11.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_12.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_13.addEventListener('click', e=>this.create_layer_background_texture(e));
-
-        // this.shape_background_texture_1_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_2_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_3_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_4_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_5_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_6_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_7_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_8_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_9_white.addEventListener('click', e=>this.create_layer_background_texture(e));
-        // this.shape_background_texture_10_white.addEventListener('click', e=>this.create_layer_background_texture(e));
 
         // -----------------------------------
         //      VISIBLE IN TABLE TOGGLE
@@ -679,16 +631,29 @@ class Layer {
         this.name.classList.add('layer_name_being_edited')
         this.name.focus()
         this.name.style.color = 'initial'
+        this.name.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                this.parent.save_state()
+                this.name.blur()
+            }
+        })
         window.getSelection().selectAllChildren(this.name)
     }
     layer_name_input_handler(e) {
         console.log(e)
-        this.layer_data.name = e.target.innerText
-        for (let i = 0; i < this.segment_array.length; i++) {
-            this.segment_array[i].segment_table_row.querySelector('.SegmentTableName').innerText = this.layer_data.name
-        }
 
-        this.parent.save_state()
+        if (e.inputType !== 'insertParagraph') {
+            let parent_layer_index = this.parent.example_data.layers.findIndex((item) => item.layer_id_pos === this.layer_data.layer_id_pos)
+            this.layer_data.name = e.target.innerText
+            // this.parent.example_data.layers[this.layer_data.layer_id_pos].name = this.layer_data.name
+            this.parent.example_data.layers[parent_layer_index].name = this.layer_data.name
+            for (let i = 0; i < this.segment_array.length; i++) {
+                this.segment_array[i].segment_table_row.querySelector('.SegmentTableName').innerText = this.layer_data.name
+            }
+
+            this.parent.save_state()
+        }
     }
     color_picker_handler(e) {
         console.log(e.type)
@@ -706,7 +671,6 @@ class Layer {
             let result_rgb
             let formated_color_value_for_layer
 
-            debugger
             if (current_color.length === 7) {
                 result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(current_color)
                 result_rgb = { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
@@ -726,6 +690,10 @@ class Layer {
 
             this.layer_data.color = urlText + layer_color_formated
 
+            let parent_layer_index = this.parent.example_data.layers.findIndex((item) => item.layer_id_pos === this.layer_data.layer_id_pos)
+            // this.parent.example_data.layers[this.layer_data.layer_id_pos].color = this.layer_data.color
+            this.parent.example_data.layers[parent_layer_index].color = this.layer_data.color
+
             for (let i = 0; i < this.segment_array.length; i++) {
                 let starting_saturation_value = (this.segment_array[i].data.start_presence / GLOBAL_presence_scale).toFixed(1)
                 let ending_saturation_value = (this.segment_array[i].data.end_presence / GLOBAL_presence_scale).toFixed(1)
@@ -736,6 +704,8 @@ class Layer {
                 this.segment_array[i].segment.style.background = urlText + segment_color_formated
                 this.layer_data.segments[i].color = urlText + segment_color_formated
                 this.segment_array[i].data.styles.background = urlText + segment_color_formated
+                // this.parent.example_data.layers[this.layer_data.layer_id_pos].segments[i].color = urlText + segment_color_formated
+                this.parent.example_data.layers[parent_layer_index].segments[i].color = urlText + segment_color_formated
             }
         }
 
@@ -743,29 +713,39 @@ class Layer {
             this.parent.save_state()
         }
     }
-    duplicate_layer(e) {
-        let this_layer_index = this.parent.example_data.layers.findIndex((item) => item.layer_id_pos === this.layer_data.layer_id_pos)
+    duplicate_layer_old(e) {
+        let parent_layer_index = this.parent.example_data.layers.findIndex((item) => item.layer_id_pos === this.layer_data.layer_id_pos)
+        let local_layer_index = this.layer_data.layer_id_pos
         // this.example_data.layers.forEach((each,index)=>
 
         this.parent.layer_id_pos++
 
-        // this.parent.layers.push(new Layer(this.parent.AllLayerContainers, JSON.parse(JSON.stringify(this.parent.example_data.layers[this_layer_index])), this.parent.file_length, this.parent, "load_existing_layer"));
-        this.parent.layers.splice(this_layer_index + 1, 0, new Layer(this.parent.AllLayerContainers, JSON.parse(JSON.stringify(this.parent.example_data.layers[this_layer_index])), this.parent.file_length, this.parent, 'load_existing_layer'))
+        // this.parent.layers.push(new Layer(this.parent.AllLayerContainers, JSON.parse(JSON.stringify(this.parent.example_data.layers[parent_layer_index])), this.parent.file_length, this.parent, "load_existing_layer"));
+        // this.parent.layers.splice(parent_layer_index + 1, 0, new Layer(this.parent.AllLayerContainers, JSON.parse(JSON.stringify(this.parent.example_data.layers[parent_layer_index])), this.parent.file_length, this.parent, 'load_existing_layer'))
+        const data_for_layer_copy = JSON.parse(JSON.stringify(this.parent.example_data.layers[parent_layer_index]))
+
+        this.parent.layers.splice(parent_layer_index + 1, 0, new Layer(this.parent.AllLayerContainers, data_for_layer_copy, this.parent.file_length, this.parent, 'load_existing_layer'))
+        this.parent.layers[parent_layer_index + 1].layer_data.layer_id_pos = this.parent.layer_id_pos
+
         // let new_layer_index = this.parent.layers.length - 1;
-        // let new_layer = this.parent.layers[this.parent.layers.length - 1];
-        let new_layer = this.parent.layers[this_layer_index + 1]
+        // let new_layer_element = this.parent.layers[this.parent.layers.length - 1];
+        let new_layer_element = this.parent.layers[parent_layer_index + 1]
 
-        new_layer.layer_data.color = this.layer_data.color
-        let new_data = JSON.parse(JSON.stringify(this.layer_data))
+        new_layer_element.layer_data.color = this.layer_data.color
+        let copy_of_layer_data = JSON.parse(JSON.stringify(this.layer_data))
 
-        this.parent.example_data.layers.splice(this_layer_index + 1, 0, new_data)
-        new_data.layer_id_pos = this.parent.layer_id_pos
-        new_data.name = JSON.parse(JSON.stringify(this.layer_data.name))
+        this.parent.example_data.layers.splice(parent_layer_index + 1, 0, copy_of_layer_data)
+        copy_of_layer_data.layer_id_pos = this.parent.layer_id_pos
 
-        new_layer.layer_data.layer_id_pos = parseInt(JSON.parse(JSON.stringify(this.parent.layer_id_pos)))
-        new_layer.layer_data.name = JSON.parse(JSON.stringify(this.layer_data.name))
+        // copy_of_layer_data.name = this.layer_data.name
 
-        this.parent_container.insertBefore(new_layer.layer_container, this.layer_container.nextSibling)
+        // // copy_of_layer_data.name = JSON.parse(JSON.stringify('test'))
+
+        // new_layer_element.layer_data.layer_id_pos = parseInt(copy_of_layer_data.layer_id_pos)
+        // new_layer_element.layer_data.name = copy_of_layer_data.name
+        // new_layer_element.name.innerHTML = copy_of_layer_data.name
+
+        this.parent_container.insertBefore(new_layer_element.layer_container, this.layer_container.nextSibling)
 
         let segment_margin_bottom = parseInt(getComputedStyle(document.documentElement, null).getPropertyValue('--segment-margin-bottom'))
 
@@ -781,6 +761,30 @@ class Layer {
         this.parent.save_array[this.parent.save_position].program_data.slider_thumb_offset = this.parent.slider_thumb_offset
 
         this.parent.save_state()
+    }
+    duplicate_layer(e) {
+        // copy the current layer in this.parent.example_data
+
+        let parent_layer_index = this.parent.example_data.layers.findIndex((item) => item.layer_id_pos === this.layer_data.layer_id_pos)
+        let local_layer_index = this.layer_data.layer_id_pos
+        const data_for_layer_copy = JSON.parse(JSON.stringify(this.parent.example_data.layers[parent_layer_index]))
+        this.parent.layer_id_pos++
+        this.parent.example_data.piece_info.layer_id_pos = this.parent.layer_id_pos
+        data_for_layer_copy.layer_id_pos = this.parent.layer_id_pos
+        this.parent.example_data.layers.splice(parent_layer_index + 1, 0, data_for_layer_copy)
+        // this.parent.example_data.layers[this.parent.layer_id_pos]
+
+        // reload whole thing
+        this.parent.layers = []
+        this.parent.AllLayerContainers.innerHTML = ''
+        this.parent.TableBodyTBody.innerHTML = ''
+
+        this.parent.reload_mechanism()
+        console.log('-----------------------')
+        this.parent.example_data.layers.forEach((each) => {
+            console.log('name: ' + each.name + ' - text: ' + each.segments[0].text[0].inner_text)
+            console.log('******')
+        })
     }
     select_changed(e) {
         if (e.target.checked === true) {
@@ -1031,11 +1035,19 @@ class Segment {
 
         this.segment_text_1 = createNewElement({ type: 'div', classes: ['segment_text_1', 'segment_text'], parent: this.segment, properties: { innerText: this.data.text[0].inner_text, contentEditable: false }, styles: this.data.text[0].styles })
 
+        this.segment_text_1.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                this.parent.parent.save_state()
+                this.segment_text_1.blur()
+            }
+        })
+
         // let time_stamp = Math.floor(this.data.start_pos/60) + ":" + String(Math.floor(this.data.start_pos%60)).padStart(2,'0');
 
-        let time_stamp = Math.floor(this.data.start_pos / 10 / 60) + ':' + String(Math.floor((this.data.start_pos / 10) % 60)).padStart(2, '0') + ':' + String(this.data.start_pos % 10).padStart(1, '0')
+        let time_stamp = Math.floor(this.data.start_pos / 10 / 60) + ':' + String(Math.floor((this.data.start_pos / 10) % 60)).padStart(2, '0') + '.' + String(this.data.start_pos % 10).padStart(1, '0')
 
-        this.segment_table_row = createNewElement({ type: 'tr', classes: ['segment_table_row'], parent: this.parent.parent.TableBodyTBody, properties: {} })
+        this.segment_table_row = createNewElement({ type: 'tr', classes: ['segment_table_row', 'layer_id_' + this.parent.layer_data.layer_id_pos], parent: this.parent.parent.TableBodyTBody, properties: {} })
         // this.SegmentTableId = createNewElement({type:"td", classes:["SegmentTableId"], parent: this.segment_table_row, properties:{innerText: this.parent.parent.example_data.piece_info.layer_id_pos}});
 
         this.SegmentTimestampInputBox = createNewElement({ type: 'td', classes: ['SegmentTimestampInputBox'], parent: this.segment_table_row, properties: {} })
@@ -1259,63 +1271,69 @@ class Segment {
         let time_stamp_hour = Math.floor(this.data.start_pos / adjust_value / 60)
         let time_stamp_minute = String(Math.floor((this.data.start_pos / adjust_value) % 60)).padStart(2, '0')
         let time_stamp_seconds = String(this.data.start_pos % adjust_value).padStart(1, '0')
-        let time_stamp = time_stamp_hour + ':' + time_stamp_minute + ':' + time_stamp_seconds
+        let time_stamp = time_stamp_hour + ':' + time_stamp_minute + '.' + time_stamp_seconds
 
         let min_time_stamp_hour = Math.floor(min_new_start_pos / adjust_value / 60)
         let min_time_stamp_minute = String(Math.floor((min_new_start_pos / adjust_value) % 60)).padStart(2, '0')
         let min_time_stamp_seconds = String(min_new_start_pos % adjust_value).padStart(1, '0')
-        let min_time_stamp = min_time_stamp_hour + ':' + min_time_stamp_minute + ':' + min_time_stamp_seconds
+        let min_time_stamp = min_time_stamp_hour + ':' + min_time_stamp_minute + '.' + min_time_stamp_seconds
 
         let max_time_stamp_hour = Math.floor(max_new_start_pos / adjust_value / 60)
         let max_time_stamp_minute = String(Math.floor((max_new_start_pos / adjust_value) % 60)).padStart(2, '0')
         let max_time_stamp_seconds = String(max_new_start_pos % adjust_value).padStart(1, '0')
-        let max_time_stamp = max_time_stamp_hour + ':' + max_time_stamp_minute + ':' + max_time_stamp_seconds
+        let max_time_stamp = max_time_stamp_hour + ':' + max_time_stamp_minute + '.' + max_time_stamp_seconds
 
-        let users_new_time_stamp = prompt('Enter the new timestamp. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + ')')
+        let users_new_time_stamp = prompt('Enter the new timestamp. Format: minutes:seconds.tenths of seconds (current: ' + time_stamp + ')')
+        let users_new_time_stamp_OG = users_new_time_stamp
 
         if (users_new_time_stamp === null) {
             return false
         }
 
-        if (users_new_time_stamp.split(':').length - 1 !== 2) {
-            alert('Incorrect format. There must be at least 2 colons in the new timestamp. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
-            return false
-        }
-
         if (users_new_time_stamp.includes('-')) {
-            alert('Incorrect format. All values must be positive. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
+            alert('Incorrect format. All values must be positive. Format - minutes:seconds.tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
             return false
         }
 
-        if (users_new_time_stamp.split(':')[1].length === 1) {
-            users_new_time_stamp = users_new_time_stamp.split(':')[0] + ':' + users_new_time_stamp.split(':')[1].padStart(2, '0') + ':' + users_new_time_stamp.split(':')[2]
+        // if (users_new_time_stamp.split(':').length - 1 !== 2) {
+        // if ((users_new_time_stamp.includes(':') && users_new_time_stamp.includes('.')) === false) {
+
+        if (users_new_time_stamp.split(':').length - 1 === 1 && users_new_time_stamp.split('.').length - 1 === 0) {
+            users_new_time_stamp = users_new_time_stamp.split(':')[0] + ':' + users_new_time_stamp.split(':')[1].padStart(2, '0') + '.0'
         }
 
-        if (users_new_time_stamp.split(':')[2].length > 1) {
-            users_new_time_stamp = users_new_time_stamp.split(':')[0] + ':' + users_new_time_stamp.split(':')[1] + ':' + parseInt(users_new_time_stamp.split(':')[2])
+        if ((users_new_time_stamp.split(':').length - 1 === 1 && users_new_time_stamp.split('.').length - 1 === 1) === false) {
+            alert('Incorrect format. There must be exactly 1 colon and 1 period in the new timestamp. Format - minutes:seconds.tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
+            return false
+        }
+
+        if (users_new_time_stamp.split('.')[1].length > 1) {
+            // users_new_time_stamp = users_new_time_stamp.split(':')[0] + ':' + users_new_time_stamp.split(':')[1] + ':' + parseInt(users_new_time_stamp.split(':')[2])
+            alert('Incorrect format. Tenths value has more than one character. It must be less than 10 and a single digit. Only your first digit has been kept. You entered: ' + users_new_time_stamp_OG)
+            users_new_time_stamp = users_new_time_stamp.split(':')[0] + ':' + parseInt(users_new_time_stamp.split(':')[1]) + '.' + (parseInt(users_new_time_stamp.split('.')[1]) + '')[0]
         }
 
         let users_minute = parseInt(users_new_time_stamp.split(':')[0])
         let users_seconds = parseInt(users_new_time_stamp.split(':')[1])
-        let users_tenths = parseInt(users_new_time_stamp.split(':')[2])
+        let users_tenths = parseInt(users_new_time_stamp.split('.')[1])
         if (isNaN(users_minute) || isNaN(users_seconds) || isNaN(users_tenths)) {
-            alert('Incorrect format. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
+            alert('Incorrect format. Format - minutes:seconds.tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp_OG)
             return false
         }
 
         if (users_minute < 0 || users_seconds < 0 || users_tenths < 0) {
-            alert('Incorrect format. Values must be positive. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
+            alert('Incorrect format. Values must be positive. Format - minutes:seconds.tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp_OG)
             return false
         }
 
         if (users_seconds >= 60) {
-            alert('Incorrect format. Seconds value must be less than 60. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
+            alert('Incorrect format. Seconds value must be less than 60. Format - minutes:seconds.tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp_OG)
             return false
         }
 
         if (users_tenths >= 10) {
-            alert('Incorrect format. Tenths value  must be less than 10. Format: minutes:seconds:tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp)
-            return false
+            alert('Incorrect format. Tenths value must be less than 10. Format - minutes:seconds.tenths of seconds (current: ' + time_stamp + '). You entered: ' + users_new_time_stamp_OG)
+            // return false
         }
 
         if (users_seconds) {
@@ -1339,7 +1357,6 @@ class Segment {
         right_segment.SegmentTimestampInputBoxText.innerText = users_new_time_stamp
         //below is for a future ending timestamp box
         // left_segment.SegmentTimestampInputBoxText.innerText = users_new_time_stamp -1;
-
         ;[left_segment, right_segment].forEach((each, index) => {
             let new_width_of_current_segment = (each.data.end_pos / each.parent.parent.resolution - each.data.start_pos / each.parent.parent.resolution) * each.parent.parent.scale + each.parent.parent.scale / each.parent.parent.resolution - 1 + 'px'
             // Brian, I don't know why this is needed: (this.parent.parent.scale/this.parent.parent.resolution) -1)
@@ -1416,11 +1433,10 @@ class Segment {
         let time_stamp_hour = Math.floor(right_segment.data.start_pos / adjust_value / 60)
         let time_stamp_minute = String(Math.floor((right_segment.data.start_pos / adjust_value) % 60)).padStart(2, '0')
         let time_stamp_seconds = String(right_segment.data.start_pos % adjust_value).padStart(1, '0')
-        let time_stamp = time_stamp_hour + ':' + time_stamp_minute + ':' + time_stamp_seconds
+        let time_stamp = time_stamp_hour + ':' + time_stamp_minute + '.' + time_stamp_seconds
         right_segment.SegmentTimestampInputBoxText.innerText = time_stamp
 
         // Brian, you need to update the starting timestamp of the right segment if increase
-
         ;[left_segment, right_segment].forEach((each, index) => {
             let new_width_of_current_segment = (each.data.end_pos / each.parent.parent.resolution - each.data.start_pos / each.parent.parent.resolution) * each.parent.parent.scale + each.parent.parent.scale / each.parent.parent.resolution - 1 + 'px'
             // Brian, I don't know why this is needed: (this.parent.parent.scale/this.parent.parent.resolution) -1)
@@ -1538,6 +1554,7 @@ class Segment {
         // console.log("this.data.end_presence: " + this.data.end_presence);
     }
     SegmentTextInput_input_handler(e) {
+        debugger
         this.parent.parent.in_text_editor = true
         this.data.text[0].inner_text = e.target.value
         //  this.segment.innerText = e.target.value;
@@ -1569,10 +1586,12 @@ class Segment {
         this.segment_text_1.focus()
     }
     segment_text_input_handler(e) {
+        let parent_layer_index = this.parent.parent.example_data.layers.findIndex((item) => item.layer_id_pos === this.parent.layer_data.layer_id_pos)
         this.data.text[0].inner_text = e.target.innerText
         this.SegmentTextInput.value = e.target.innerText
         this.SegmentTextInput.dataset.text_value = e.target.innerText
-        this.parent.parent.example_data.layers[this.parent.layer_data.layer_id_pos].segments[this.segment_index].text[0].inner_text = e.target.innerText
+        // this.parent.parent.example_data.layers[this.parent.layer_data.layer_id_pos].segments[this.segment_index].text[0].inner_text = e.target.innerText
+        // this.parent.parent.example_data.layers[parent_layer_index].segments[this.segment_index].text[0].inner_text = e.target.innerText
         this.parent.parent.save_state()
     }
     segment_text_click_handler(e) {
@@ -1736,6 +1755,10 @@ class Auralayer {
     load_mechanism(loaded_data) {
         this.loaded_file = loaded_data
         console.log(this.loaded_file)
+        this.load_from_file(this.loaded_file)
+    }
+    reload_mechanism() {
+        this.loaded_file = JSON.parse(JSON.stringify(this.example_data))
         this.load_from_file(this.loaded_file)
     }
     create_activity_selection_interface() {
@@ -2020,7 +2043,11 @@ class Auralayer {
         this.SaveToFileButton.addEventListener('click', (e) => {
             this.save_to_file()
         })
-        // this.SaveToFileButton.addEventListener("click", e => { download_image(); });
+
+        this.SaveToImageButton = document.querySelector('.SaveToImageButton')
+        this.SaveToImageButton.addEventListener('click', (e) => {
+            download_image()
+        })
 
         // this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, dataset:{bsToggle: "modal", bsTarget: "#share"}, events:{click: e=>this.create_shareable_link()}});
         // this.ShareAnalysisButton = createNewElement({type:"button", classes:["ShareAnalysisButton", "btn", "btn-secondary"], parent: this.ExportButtonContainer, properties:{innerHTML: `<i class="bi-share-fill"></i>`}, attributes:{title: "Share analysis button"}, events:{click: e=>this.create_shareable_link()}});
@@ -2207,7 +2234,6 @@ class Auralayer {
         this.SearchTableInput.addEventListener('blur', (e) => {
             this.in_text_editor = false
         })
-
         ;(function () {
             'use strict'
 
@@ -3190,7 +3216,7 @@ class Auralayer {
 
         this.save_array[this.save_position].program_data.slider_thumb_height = this.slider_thumb_height
         this.save_array[this.save_position].program_data.slider_thumb_offset = this.slider_thumb_offset
-        this.save_array.forEach((each) => console.log(each.program_data))
+        // this.save_array.forEach((each) => console.log(each.program_data))
 
         this.undo_now = false
 
@@ -3342,6 +3368,9 @@ class Auralayer {
             }
         })
 
+        this.TableBodyTBody.querySelectorAll('.layer_id_' + sent_layer_id).forEach((each) => {
+            each.remove()
+        })
         this.example_data.layers.splice(layer_index, 1)
         this.layers[layer_index].layer_container.remove()
         this.layers.splice(layer_index, 1)
