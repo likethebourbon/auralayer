@@ -1,4 +1,4 @@
-let developing = false;
+let developing = true;
 let youtube_player_state = -2;
 let GLOBAL_length_padding = 1;
 let GLOBAL_presence_scale = 10;
@@ -132,12 +132,12 @@ document.addEventListener('keydown', e =>
 								case 'youtube_link':
 									if (youtube_player_state != YT.PlayerState.PAUSED)
 										{
-											playerx.g.classList.remove("small_youtube_video_for_iframes");
+											playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
 											playerx.pauseVideo();
 										}
 									else
 										{
-											playerx.g.classList.remove("small_youtube_video_for_iframes");
+											playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
 											playerx.playVideo();
 										}
 									
@@ -2467,8 +2467,8 @@ class Auralayer
 							
 								if(this.iframe_embed === true)
 									{
-										playerx.g.classList.remove("small_youtube_video_for_iframes");
-										playerx.g.classList.add("small_iframe_youtube_after_clicking");
+										playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
+										playerx.getIframe().classList.add("small_iframe_youtube_after_clicking");
 									}
 
 								playerx.pauseVideo();
@@ -2479,8 +2479,8 @@ class Auralayer
 								
 								if(this.iframe_embed === true)
 									{
-										playerx.g.classList.remove("small_youtube_video_for_iframes");
-										playerx.g.classList.add("small_iframe_youtube_after_clicking");
+										playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
+										playerx.getIframe().classList.add("small_iframe_youtube_after_clicking");
 									}								
 
 								
@@ -2504,7 +2504,7 @@ class Auralayer
 									case 'youtube_link':
 										
 											// player.play();
-											playerx.g.classList.remove("small_youtube_video_for_iframes");
+											playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
 
 											playerx.playVideo();
 											
@@ -2524,7 +2524,7 @@ class Auralayer
 												break;
 										case 'youtube_link':
 											
-												playerx.g.classList.remove("small_youtube_video_for_iframes");
+												playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
 												playerx.pauseVideo();
 												break;
 										default:
@@ -2584,7 +2584,7 @@ class Auralayer
 
 				if(this.iframe_embed === true)
 					{
-						playerx.g.classList.add("small_youtube_video_for_iframes");
+						playerx.getIframe().classList.add("small_youtube_video_for_iframes");
 					}
 			}
 		start_program_after_media_loaded()
@@ -3469,7 +3469,7 @@ function onPlayerStateChange(event)
 		
 		if(project.iframe_embed === true)
 			{
-				playerx.g.classList.remove("small_youtube_video_for_iframes");
-				playerx.g.classList.add("small_iframe_youtube_after_clicking");
+				playerx.getIframe().classList.remove("small_youtube_video_for_iframes");
+				playerx.getIframe().classList.add("small_iframe_youtube_after_clicking");
 			}
 	}  
